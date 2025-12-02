@@ -1,0 +1,84 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: TFG.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: capitulos/portada.aux
+Reallocating 'name_of_file' (item size: 1) to 23 items.
+A level-1 auxiliary file: capitulos/licencia.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: capitulos/resumen_abstract.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: capitulos/cap_introduccion.aux
+Reallocating 'name_of_file' (item size: 1) to 41 items.
+A level-1 auxiliary file: capitulos/cap_planteamiento_problema.aux
+Reallocating 'name_of_file' (item size: 1) to 28 items.
+A level-1 auxiliary file: capitulos/cap_objetivos.aux
+Reallocating 'name_of_file' (item size: 1) to 32 items.
+A level-1 auxiliary file: capitulos/cap_marco_teorico.aux
+Reallocating 'name_of_file' (item size: 1) to 38 items.
+A level-1 auxiliary file: capitulos/cap_revision_literatura.aux
+Reallocating 'name_of_file' (item size: 1) to 41 items.
+A level-1 auxiliary file: capitulos/cap_aportes_investigativos.aux
+Reallocating 'name_of_file' (item size: 1) to 38 items.
+A level-1 auxiliary file: capitulos/cap_diseno_metodologico.aux
+Reallocating 'name_of_file' (item size: 1) to 29 items.
+A level-1 auxiliary file: capitulos/cap_resultados.aux
+Reallocating 'name_of_file' (item size: 1) to 37 items.
+A level-1 auxiliary file: capitulos/cap_analisis_discusion.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: capitulos/cap_conclusiones.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: IEEEtran.bst
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: bibliografia/bibliografia.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 32 entries,
+            4087 wiz_defined-function locations,
+            1038 strings with 15215 characters,
+and the built_in function-call counts, 27169 in all, are:
+= -- 2191
+> -- 696
+< -- 225
++ -- 412
+- -- 149
+* -- 1349
+:= -- 3999
+add.period$ -- 63
+call.type$ -- 32
+change.case$ -- 39
+chr.to.int$ -- 513
+cite$ -- 32
+duplicate$ -- 1900
+empty$ -- 2096
+format.name$ -- 150
+if$ -- 6359
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 350
+newline$ -- 135
+num.names$ -- 32
+pop$ -- 780
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2075
+stack$ -- 0
+substring$ -- 1322
+swap$ -- 1641
+text.length$ -- 54
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 32
+warning$ -- 0
+while$ -- 105
+width$ -- 34
+write$ -- 364

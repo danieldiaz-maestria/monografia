@@ -1,0 +1,368 @@
+\chapter{DISEÑO METODOLÓGICO}
+\label{ch:metodologia_experimental}
+
+En este capítulo se describe detalladamente la metodología empleada para llevar a cabo la investigación experimental. Se presenta el enfoque metodológico general, el diseño del sistema de medición, la configuración del escenario experimental, los protocolos de recolección de datos y las técnicas de procesamiento y análisis que permitirán responder a las preguntas de investigación planteadas.
+
+\section{ENFOQUE METODOLÓGICO}
+\label{sec:enfoque_metodologico}
+
+Para abordar los objetivos de esta investigación, se ha adoptado el Modelo en V como marco metodológico principal. Este enfoque, ampliamente utilizado en proyectos de ingeniería que requieren desarrollo de sistemas y validación experimental rigurosa, establece una correspondencia directa entre cada fase de diseño e implementación con su respectiva fase de verificación y validación.
+
+La elección del Modelo en V responde a la naturaleza técnica y experimental de este trabajo, donde resulta fundamental garantizar que cada componente del sistema de medición funcione correctamente antes de proceder con la recolección de datos. Este modelo permite identificar y corregir errores de manera temprana, reduciendo el riesgo de invalidar datos experimentales debido a configuraciones incorrectas o malfuncionamientos del hardware.
+
+\subsection{Estructura del Modelo en V Aplicado}
+
+La implementación del Modelo en V para este proyecto se estructura en dos trayectorias principales:
+
+\subsubsection{Brazo Descendente: Especificación y Diseño}
+
+Esta trayectoria comprende las etapas de definición y diseño del experimento:
+
+\begin{enumerate}
+\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos específicos de la investigación, traduciendo las preguntas de investigación en requerimientos técnicos medibles. Esto incluye la definición de las métricas de desempeño que se evaluarán (error de distancia, error de posición, desviación estándar), los rangos de condiciones experimentales que se explorarán (posiciones del dispositivo en el cuerpo, orientaciones relativas, distancias) y los criterios de aceptación de los resultados.
+
+\item \textbf{Diseño del Sistema:} Se especifica la arquitectura completa del sistema experimental, incluyendo la selección del hardware UWB (modelo de dispositivos, frecuencia de operación, configuración de parámetros de transmisión), el diseño del escenario de prueba (dimensiones, ubicación de nodos ancla, posiciones de referencia), y la especificación del software de adquisición y procesamiento de datos.
+
+\item \textbf{Diseño de Componentes:} Se detallan las especificaciones técnicas de cada elemento del sistema: características de los dispositivos UWB, sistema de posicionamiento de referencia (si aplica), sensores inerciales para determinar la orientación corporal, y las interfaces de comunicación entre componentes.
+
+\item \textbf{Implementación:} Se ensambla el sistema físico, se configura el software de adquisición de datos, se instalan los nodos ancla en el escenario y se realizan las configuraciones necesarias en los dispositivos UWB.
+\end{enumerate}
+
+\subsubsection{Brazo Ascendente: Validación y Verificación}
+
+Esta trayectoria comprende las etapas de prueba y validación que corresponden simétricamente a cada fase de diseño:
+
+\begin{enumerate}
+\item \textbf{Pruebas Unitarias:} Se verifica el funcionamiento individual de cada componente. Esto incluye comprobar que los dispositivos UWB se comunican correctamente, que las mediciones de ToF son estables en condiciones controladas, que el sistema de registro de datos funciona sin pérdidas de información, y que los sensores auxiliares proporcionan lecturas válidas.
+
+\item \textbf{Pruebas de Integración:} Se verifica que todos los componentes operan correctamente como sistema integrado. Se realizan mediciones preliminares en condiciones de LOS para establecer una línea base de desempeño y confirmar que la exactitud alcanzada es consistente con las especificaciones del fabricante y los valores reportados en la literatura.
+
+\item \textbf{Pruebas de Validación:} Se ejecuta el protocolo experimental completo, recolectando datos en todas las condiciones planificadas. Se verifica que los datos obtenidos son suficientes en cantidad y calidad para responder a las preguntas de investigación.
+
+\item \textbf{Análisis y Validación de Resultados:} Se procesan y analizan los datos recolectados, se calculan las métricas de desempeño definidas, se realizan análisis estadísticos y se comparan los resultados con el estado del arte. Se verifica que los hallazgos sean consistentes, reproducibles y científicamente válidos.
+\end{enumerate}
+
+Este enfoque metodológico estructurado garantiza la trazabilidad de todos los aspectos del experimento, desde los requerimientos iniciales hasta los resultados finales, facilitando la reproducibilidad del estudio y la identificación de fuentes potenciales de error o sesgo.
+
+
+\section{CONFIGURACIÓN DEL HARDWARE}
+\label{sec:configuracion_hardware}
+
+\subsection{Dispositivos UWB}
+
+\subsubsection{Selección de Dispositivos}
+
+[COMPLETAR: Especificar el modelo exacto de dispositivos UWB utilizados, fabricante, chipset (ej. DW3000, DW1000), características técnicas principales]
+
+Para este estudio se han seleccionado dispositivos UWB basados en [ESPECIFICAR CHIPSET], configurados para operar en la banda de frecuencia central de 6.5 GHz. La elección de estos dispositivos se fundamenta en:
+
+\begin{itemize}
+\item Capacidad de operar en la banda de 6.5 GHz con el ancho de banda necesario para lograr resolución temporal adecuada.
+\item Soporte nativo para mediciones TWR con registro de timestamps de alta precisión.
+\item Interfaz de comunicación accesible que permite la extracción de datos crudos de ToF y otras métricas de señal.
+\item Consumo energético compatible con operación portátil prolongada.
+\item Disponibilidad de documentación técnica detallada y herramientas de desarrollo.
+\end{itemize}
+
+\subsubsection{Parámetros de Configuración}
+
+Los dispositivos UWB se configuran con los siguientes parámetros operacionales:
+
+\begin{itemize}
+\item \textbf{Frecuencia central:} 6.5 GHz (Canal [ESPECIFICAR])
+\item \textbf{Ancho de banda:} [ESPECIFICAR] MHz
+\item \textbf{Tasa de repetición de pulsos:} [ESPECIFICAR] MHz
+\item \textbf{Longitud del preámbulo:} [ESPECIFICAR] símbolos
+\item \textbf{Potencia de transmisión:} [ESPECIFICAR] dBm
+\item \textbf{Tasa de actualización de mediciones:} [ESPECIFICAR] Hz
+\end{itemize}
+
+Estos parámetros se seleccionan para optimizar el compromiso entre exactitud de medición, alcance efectivo y consumo energético, siguiendo las recomendaciones del fabricante y las mejores prácticas identificadas en la revisión de literatura.
+
+\subsection{Sistema de Sensores Inerciales}
+
+[COMPLETAR si se utiliza IMU: Para determinar la orientación del cuerpo humano y correlacionar las mediciones de ToF con el ángulo de orientación relativo (RHA), se emplea una Unidad de Medida Inercial (IMU) que incorpora acelerómetro, giroscopio y magnetómetro...]
+
+\subsection{Sistema de Referencia de Posición}
+
+[COMPLETAR: Describir si se utiliza un sistema óptico de captura de movimiento, marcadores fiduciales, o un método manual de posicionamiento con puntos de referencia marcados en el piso]
+
+
+\section{DISEÑO DEL ESCENARIO EXPERIMENTAL}
+\label{sec:escenario_experimental}
+
+\subsection{Selección y Características del Entorno}
+
+El experimento se desarrolla en [ESPECIFICAR UBICACIÓN EXACTA, ej. "el Salón 305 del Edificio de Ingeniería Electrónica y Telecomunicaciones de la Universidad del Cauca"]. Este espacio ha sido seleccionado por presentar características representativas de escenarios de interiores típicos donde se implementan sistemas de posicionamiento:
+
+\begin{itemize}
+\item \textbf{Dimensiones:} [ESPECIFICAR largo × ancho × alto en metros]
+\item \textbf{Materiales constructivos:} Paredes de [ESPECIFICAR], piso de [ESPECIFICAR], techo de [ESPECIFICAR]
+\item \textbf{Mobiliario:} [DESCRIBIR mobiliario principal presente: mesas, sillas, estanterías, etc.]
+\item \textbf{Fuentes de interferencia:} [IDENTIFICAR posibles fuentes de interferencia electromagnética: redes WiFi activas, equipos electrónicos, etc.]
+\end{itemize}
+
+\subsection{Disposición de Nodos Ancla}
+
+Se despliegan cuatro nodos ancla fijos en configuración [ESPECIFICAR: rectangular, cuadrada, etc.] que define el área de cobertura del sistema de posicionamiento. Las coordenadas de instalación de los nodos ancla son:
+
+\begin{itemize}
+\item \textbf{Ancla 1:} $(x_1, y_1, z_1)$ = [ESPECIFICAR coordenadas en metros]
+\item \textbf{Ancla 2:} $(x_2, y_2, z_2)$ = [ESPECIFICAR coordenadas en metros]
+\item \textbf{Ancla 3:} $(x_3, y_3, z_3)$ = [ESPECIFICAR coordenadas en metros]
+\item \textbf{Ancla 4:} $(x_4, y_4, z_4)$ = [ESPECIFICAR coordenadas en metros]
+\end{itemize}
+
+Los nodos ancla se montan a una altura de [ESPECIFICAR] metros sobre el nivel del piso, utilizando [ESPECIFICAR método de montaje: trípodes, soportes de pared, etc.], asegurando estabilidad mecánica durante todo el período experimental.
+
+La geometría de despliegue se diseña para minimizar la dilución de precisión geométrica (GDOP) en el área de interés, maximizando así la exactitud de localización en condiciones de LOS.
+
+
+\section{PROTOCOLO DE RECOLECCIÓN DE DATOS}
+\label{sec:protocolo_recoleccion}
+
+\subsection{Población y Muestra}
+
+Para evaluar la variabilidad del efecto de obstrucción corporal entre individuos con diferentes características antropométricas, el estudio incluye la participación de [ESPECIFICAR número] voluntarios. Los criterios de selección consideran diversidad en:
+
+\begin{itemize}
+\item \textbf{Estatura:} Rango de [ESPECIFICAR] a [ESPECIFICAR] cm
+\item \textbf{Peso:} Rango de [ESPECIFICAR] a [ESPECIFICAR] kg
+\item \textbf{Índice de Masa Corporal:} Cubriendo categorías [ESPECIFICAR]
+\item \textbf{Género:} [ESPECIFICAR distribución]
+\end{itemize}
+
+Cada participante firma un consentimiento informado donde se explica el propósito del estudio, los procedimientos a realizar, y el uso de los datos recolectados, siguiendo los lineamientos éticos establecidos por [ESPECIFICAR comité de ética o normativa aplicable].
+
+\subsection{Posiciones del Dispositivo en el Cuerpo}
+
+Se evalúan múltiples ubicaciones de portación del nodo móvil UWB, seleccionadas por su relevancia en aplicaciones prácticas de seguimiento de personas:
+
+\begin{enumerate}
+\item \textbf{Frente (Pecho):} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante.
+\item \textbf{Espalda:} Dispositivo colocado en el centro de la espalda, entre los omóplatos, orientado hacia atrás.
+\item \textbf{Cintura (Cadera):} Dispositivo ubicado en la cintura, sobre la cadera derecha, orientado lateralmente.
+\item \textbf{Muñeca:} Dispositivo colocado en la muñeca izquierda, simulando un dispositivo tipo smartwatch.
+\item \textbf{Tobillo:} Dispositivo colocado en el tobillo derecho, orientado lateralmente.
+\end{enumerate}
+
+Para cada ubicación se registra la altura exacta sobre el nivel del piso y la orientación del dispositivo mediante fotografías y anotaciones en el protocolo experimental.
+
+\subsection{Trayectorias y Posiciones de Medición}
+
+\subsubsection{Mediciones Estáticas}
+
+En una primera fase, se realizan mediciones estáticas donde el participante permanece inmóvil en posiciones específicas dentro del escenario. Se define una malla de puntos de referencia con [ESPECIFICAR espaciamiento, ej. "separación de 1 metro en ambas direcciones"], cubriendo el área de cobertura de los nodos ancla.
+
+En cada posición de la malla, el participante adopta [ESPECIFICAR número] orientaciones diferentes, típicamente separadas por [ESPECIFICAR, ej. "45 grados"], completando así un ciclo de 360 grados. Esto permite evaluar el efecto del ángulo de orientación relativo (RHA) de manera sistemática.
+
+Para cada combinación de posición-orientación-ubicación del dispositivo, se registran [ESPECIFICAR número] mediciones de ToF hacia cada uno de los cuatro nodos ancla, totalizando [CALCULAR] mediciones individuales por posición.
+
+\subsubsection{Mediciones Dinámicas}
+
+[ESPECIFICAR si se incluyen: En una segunda fase, se realizan mediciones dinámicas donde el participante se desplaza siguiendo trayectorias predefinidas...]
+
+\subsection{Condiciones de Control}
+
+Para garantizar la reproducibilidad del experimento y minimizar la variabilidad no controlada:
+
+\begin{itemize}
+\item Las mediciones se realizan en horarios donde la actividad en las áreas circundantes es mínima, reduciendo interferencia de personas transitando.
+\item Se verifica antes de cada sesión que no haya cambios significativos en el entorno (mobiliario movido, nuevos objetos metálicos, etc.).
+\item Se registran las condiciones ambientales: temperatura, humedad relativa, presencia de dispositivos electrónicos activos.
+\item Se realiza una medición de calibración en LOS (sin participante presente) al inicio de cada sesión experimental para verificar la estabilidad del sistema.
+\end{itemize}
+
+\subsection{Procedimiento de Medición}
+
+El protocolo detallado para cada sesión experimental es el siguiente:
+
+\begin{enumerate}
+\item \textbf{Preparación:} Encendido de los nodos ancla, verificación de comunicación, sincronización de relojes del sistema, inicialización del software de adquisición de datos.
+
+\item \textbf{Calibración LOS:} Mediciones de referencia en ausencia de obstrucción, colocando el nodo móvil en posiciones conocidas para verificar la exactitud del sistema.
+
+\item \textbf{Instrumentación del Participante:} Colocación del dispositivo UWB en la ubicación corporal correspondiente a la sesión actual, verificación de la correcta sujeción y orientación.
+
+\item \textbf{Adquisición de Datos:} El participante se posiciona en cada punto de la malla según las instrucciones del operador. En cada posición, adopta secuencialmente las orientaciones especificadas. El sistema registra automáticamente las mediciones de ToF hacia los cuatro nodos ancla. El operador anota en la planilla experimental cualquier observación relevante.
+
+\item \textbf{Verificación de Integridad de Datos:} Al finalizar cada conjunto de mediciones, se verifica que no haya pérdidas de paquetes o datos corruptos. Si se detectan anomalías, se repite el conjunto afectado.
+
+\item \textbf{Descarga y Respaldo de Datos:} Los datos se descargan del sistema de adquisición, se organizan en la estructura de directorios definida y se realiza un respaldo en ubicaciones redundantes.
+\end{enumerate}
+
+
+\section{PROCESAMIENTO Y ANÁLISIS DE DATOS}
+\label{sec:procesamiento_datos}
+
+\subsection{Preprocesamiento de Datos Crudos}
+
+Los datos crudos registrados por el sistema UWB incluyen timestamps de alta resolución, mediciones de ToF, estimaciones de potencia de señal recibida y otros parámetros de diagnóstico. El preprocesamiento comprende:
+
+\begin{itemize}
+\item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas (ej. ToF negativo, distancias fuera del rango físico posible) mediante criterios estadísticos robustos.
+
+\item \textbf{Conversión de ToF a Distancia:} Aplicación de la ecuación $d = \text{ToF} \times c$, donde $c$ es la velocidad de la luz.
+
+\item \textbf{Corrección de sesgos sistemáticos:} Si se identifican sesgos consistentes en las mediciones de calibración LOS, se aplican correcciones de offset para cada nodo ancla.
+
+\item \textbf{Sincronización temporal:} Alineación temporal de las mediciones desde los cuatro nodos ancla cuando corresponden a la misma posición instantánea del participante.
+\end{itemize}
+
+\subsection{Cálculo de Métricas de Error}
+
+Para cada medición de distancia entre el nodo móvil y un nodo ancla, se calcula:
+
+\begin{equation}
+e_i = d_{\text{medida},i} - d_{\text{real},i}
+\end{equation}
+
+donde $d_{\text{real},i}$ es la distancia euclidiana verdadera calculada a partir de las coordenadas conocidas del nodo ancla $i$ y la posición de referencia del participante.
+
+Se definen las siguientes métricas estadísticas:
+
+\begin{itemize}
+\item \textbf{Error Medio (Mean Error, ME):}
+\begin{equation}
+\text{ME} = \frac{1}{N} \sum_{j=1}^{N} e_j
+\end{equation}
+
+\item \textbf{Error Absoluto Medio (Mean Absolute Error, MAE):}
+\begin{equation}
+\text{MAE} = \frac{1}{N} \sum_{j=1}^{N} |e_j|
+\end{equation}
+
+\item \textbf{Raíz del Error Cuadrático Medio (Root Mean Square Error, RMSE):}
+\begin{equation}
+\text{RMSE} = \sqrt{\frac{1}{N} \sum_{j=1}^{N} e_j^2}
+\end{equation}
+
+\item \textbf{Desviación Estándar del Error:}
+\begin{equation}
+\sigma_e = \sqrt{\frac{1}{N-1} \sum_{j=1}^{N} (e_j - \text{ME})^2}
+\end{equation}
+
+\item \textbf{Percentiles:} Se calculan los percentiles 50 (mediana), 90 y 95 del error absoluto para caracterizar la distribución completa del error.
+\end{itemize}
+
+\subsection{Análisis Estadístico}
+
+\subsubsection{Caracterización de Distribuciones}
+
+Para cada condición experimental (combinación de ubicación corporal, orientación RHA, distancia), se ajustan distribuciones de probabilidad teóricas a los errores observados. Se evalúan distribuciones:
+
+\begin{itemize}
+\item Normal (Gaussiana)
+\item Log-normal
+\item Gamma
+\item Mixtura de Gaussianas (para modelar transiciones LOS/NLOS)
+\end{itemize}
+
+La bondad de ajuste se evalúa mediante pruebas de Kolmogorov-Smirnov y criterios de información (AIC, BIC).
+
+\subsubsection{Análisis de Varianza (ANOVA)}
+
+Se emplea ANOVA multifactorial para determinar qué factores experimentales tienen efecto estadísticamente significativo sobre el error de distancia:
+
+\begin{itemize}
+\item Factor 1: Ubicación del dispositivo en el cuerpo (5 niveles)
+\item Factor 2: Ángulo de orientación relativo RHA (8 niveles)
+\item Factor 3: Distancia del nodo móvil a cada ancla (variable continua o discretizada)
+\item Factor 4: Características antropométricas del participante (covariables)
+\end{itemize}
+
+Las interacciones entre factores también se analizan para identificar si, por ejemplo, el efecto de la orientación RHA depende de la ubicación corporal del dispositivo.
+
+\subsubsection{Análisis de Correlación}
+
+Se calcula el coeficiente de correlación de Pearson entre el error de distancia y variables continuas como:
+\begin{itemize}
+\item Distancia verdadera nodo móvil - nodo ancla
+\item Ángulo de orientación relativo RHA
+\item Estatura del participante
+\item Peso del participante
+\item Potencia de señal recibida (RSS)
+\end{itemize}
+
+\subsection{Estimación de Posición y Evaluación del Sistema Completo}
+
+A partir de las mediciones de distancia (con error introducido por BS) hacia los cuatro nodos ancla, se estima la posición 2D del nodo móvil mediante algoritmos de trilateración:
+
+\subsubsection{Trilateración por Mínimos Cuadrados}
+
+Se plantea el sistema de ecuaciones:
+\begin{equation}
+\sqrt{(x - x_i)^2 + (y - y_i)^2} = d_{\text{medida},i} \quad \text{para } i = 1, 2, 3, 4
+\end{equation}
+
+donde $(x, y)$ es la posición desconocida del nodo móvil y $(x_i, y_i)$ son las coordenadas conocidas de los nodos ancla. Este sistema no lineal se linealiza y resuelve mediante el método de mínimos cuadrados ponderados.
+
+\subsubsection{Filtro de Kalman}
+
+[ESPECIFICAR si se implementa: Se implementa un Filtro de Kalman para suavizar las estimaciones de posición a lo largo del tiempo...]
+
+\subsubsection{Métricas de Error de Posición}
+
+Para la posición estimada $(\hat{x}, \hat{y})$ respecto a la posición verdadera $(x_{\text{real}}, y_{\text{real}})$, se calculan:
+
+\begin{itemize}
+\item \textbf{Error de Posición 2D:}
+\begin{equation}
+e_{\text{pos}} = \sqrt{(\hat{x} - x_{\text{real}})^2 + (\hat{y} - y_{\text{real}})^2}
+\end{equation}
+
+\item \textbf{Error de posición medio, mediana, RMSE, percentiles} siguiendo las mismas definiciones que para el error de distancia.
+
+\item \textbf{Error Circular Probable (CEP):} Radio del círculo centrado en la posición verdadera que contiene el 50\% de las estimaciones de posición.
+
+\item \textbf{Exactitud al 95\%:} Radio del círculo que contiene el 95\% de las estimaciones.
+\end{itemize}
+
+
+\section{HERRAMIENTAS DE SOFTWARE}
+\label{sec:herramientas_software}
+
+\subsection{Software de Adquisición de Datos}
+
+[ESPECIFICAR: Lenguaje de programación y bibliotecas utilizadas para la interfaz con los dispositivos UWB, ej. Python con biblioteca DWM1001-API, C++ con SDK del fabricante, etc.]
+
+\subsection{Software de Procesamiento y Análisis}
+
+El procesamiento de datos y análisis estadístico se realiza utilizando:
+
+\begin{itemize}
+\item \textbf{Python 3.x} con las bibliotecas científicas:
+    \begin{itemize}
+    \item \texttt{NumPy}: Operaciones numéricas y álgebra lineal
+    \item \texttt{Pandas}: Manipulación y análisis de datos estructurados
+    \item \texttt{SciPy}: Funciones estadísticas avanzadas, ajuste de distribuciones, ANOVA
+    \item \texttt{Matplotlib} y \texttt{Seaborn}: Visualización de datos
+    \item \texttt{scikit-learn}: Implementación de filtros y algoritmos de localización
+    \end{itemize}
+\item [ESPECIFICAR alternativas si aplica: MATLAB, R, etc.]
+\end{itemize}
+
+\subsection{Control de Versiones y Reproducibilidad}
+
+Todo el código desarrollado se gestiona mediante Git y se almacena en un repositorio [ESPECIFICAR: privado/público, plataforma]. Los datos experimentales se organizan en formato estándar [ESPECIFICAR: CSV, HDF5, etc.] con metadatos descriptivos. Se proporciona un entorno computacional reproducible mediante [ESPECIFICAR: archivo requirements.txt, contenedor Docker, etc.] que especifica las versiones exactas de todas las dependencias de software.
+
+
+\section{CONSIDERACIONES ÉTICAS}
+\label{sec:consideraciones_eticas}
+
+El protocolo experimental ha sido [ESPECIFICAR: "aprobado por el Comité de Ética de..." o "diseñado siguiendo los lineamientos éticos de..."]. Los participantes:
+
+\begin{itemize}
+\item Son informados detalladamente sobre el propósito del estudio y los procedimientos.
+\item Firman un consentimiento informado antes de participar.
+\item Pueden retirarse del estudio en cualquier momento sin consecuencias.
+\item Sus datos personales (nombre, edad, etc.) son anonimizados y protegidos según normativas de protección de datos [ESPECIFICAR normativa aplicable: Ley 1581 de 2012 en Colombia, GDPR en Europa, etc.].
+\item No se someten a ningún procedimiento invasivo o de riesgo para su salud o integridad física.
+\end{itemize}
+
+
+\section{RESUMEN DEL CAPÍTULO}
+
+Este capítulo ha presentado el diseño metodológico completo de la investigación experimental. Se ha detallado la selección y configuración del hardware UWB, el diseño del escenario experimental, el protocolo sistemático de recolección de datos que garantiza la cobertura exhaustiva de las condiciones de interés, y las técnicas estadísticas y algorítmicas que se emplearán para el análisis de los datos.
+
+La metodología propuesta, fundamentada en el Modelo en V, asegura que cada aspecto del sistema experimental sea verificado y validado antes de la recolección de datos definitiva, minimizando el riesgo de errores sistemáticos y maximizando la calidad y reproducibilidad de los resultados. El siguiente capítulo presentará los resultados obtenidos al aplicar esta metodología.

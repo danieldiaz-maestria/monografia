@@ -1,0 +1,55 @@
+
+
+
+%======================
+% PARÁMETROS Y CÁLCULOS
+%======================
+\def\ValorPunto{22358}
+
+% Estudiante de Maestría
+\def\HorasEst{1080} % 30h x 36 semanas
+\def\PuntosHoraEst{2.5}
+\def\CostoHoraEst{\fpeval{\PuntosHoraEst * \ValorPunto}}
+\def\TotalEstudiante{\fpeval{\HorasEst * \CostoHoraEst}}
+
+% Director
+\def\HorasDir{144} % 2h x 36 semanas
+\def\PuntosHoraDir{4}
+\def\CostoHoraDir{\fpeval{\PuntosHoraDir * \ValorPunto}}
+\def\TotalDirector{\fpeval{\HorasDir * \CostoHoraDir}}
+
+% Subtotal Recursos Humanos
+\def\TotalRH{\fpeval{\TotalEstudiante + \TotalDirector}}
+
+% Hardware: depreciación PC
+\def\ValPC{4250000}
+\def\DepreciacionPC{\fpeval{0.25 * \ValPC}} % 9 meses de 36 (3 años)
+\def\ValEquipos{2000000}
+\def\DepreciacionUWB{\fpeval{0.008*\ValEquipos}}
+
+\def\TotalHardware{\fpeval{\DepreciacionPC + \DepreciacionUWB}}
+
+
+
+% Publicaciones
+\def\TotalPublicaciones{3000000}
+
+% Subtotal directo
+\def\SubtotalDirecto{\fpeval{\TotalRH + \TotalHardware + \TotalPublicaciones}}
+
+% Comunicaiones (2%)
+\def\comunicacionesRubro{\fpeval{0.02 * \SubtotalDirecto}}
+
+% AUI (20%)
+\def\AUI{\fpeval{0.2 * (\SubtotalDirecto + \comunicacionesRubro)}}
+
+
+
+% Total estudiante recurso
+\def\TotalEstudianteRecurso{\fpeval{\TotalEstudiante + \DepreciacionPC + \TotalPublicaciones}}
+
+% Total FIET
+\def\TotalFIET{\fpeval{\TotalDirector + \AUI + \comunicacionesRubro + \DepreciacionUWB}}
+
+% Total Proyecto
+\def\TotalProyecto{\fpeval{\TotalFIET + \TotalEstudianteRecurso}}

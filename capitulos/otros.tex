@@ -1,0 +1,76 @@
+
+
+\label{sec:analisis_discusion}
+
+Los estudios revisados ofrecen una visión integral del impacto de la BS en los IPS y sistemas de comunicación basados en UWB y las técnicas utilizadas para mitigar sus efectos. A continuación, se presentan los puntos clave:
+
+\textbf{Impacto de la BS en la propagación UWB}
+\begin{itemize}
+    \item Los estudios basados en simulación, como el de \textbf{FDTD and Empirical Exploration of Human Body and UWB Radiation Interaction on TOF Ranging} \cite{ref17}, muestran que el cuerpo humano puede introducir atenuaciones de hasta 12 dB en condiciones NLOS, destacando que los cambios en el ToF provocados por la interacción de señales UWB con el cuerpo humano se deben al efecto de BS, que provoca retardos en la señal por absorción y reflexión. Lo anterior afecta la exactitud en la estimación de distancia, ya que, al obstruir la línea de vista o el trayecto directo entre el nodo móvil y el nodo fijo, el ToF aumenta por las señales que llegan a través de los trayectos indirecto, generando errores de estimación de distancia y reduciendo la exactitud de la localización. Si un eco llega con más potencia que la señal que atraviesa el cuerpo, podría indicar que la ruta reflejada tiene una menor pérdida de potencia, un fenómeno común en escenarios con multitrayecto. Esto puede confundir al receptor al interpretar el eco como la señal principal, afectando el ToF y la estimación de distancia, por lo que se requiere el uso de algoritmos de filtrado para diferenciar entre la señal por trayecto directo y la señal por trayectos indirectos (ecos), mejorando la exactitud en condiciones de NLOS.
+    \item Los estudios experimentales, como el de \textbf{Impact of Body Wearable Sensor Positions on UWB Ranging} \cite{ref14}, confirman que la posición del sensor en el cuerpo tiene un impacto negativo en la exactitud de la estimación de la distancia entre dos nodos UWB, concluyendo que la posición de los sensores en la frente proporcionó los mejores resultados.
+\end{itemize}
+
+\textbf{Mitigación de errores en condiciones NLOS}
+\begin{itemize}
+    \item Técnicas como el ML han mostrado ser útiles para identificar y mitigar las condiciones NLOS causadas por la BS. El artículo \textbf{Feature Selection for Real-Time NLOS Identification and Mitigation for Body-Mounted UWB Transceivers} \cite{ref7} propone el uso de algoritmos de clasificación para reducir los errores en tiempo real.
+    \item Otros estudios como \textbf{NLOS Identification and Mitigation for UWB Localization Systems} \cite{ref11}, han demostrado que el uso de algoritmos de filtrado puede mejorar significativamente la exactitud de la localización en escenarios de interiores complejos.
+\end{itemize}
+
+\textbf{Conclusiones}
+
+La literatura actual sobre la BS en los IPS basados en UWB ha abordado el problema desde diferentes perspectivas, utilizando tanto simulaciones como experimentos reales para estudiar el impacto del cuerpo humano en la exactitud de la localización. Aunque las técnicas de mitigación han mostrado ser prometedoras, aún existen retos importantes, como la aplicación en escenarios más complejos y el análisis del efecto de la BS en diferentes frecuencias, en el rango de 3 GHz a 11 GHz. Este trabajo de maestría se centrará en este aspecto, buscando avanzar en la investigación actual al explorar el efecto de la BS en un IPS basado en UWB a frecuencias superiores a 6 GHz, especialmente en 6.5 GHz para este trabajo, evaluando cómo la posición del sensor en diferentes partes del cuerpo afecta la exactitud y precisión del IPS en escenarios reales como un aula universitaria.
+
+\textbf{Contribución de la investigación}
+
+\textbf{Enfoque de la investigación}
+
+Como se ha indicado, muchos de los estudios actuales sobre el impacto de la BS en los IPS basados en UWB se han centrado en frecuencias entre los 3 GHz y 5 GHz. Sin embargo, la banda de 6 GHz ha sido poco explorada, y se considera que esta banda de frecuencias ofrece oportunidades significativas para mejorar la exactitud de los IPS basados en UWB. Esta investigación tiene como objetivo estudiar el impacto de la BS en los IPS basados en UWB que operan en frecuencias desde 6 GHz, y realizar las pruebas en un escenario real, como un aula universitaria.
+
+\section{Principales contribuciones de esta investigación}
+\label{sec:contribuciones}
+
+\begin{enumerate}
+    \item \textbf{Exploración de un IPS operando en la frecuencia de 6 GHz}: A diferencia de muchos estudios revisados, esta investigación se enfocará en la frecuencia de 6 GHz para IPS basados en UWB. La mayoría de los trabajos experimentales y de simulación se han llevado a cabo en el rango de 3.1 GHz a 5 GHz \cite{ref16, ref17}. Sin embargo, la banda de 6 GHz tiene características que podrían mejorar la resolución y la exactitud de un IPS. Esta será una de las contribuciones clave.
+    \item \textbf{Estudio del impacto de la BS en un IPS en un escenario real}: La mayoría de los estudios, tales como \textbf{Modeling Indoor ToA Ranging Error for Body Mounted Sensors} \cite{ref16} y \textbf{Human Body Shadowing Effect on UWB-Based Ranging System for Pedestrian Tracking} \cite{ref16}, se han realizado en laboratorios de manera controlada o en pequeños escenarios de prueba. En \cite{ref16} las frecuencias consideradas fueron 0.5 GHz, 1 GHz, 3 GHz y 5 GHz. Esta investigación se diferenciará de los trabajos referenciados al realizar experimentos en escenarios de interiores reales, en una frecuencia de 6.5 GHz, lo cual puede introducir retos y desafíos adicionales relacionados con interferencia, fenómenos de propagación y variación de las señales UWB debidas a su interacción con el cuerpo humano y el entorno.
+    \item \textbf{Evaluación del impacto de la posición del dispositivo en diferentes partes del cuerpo}: Como se mencionó en estudios como \textbf{Impact of Body Wearable Sensor Positions on UWB Ranging} \cite{ref14} y \textbf{Effects of the Body Wearable Sensor Position on the UWB Localization Accuracy} \cite{ref4}, la ubicación del sensor en el cuerpo humano tiene un efecto considerable sobre la exactitud de la estimación de distancia y la localización \cite{ref14, ref4}. Los dos trabajos referenciados han explorado una o dos posiciones (frente, pecho) \cite{ref16}. El objetivo de este trabajo es analizar cómo el desempeño del IPS varía según la ubicación del sensor en diferentes partes del cuerpo, tales como, el brazo, la muñeca, la cintura, el pecho, la frente y el tobillo. Este análisis ayudará a identificar las mejores y peores posiciones para aplicaciones de localización y seguimiento de peatones.
+    \item \textbf{Uso de un sistema de localización experimental}: En lugar de centrarse en simulaciones o en herramientas de modelado computacional como FDTD, esta investigación se basará en un IPS experimental basado en UWB. Se utilizará el Filtro de Kalman para mejorar las estimaciones de posición en tiempo real, sin recurrir a técnicas de ML avanzadas que podrían no ser necesarias inicialmente dado el alcance y el enfoque de este trabajo.
+\end{enumerate}
+
+\textbf{Relevancia del estudio en la frecuencia de 6.5 GHz}
+
+Existe un significativo potencial de investigación sobre las señales UWB en la frecuencia de 6.5 GHz para mitigar los efectos de multitrayecto y mejorar la exactitud en la estimación de distancias y localización en escenarios de interiores con BS. Las variaciones de las señales UWB en distintas frecuencias sugieren que operar en frecuencias superiores a 6 GHz podría ofrecer ventajas significativas en términos de exactitud de localización en IPS con BS.
+
+\textbf{Ventajas de operar en frecuencias superiores a 6 GHz:}
+\begin{itemize}
+    \item \textbf{Menor interferencia}: La baja Densidad Espectral de Potencia (PSD, \textit{Power Spectral Density}) de la señal UWB hace que sea difícil de detectar e interferir por otros sistemas que operan en iguales frecuencias o cercanas. Para muchos receptores convencionales como Wi-Fi o Bluetooth, la señal UWB es percibida como ruido de fondo, ya que la potencia de UWB en cualquier frecuencia específica es extremadamente baja.
+    \item \textbf{Mejor resolución espacial}: Al trabajar con la métrica ToF, la resolución temporal se vuelve un factor clave para la estimación de distancia. Cuando se mide el ToF mediante la técnica de TWR se logran medidas del orden de unos pocos nanosegundos, como consecuencia de ello se pueden estimar distancias con elevada exactitud. El kit de desarrollo TREK1000 de Decawave puede medir ToF desde 0.333 ns cuando se utiliza TWR; permitiendo estimaciones de distancia del orden de 10 cm.
+    \item Las señales electromagnéticas con frecuencias más altas ofrecen una mejor resolución espacial, esto es debido a la menor longitud de onda, por esta razón es posible diferenciar las señales en LOS de las NLOS, lo que es fundamental para mejorar la exactitud en la estimación de distancias en escenarios con multitrayecto.
+\end{itemize}
+
+\section{Limitaciones identificadas y oportunidades de mejora}
+\label{sec:limitaciones}
+
+A pesar de los avances en la investigación sobre la BS en IPS basados en UWB, se han identificado varias limitaciones y á;reas que necesitan una mayor exploración. Esta investigación busca abordar algunas de estas limitaciones, mientras que otras representan oportunidades para estudios futuros.
+
+\textbf{Limitaciones comunes en la literatura revisada.}
+\begin{enumerate}
+    \item \textbf{Frecuencias limitadas a rangos de 3 GHz a 5 GHz}: La mayoría de los estudios han utilizado frecuencias en el rango de 3.1 GHz a 5 GHz. Aunque estos rangos han demostrado ser efectivos para IPS, se debería experimentar con la banda de 6 GHz en busca de beneficios adicionales, como menor interferencia y una mayor resolución temporal, lo que permitiría estimaciones de distancia de los objetos o sujetos con mayor exactitud.
+    \item \textbf{Foco en simulaciones más que en experimentos reales}: Muchos estudios, como \textbf{FDTD and Empirical Exploration of Human Body and UWB Radiation Interaction on TOF Ranging} \cite{ref17}, se basan en simulaciones avanzadas para modelar el impacto de la BS. Si bien estos enfoques involucran una valiosa fundamentación teórica y proporcionan significativos resultados, faltan experimentos en escenarios reales que permitan validar estos modelos y sus resultados.
+    \item \textbf{Poca variación en las posiciones del sensor en el cuerpo}: Si bien algunos estudios han explorado cómo la posición del sensor en el cuerpo afecta la localización, como en \textbf{Impact of Body Wearable Sensor Positions on UWB Ranging} \cite{ref14}, hacen falta más pruebas que permitan comparar el desempeño del IPS considerando el nodo móvil en diferentes partes del cuerpo. \textbf{Modeling the effect of human body on ToA based indoor human tracking} \cite{Mirama2021} se ha enfocado en posiciones como el pecho y la muñeca, mientras que ubicaciones menos exploradas como el tobillo o el muslo podrían proporcionar datos útiles para ciertas aplicaciones de seguimiento.
+    \item \textbf{Enfoque limitado en escenarios controlados}: La mayoría de los estudios experimentales se han realizado en laboratorios controlados, como por ejemplo en: \textbf{Experimental Evaluation Scheme of UWB Radio Propagation Channel with Human Body} \cite{ref15}. Si bien estos escenarios permiten controlar variables externas, no reflejan las condiciones reales de un entorno dinámico como un aula universitaria o una zona comercial.
+\end{enumerate}
+
+\textbf{Oportunidades de mejora}
+\begin{enumerate}
+    \item \textbf{Ampliar el rango de frecuencias}: Esta investigación se centrará en la banda de 6 GHz, lo que no solo ampliará la comprensión de cómo las señales UWB se comportan en este rango de frecuencias, sino que también permitirá explorar si esta banda proporciona mejoras en el desempeño de los IPS.
+    \item \textbf{Realizar experimentos en escenarios no controlados}: A diferencia de muchos estudios previos, se realizarán los experimentos en escenarios de interiores de la Universidad del Cauca. Este enfoque proporcionará resultados para evaluar cómo la BS y el escenario afectan la exactitud de los IPS basados en UWB.
+    \item \textbf{Comparar múltiples posiciones del sensor en el cuerpo}: El estudio va a analizar el desempeño de un IPS cuando los sensores se ubican en varias posiciones del cuerpo humano, como el tobillo, la cintura, el muslo, la frente, el brazo, la mano, la muñeca y el pecho, utilizando un enfoque experimental. Esto ampliará el conocimiento existente sobre cómo la posición del sensor afecta la exactitud del IPS y permitirá identificar las mejores y peores ubicaciones para aplicaciones específicas, como el seguimiento de peatones.
+\end{enumerate}
+
+%\textbf{Conclusión}
+
+%La revisión de la literatura ha revelado que, si bien se han hecho avances importantes en la investigación sobre la BS en IPS basados en UWB, existen varias limitaciones que esta investigación puede abordar. Los estudios revisados han proporcionado una base sólida sobre los efectos de la BS y el multitrayecto en la propagación de señales UWB. Sin embargo, la mayoría se ha enfocado en frecuencias más bajas (3 GHz a 5 GHz) y en escenarios controlados de laboratorio.
+
+%Este trabajo se diferenciará al centrarse en la banda de 6 GHz, realizar experimentos en escenarios reales y comparar múltiples posiciones del sensor en el cuerpo humano, lo cual generará nuevo conocimiento. Al hacerlo, no solo se amplía el campo de investigación actual, sino que también se proporciona resultados más aplicables a la vida real, lo cual podrá ser utilizado para mejorar el desempeño de futuros sistemas IPS basados en UWB.
+
+%Por lo anterior, se realizará una contribución significativa al conocimiento sobre cómo la BS afecta la localización en escenarios de interiores y se generarán recomendaciones prácticas para mejorar la exactitud de los IPS basados en UWB en aplicaciones como el seguimiento de peatones.

@@ -1,0 +1,371 @@
+
+\chapter{METODOLOGÍA Y ACTIVIDADES}
+\label{ch:metodologia}
+
+\section{METODOLOGÍA}
+\label{sec:metodologia_propuesta}
+Para el desarrollo del presente trabajo de grado, se adoptará la metodología del Modelo en V, un enfoque riguroso derivado del modelo en cascada que enfatiza la relación entre cada fase de desarrollo y su correspondiente fase de pruebas \cite{forsberg1991relationship}. La elección de este modelo responde a la necesidad de una validación continua en un proyecto de carácter técnico y experimental. A diferencia de un modelo puramente secuencial, el Modelo en V establece un paralelismo entre la construcción y la validación, lo que garantiza que los objetivos definidos en las primeras etapas sean verificados sistemáticamente en las últimas.
+Este modelo es especialmente adecuado para este proyecto, ya que asegura que el diseño del sistema de posicionamiento, la configuración del hardware y la implementación del software sean validados mediante pruebas específicas, minimizando errores y garantizando la fiabilidad de los resultados. El proceso se visualiza como una "V", donde el brazo izquierdo representa la descomposición del problema y el diseño e implementación, y el brazo derecho representa la integración y validación de los componentes del sistema.
+El flujo de trabajo se estructurará siguiendo las fases del Modelo en V, como se muestra en la Figura  \ref{fig:modelV}, adaptadas a los objetivos de esta investigación. 
+%
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/ModelV.pdf}
+    \caption{Modelo en V}
+    \label{fig:modelV}
+\end{figure}
+
+\subsection*{Brazo Izquierdo: Definición del proyecto}
+
+En esta trayectoria descendente, se definen y diseñan los componentes del proyecto.
+\begin{enumerate}
+\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos fundamentales de la investigación: analizar cómo el efecto de la BS impacta las mediciones de ToF en un sistema UWB, cuantificar el error en la estimación de distancia y utilizar el KF para mitigar el efecto de la BS sobre la exactitud del sistema de posicionamiento. El resultado de esta fase es la especificación detallada de los objetivos, los requerimientos y los criterios de aceptación de los resultados.
+
+\item \textbf{Diseño del Sistema:} Se diseña la arquitectura general del experimento. Esto incluye la definición del escenario de prueba y del modelo general del sistema, la selección y justificación del hardware y software, y la especificación de los parámetros de operación del sistema UWB (frecuencia, ancho de banda).
+
+\end{enumerate}
+
+\subsection*{Brazo Derecho: Pruebas y Resultados}
+En esta trayectoria ascendente, cada entregable de la fase de diseño es probado y validado.
+\begin{enumerate}
+
+\item \textbf{Pruebas Unitarias:} Corresponden a la fase de implementación. Se verifica que cada componente de software y hardware funcione correctamente de forma aislada.
+
+\item \textbf{Integración:} Se integran todos los componentes de software y hardware en un único sistema que es capaz de recolectar los datos en cada posición del TAG en el cuerpo humano y en cada posición (x,y) dentro del escenario. 
+
+\item \textbf{Pruebas de Desempeño y Validación de Resultados:} Es la fase cumbre y corresponde a la recolección y análisis de los datos. Se ejecuta el experimento completo en el escenario definido. Se  recolectan y se analizan los datos. Se verifica si el sistema desarrollado permite responder a las preguntas de investigación, requerimientos planteados y se relacionan los resultados con los de otros trabajos.
+
+\end{enumerate}
+
+Este enfoque metodológico garantiza que cada etapa de diseño sea validada por una fase de prueba correspondiente, lo que asegura la trazabilidad, minimiza la propagación de errores y confiere una alta fiabilidad y reproducibilidad a los resultados experimentales, aspectos cruciales en una investigación científica rigurosa.
+
+
+
+\subsection{Diseño Experimental y Protocolo de Recolección de Datos}
+
+\subsubsection{Población y Muestra}
+Para garantizar la generalización de los resultados, el estudio contará con un mínimo de 3 participantes con diversidad de complexión física (estatura y peso). Cada participante realizará el recorrido predefinido con el nodo móvil en la peor posición en NLOS en interiores arrojada por el plan de pruebas de validación.
+
+\subsubsection{Entorno de Prueba Detallado}
+Las pruebas se realizarán en un salón de clases de la universidad del Cauca. Se incluirá un mapa del entorno, señalando la posición de los nodos ancla (hardware y altura), el mobiliario principal y las fuentes potenciales de interferencia. Se realizará una calibración inicial del sistema sin obstrucción para establecer una línea base.
+
+\subsubsection{Técnicas de Aumentación de Datos}
+Dada la dificultad de reclutar un número masivo de participantes, se explorarán técnicas de aumentación de datos, como la introducción de pequeños desplazamientos aleatorios en las trayectorias o la simulación de diferentes complexiones corporales, para enriquecer el conjunto de datos y mejorar la robustez de los modelos estadísticos \textcolor{red}{Esto se haría basado en simulaciones monte carlo}.
+
+\section{ACTIVIDADES}
+\label{sec:actividades}
+
+Las actividades del proyecto se estructuran en fases que se corresponden con la progresión a través del Modelo en V, asegurando que cada etapa de diseño sea seguida por una etapa de validación.
+
+\subsection{Fase 1: Análisis de Requerimientos}
+Esta fase inicial, ubicada en la cima del brazo izquierdo del Modelo en V, se centra en la revisión conceptual y la definición del alcance de la investigación.
+\begin{itemize}
+    \item \textbf{Actividad 1.1}: Revisión de información sobre la tecnología UWB y la métrica ToF, además, su uso en posicionamiento.
+    \item \textbf{Actividad 1.2}: Revisión de información sobre la técnica de multilateración y su aplicación.
+    \item \textbf{Actividad 1.3}: Revisión de información sobre la BS y su efecto en posicionamiento.
+    \item \textbf{Actividad 1.4}: Revisión de filtros de estimación y mitigación, como el KF.
+\end{itemize}
+
+\subsection{Fase 2: Diseño del Sistema}
+Descendiendo por el brazo izquierdo, esta fase se enfoca en el diseño arquitectónico del sistema y la planificación detallada de los experimentos.
+\begin{itemize}
+    \item \textbf{Actividad 2.1}: Selección de escenarios para pruebas.
+    \item \textbf{Actividad 2.2}: Diseño del sistema prototipo de posicionamiento UWB.
+    \item \textbf{Actividad 2.3}: Diseño de la metodología experimental definiendo posiciones del TAG, una parte del cuerpo y la ruta a seguir por los sujetos bajo pruebas, considerando una muestra diversa en características antropométricas (i.e, altura, complexión) para garantizar la generalización de los resultados.
+\end{itemize}
+
+\subsection{Fase 3: Implementación}
+Esta fase se sitúa en el vértice de la V y consiste en la materialización del diseño.
+\begin{itemize}
+    \item \textbf{Actividad 3.1}: Selección de software y hardware para la implementación del sistema UWB.
+    \item \textbf{Actividad 3.2}: Definición del plan de pruebas unitarias o de validación. 
+    \item \textbf{Actividad 3.3}: Ejecución del plan de pruebas unitario o de validación.
+\end{itemize}
+
+\subsection{Fase 4: Pruebas de Desempeño}
+Iniciando el ascenso por el brazo derecho del modelo, esta fase valida que los componentes del sistema interactúan correctamente.
+\begin{itemize}
+    \item \textbf{Actividad 4.1}: Definición del plan de pruebas de desempeño.
+    \item \textbf{Actividad 4.2}: Ejecución del plan de pruebas de desempeño.
+\end{itemize}
+
+\subsection{Fase 5: Análisis de Resultados}
+En la cima del brazo derecho, se analizan los resultados obtenidos sobre el efecto de la BS en interiores.
+%
+\begin{itemize}
+    \item \textbf{Actividad 5.1}: Evaluación de la exactitud y precisión del sistema de posicionamiento considerando la BS.
+    \item \textbf{Actividad 5.2}: Análisis final del efecto de la BS en el sistema de posicionamiento.
+\end{itemize}
+
+\subsection{Fase 6: Entrega}
+Esta fase concluye el proyecto con la documentación y presentación de los resultados.
+\begin{itemize}
+    \item \textbf{Actividad 6.1}: Elaboración del documento final y del artículo del trabajo de maestría.
+    \item \textbf{Actividad 6.2}: Entrega final del documento final de maestría y sustentación.
+\end{itemize}
+
+\section{ESTADO ACTUAL DEL TRABAJO Y AVANCES}
+
+A la fecha de presentación de este documento, el trabajo de maestría  ha avanzado más allá de la fase de diseño y se encuentra en una etapa avanzada de ejecución: fase 3, implementación; con los siguientes logros clave completados:
+
+\begin{itemize}
+    \item \textbf{Revisión Sistemática de Literatura y Marco Teórico:} Se ha finalizado una revisión sistemática de la literatura, permitiendo contextualizar los resultados experimentales e identificar las contribuciones específicas de este trabajo, particularmente en la inexplorada banda de 6.5 GHz.
+
+    \item \textbf{Definición Metodológica} Se ha estructurado y documentado parte de la metodología del proyecto para la recolección de los datos experimentales.
+
+    \item \textbf{Finalización de Campaña de Medidas de Validación Punto a Punto:} Se han completado las pruebas en escenarios de interiores y exteriores utilizando un nodo móvil (TAG) y un nodo fijo (ANCLA). Las mediciones se realizaron de manera lineal, en disposición punto a punto, determinando la distancia entre la TAG y el ANCLA, ubicando la TAG en diferentes partes del cuerpo humano, i.e., frente, pecho, espalda, entre otras, y situándola a distancias previamente definidas.
+
+    \item \textbf{Publicación de Resultados Iniciales en Conferencia:} Parte de los resultados preliminares fueron presentados en la conferencia IEEE C3, realizada en la Universidad del Magdalena. En este evento se expuso cómo la ubicación del TAG en diferentes partes del cuerpo influye significativamente en la estimación de su posición a lo largo de una trayectoria recta, tanto en condiciones LOS como NLOS.
+    
+\end{itemize}
+
+El trabajo restante se centrará en la creación del plan y ejecución de pruebas de desempeño y  análisis de los resultados, en el escenario 2-dimensional en interiores, la evaluación de la BS y la aplicación del algoritmo de mitigación, y la redacción de las conclusiones, de acuerdo con el cronograma.
+
+\newpage
+
+\section{CRONOGRAMA}
+\label{sec:cronograma}
+\renewcommand{\arraystretch}{1.2}
+
+% Definición de colores personalizados
+\definecolor{azulEncabezado}{HTML}{003366}
+\definecolor{textoEncabezado}{HTML}{FFFFFF}
+\definecolor{grisFase}{HTML}{E6E6E6}
+\definecolor{textoFase}{HTML}{333333}
+\definecolor{grisAlterno}{HTML}{F9F9F9}
+\definecolor{barraDuracion}{HTML}{1E90FF}
+\definecolor{bordeTabla}{HTML}{CCCCCC}
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{4cm}|*{9}{>{\centering\arraybackslash}p{0.9cm}|}}
+\caption{Cronograma de Actividades \label{tab:cronograma}} \\
+\rowcolor{azulEncabezado}
+\textcolor{textoEncabezado}{\textbf{Actividad}} & 
+\textcolor{textoEncabezado}{\textbf{M1}} & 
+\textcolor{textoEncabezado}{\textbf{M2}} & 
+\textcolor{textoEncabezado}{\textbf{M3}} & 
+\textcolor{textoEncabezado}{\textbf{M4}} & 
+\textcolor{textoEncabezado}{\textbf{M5}} & 
+\textcolor{textoEncabezado}{\textbf{M6}} & 
+\textcolor{textoEncabezado}{\textbf{M7}} & 
+\textcolor{textoEncabezado}{\textbf{M8}} & 
+\textcolor{textoEncabezado}{\textbf{M9}} \\
+\hline
+\endfirsthead
+
+\rowcolor{azulEncabezado}
+\textcolor{textoEncabezado}{\textbf{Actividad}} & 
+\textcolor{textoEncabezado}{\textbf{M1}} & 
+\textcolor{textoEncabezado}{\textbf{M2}} & 
+\textcolor{textoEncabezado}{\textbf{M3}} & 
+\textcolor{textoEncabezado}{\textbf{M4}} & 
+\textcolor{textoEncabezado}{\textbf{M5}} & 
+\textcolor{textoEncabezado}{\textbf{M6}} & 
+\textcolor{textoEncabezado}{\textbf{M7}} & 
+\textcolor{textoEncabezado}{\textbf{M8}} & 
+\textcolor{textoEncabezado}{\textbf{M9}} \\
+\hline
+\endhead
+
+% Fase 1
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Fase 1: Análisis de requerimientos}}} \\
+\hline
+\rowcolor{white}
+Actividad 1.1 & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} &  & & & & & & \\
+\rowcolor{grisAlterno}
+Actividad 1.2 & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} & & & & & & & \\
+\rowcolor{white}
+Actividad 1.3 & & \cellcolor{barraDuracion} & & & & & & & \\
+\rowcolor{grisAlterno}
+Actividad 1.4 & & \cellcolor{barraDuracion} &  & & & & & & \\
+\hline
+
+% Fase 2
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Fase 2: Diseño}}} \\
+\hline
+\rowcolor{white}
+Actividad 2.1 & & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} & & & & & & \\
+\rowcolor{grisAlterno}
+Actividad 2.2 & & & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} & & & & & \\
+\rowcolor{white}
+Actividad 2.3 & & & & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} & & & & \\
+\hline
+
+% Fase 3
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Fase 3: Implementación}}} \\
+\hline
+\rowcolor{grisAlterno}
+Actividad 3.1 & & & & & \cellcolor{barraDuracion} & \cellcolor{barraDuracion} & & & \\
+\rowcolor{white}
+Actividad 3.2 & & & & & & \cellcolor{barraDuracion} & & & \\
+\rowcolor{grisAlterno}
+Actividad 3.3 & & & & & & \cellcolor{barraDuracion} & & & \\
+\hline
+
+% Fase 4
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Pruebas de desempeño}}} \\
+\hline
+\rowcolor{white}
+Actividad 4.1 & & & & & & \cellcolor{barraDuracion} & & & \\
+\rowcolor{grisAlterno}
+Actividad 4.2 & & & & & & \cellcolor{barraDuracion} & & & \\
+\hline
+
+% Fase 5
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Análisis de resultados}}} \\
+\hline
+\rowcolor{grisAlterno}
+Actividad 5.1 & & & & & & & \cellcolor{barraDuracion} & & \\
+\rowcolor{white}
+Actividad 5.2 & & & & & & & \cellcolor{barraDuracion} & & \\
+\hline
+
+% Fase 6
+\rowcolor{grisFase}
+\multicolumn{10}{|l|}{\textcolor{textoFase}{\textbf{Fase 6: Entrega}}} \\
+\hline
+\rowcolor{grisAlterno}
+Actividad 6.1 & & & & & & & & \cellcolor{barraDuracion} & \\
+\rowcolor{white}
+Actividad 6.2 & & & & & & & & & \cellcolor{barraDuracion} \\
+\hline
+
+\end{longtable}
+
+
+% --- Condiciones de Entrega ---
+\chapter{CONDICIONES DE ENTREGA Y PRESUPUESTO}
+\label{ch:condiciones}
+
+\section{CONDICIONES DE ENTREGA}
+
+Finalizado el trabajo de grado de maestría se entregará:
+
+\begin{itemize}
+    \item Documento final de trabajo de maestría impreso y en formato digital, que incluye su desarrollo y sus resultados.
+    \item Archivos con resultados de la implementación de los planes de pruebas de validación y desempeño.
+    \item Artículo de investigación en formato IEEE.
+\end{itemize}
+
+\section{PRESUPUESTO ESTIMADO Y FUENTES DE FINANCIACIÓN}
+
+A continuación, se presenta una estimación de los costos asociados a los recursos materiales, técnicos y humanos necesarios para el desarrollo del trabajo de maestría basado en el documento \cite{unicauca_guia_anteproyecto}.
+%
+\begin{table}[htb]
+\centering
+\caption{Presupuesto Estimado del Proyecto}
+\label{tab:presupuesto}
+\scriptsize
+
+% Definición de colores personalizados
+\definecolor{azulEncabezado}{HTML}{003366}
+\definecolor{textoEncabezado}{HTML}{FFFFFF}
+\definecolor{grisFase}{HTML}{E6E6E6}
+\definecolor{textoFase}{HTML}{333333}
+\definecolor{grisAlterno}{HTML}{F9F9F9}
+\definecolor{bordeTabla}{HTML}{CCCCCC}
+
+\arrayrulecolor{bordeTabla}
+\renewcommand{\arraystretch}{1.3}
+
+\begin{tabular}{|p{3.5cm}|>{\raggedleft\arraybackslash}p{2cm}|>{\raggedleft\arraybackslash}p{2cm}|>{\raggedleft\arraybackslash}p{2cm}|}
+\hline
+\rowcolor{azulEncabezado}
+\textcolor{textoEncabezado}{\textbf{Rubro}} &
+\textcolor{textoEncabezado}{\textbf{Estudiante}} &
+\textcolor{textoEncabezado}{\textbf{FIET}} &
+\textcolor{textoEncabezado}{\textbf{Total (COP)}} \\
+\hline
+
+% Recursos Humanos
+\rowcolor{grisFase}
+\multicolumn{4}{|l|}{\textcolor{textoFase}{\textbf{Recursos Humanos}}} \\
+\hline
+Estudiante de Maestría & \numprint{\TotalEstudiante} & \numprint{0.00} & \numprint{\TotalEstudiante} \\
+Director del Proyecto & \numprint{0.00} & \numprint{\TotalDirector}  & \numprint{\TotalDirector} \\
+\rowcolor{grisAlterno}
+\multicolumn{3}{|l|}{\textbf{Subtotal Recursos Humanos}} & \numprint{\TotalRH} \\
+\hline
+
+% Hardware
+\rowcolor{grisFase}
+\multicolumn{4}{|l|}{\textcolor{textoFase}{\textbf{Hardware y Equipos}}} \\
+\hline
+Computador (depreciación 9 meses) & \numprint{\DepreciacionPC} & \numprint{0.00} & \numprint{\DepreciacionPC} \\
+Equipos UWB (50 horas) & \numprint{0.00} & \numprint{\DepreciacionUWB} & \numprint{\DepreciacionUWB}  \\
+\rowcolor{grisAlterno}
+\multicolumn{3}{|l|}{\textbf{Subtotal Hardware}} & \numprint{\TotalHardware} \\
+\hline
+
+\rowcolor{grisAlterno}
+\hline
+
+% Publicaciones
+\rowcolor{grisFase}
+\multicolumn{4}{|l|}{\textcolor{textoFase}{\textbf{Publicación y Difusión}}} \\
+\hline
+APC + Impresión & \numprint{\TotalPublicaciones} & \numprint{0.00}& \numprint{\TotalPublicaciones} \\
+\hline
+
+%primer subtotal
+\rowcolor{azulEncabezado}
+\multicolumn{3}{|l|}{\textcolor{textoEncabezado}{\textbf{Primer Sub Total}}} & \textcolor{textoEncabezado}{\numprint{\SubtotalDirecto}}\\
+\hline
+% Comunicaciones
+\rowcolor{grisFase}
+\multicolumn{4}{|l|}{\textcolor{textoFase}{\textbf{Comunicaciones}}} \\
+\hline
+Comunicaciones (2\% subtotal) & \numprint{0.00} & \numprint{\comunicacionesRubro} & \numprint{\comunicacionesRubro} \\
+\hline
+
+% Segundo sobtotal
+%primer subtotal
+\rowcolor{azulEncabezado}
+\multicolumn{3}{|l|}{\textcolor{textoEncabezado}{\textbf{Segundo Sub Total}}} & \textcolor{textoEncabezado}{\numprint{\fpeval{\SubtotalDirecto + \comunicacionesRubro}}}\\
+\hline
+
+% AUI
+\rowcolor{grisFase}
+\multicolumn{4}{|l|}{\textcolor{textoFase}{\textbf{AUI}}} \\
+\hline
+Infraestructura y administración (20\% subtotal) & \numprint{0.00} & \numprint{\AUI} & \numprint{\AUI} \\
+\hline
+
+
+
+% TOTAL
+\rowcolor{azulEncabezado}
+\textcolor{textoEncabezado}{\textbf{TOTAL ESTIMADO}} &
+\textcolor{textoEncabezado}{\numprint{\TotalEstudianteRecurso}} &
+\textcolor{textoEncabezado}{\numprint{\TotalFIET}} &
+\textcolor{textoEncabezado}{\textbf{\numprint{\TotalProyecto}}} \\
+\hline
+
+\end{tabular}
+
+\end{table}
+
+% --- Párrafo Descriptivo ---
+\subsection{Descripción y Fuentes de Financiación del Presupuesto:}
+
+El presupuesto presentado en la Tabla \ref{tab:presupuesto} detalla los costos estimados para la ejecución completa del proyecto. 
+
+\begin{itemize}
+    \item \textbf{Recursos Humanos:} El costo se calcula con base en el valor del punto salarial vigente para empleados públicos a nivel nacional, i.e., \$22,358 COP por punto, con una asignación de 2.5 puntos / hora, según la el documento \cite{unicauca_guia_anteproyecto}, considerando una dedicación de 30 horas semanales por parte del estudiante de maestría a lo largo de los 9 meses de duración del proyecto, para un total de 36 semanas. En cuanto al director y codirector, en conjunto se asignan 4 horas por semana con una asignación de 4 puntos/hora a lo largo de 36 semanas.  % $ 30.183.300.
+
+    \item \textbf{Hardware y Equipos:} Los costos de los componentes electrónicos (módulos UWB) son equipos que son obtenidos de los grupos de investigación de la Universidad de Cauca. Por lo que el costo se calcula por el uso de estos. Los dispositivos se van a utilizar un máximo de 50 horas durante todo el trabajo de maestría. En cuanto a los computadores utilizados para la redacción de los documentos, validación y análisis de los datos se va a utilizar un computador que tiene un costo de \$ 4.250.000 COP, el costo de uso se calcula con base en el documento \cite{unicauca_guia_anteproyecto}.
+
+    \item \textbf{AUI}: 20\% del total del proyecto.
+
+    \item \textbf{Comunicaciones}: 2\% del total del proyecto. 
+    
+    \item \textbf{Publicación y Difusión:} Se contempla un rubro para cubrir las posibles tarifas de publicación (APC, \textit{Article Processing Charge}) en una conferencia o revista científica de alto impacto. Los costos de impresión corresponden a la entrega del documento final de tesis de maestría.
+\end{itemize}
+
+
+
+\textbf{Fuentes de Financiación:} El proyecto será financiado a través de una combinación de recursos. Los costos de hardware y publicación serán cubiertos con fondos propios del investigador. Asimismo, se aprovecharán los recursos de infraestructura, equipos y laboratorios proporcionados por los grupos de investigación \textbf{GRIAL} y \textbf{GNTT} de la Facultad de Ingeniería Electrónica y Telecomunicaciones de la Universidad del Cauca.

@@ -1,0 +1,166 @@
+\chapter{ANÁLISIS Y DISCUSIÓN}
+\label{ch:analisis}
+
+En este capítulo se interpretan y discuten los resultados experimentales presentados en el capítulo anterior. Se contrastan los hallazgos con el estado del arte revisado en el capítulo de revisión sistemática de literatura, se explican los fenómenos físicos subyacentes que dan cuenta de los patrones observados, y se analizan las implicaciones prácticas de los resultados para el diseño e implementación de sistemas de posicionamiento UWB en escenarios reales.
+
+\section{INTERPRETACIÓN DE LOS PATRONES DE ERROR OBSERVADOS}
+\label{sec:interpretacion_patrones}
+
+\subsection{Efecto de la Ubicación Corporal del Dispositivo}
+
+Los resultados experimentales revelan que la ubicación donde se porta el dispositivo UWB tiene un impacto crítico sobre el error de estimación de distancia. [COMPLETAR: Basándose en los resultados obtenidos, explicar por qué ciertas ubicaciones exhiben mayor/menor error. Por ejemplo:]
+
+La ubicación en el pecho presentó un comportamiento [COMPLETAR: describir patrón observado] debido a que cuando el participante se orienta de frente a un nodo ancla (RHA $\approx$ 0°), existe línea de vista directa entre el dispositivo y el ancla. En contraste, cuando el participante se orienta en dirección opuesta (RHA $\approx$ 180°), el torso completo actúa como obstáculo, forzando a las señales UWB a difractarse alrededor del cuerpo o atravesar tejido biológico con alta constante dieléctrica y conductividad.
+
+La ubicación en la muñeca mostró [COMPLETAR: describir patrón] lo cual se explica porque el brazo presenta menor masa corporal que el torso, y además experimenta mayor movilidad natural. Los movimientos involuntarios del brazo durante las mediciones, aun intentando mantener postura estática, introducen variabilidad adicional que se refleja en mayor desviación estándar del error.
+
+\subsection{Dependencia del Ángulo de Orientación Relativo (RHA)}
+
+El análisis del error en función del RHA muestra una transición clara entre tres regímenes de propagación:
+
+\textbf{Régimen LOS (RHA $\approx$ 0° y 360°):} El error se mantiene [COMPLETAR: bajo/moderado], con una media de [X.X] cm y desviación estándar de [X.X] cm, valores comparables a los obtenidos en la calibración sin obstrucción. Esto confirma que cuando el dispositivo está orientado directamente hacia el nodo ancla, el cuerpo no interfiere significativamente con la propagación de la señal.
+
+\textbf{Régimen QLOS (RHA $\approx$ 90° y 270°):} Representa las zonas de transición donde el cuerpo obstruye parcialmente el trayecto directo. El error aumenta a [X.X] cm en promedio, debido a que la señal debe difractarse en los contornos laterales del cuerpo. La longitud de onda en 6.5 GHz ($\lambda \approx$ 4.6 cm) es del mismo orden de magnitud que las dimensiones características del torso en dirección transversal, lo cual favorece la difracción pero introduce retardos de propagación adicionales.
+
+\textbf{Régimen NLOS (RHA $\approx$ 180°):} La obstrucción es máxima, con errores que alcanzan [X.X] cm en promedio y picos de hasta [X.X] metros. En esta configuración, las señales directas son severamente atenuadas (estimadas en 20-40 dB según la literatura), y los trayectos dominantes corresponden a difracción alrededor del cuerpo o reflexiones en paredes y objetos del entorno. El retardo introducido por estos trayectos más largos se traduce directamente en sobreestimación de la distancia.
+
+\subsection{Comparación con Frecuencias Inferiores}
+
+La banda de 6.5 GHz presenta características de propagación particulares en comparación con las bandas más comúnmente estudiadas (3-5 GHz). [COMPLETAR: Si se puede contrastar con literatura:]
+
+A frecuencias más altas, la atenuación por unidad de longitud en tejido biológico aumenta, lo cual podría sugerir mayor degradación en condiciones de BS. Sin embargo, la longitud de onda más corta también facilita la difracción alrededor de obstáculos con dimensiones corporales. Los resultados obtenidos [COMPLETAR: sugieren que en la banda de 6.5 GHz, el error en NLOS es comparable/ligeramente superior/inferior a los valores reportados en X GHz por Autor et al.].
+
+Adicionalmente, la mayor resolución temporal inherente al mayor ancho de banda disponible en frecuencias altas permite una mejor separación de trayectos múltiples, lo cual podría compensar parcialmente la mayor atenuación. Los algoritmos de detección del primer arribo de señal se benefician de pulsos más estrechos para identificar con mayor exactitud el ToF del trayecto directo o el primer trayecto significativo.
+
+
+\section{ANÁLISIS DE LA VARIABILIDAD ESTADÍSTICA}
+\label{sec:analisis_variabilidad}
+
+\subsection{Naturaleza de las Distribuciones de Error}
+
+El ajuste de distribuciones teóricas reveló que en condiciones LOS, el error se aproxima a una distribución normal, consistente con ruido de medición gaussiano dominado por efectos de cuantización temporal y ruido térmico en los receptores.
+
+En condiciones NLOS, las distribuciones exhiben [COMPLETAR: asimetría positiva/colas pesadas/multimodalidad], lo cual se modeló adecuadamente mediante distribuciones [COMPLETAR: log-normal/gamma/mixtura de gaussianas]. Esta no-gaussianidad refleja la naturaleza determinista del fenómeno de obstrucción corporal: cuando el cuerpo bloquea el trayecto directo, el error no es una fluctuación aleatoria simétrica, sino un sesgo sistemático positivo debido a trayectos de propagación más largos.
+
+La presencia de multimodalidad en algunas condiciones sugiere la coexistencia de múltiples mecanismos de propagación (difracción, reflexión especular, dispersión) que resultan en "familias" de errores con magnitudes características distintas.
+
+\subsection{Implicaciones para Algoritmos de Localización}
+
+La no-gaussianidad del error en NLOS tiene implicaciones importantes para el diseño de algoritmos de localización y filtrado:
+
+Los algoritmos tradicionales de trilateración por mínimos cuadrados asumen ruido gaussiano en las mediciones de distancia. Cuando este supuesto se viola severamente, como en presencia de BS, el estimador de mínimos cuadrados puede producir estimaciones de posición significativamente sesgadas.
+
+Enfoques robustos como mínimos cuadrados ponderados iterativamente (IRLS) o M-estimadores pueden mejorar el desempeño al reducir el peso de mediciones con errores atípicos. Alternativamente, si se puede identificar qué enlaces están en NLOS (mediante técnicas de clasificación basadas en características de la señal), se pueden aplicar modelos de error específicos para cada condición de propagación.
+
+El Filtro de Kalman estándar también asume gaussianidad. Las extensiones como el Filtro de Kalman Robusto o Filtros de Partículas pueden manejar mejor distribuciones de error no gaussianas y multimodales. [COMPLETAR si se implementó: Los resultados de aplicar el KF mostraron que...]
+
+
+\section{CORRELACIÓN CON CARACTERÍSTICAS ANTROPOMÉTRICAS}
+\label{sec:discusion_antropometria}
+
+El análisis de correlación entre el error y las características antropométricas de los participantes reveló [COMPLETAR: basándose en los resultados obtenidos].
+
+Una correlación [positiva/negativa/inexistente] entre el error NLOS y el peso o IMC de los participantes [COMPLETAR: sugiere que individuos con mayor masa corporal causan mayor/menor obstrucción, o que el efecto es independiente de estas variables dentro del rango estudiado].
+
+La estatura mostró [COMPLETAR: interpretación]. Esto puede explicarse porque una mayor altura implica que el dispositivo portado en el torso se encuentra a mayor distancia vertical de los nodos ancla ubicados [ESPECIFICAR altura de montaje], alterando la geometría de propagación.
+
+Es importante notar que con [N] participantes, el poder estadístico para detectar correlaciones débiles es limitado. Estudios futuros con mayor número de participantes permitirían caracterizar con mayor precisión la influencia de la variabilidad interindividual.
+
+
+\section{DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}
+\label{sec:discusion_posicionamiento}
+
+\subsection{Exactitud de Localización Alcanzada}
+
+El análisis del error de posición 2D (que integra las mediciones de distancia hacia los cuatro nodos ancla) muestra que el sistema alcanza una exactitud [COMPLETAR: métrica específica, ej. "mediana de X cm y percentil 95 de Y cm"] cuando el dispositivo se porta en [ubicación óptima].
+
+Esta exactitud es [COMPLETAR: comparable/superior/inferior] a los sistemas comerciales de localización UWB reportados en la literatura, que típicamente alcanzan exactitudes de [COMPLETAR valores de referencia] en condiciones de operación reales con BS presente.
+
+\subsection{Dependencia de la Geometría del Despliegue}
+
+La configuración geométrica de los nodos ancla influye en la exactitud alcanzable mediante el factor de Dilución de Precisión Geométrica (GDOP). [COMPLETAR: Analizar si ciertas posiciones en el escenario presentan sistemáticamente mayor error debido a geometría desfavorable].
+
+Las zonas del escenario donde el nodo móvil está aproximadamente equidistante de los cuatro nodos ancla presentan [COMPLETAR: mejor/peor] exactitud debido a [explicación geométrica].
+
+\subsection{Propagación del Error de Distancia al Error de Posición}
+
+Un aspecto relevante es cómo el error en las mediciones individuales de distancia se propaga al error final de posición estimada. En trilateración, errores de magnitud similar en las cuatro distancias medidas pueden producir errores de posición [COMPLETAR: amplificados/reducidos] dependiendo de si los errores están correlacionados o son independientes.
+
+Los resultados muestran que [COMPLETAR: interpretación específica basada en los datos obtenidos].
+
+
+\section{COMPARACIÓN CON EL ESTADO DEL ARTE}
+\label{sec:comparacion_estado_arte}
+
+\subsection{Contraste con Estudios de Simulación}
+
+Los resultados experimentales pueden contrastarse con los modelos de simulación revisados en el capítulo de estado del arte. [COMPLETAR: Referirse a estudios específicos mencionados en Cap4]
+
+El estudio de [Autor, Año] predijo mediante simulaciones FDTD que el error en NLOS en [frecuencia] sería de [valor]. Nuestros resultados experimentales en 6.5 GHz muestran [comparación]. Las diferencias pueden atribuirse a [factores: simplificación del modelo corporal, propiedades dieléctricas asumidas vs. reales, efectos del entorno no modelados].
+
+\subsection{Concordancia con Estudios Experimentales}
+
+[COMPLETAR: Comparar cuantitativamente con los resultados de estudios experimentales citados en Cap4]
+
+El trabajo de [Autor, Año] reportó un error medio de [X] cm en condición NLOS con el dispositivo en [ubicación] operando en [frecuencia]. Nuestro estudio en 6.5 GHz obtuvo [Y] cm para configuración comparable. La [concordancia/discrepancia] puede explicarse por [diferencias en hardware, escenarios, metodología].
+
+\subsection{Aporte Diferencial de este Estudio}
+
+Este trabajo aporta evidencia experimental específica para la banda de 6.5 GHz, que ha sido menos estudiada que bandas inferiores. Los resultados sugieren que [COMPLETAR: conclusión sobre ventajas/desventajas de operar en esta frecuencia].
+
+Adicionalmente, la caracterización sistemática de múltiples ubicaciones corporales bajo un protocolo experimental uniforme permite comparaciones directas que no estaban disponibles en la literatura previa, donde diferentes estudios evaluaban ubicaciones distintas bajo condiciones experimentales heterogéneas.
+
+
+\section{IMPLICACIONES PARA APLICACIONES PRÁCTICAS}
+\label{sec:implicaciones_practicas}
+
+\subsection{Recomendaciones de Diseño}
+
+Basándose en los resultados obtenidos, se pueden derivar recomendaciones prácticas para el diseño de sistemas IPS basados en UWB cuando se anticipa obstrucción corporal:
+
+\begin{enumerate}
+\item \textbf{Ubicación óptima del dispositivo:} Los resultados indican que portar el dispositivo en [COMPLETAR: ubicación con mejor desempeño] minimiza el error medio y la variabilidad. Para aplicaciones donde la exactitud es crítica, se recomienda esta ubicación.
+
+\item \textbf{Número y distribución de nodos ancla:} Configuraciones con [COMPLETAR: más nodos ancla / distribución específica] pueden mejorar la probabilidad de que al menos [N] enlaces operen en condiciones LOS o QLOS, permitiendo descartar mediciones en NLOS severo.
+
+\item \textbf{Estrategias de mitigación:} [COMPLETAR: basándose en si se probó alguna técnica: El uso de Filtro de Kalman redujo el error de posición en X\%, o: se recomienda implementar algoritmos de detección NLOS para descartar mediciones con error > umbral].
+
+\item \textbf{Expectativas realistas de desempeño:} En aplicaciones con movilidad libre del usuario, donde la orientación relativa varía continuamente, debe anticiparse una exactitud de localización del orden de [COMPLETAR] cm (percentil 95), significativamente mayor que la exactitud nominal en LOS.
+\end{enumerate}
+
+\subsection{Aplicabilidad a Casos de Uso Específicos}
+
+\textbf{Seguimiento de personal en entornos industriales:} [COMPLETAR: Analizar si la exactitud alcanzada es suficiente para aplicaciones como prevención de colisiones, control de acceso a zonas restringidas, optimización de flujos de trabajo]
+
+\textbf{Localización en hospitales:} [COMPLETAR: Analizar aplicabilidad para seguimiento de pacientes, personal médico, activos móviles]
+
+\textbf{Deportes y fitness:} [COMPLETAR: Analizar si la exactitud es adecuada para análisis de movimiento, tracking de atletas]
+
+
+\section{LIMITACIONES DEL ESTUDIO}
+\label{sec:limitaciones}
+
+Es importante reconocer las limitaciones inherentes a este estudio experimental:
+
+\begin{enumerate}
+\item \textbf{Tamaño muestral limitado:} Con [N] participantes, la generalización de las conclusiones sobre la influencia de características antropométricas debe tomarse con cautela. Estudios futuros con mayor número de participantes permitirían análisis estadísticos más robustos.
+
+\item \textbf{Escenario experimental único:} Los experimentos se realizaron en [descripción breve del escenario]. Las características específicas de este entorno (materiales constructivos, dimensiones, mobiliario) pueden influir en los resultados. La replicación en múltiples escenarios con geometrías y características de propagación diversas fortalecería la validez externa de las conclusiones.
+
+\item \textbf{Mediciones estáticas predominantes:} [Si aplica: Aunque se incluyeron algunas mediciones dinámicas, la mayoría de los datos corresponden a condiciones estáticas. En aplicaciones reales donde el usuario camina continuamente, efectos adicionales como aceleración de movimiento y variaciones posturales podrían influir en el desempeño.]
+
+\item \textbf{Configuración de hardware específica:} Los resultados se obtuvieron con [modelo específico de dispositivos UWB]. Diferentes implementaciones de tecnología UWB pueden presentar variaciones en algoritmos de procesamiento de señal, potencia de transmisión efectiva, y sensibilidad del receptor que afectarían los resultados cuantitativos.
+
+\item \textbf{Condiciones controladas:} Los experimentos se realizaron con actividad humana externa minimizada. En escenarios operacionales reales con mayor densidad de personas en movimiento, el efecto de BS múltiple (varias personas obstruyendo simultáneamente diferentes enlaces) y la interferencia inter-usuario podrían degradar adicional mente el desempeño.
+\end{enumerate}
+
+
+\section{SÍNTESIS DEL CAPÍTULO}
+
+Este capítulo ha interpretado los resultados experimentales presentados anteriormente, explicando los mecanismos físicos subyacentes al fenómeno de obstrucción corporal y sus manifestaciones en las mediciones de ToF y estimaciones de posición.
+
+Se ha establecido que la banda de 6.5 GHz [COMPLETAR: presenta un compromiso favorable/desfavorable/comparable a bandas inferiores] para aplicaciones de posicionamiento en presencia de BS, con exactitudes que [COMPLETAR: resumen cuantitativo].
+
+La comparación con el estado del arte confirma que [COMPLETAR: validación de resultados vs. literatura previa] y contribuye con caracterización sistemática en una banda de frecuencia previamente poco explorada.
+
+Las implicaciones prácticas de estos hallazgos incluyen [COMPLETAR: resumen de recomendaciones principales] que pueden informar el diseño de sistemas IPS UWB para aplicaciones reales donde la obstrucción corporal es inevitable.

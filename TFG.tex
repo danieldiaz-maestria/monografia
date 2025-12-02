@@ -1,0 +1,303 @@
+% Plantilla realizada por Alberto Brunete (UPM).
+
+%Parametros de tipo libro
+%\documentclass[12pt,a4paper]{book}
+\documentclass[12pt,spanish,openany,letterpaper,pagesize]{scrbook}
+\usepackage{textcomp}
+
+\usepackage{booktabs}   % Para líneas de tabla profesionales (toprule, midrule, bottomrule)
+\usepackage{siunitx}    % Para alinear números y manejar unidades (moneda)
+\usepackage{multirow}   % Para celdas que ocupan múltiples filas
+\usepackage{caption}    % Para captions personalizadas
+
+\usepackage{siunitx}
+\usepackage{xfp}
+\usepackage{numprint}
+\npthousandsep{,} % salida: coma
+\npdecimalsign{.} % salida: punto
+
+\input{capitulos/presupuesto}
+
+%\setlength{\parindent}{0pt} quitar sangría
+% --- Prefijo "Figura" en la lista de figuras ---
+\renewcommand*\figurename{Figura}
+\renewcommand*\listfigurename{\MakeUppercase{Lista de figuras}}
+
+\makeatletter
+\renewcommand*\l@figure[2]{%
+  \@dottedtocline{1}{1.5em}{3.2em}{\figurename~#1}{#2}%
+}
+\makeatother
+
+% --- Prefijo "Tabla" en la lista de tablas ---
+\renewcommand*\tablename{Tabla}
+\renewcommand*\listtablename{\MakeUppercase{Lista de tablas}}
+
+
+
+\makeatletter
+\renewcommand*\l@table[2]{%
+  \@dottedtocline{1}{1.5em}{3.2em}{\tablename~#1}{#2}%
+}
+\makeatother
+
+
+%Idioma español y acentos
+\renewcommand{\baselinestretch}{1.2} % espacio entrelineas
+\usepackage[spanish, es-tabla]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{nameref}
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+ \usepackage{listings}
+\usepackage{cite}
+\usepackage{listings} %codigos ros
+\usepackage{rotating} % rotar hoja
+\usepackage{pdflscape}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{gensymb}
+\usepackage{float}
+ %Paquete para que la cita no se muestre en la lista de referencias
+\usepackage{notoccite}
+
+%para centrar texto imagen pero no centra
+\usepackage{wrapfig}
+\usepackage{caption}
+
+\usepackage{float}
+
+%justificar texto sin guiones
+\usepackage{microtype}
+\microtypesetup{protrusion=false, expansion=false}
+
+% Paquete para acrónimos y glosarios
+\usepackage[acronym,nonumberlist]{glossaries}
+
+% ===========================
+% Macro para crear acrónimo con traducción
+% ===========================
+\makeatletter
+\newcommand{\newdualacronym}[4]{%
+  \newacronym{#1}{#2}{#3}%
+  \expandafter\protected@edef\csname spanish@#1\endcsname{#4}%
+}
+\makeatother
+
+% ===========================
+% Estilo para imprimir acrónimos con traducción alineada
+% ===========================
+\newglossarystyle{spanishlist}{
+  \setglossarystyle{long} % Se basa en el estilo 'long' que usa longtable
+  
+  % Aumenta el espacio antes y después de la tabla de acrónimos
+  \setlength{\LTpre}{2.5em}
+  \setlength{\LTpost}{2.5em}
+
+  % Redefine el entorno del glosario para ajustar los anchos de columna
+  \renewenvironment{theglossary}{%
+    \begin{longtable}{p{0.2\textwidth}p{0.7\textwidth}}
+  }{%
+    \end{longtable}
+  }
+
+  \renewcommand*{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{\glsentryshort{##1}} &
+    \textit{\glsentrylong{##1}}, \csname spanish@##1\endcsname
+    ##2 \\ % Cambiado de \tabularnewline a \\
+  }%
+}
+
+% Crear los glosarios
+\makeglossaries
+\input{capitulos/acronimos}
+
+% Redefinir formato de primera vez para acrónimos
+\renewcommand*{\genacrfullformat}[2]{\glsentryshort{#1}, \glsentrylong{#1}}
+
+% Configuración de encabezados y pies con scrlayer-scrpage
+\clearpairofpagestyles
+\ohead{\pagemark}
+\ihead{\headmark}
+\automark[section]{chapter}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, positioning, intersections, shapes.misc, positioning, arrows.meta, shadows}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{appendix}
+%Márgenes
+\usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
+
+%
+\usepackage{multicol}
+
+%para generar índice con hipervínculos
+\usepackage{hyperref}
+
+%parametros del documento (sus propiedades)
+\hypersetup{
+    pdftitle={Trabajo fin de grado},
+    pdfsubject={TFG - 2023},
+    pdfauthor={Nombre del alumno},
+    pdfkeywords={palabraclave1} {palabraclave2} {palabraclave3},
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+}
+
+%algunos sÌmbolos matemáticos y paquetes para usar subimágenes
+\usepackage{amsmath} 
+%Código
+\usepackage{listings}
+%Rename Listlings
+\renewcommand{\lstlistingname}{Código}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+% List of Listings -> Lista de Código
+
+
+
+%empieza el documento
+\begin{document}  
+
+%elementos antes del trabajo en sÌ se meten dentro de frontmatter
+\frontmatter
+
+
+%cada incluye referencia a un archivo de tipo .tex
+\include{capitulos/portada}
+%\include{capitulos/aceptacion}
+%\include{capitulos/firmas}
+
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+%Licencia opcional
+\include{capitulos/licencia}
+
+%\include{capitulos/evaluacion}
+
+%\include{capitulos/agradecimientos}
+
+
+% ===========================
+% RESUMEN Y ABSTRACT
+% ===========================
+\include{capitulos/resumen_abstract}
+
+% --- Tabla de contenido centrada, en mayúsculas y añadida a preliminares ---
+\begingroup
+  % Texto del título
+  \renewcommand{\contentsname}{\centering \MakeUppercase{Tabla de contenido}}
+
+  % Formato del título centrado (solo para este bloque)
+  \setkomafont{chapter}{\normalfont\huge\bfseries\centering}
+
+  % Imprimir el índice
+  
+  \tableofcontents
+  \addcontentsline{toc}{chapter}{LISTA DE FIGURAS}
+\endgroup
+
+% ===== LISTA DE FIGURAS =====
+\begingroup
+  % Título en mayúsculas
+  \renewcommand{\listfigurename}{\centering \MakeUppercase{ Lista de figuras}}
+
+  % Formato del título centrado
+  \setkomafont{chapter}{\normalfont\huge\bfseries\centering}
+
+  % Imprimir la lista
+  \listoffigures
+\endgroup
+
+% ===== LISTA DE TABLAS =====
+\begingroup
+  % Título en mayúsculas
+  \renewcommand{\listtablename}{\centering \MakeUppercase{Lista de tablas}}
+
+  % Formato del título centrado
+  \setkomafont{chapter}{\normalfont\huge\bfseries\centering}
+
+  % Imprimir la lista
+  \listoftables
+  \addcontentsline{toc}{chapter}{LISTA DE TABLAS}
+\endgroup
+
+\glsaddall 
+\printglossary[type=\acronymtype, style=spanishlist, title={\centering LISTA DE ACRÓNIMOS}]
+\addcontentsline{toc}{chapter}{LISTA DE ACRÓNIMOS}
+
+%Empieza la parte descriptiva del trabajo
+\mainmatter
+
+% ===========================
+% ESTRUCTURA DE TESIS DE MAESTRÍA
+% ===========================
+
+% Capítulo 1: Introducción
+\include{capitulos/cap_introduccion}
+
+% Capítulo 2: Planteamiento del Problema
+\include{capitulos/cap_planteamiento_problema}
+
+% Capítulo 3: Objetivos
+\include{capitulos/cap_objetivos}
+
+% Capítulo 4: Marco Teórico
+\include{capitulos/cap_marco_teorico}
+
+% Capítulo 5: Revisión Sistemática de Literatura
+\include{capitulos/cap_revision_literatura}
+
+% Capítulo 6: Aportes Investigativos
+\include{capitulos/cap_aportes_investigativos}
+
+% Capítulo 7: Diseño Metodológico
+\include{capitulos/cap_diseno_metodologico}
+
+% Capítulo 8: Resultados Experimentales
+\include{capitulos/cap_resultados}
+
+% Capítulo 9: Análisis y Discusión
+\include{capitulos/cap_analisis_discusion}
+
+% Capítulo 10: Conclusiones y Recomendaciones
+\include{capitulos/cap_conclusiones}
+
+
+%genera doble hoja en blanco
+\cleardoublepage
+
+% ===== BIBLIOGRAFÍA =====
+\begingroup
+  % Título en mayúsculas
+  \renewcommand{\refname}{\MakeUppercase{Bibliografía}} % Para scrartcl o artículos
+  \renewcommand{\bibname}{\MakeUppercase{Bibliografía}} % Para scrbook o scrreprt
+
+  % Formato del título centrado
+  \setkomafont{chapter}{\normalfont\huge\bfseries\centering}
+
+  % Imprimir la bibliografía
+  %\printbibliography % Si usas biblatex
+  \bibliography{bibliografia/bibliografia} % Si usas BibTeX tradicional
+  \bibliographystyle{IEEEtran}
+
+  % Añadir entrada al índice general
+  \addcontentsline{toc}{chapter}{BIBLIOGRAFÍA}
+\endgroup
+
+\input{capitulos/acta_propiedad_intelectual}
+
+%fin del documento
+\end{document}

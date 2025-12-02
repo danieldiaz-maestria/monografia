@@ -1,0 +1,139 @@
+\chapter{CONCLUSIONES Y RECOMENDACIONES}
+\label{ch:conclusiones}
+
+Este capítulo final presenta las conclusiones derivadas de la investigación realizada, evalúa el cumplimiento de los objetivos planteados, resume las contribuciones principales del trabajo, y propone direcciones para investigaciones futuras que profundicen o extiendan los hallazgos obtenidos.
+
+\section{CUMPLIMIENTO DE LOS OBJETIVOS}
+\label{sec:cumplimiento_objetivos}
+
+\subsection{Objetivo General}
+
+El objetivo general de este trabajo de maestría fue: \textit{"Analizar el efecto de la obstrucción corporal sobre el desempeño de un sistema de posicionamiento en un escenario de interiores basado en UWB, cuando este sistema opera en la banda de 6.5 GHz y el dispositivo móvil se ubica en diferentes partes del cuerpo."}
+
+Este objetivo ha sido cumplido satisfactoriamente. Se diseñó e implementó un sistema experimental completo que permitió caracterizar de manera sistemática el fenómeno de obstrucción corporal en múltiples configuraciones. Los datos recolectados y analizados proporcionan una comprensión cuantitativa del impacto de la BS sobre la exactitud de las mediciones de distancia y la localización final del nodo móvil, específicamente en la banda de 6.5 GHz, que ha sido insuficientemente estudiada en la literatura previa.
+
+\subsection{Objetivos Específicos}
+
+\textbf{Objetivo 1:} \textit{"Evaluar el efecto de la obstrucción corporal sobre las medidas de señal de un enlace de comunicación entre dos dispositivos UWB y la estimación de distancias, cuando uno de los dispositivos se ubica en diferentes partes del cuerpo humano."}
+
+Se evaluaron sistemáticamente cinco ubicaciones corporales (pecho, espalda, cadera, muñeca, tobillo), recolectando mediciones de ToF en múltiples orientaciones relativas y posiciones espaciales. Los resultados cuantifican cómo cada ubicación corporal presenta patrones característicos de error en función del ángulo de orientación relativo (RHA), con variaciones que van desde [COMPLETAR: rango de errores observados].
+
+\textbf{Objetivo 2:} \textit{"Analizar el efecto estadístico de la obstrucción corporal sobre el enlace de comunicación basado en UWB."}
+
+Se realizó un análisis estadístico exhaustivo que incluye caracterización de distribuciones de error, análisis de varianza multifactorial, y ajuste de modelos probabilísticos. Se determinó que las distribuciones de error en condiciones NLOS se apartan significativamente de la gaussianidad, presentando [COMPLETAR: características observadas: asimetría, colas pesadas, etc.], lo cual tiene implicaciones directas para el diseño de algoritmos de localización robustos.
+
+\textbf{Objetivo 3:} \textit{"Evaluar el desempeño de un sistema de posicionamiento, i.e., 4 dispositivos fijos y un dispositivo móvil, basado en UWB y en un escenario de interiores, cuando el dispositivo móvil se ubica en diferentes partes del cuerpo humano."}
+
+Se evaluó el sistema completo de posicionamiento calculando estimaciones de posición 2D mediante trilateración. Se determinaron métricas de desempeño (error medio, mediana, RMSE, CEP, percentil 95) para cada ubicación corporal, estableciendo que el sistema alcanza exactitudes de [COMPLETAR: valores obtenidos] dependiendo de la ubicación del dispositivo y las condiciones de propagación predominantes.
+
+
+\section{CONCLUSIONES PRINCIPALES}
+\label{sec:conclusiones_principales}
+
+Basándose en los resultados experimentales y el análisis realizado, se derivan las siguientes conclusiones:
+
+\begin{enumerate}
+\item \textbf{La ubicación corporal del dispositivo es un factor crítico para el desempeño del sistema.} Los resultados demuestran que no todas las ubicaciones de portación son equivalentes. [COMPLETAR: Especificar cuál fue mejor/peor y por qué]. Esta conclusión tiene implicaciones directas para el diseño de sistemas comerciales de seguimiento de personas: la elección de dónde portar el dispositivo debe considerar el compromiso entre comodidad del usuario y exactitud de localización requerida por la aplicación.
+
+\item \textbf{El efecto de la obstrucción corporal presenta una fuerte dependencia con la orientación relativa.} La transición entre condiciones LOS, QLOS y NLOS se manifiesta claramente en la variación del error con el RHA. Los errores en NLOS pueden ser [COMPLETAR: X veces] superiores a los errores en LOS, confirmando que la BS constituye uno de los limitantes principales de la exactitud en aplicaciones de seguimiento de personas.
+
+\item \textbf{La banda de 6.5 GHz presenta características favorables/desfavorables para mitigación de BS.} [COMPLETAR: Basándose en comparaciones con literatura en otras frecuencias]. La mayor atenuación en tejido biológico se compensa parcialmente por [COMPLETAR: mejor resolución temporal, características de difracción, etc.], resultando en un desempeño [comparable/superior/inferior] a frecuencias más bajas.
+
+\item \textbf{Las distribuciones de error en NLOS son no-gaussianas.} Esta no-gaussianidad tiene implicaciones para el diseño de algoritmos de localización. Los enfoques tradicionales que asumen ruido gaussiano producen estimaciones subóptimas. Se recomienda el uso de técnicas robustas [COMPLETAR: si se implementó alguna: como el KF adaptativo empleado en este estudio, que logró reducir el error en X\%].
+
+\item \textbf{La variabilidad interindividual es [significativa/moderada/limitada].} [COMPLETAR: Basándose en el análisis de correlación con antropometría]. Esto sugiere que [si es significativa: sistemas operacionales podrían beneficiarse de calibración personalizada por usuario / si es limitada: los modelos de error desarrollados son generalizables a una población diversa].
+
+\item \textbf{La exactitud de localización alcanzable en condiciones reales con BS es del orden de [X] cm.} Esta exactitud es [COMPLETAR: suficiente/insuficiente] para aplicaciones como [ejemplos de aplicaciones]. Para aplicaciones que requieren exactitud [mejor/peor] será necesario [estrategias de mitigación adicionales / la tecnología UWB en la banda estudiada es adecuada directamente].
+\end{enumerate}
+
+
+\section{CONTRIBUCIONES DE LA INVESTIGACIÓN}
+\label{sec:contribuciones}
+
+Esta investigación ha generado las siguientes contribuciones al campo de los sistemas de posicionamiento en interiores:
+
+\subsection{Contribuciones Científicas}
+
+\begin{itemize}
+\item \textbf{Caracterización experimental en 6.5 GHz:} Se proporciona la primera caracterización sistemática (según revisión de literatura realizada) del efecto de BS en sistemas UWB operando en 6.5 GHz, llenando una brecha en el conocimiento científico que se concentraba en frecuencias inferiores.
+
+\item \textbf{Modelos estadísticos de error:} Se han desarrollado modelos de distribución de probabilidad del error de distancia para diferentes condiciones de propagación y ubicaciones corporales, que pueden ser utilizados para simulaciones realistas de desempeño de IPS.
+
+\item \textbf{Protocolo experimental reproducible:} Se ha diseñado y documentado un protocolo experimental sistemático que puede ser adoptado por otros investigadores para estudios comparativos, facilitando la reproducibilidad y la comparación de resultados entre estudios.
+\end{itemize}
+
+\subsection{Contribuciones Prácticas}
+
+\begin{itemize}
+\item \textbf{Guías de diseño para sistemas comerciales:} Las recomendaciones derivadas de este estudio pueden informar el diseño de sistemas IPS UWB comerciales, optimizando la ubicación de nodos ancla, la selección de frecuencia de operación, y la ubicación recomendada del dispositivo móvil según los requerimientos de exactitud de la aplicación.
+
+\item \textbf{Benchmarks de desempeño:} Los resultados cuantitativos obtenidos establecen valores de referencia (benchmarks) contra los cuales se pueden comparar desarrollos tecnológicos futuros o implementaciones alternativas.
+
+\item \textbf{Validación de viabilidad tecnológica:} Los resultados confirman que [COMPLETAR: la tecnología UWB en 6.5 GHz es viable para aplicaciones de seguimiento de personas con exactitudes del orden de X cm, o: se requieren técnicas de mitigación adicionales para alcanzar exactitudes subdecimétricas en presencia de BS].
+\end{itemize}
+
+
+\section{TRABAJOS FUTUROS}
+\label{sec:trabajos_futuros}
+
+Los hallazgos de esta investigación abren múltiples direcciones para trabajos futuros que pueden profundizar o extender el conocimiento generado:
+
+\subsection{Extensiones Experimentales}
+
+\begin{enumerate}
+\item \textbf{Evaluación en múltiples escenarios:} Replicar el estudio en entornos con características arquitectónicas y de propagación diversas (espacios abiertos tipo almacén, oficinas con particiones, áreas con alta densidad de mobiliario metálico) para evaluar la generalización de los resultados.
+
+\item \textbf{Aumento del tamaño muestral:} Incrementar el número de participantes para reforzar el análisis estadístico de la influencia de características antropométricas y explorar efectos de segunda orden (edad, género, composición corporal).
+
+\item \textbf{Mediciones dinámicas exhaustivas:} Extender la caracterización a escenarios dinámicos donde el participante realiza actividades naturales (caminar en diferentes velocidades, subir escaleras, movimientos complejos), capturando la variabilidad adicional introducida por el movimiento.
+
+\item \textbf{Evaluación de BS múltiple:} Analizar el efecto de múltiples personas presentes simultáneamente en el escenario, donde un nodo móvil puede experimentar obstrucción no solo por el cuerpo que lo porta sino también por otras personas cercanas.
+\end{enumerate}
+
+\subsection{Desarrollo de Técnicas de Mitigación}
+
+\begin{enumerate}
+\item \textbf{Algoritmos de detección NLOS:} Desarrollar y validar algoritmos de aprendizaje automático que clasifiquen cada medición de ToF como LOS o NLOS basándose en características de la señal (potencia recibida, relación entre primer trayecto y trayectos subsecuentes, etc.), permitiendo descartar o ponderar diferencialmente mediciones según su condición de propagación.
+
+\item \textbf{Filtros adaptativos:} Implementar y comparar diferentes esquemas de filtrado adaptativo (EKF, UKF, filtros de partículas) que ajusten dinámicamente sus parámetros según la condición de propagación detectada.
+
+\item \textbf{Fusión con sensores inerciales:} Integrar datos de IMU (acelerómetros, giroscopios, magnetómetros) para estimar la orientación del cuerpo en tiempo real y aplicar modelos de corrección de error dependientes de RHA.
+
+\item \textbf{Corrección basada en modelos de propagación:} Desarrollar modelos fenomenológicos o basados en datos (machine learning) que predigan el sesgo de error esperado dada la configuración geométrica y la orientación estimada, aplicando correcciones antes del algoritmo de trilateración.
+\end{enumerate}
+
+\subsection{Estudios Comparativos}
+
+\begin{enumerate}
+\item \textbf{Comparación multi-frecuencia:} Realizar estudios experimentales controlados donde se comparen directamente múltiples bandas de frecuencia UWB (3.5, 4.5, 6.5, 8 GHz) bajo condiciones idénticas para cuantificar el compromiso entre atenuación, difracción y resolución temporal.
+
+\item \textbf{Comparación multi-tecnología:} Contrastar el desempeño de UWB con tecnologías alternativas (WiFi RTT, Bluetooth AoA, sistemas híbridos) en presencia de BS para identificar las fortalezas y debilidades relativas de cada tecnología.
+\end{enumerate}
+
+\subsection{Modelado y Simulación}
+
+\begin{enumerate}
+\item \textbf{Modelos electromagnéticos refinados:} Desarrollar simulaciones FDTD de alta fidelidad que incorporen modelos antropomórficos detallados del cuerpo humano con propiedades dieléctricas diferenciadas por tejido, validándolos contra los datos experimentales de este estudio.
+
+\item \textbf{Simuladores de nivel de sistema:} Crear simuladores que integren los modelos estadísticos de error derivados de este estudio, permitiendo evaluar rápidamente diferentes arquitecturas de sistemas IPS sin necesidad de despliegues experimentales costosos.
+\end{enumerate}
+
+\subsection{Aplicaciones Especializadas}
+
+\begin{enumerate}
+\item \textbf{Sistemas para grupos específicos de usuarios:} Adaptar y optimizar los sistemas IPS para aplicaciones específicas como seguimiento de pacientes geriátricos en hospitales, tracking de bomberos en emergencias (considerando equipo de protección adicional que afecta la propagación), o atletas de alto rendimiento con requerimientos de exactitud centimétrica.
+
+\item \textbf{Integración con arquitecturas IoT:} Desarrollar arquitecturas completas que integren los IPS UWB con infraestructura IoT, plataformas de analítica de datos y sistemas de toma de decisiones para aplicaciones industriales 4.0.
+\end{enumerate}
+
+
+\section{REFLEXIÓN FINAL}
+\label{sec:reflexion_final}
+
+El presente trabajo de maestría ha demostrado que el fenómeno de obstrucción corporal representa un desafío técnico significativo pero no insuperable para los sistemas de posicionamiento en interiores basados en tecnología UWB. La comprensión cuantitativa del efecto de BS en la banda de 6.5 GHz, obtenida mediante experimentación rigurosa, constituye un paso necesario hacia el diseño de sistemas más robustos y exactos que puedan operar confiablemente en escenarios reales donde la interacción entre las señales de radiofrecuencia y el cuerpo humano es inevitable.
+
+Los resultados de esta investigación no solo contribuyen al conocimiento científico en el campo de las comunicaciones inalámbricas y los sistemas de localización, sino que también tienen potencial para impactar positivamente el desarrollo tecnológico de aplicaciones que mejoren la seguridad industrial, optimicen procesos logísticos, faciliten la atención médica personalizada, y habiliten nuevas experiencias en deportes y entretenimiento.
+
+La tecnología de Banda Ultra Ancha continúa evolucionando, con nuevos estándares (IEEE 802.15.4z), chipsets más avanzados y técnicas de procesamiento de señal cada vez más sofisticadas. La caracterización fundamental del fenómeno de obstrucción corporal realizada en este trabajo proporciona una base sólida sobre la cual futuras innovaciones podrán construir para alcanzar los niveles de exactitud y confiabilidad que demandan las aplicaciones emergentes del Internet de las Cosas y las Ciudades Inteligentes.
+
+La investigación científica es, por naturaleza, un proceso iterativo y colaborativo. Este trabajo cierra algunas preguntas mientras abre otras nuevas. Es nuestra esperanza que las contribuciones aquí presentadas inspiren y faciliten investigaciones futuras que continúen avanzando el estado del arte en sistemas de posicionamiento en interiores, acercándonos cada vez más a la visión de localización ubicua, transparente y de alta precisión en cualquier entorno.

@@ -1,0 +1,231 @@
+\chapter{MARCO TEÓRICO}
+\label{ch:marco_teorico}
+
+Este capítulo presenta los fundamentos teóricos necesarios para comprender el desarrollo de esta investigación. Se abordan los conceptos relacionados con sistemas de posicionamiento en interiores, la tecnología de Banda Ultra Ancha y el fenómeno de obstrucción corporal que afecta la propagación de señales de radiofrecuencia.
+
+\section{SISTEMAS DE POSICIONAMIENTO EN INTERIORES}
+\label{sec:sistemas_posicionamiento}
+
+La localización en interiores representa un desafío técnico significativamente distinto al posicionamiento en exteriores. Mientras que en espacios abiertos el Sistema de Posicionamiento Global (\gls{gps}) proporciona cobertura satelital directa, los escenarios de interiores presentan limitaciones inherentes que degradan o impiden por completo la recepción de señales GNSS. Las paredes, techos y estructuras metálicas atenúan las señales satelitales hasta niveles por debajo del umbral de sensibilidad de los receptores convencionales, haciendo necesario el desarrollo de tecnologías alternativas específicamente diseñadas para estos entornos.
+
+Los Sistemas de Posicionamiento en Interiores (\gls{ips}) surgieron como respuesta a esta problemática, aprovechando diversas tecnologías de radiofrecuencia que operan en rangos de potencia y frecuencia adecuados para espacios cerrados. Entre las tecnologías más utilizadas se encuentran Wi-Fi, Bluetooth de Baja Energía (\gls{ble}), Zigbee, RFID y, más recientemente, Banda Ultra Ancha (\gls{uwb}). Cada una de estas tecnologías presenta características particulares en términos de exactitud, alcance, consumo energético y costo de implementación.
+
+\subsection{Métricas de Señal para Localización}
+
+La estimación de posición en un IPS se fundamenta en la medición de características específicas de las señales de radiofrecuencia que viajan entre dispositivos fijos (anclas o \textit{anchors}) y dispositivos móviles (etiquetas o \textit{tags}). Las principales métricas utilizadas son:
+
+\subsubsection{Intensidad de Señal Recibida (RSS)}
+
+La \gls{rss} mide la potencia de la señal recibida en el receptor. Aunque es la métrica más simple de implementar, su relación con la distancia está fuertemente afectada por el multitrayecto, las reflexiones y las obstrucciones presentes en entornos de interiores. Su variabilidad temporal y espacial limita su exactitud, ubicándola típicamente en el rango de 2 a 5 metros de error.
+
+\subsubsection{Tiempo de Llegada (ToA) y Tiempo de Vuelo (ToF)}
+
+El \gls{toa} mide el instante en que una señal llega al receptor, mientras que el \gls{tof} cuantifica el tiempo que tarda una señal en viajar desde el transmisor hasta el receptor. Estas métricas requieren sincronización precisa entre los dispositivos, lo cual representa un desafío técnico considerable. Sin embargo, cuando se implementan correctamente, permiten alcanzar exactitudes en el orden de decímetros o incluso centímetros.
+
+\subsubsection{Ángulo de Llegada (AoA)}
+
+El \gls{aoa} determina la dirección desde la cual llega la señal al receptor mediante el uso de arreglos de antenas. Esta técnica permite triangular la posición del dispositivo móvil sin necesidad de medir distancias directamente. No obstante, requiere hardware especializado y es particularmente sensible a las reflexiones del entorno.
+
+\subsubsection{Fase de Llegada (PoA)}
+
+La \gls{poa} analiza el cambio de fase de la señal portadora para estimar la distancia recorrida. Aunque puede proporcionar alta resolución, presenta ambigüedad cuando la distancia excede la longitud de onda de la señal portadora, requiriendo técnicas adicionales para resolver dichas ambigüedades.
+
+\subsection{Técnicas de Localización}
+
+Las métricas de señal descritas anteriormente se utilizan en conjunto con diferentes técnicas algorítmicas para estimar la posición del dispositivo móvil:
+
+\subsubsection{Trilateración y Multilateración}
+
+Estas técnicas calculan la posición del objetivo mediante la intersección de círculos (en 2D) o esferas (en 3D) centrados en los nodos ancla, cuyos radios corresponden a las distancias estimadas. La trilateración requiere al menos tres anclas en 2D o cuatro en 3D. Cuando las mediciones contienen ruido, se emplean métodos de optimización como mínimos cuadrados para encontrar la mejor estimación de posición.
+
+\subsubsection{Triangulación}
+
+Basándose en mediciones de AoA desde múltiples anclas, la triangulación determina la posición del objetivo mediante la intersección de líneas de orientación. A diferencia de la trilateración, no requiere sincronización temporal, pero es más susceptible a errores angulares que se magnifican con la distancia.
+
+\subsubsection{Fingerprinting}
+
+Esta técnica opera en dos fases: una fase offline donde se construye una base de datos (mapa de huellas) que asocia ubicaciones conocidas con patrones de señal característicos, y una fase online donde se compara la señal medida con el mapa para estimar la posición. Aunque es robusta frente al multitrayecto, requiere un proceso de calibración exhaustivo y no se adapta bien a cambios en el entorno.
+
+
+\section{TECNOLOGÍA DE BANDA ULTRA ANCHA (UWB)}
+\label{sec:tecnologia_uwb}
+
+La tecnología de Banda Ultra Ancha representa un avance significativo en las comunicaciones inalámbricas de corto alcance y los sistemas de localización de alta precisión. A diferencia de las tecnologías de banda estrecha tradicionales, UWB transmite información mediante pulsos de radiofrecuencia de duración extremadamente corta, típicamente del orden de 2 nanosegundos, lo que resulta en un espectro de frecuencias extremadamente amplio, superior a 500 MHz.
+
+\subsection{Principios de Operación}
+
+Las señales UWB ocupan un ancho de banda considerable, distribuyendo su energía a través de un amplio rango de frecuencias. Esta característica fundamental confiere a UWB varias ventajas distintivas:
+
+\textbf{Baja densidad espectral de potencia:} Al distribuir la energía de transmisión sobre un ancho de banda extenso, la densidad de potencia por unidad de frecuencia es muy baja, minimizando la interferencia con otros sistemas de radiofrecuencia que operan en rangos de frecuencia superpuestos.
+
+\textbf{Resistencia al multitrayecto:} Los pulsos de corta duración permiten resolver temporalmente múltiples versiones de la señal que llegan al receptor por diferentes trayectos. Mientras que en sistemas de banda estrecha estas réplicas se superponen causando interferencia destructiva, en UWB pueden separarse e identificarse individualmente, reduciendo significativamente la Interferencia Intersimbólica (\gls{isi}).
+
+\textbf{Penetración de materiales:} Las componentes de baja frecuencia del espectro UWB facilitan la penetración a través de paredes y obstáculos, aunque con atenuación variable según las propiedades dieléctricas del material.
+
+\textbf{Alta resolución temporal:} La brevedad de los pulsos UWB se traduce en una resolución temporal excepcional, permitiendo mediciones de ToF con exactitudes en el rango de centímetros cuando se emplea procesamiento de señal adecuado.
+
+\subsection{Regulación y Bandas de Frecuencia}
+
+La regulación del espectro UWB varía según la jurisdicción. En Estados Unidos, la Comisión Federal de Comunicaciones (FCC) permite operación UWB entre 3.1 y 10.6 GHz con restricciones de densidad espectral de potencia. En Europa, el Instituto Europeo de Normas de Telecomunicaciones (ETSI) establece regulaciones similares pero con restricciones más estrictas en ciertas bandas para proteger servicios existentes.
+
+Para aplicaciones de localización en interiores, las bandas más comúnmente utilizadas son:
+\begin{itemize}
+    \item \textbf{Banda baja (3.1 - 4.8 GHz):} Ofrece mejor penetración de obstáculos y mayor alcance.
+    \item \textbf{Banda media (6.0 - 7.0 GHz):} Proporciona un equilibrio entre alcance y resolución espacial.
+    \item \textbf{Banda alta (7.25 - 10.6 GHz):} Permite la mayor exactitud de localización pero con alcance reducido.
+\end{itemize}
+
+El presente trabajo se enfoca en la banda de 6.5 GHz, seleccionada por representar un compromiso óptimo entre exactitud de localización y características de propagación en escenarios de interiores con presencia de obstrucción corporal.
+
+\subsection{Medición de Distancia en Dos Vías (TWR)}
+
+La técnica de \gls{twr} constituye el método más robusto para estimación de distancias en sistemas UWB, eliminando la necesidad de sincronización estricta entre dispositivos. El proceso opera mediante el siguiente protocolo:
+
+\begin{enumerate}
+    \item El nodo móvil (TAG) inicia el proceso transmitiendo un mensaje de consulta (\textit{poll}) dirigido a un nodo ancla (ANCHOR) específico.
+    \item El nodo ancla recibe el mensaje, lo procesa durante un tiempo conocido $t_{\text{reply}}$, y transmite una respuesta.
+    \item El nodo móvil recibe la respuesta y calcula el tiempo total de ida y vuelta $t_{\text{round}}$.
+    \item El ToF se obtiene como: $\text{ToF} = \frac{1}{2}(t_{\text{round}} - t_{\text{reply}})$
+    \item La distancia se calcula multiplicando el ToF por la velocidad de la luz: $d = \text{ToF} \times c$
+\end{enumerate}
+
+Esta técnica elimina los errores de sincronización de reloj entre dispositivos, ya que ambas mediciones temporales se realizan con el mismo oscilador local. Sin embargo, la exactitud depende críticamente de la precisión con que se mida $t_{\text{reply}}$ y de la estabilidad de los osciladores durante el intervalo de medición.
+
+Existen variantes más sofisticadas como el TWR Simétrico de Doble Cara (\gls{ds-twr}), que realiza un intercambio adicional de mensajes para compensar imperfecciones en los osciladores de los dispositivos, mejorando aún más la exactitud de la medición.
+
+
+\section{PROPAGACIÓN DE SEÑALES EN INTERIORES}
+\label{sec:propagacion_interiores}
+
+La propagación de señales de radiofrecuencia en entornos de interiores difiere sustancialmente de la propagación en espacio libre. Los escenarios de interiores presentan múltiples obstáculos que interactúan con las ondas electromagnéticas, generando fenómenos complejos que afectan tanto la amplitud como la fase de las señales recibidas.
+
+\subsection{Condiciones de Propagación}
+
+\subsubsection{Línea de Vista (LOS)}
+
+Una condición \gls{los} existe cuando hay un trayecto directo y despejado entre el transmisor y el receptor. En esta situación, la señal experimenta mínima atenuación y su comportamiento se aproxima al modelo de propagación en espacio libre. Para señales UWB en LOS, la exactitud de las mediciones de distancia alcanza típicamente valores entre 5 y 15 centímetros, dependiendo del ancho de banda y la relación señal-ruido.
+
+\subsubsection{Sin Línea de Vista (NLOS)}
+
+La condición \gls{nlos} ocurre cuando uno o más obstáculos bloquean el trayecto directo entre transmisor y receptor. La señal debe entonces propagarse mediante reflexión, difracción o difusión alrededor de los obstáculos. Estos trayectos indirectos son más largos que el trayecto directo, introduciendo retardos adicionales que, si no se detectan y corrigen, se traducen directamente en errores de estimación de distancia. En condiciones NLOS severas, el error puede superar los 4 metros.
+
+\subsubsection{Cuasi Línea de Vista (QLOS)}
+
+La condición \gls{qlos} representa un estado intermedio donde el trayecto directo está parcialmente obstruido o donde la señal experimenta difracción significativa en los bordes de los obstáculos. Esta situación es particularmente relevante en el contexto de la obstrucción corporal, cuando el cuerpo humano está orientado de tal manera que la señal puede difractarse alrededor del torso sin experimentar obstrucción completa.
+
+\subsection{Fenómenos de Propagación}
+
+\subsubsection{Multitrayecto}
+
+El multitrayecto se produce cuando réplicas de la señal transmitida alcanzan al receptor por diferentes trayectos debido a reflexiones en paredes, techos, pisos y objetos. Cada réplica llega con diferente amplitud, fase y retardo temporal. En sistemas de banda estrecha, estas réplicas se superponen coherentemente, causando desvanecimiento selectivo en frecuencia. En UWB, la alta resolución temporal permite distinguir las réplicas individuales, aunque siguen afectando los algoritmos de detección del primer arribo de señal.
+
+\subsubsection{Reflexión}
+
+Ocurre cuando una onda electromagnética incide sobre una superficie conductora o con propiedades dieléctricas diferentes al medio de propagación. El coeficiente de reflexión depende de la frecuencia, el ángulo de incidencia y las propiedades del material. En interiores, las superficies metálicas, ventanas y paredes de concreto actúan como reflectores significativos.
+
+\subsubsection{Difracción}
+
+La difracción permite que las ondas electromagnéticas se propaguen alrededor de obstáculos, particularmente en sus bordes. Este fenómeno es más pronunciado cuando las dimensiones del obstáculo son comparables a la longitud de onda de la señal. Para UWB en 6.5 GHz (longitud de onda $\approx$ 4.6 cm), los bordes del cuerpo humano, muebles y estructuras arquitectónicas actúan como fuentes de difracción.
+
+\subsubsection{Dispersión}
+
+Cuando las ondas encuentran superficies rugosas o conjuntos de objetos pequeños, la energía se dispersa en múltiples direcciones. Este fenómeno es relevante en escenarios con mobiliario complejo, estanterías con objetos diversos y elementos decorativos.
+
+
+\section{OBSTRUCCIÓN CORPORAL (BODY SHADOWING)}
+\label{sec:obstruccion_corporal}
+
+La obstrucción corporal, conocida en la literatura técnica como \textit{Body Shadowing} (\gls{bs}), representa uno de los fenómenos más críticos que afectan el desempeño de los sistemas de localización basados en tecnologías inalámbricas, particularmente en aplicaciones donde el dispositivo móvil se porta sobre o cerca del cuerpo humano. Este fenómeno se manifiesta cuando el cuerpo humano se interpone entre el transmisor y el receptor, actuando como un obstáculo que atenúa, refracta y difracta las ondas electromagnéticas.
+
+\subsection{Interacción de las Ondas Electromagnéticas con el Cuerpo Humano}
+
+El cuerpo humano es un medio heterogéneo compuesto por tejidos con propiedades electromagnéticas diversas. Los parámetros fundamentales que caracterizan esta interacción son:
+
+\subsubsection{Permitividad Relativa ($\varepsilon_r$)}
+
+Cuantifica la capacidad del tejido para almacenar energía eléctrica cuando es sometido a un campo eléctrico. Los tejidos con alto contenido de agua, como los músculos y órganos internos, presentan valores de permitividad relativa elevados (típicamente entre 40 y 60 a frecuencias de microondas), mientras que tejidos con bajo contenido de agua como el hueso y la grasa exhiben valores menores (5 a 15).
+
+\subsubsection{Conductividad Eléctrica ($\sigma$)}
+
+Representa la capacidad del tejido para conducir corriente eléctrica. Está directamente relacionada con el contenido de iones y agua en el tejido. La conductividad varía significativamente entre diferentes tipos de tejido y aumenta con la frecuencia debido a mecanismos de relajación dieléctrica.
+
+\subsubsection{Permeabilidad Magnética ($\mu_r$)}
+
+Para tejidos biológicos, la permeabilidad magnética relativa es aproximadamente igual a 1, ya que los tejidos humanos son materiales no magnéticos. Por lo tanto, este parámetro tiene un impacto mínimo en la propagación de señales UWB a través del cuerpo.
+
+La combinación de alta permitividad y conductividad no despreciable resulta en una absorción significativa de la energía electromagnética y en una velocidad de propagación reducida dentro del tejido. La profundidad de penetración (profundidad pelicular) disminuye con el aumento de la frecuencia, haciendo que las señales de frecuencias más altas (como 6.5 GHz) experimenten mayor atenuación al atravesar el cuerpo.
+
+\subsection{Mecanismos de Degradación de Señal}
+
+\subsubsection{Atenuación Directa}
+
+Cuando una señal UWB atraviesa tejido biológico, su amplitud se reduce exponencialmente con la distancia recorrida dentro del tejido. Esta atenuación puede alcanzar valores de 20 a 40 dB cuando la señal atraviesa el torso humano, dependiendo de la frecuencia, la polarización y el grosor de tejido atravesado.
+
+\subsubsection{Difracción Corporal}
+
+Cuando el cuerpo obstruye completamente el trayecto directo, las señales pueden difractarse alrededor del cuerpo, siguiendo trayectos más largos. El retardo adicional introducido se traduce en un error positivo en la estimación de distancia (sobreestimación). Este efecto es particularmente pronunciado en condiciones de NLOS completo.
+
+\subsubsection{Multitrayecto Inducido por el Cuerpo}
+
+El cuerpo humano actúa como un reflector irregular, generando múltiples trayectos de señal que pueden interferir con el trayecto directo o difractado. La naturaleza dieléctrica compleja del cuerpo introduce variaciones de fase que complican la detección del primer arribo de señal.
+
+\subsection{Factores que Influyen en la Magnitud del Efecto}
+
+\subsubsection{Orientación Relativa}
+
+El Ángulo de Orientación Relativo del Cuerpo (\gls{rha}) define la geometría entre el dispositivo UWB portado, el cuerpo humano y el nodo ancla. Cuando el RHA es aproximadamente 0°, el dispositivo se orienta directamente hacia el ancla (condición LOS). A 180°, el cuerpo obstruye completamente el trayecto (NLOS severo). Ángulos intermedios (alrededor de 90° y 270°) corresponden a condiciones QLOS.
+
+\subsubsection{Ubicación del Dispositivo en el Cuerpo}
+
+La posición donde se porta el dispositivo UWB tiene un impacto crítico. Dispositivos colocados en la muñeca, cadera o tobillo experimentan diferentes patrones de obstrucción según los movimientos naturales de la persona. Dispositivos en el pecho o espalda presentan obstrucción más estable pero potencialmente más severa.
+
+\subsubsection{Características Antropométricas}
+
+La estatura, peso, complexión y composición corporal del portador influyen en la magnitud del efecto. Individuos con mayor masa corporal generalmente causan mayor atenuación y retardo de señal.
+
+\subsubsection{Frecuencia de Operación}
+
+Frecuencias más altas experimentan mayor atenuación por unidad de longitud de tejido, pero también presentan longitudes de onda menores que pueden facilitar la difracción alrededor del cuerpo. La banda de 6.5 GHz representa un compromiso entre estos efectos contrapuestos.
+
+\subsection{Impacto en Sistemas de Posicionamiento UWB}
+
+El efecto de BS introduce dos tipos principales de error en las mediciones de ToF:
+
+\textbf{Error de sesgo positivo:} La obstrucción corporal aumenta sistemáticamente el ToF medido con respecto al valor real, debido a que las señales siguen trayectos más largos (difracción) o experimentan retardos de grupo al atravesar tejido biológico. Este error puede variar de 0.1 a 1.5 metros dependiendo de la severidad de la obstrucción.
+
+\textbf{Aumento de la variabilidad:} La naturaleza dinámica del cuerpo humano (movimientos respiratorios, desplazamientos, cambios posturales) introduce variabilidad temporal en las mediciones. La desviación estándar del error puede aumentar de 5 cm en LOS a 40 cm en NLOS severo.
+
+La caracterización estadística de estos errores y el desarrollo de técnicas de mitigación constituyen objetivos centrales de esta investigación, particularmente en la banda de 6.5 GHz donde la evidencia experimental es aún limitada.
+
+
+\section{FILTRADO Y ESTIMACIÓN DE ESTADO}
+\label{sec:filtrado_kalman}
+
+Para mitigar los efectos de la obstrucción corporal y mejorar la exactitud de localización, se emplean técnicas de procesamiento de señal y estimación de estado. El Filtro de Kalman (\gls{kf}) representa una de las herramientas más poderosas y ampliamente utilizadas para este propósito.
+
+\subsection{Fundamentos del Filtro de Kalman}
+
+El Filtro de Kalman es un algoritmo recursivo que estima el estado de un sistema dinámico a partir de mediciones ruidosas. Opera en dos etapas alternadas:
+
+\textbf{Predicción:} Utiliza el modelo dinámico del sistema para predecir el estado futuro y su covarianza asociada.
+
+\textbf{Actualización:} Incorpora una nueva medición para corregir la predicción, ponderando la información según las incertidumbres relativas del modelo y de la medición.
+
+\subsection{Aplicación a Sistemas de Posicionamiento}
+
+En el contexto de IPS, el vector de estado típicamente incluye la posición y velocidad del objetivo móvil. El modelo de movimiento puede ser de velocidad constante, aceleración constante, o más sofisticado según la aplicación. Las mediciones corresponden a las distancias estimadas desde el nodo móvil hacia los nodos ancla.
+
+El KF es particularmente efectivo para suavizar las fluctuaciones de corto plazo en las mediciones de distancia causadas por el multitrayecto y la variabilidad de la obstrucción corporal, mientras preserva la capacidad de seguir cambios reales en la trayectoria del objetivo.
+
+\subsection{Limitaciones y Extensiones}
+
+El KF estándar asume linealidad en el modelo de sistema y gaussianidad en los ruidos de proceso y medición. En sistemas de posicionamiento, la relación entre el estado (posición) y las mediciones (distancias) es inherentemente no lineal, requiriendo el uso de extensiones como el Filtro de Kalman Extendido (EKF) o el Filtro de Kalman Unscented (UKF).
+
+Además, el ruido introducido por la obstrucción corporal no es estrictamente gaussiano, presentando colas pesadas y multimodalidad en condiciones de NLOS severo. Enfoques adaptativos que ajustan dinámicamente las matrices de covarianza del filtro según la condición de propagación detectada pueden mejorar significativamente el desempeño.
+
+
+\section{SÍNTESIS DEL CAPÍTULO}
+
+Este capítulo ha establecido las bases teóricas necesarias para comprender el fenómeno de la obstrucción corporal en sistemas de posicionamiento UWB. Se han revisado los principios de operación de los IPS, las características distintivas de la tecnología UWB, los mecanismos de propagación en interiores y la naturaleza de la interacción entre las ondas electromagnéticas y el cuerpo humano.
+
+La evidencia presentada revela que la obstrucción corporal constituye un desafío técnico significativo que puede degradar la exactitud de localización de valores subdecimétricos a errores métricos. La banda de 6.5 GHz, aunque prometedora por sus características de compromiso entre penetración y resolución, ha sido insuficientemente estudiada en presencia de obstrucción corporal, justificando la necesidad de la investigación experimental que se desarrollará en los capítulos subsecuentes.
