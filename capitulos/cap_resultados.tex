@@ -70,9 +70,9 @@ Esta diversidad en características físicas permite evaluar si el efecto de la 
 
 \begin{figure}[ht]
     \centering
-    % \includegraphics[width=0.8\textwidth]{imagenes/error_pecho_vs_rha.pdf}
-    \caption{Error de Distancia vs. Ángulo de Orientación Relativo (RHA) - Dispositivo en Pecho}
-    \label{fig:error_pecho_rha}
+    % \includegraphics[width=0.8\textwidth]{imagenes/error_pecho_vs_orientacion.pdf}
+    \caption{Error de Distancia vs. Ángulo de Orientación del Cuerpo - Dispositivo en Pecho}
+    \label{fig:error_pecho_orientacion}
 \end{figure}
 
 [COMPLETAR:
@@ -82,12 +82,12 @@ Esta diversidad en características físicas permite evaluar si el efecto de la 
 \label{tab:error_pecho}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Condición RHA} & \textbf{ME (cm)} & \textbf{Desv. Est. (cm)} & \textbf{RMSE (cm)} & \textbf{Percentil 95 (cm)} \\
+\textbf{Condición} & \textbf{ME (cm)} & \textbf{Desv. Est. (cm)} & \textbf{RMSE (cm)} & \textbf{Percentil 95 (cm)} \\
 \midrule
 LOS (0°-45°) & X.X & X.X & X.X & X.X \\
-QLOS (45°-135°) & X.X & X.X & X.X & X.X \\
+NLOS (45°-135°) & X.X & X.X & X.X & X.X \\
 NLOS (135°-225°) & X.X & X.X & X.X & X.X \\
-QLOS (225°-315°) & X.X & X.X & X.X & X.X \\
+NLOS (225°-315°) & X.X & X.X & X.X & X.X \\
 LOS (315°-360°) & X.X & X.X & X.X & X.X \\
 \bottomrule
 \end{tabular}
@@ -112,7 +112,7 @@ LOS (315°-360°) & X.X & X.X & X.X & X.X \\
 
 \subsection{Comparación Entre Ubicaciones Corporales}
 
-[COMPLETAR: Gráfica comparativa mostrando el error medio para cada ubicación corporal en función del RHA]
+[COMPLETAR: Gráfica comparativa mostrando el error medio para cada ubicación corporal en función del ángulo de orientación del cuerpo]
 
 \begin{figure}[ht]
     \centering
@@ -127,7 +127,7 @@ LOS (315°-360°) & X.X & X.X & X.X & X.X \\
 
 \subsection{Ajuste de Distribuciones Teóricas}
 
-Para cada combinación de ubicación corporal y condición de propagación (LOS/QLOS/NLOS), se ajustaron distribuciones de probabilidad teóricas a los errores observados.
+Para cada combinación de ubicación corporal y condición de propagación (LOS/NLOS), se ajustaron distribuciones de probabilidad teóricas a los errores observados.
 
 [COMPLETAR:
 \begin{table}[ht]
@@ -161,16 +161,16 @@ Se realizó un análisis de varianza multifactorial para determinar qué variabl
 \textbf{Factor} & \textbf{Suma Cuad.} & \textbf{GL} & \textbf{Media Cuad.} & \textbf{F} & \textbf{p-valor} \\
 \midrule
 Ubicación corporal & XXX.X & X & XXX.X & XX.X & < 0.001 \\
-Ángulo RHA & XXX.X & X & XXX.X & XX.X & < 0.001 \\
+Orientación del cuerpo & XXX.X & X & XXX.X & XX.X & < 0.001 \\
 Distancia & XXX.X & X & XXX.X & XX.X & < 0.001 \\
-Ubicación × RHA & XXX.X & X & XXX.X & XX.X & < 0.001 \\
+Ubicación × Orientación & XXX.X & X & XXX.X & XX.X & < 0.001 \\
 Residuos & XXX.X & XXX & XX.X & & \\
 \bottomrule
 \end{tabular}
 \end{table}
 ]
 
-Los resultados del ANOVA indican que [COMPLETAR: todos los factores principales tienen efecto significativo (p < 0.001), así como la interacción entre ubicación corporal y ángulo RHA, sugiriendo que el patrón de variación del error con la orientación depende de dónde se porte el dispositivo].
+Los resultados del ANOVA indican que [COMPLETAR: todos los factores principales tienen efecto significativo (p < 0.001), así como la interacción entre ubicación corporal y ángulo de orientación, sugiriendo que el patrón de variación del error con la orientación depende de dónde se porte el dispositivo].
 
 
 \section{CORRELACIÓN CON VARIABLES ANTROPOMÉTRICAS}
@@ -185,11 +185,11 @@ Se analizó la correlación entre el error de distancia y las características a
 \label{tab:correlacion}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Variable} & \textbf{LOS} & \textbf{QLOS} & \textbf{NLOS} & \textbf{p-valor} \\
+\textbf{Variable} & \textbf{LOS} & \textbf{NLOS} & \textbf{p-valor} \\
 \midrule
-Estatura & 0.XX & 0.XX & 0.XX & X.XXX \\
-Peso & 0.XX & 0.XX & 0.XX & X.XXX \\
-IMC & 0.XX & 0.XX & 0.XX & X.XXX \\
+Estatura & 0.XX & 0.XX & X.XXX \\
+Peso & 0.XX & 0.XX & X.XXX \\
+IMC & 0.XX & 0.XX & X.XXX \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -239,7 +239,7 @@ Tobillo & XX.X & XX.X & XX.X & XX.X & XX.X \\
 
 \subsection{Condiciones de Peor Caso}
 
-Se identificaron las combinaciones de ubicación corporal, orientación RHA y posición en el escenario que resultaron en los mayores errores de estimación de distancia y posición.
+Se identificaron las combinaciones de ubicación corporal, orientación del cuerpo y posición en el escenario que resultaron en los mayores errores de estimación de distancia y posición.
 
 [COMPLETAR: Describir los escenarios de peor caso observados, con datos cuantitativos]
 

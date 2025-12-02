@@ -10,19 +10,17 @@ En este capítulo se interpretan y discuten los resultados experimentales presen
 
 Los resultados experimentales revelan que la ubicación donde se porta el dispositivo UWB tiene un impacto crítico sobre el error de estimación de distancia. [COMPLETAR: Basándose en los resultados obtenidos, explicar por qué ciertas ubicaciones exhiben mayor/menor error. Por ejemplo:]
 
-La ubicación en el pecho presentó un comportamiento [COMPLETAR: describir patrón observado] debido a que cuando el participante se orienta de frente a un nodo ancla (RHA $\approx$ 0°), existe línea de vista directa entre el dispositivo y el ancla. En contraste, cuando el participante se orienta en dirección opuesta (RHA $\approx$ 180°), el torso completo actúa como obstáculo, forzando a las señales UWB a difractarse alrededor del cuerpo o atravesar tejido biológico con alta constante dieléctrica y conductividad.
+La ubicación en el pecho presentó un comportamiento [COMPLETAR: describir patrón observado] debido a que cuando el participante se orienta de frente a un nodo ancla (orientación $\approx$ 0°), existe línea de vista directa entre el dispositivo y el ancla. En contraste, cuando el participante se orienta en dirección opuesta (orientación $\approx$ 180°), el torso completo actúa como obstáculo, forzando a las señales UWB a difractarse alrededor del cuerpo o atravesar tejido biológico con alta constante dieléctrica y conductividad.
 
 La ubicación en la muñeca mostró [COMPLETAR: describir patrón] lo cual se explica porque el brazo presenta menor masa corporal que el torso, y además experimenta mayor movilidad natural. Los movimientos involuntarios del brazo durante las mediciones, aun intentando mantener postura estática, introducen variabilidad adicional que se refleja en mayor desviación estándar del error.
 
-\subsection{Dependencia del Ángulo de Orientación Relativo (RHA)}
+\subsection{Dependencia del Ángulo de Orientación del Cuerpo}
 
-El análisis del error en función del RHA muestra una transición clara entre tres regímenes de propagación:
+El análisis del error en función del ángulo de orientación del cuerpo muestra una transición clara entre dos regímenes de propagación:
 
-\textbf{Régimen LOS (RHA $\approx$ 0° y 360°):} El error se mantiene [COMPLETAR: bajo/moderado], con una media de [X.X] cm y desviación estándar de [X.X] cm, valores comparables a los obtenidos en la calibración sin obstrucción. Esto confirma que cuando el dispositivo está orientado directamente hacia el nodo ancla, el cuerpo no interfiere significativamente con la propagación de la señal.
+\textbf{Régimen LOS (orientación $\approx$ 0° y 360°):} El error se mantiene [COMPLETAR: bajo/moderado], con una media de [X.X] cm y desviación estándar de [X.X] cm, valores comparables a los obtenidos en la calibración sin obstrucción. Esto confirma que cuando el dispositivo está orientado directamente hacia el nodo ancla, el cuerpo no interfiere significativamente con la propagación de la señal.
 
-\textbf{Régimen QLOS (RHA $\approx$ 90° y 270°):} Representa las zonas de transición donde el cuerpo obstruye parcialmente el trayecto directo. El error aumenta a [X.X] cm en promedio, debido a que la señal debe difractarse en los contornos laterales del cuerpo. La longitud de onda en 6.5 GHz ($\lambda \approx$ 4.6 cm) es del mismo orden de magnitud que las dimensiones características del torso en dirección transversal, lo cual favorece la difracción pero introduce retardos de propagación adicionales.
-
-\textbf{Régimen NLOS (RHA $\approx$ 180°):} La obstrucción es máxima, con errores que alcanzan [X.X] cm en promedio y picos de hasta [X.X] metros. En esta configuración, las señales directas son severamente atenuadas (estimadas en 20-40 dB según la literatura), y los trayectos dominantes corresponden a difracción alrededor del cuerpo o reflexiones en paredes y objetos del entorno. El retardo introducido por estos trayectos más largos se traduce directamente en sobreestimación de la distancia.
+\textbf{Régimen NLOS (orientación $\approx$ 90°, 180° y 270°):} La obstrucción aumenta significativamente, con errores que alcanzan [X.X] cm en promedio y picos de hasta [X.X] metros. En estas configuraciones, las señales directas son severamente atenuadas (estimadas en 20-40 dB según la literatura), y los trayectos dominantes corresponden a difracción alrededor del cuerpo o reflexiones en paredes y objetos del entorno. El retardo introducido por estos trayectos más largos se traduce directamente en sobreestimación de la distancia.
 
 \subsection{Comparación con Frecuencias Inferiores}
 
@@ -121,7 +119,7 @@ Basándose en los resultados obtenidos, se pueden derivar recomendaciones práct
 \begin{enumerate}
 \item \textbf{Ubicación óptima del dispositivo:} Los resultados indican que portar el dispositivo en [COMPLETAR: ubicación con mejor desempeño] minimiza el error medio y la variabilidad. Para aplicaciones donde la exactitud es crítica, se recomienda esta ubicación.
 
-\item \textbf{Número y distribución de nodos ancla:} Configuraciones con [COMPLETAR: más nodos ancla / distribución específica] pueden mejorar la probabilidad de que al menos [N] enlaces operen en condiciones LOS o QLOS, permitiendo descartar mediciones en NLOS severo.
+\item \textbf{Número y distribución de nodos ancla:} Configuraciones con [COMPLETAR: más nodos ancla / distribución específica] pueden mejorar la probabilidad de que al menos [N] enlaces operen en condiciones LOS, permitiendo descartar mediciones en NLOS severo.
 
 \item \textbf{Estrategias de mitigación:} [COMPLETAR: basándose en si se probó alguna técnica: El uso de Filtro de Kalman redujo el error de posición en X\%, o: se recomienda implementar algoritmos de detección NLOS para descartar mediciones con error > umbral].
 

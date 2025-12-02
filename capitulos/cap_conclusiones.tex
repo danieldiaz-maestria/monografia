@@ -16,7 +16,7 @@ Este objetivo ha sido cumplido satisfactoriamente. Se diseñó e implementó un 
 
 \textbf{Objetivo 1:} \textit{"Evaluar el efecto de la obstrucción corporal sobre las medidas de señal de un enlace de comunicación entre dos dispositivos UWB y la estimación de distancias, cuando uno de los dispositivos se ubica en diferentes partes del cuerpo humano."}
 
-Se evaluaron sistemáticamente cinco ubicaciones corporales (pecho, espalda, cadera, muñeca, tobillo), recolectando mediciones de ToF en múltiples orientaciones relativas y posiciones espaciales. Los resultados cuantifican cómo cada ubicación corporal presenta patrones característicos de error en función del ángulo de orientación relativo (RHA), con variaciones que van desde [COMPLETAR: rango de errores observados].
+Se evaluaron sistemáticamente cinco ubicaciones corporales (pecho, espalda, cadera, muñeca, tobillo), recolectando mediciones de ToF en múltiples orientaciones relativas y posiciones espaciales. Los resultados cuantifican cómo cada ubicación corporal presenta patrones característicos de error en función del ángulo de orientación del cuerpo, con variaciones que van desde [COMPLETAR: rango de errores observados].
 
 \textbf{Objetivo 2:} \textit{"Analizar el efecto estadístico de la obstrucción corporal sobre el enlace de comunicación basado en UWB."}
 
@@ -35,7 +35,7 @@ Basándose en los resultados experimentales y el análisis realizado, se derivan
 \begin{enumerate}
 \item \textbf{La ubicación corporal del dispositivo es un factor crítico para el desempeño del sistema.} Los resultados demuestran que no todas las ubicaciones de portación son equivalentes. [COMPLETAR: Especificar cuál fue mejor/peor y por qué]. Esta conclusión tiene implicaciones directas para el diseño de sistemas comerciales de seguimiento de personas: la elección de dónde portar el dispositivo debe considerar el compromiso entre comodidad del usuario y exactitud de localización requerida por la aplicación.
 
-\item \textbf{El efecto de la obstrucción corporal presenta una fuerte dependencia con la orientación relativa.} La transición entre condiciones LOS, QLOS y NLOS se manifiesta claramente en la variación del error con el RHA. Los errores en NLOS pueden ser [COMPLETAR: X veces] superiores a los errores en LOS, confirmando que la BS constituye uno de los limitantes principales de la exactitud en aplicaciones de seguimiento de personas.
+\item \textbf{El efecto de la obstrucción corporal presenta una fuerte dependencia con la orientación relativa.} La transición entre condiciones LOS y NLOS se manifiesta claramente en la variación del error con la orientación del cuerpo. Los errores en NLOS pueden ser [COMPLETAR: X veces] superiores a los errores en LOS, confirmando que la BS constituye uno de los limitantes principales de la exactitud en aplicaciones de seguimiento de personas.
 
 \item \textbf{La banda de 6.5 GHz presenta características favorables/desfavorables para mitigación de BS.} [COMPLETAR: Basándose en comparaciones con literatura en otras frecuencias]. La mayor atenuación en tejido biológico se compensa parcialmente por [COMPLETAR: mejor resolución temporal, características de difracción, etc.], resultando en un desempeño [comparable/superior/inferior] a frecuencias más bajas.
 
@@ -97,7 +97,7 @@ Los hallazgos de esta investigación abren múltiples direcciones para trabajos 
 
 \item \textbf{Filtros adaptativos:} Implementar y comparar diferentes esquemas de filtrado adaptativo (EKF, UKF, filtros de partículas) que ajusten dinámicamente sus parámetros según la condición de propagación detectada.
 
-\item \textbf{Fusión con sensores inerciales:} Integrar datos de IMU (acelerómetros, giroscopios, magnetómetros) para estimar la orientación del cuerpo en tiempo real y aplicar modelos de corrección de error dependientes de RHA.
+\item \textbf{Fusión con sensores inerciales:} Integrar datos de IMU (acelerómetros, giroscopios, magnetómetros) para estimar la orientación del cuerpo en tiempo real y aplicar modelos de corrección de error dependientes de la orientación.
 
 \item \textbf{Corrección basada en modelos de propagación:} Desarrollar modelos fenomenológicos o basados en datos (machine learning) que predigan el sesgo de error esperado dada la configuración geométrica y la orientación estimada, aplicando correcciones antes del algoritmo de trilateración.
 \end{enumerate}

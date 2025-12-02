@@ -81,7 +81,7 @@ Estos parámetros se seleccionan para optimizar el compromiso entre exactitud de
 
 \subsection{Sistema de Sensores Inerciales}
 
-[COMPLETAR si se utiliza IMU: Para determinar la orientación del cuerpo humano y correlacionar las mediciones de ToF con el ángulo de orientación relativo (RHA), se emplea una Unidad de Medida Inercial (IMU) que incorpora acelerómetro, giroscopio y magnetómetro...]
+[COMPLETAR si se utiliza IMU: Para determinar la orientación del cuerpo humano y correlacionar las mediciones de ToF con el ángulo de orientación del cuerpo, se emplea una Unidad de Medida Inercial (IMU) que incorpora acelerómetro, giroscopio y magnetómetro...]
 
 \subsection{Sistema de Referencia de Posición}
 
@@ -154,7 +154,7 @@ Para cada ubicación se registra la altura exacta sobre el nivel del piso y la o
 
 En una primera fase, se realizan mediciones estáticas donde el participante permanece inmóvil en posiciones específicas dentro del escenario. Se define una malla de puntos de referencia con [ESPECIFICAR espaciamiento, ej. "separación de 1 metro en ambas direcciones"], cubriendo el área de cobertura de los nodos ancla.
 
-En cada posición de la malla, el participante adopta [ESPECIFICAR número] orientaciones diferentes, típicamente separadas por [ESPECIFICAR, ej. "45 grados"], completando así un ciclo de 360 grados. Esto permite evaluar el efecto del ángulo de orientación relativo (RHA) de manera sistemática.
+En cada posición de la malla, el participante adopta [ESPECIFICAR número] orientaciones diferentes, típicamente separadas por [ESPECIFICAR, ej. "45 grados"], completando así un ciclo de 360 grados. Esto permite evaluar el efecto del ángulo de orientación del cuerpo de manera sistemática.
 
 Para cada combinación de posición-orientación-ubicación del dispositivo, se registran [ESPECIFICAR número] mediciones de ToF hacia cada uno de los cuatro nodos ancla, totalizando [CALCULAR] mediciones individuales por posición.
 
@@ -249,7 +249,7 @@ Se definen las siguientes métricas estadísticas:
 
 \subsubsection{Caracterización de Distribuciones}
 
-Para cada condición experimental (combinación de ubicación corporal, orientación RHA, distancia), se ajustan distribuciones de probabilidad teóricas a los errores observados. Se evalúan distribuciones:
+Para cada condición experimental (combinación de ubicación corporal, orientación del cuerpo, distancia), se ajustan distribuciones de probabilidad teóricas a los errores observados. Se evalúan distribuciones:
 
 \begin{itemize}
 \item Normal (Gaussiana)
@@ -266,19 +266,19 @@ Se emplea ANOVA multifactorial para determinar qué factores experimentales tien
 
 \begin{itemize}
 \item Factor 1: Ubicación del dispositivo en el cuerpo (5 niveles)
-\item Factor 2: Ángulo de orientación relativo RHA (8 niveles)
+\item Factor 2: Ángulo de orientación del cuerpo (8 niveles)
 \item Factor 3: Distancia del nodo móvil a cada ancla (variable continua o discretizada)
 \item Factor 4: Características antropométricas del participante (covariables)
 \end{itemize}
 
-Las interacciones entre factores también se analizan para identificar si, por ejemplo, el efecto de la orientación RHA depende de la ubicación corporal del dispositivo.
+Las interacciones entre factores también se analizan para identificar si, por ejemplo, el efecto de la orientación del cuerpo depende de la ubicación corporal del dispositivo.
 
 \subsubsection{Análisis de Correlación}
 
 Se calcula el coeficiente de correlación de Pearson entre el error de distancia y variables continuas como:
 \begin{itemize}
 \item Distancia verdadera nodo móvil - nodo ancla
-\item Ángulo de orientación relativo RHA
+\item Ángulo de orientación del cuerpo
 \item Estatura del participante
 \item Peso del participante
 \item Potencia de señal recibida (RSS)

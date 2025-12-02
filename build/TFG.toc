@@ -33,181 +33,181 @@
 \contentsline {subsection}{\numberline {4.3.2}Fenómenos de Propagación}{15}{subsection.4.3.2}%
 \contentsline {subsubsection}{\nonumberline Multitrayecto}{15}{subsubsection*.28}%
 \contentsline {subsubsection}{\nonumberline Reflexión}{15}{subsubsection*.30}%
-\contentsline {subsubsection}{\nonumberline Difracción}{16}{subsubsection*.32}%
+\contentsline {subsubsection}{\nonumberline Difracción}{15}{subsubsection*.32}%
 \contentsline {subsubsection}{\nonumberline Dispersión}{16}{subsubsection*.34}%
 \contentsline {section}{\numberline {4.4}OBSTRUCCIÓN CORPORAL (BODY SHADOWING)}{16}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Interacción de las Ondas Electromagnéticas con el Cuerpo Humano}{16}{subsection.4.4.1}%
-\contentsline {subsubsection}{\nonumberline Permitividad Relativa ($\varepsilon _r$)}{17}{subsubsection*.36}%
+\contentsline {subsubsection}{\nonumberline Permitividad Relativa ($\varepsilon _r$)}{16}{subsubsection*.36}%
 \contentsline {subsubsection}{\nonumberline Conductividad Eléctrica ($\sigma $)}{17}{subsubsection*.38}%
 \contentsline {subsubsection}{\nonumberline Permeabilidad Magnética ($\mu _r$)}{17}{subsubsection*.40}%
 \contentsline {subsection}{\numberline {4.4.2}Mecanismos de Degradación de Señal}{17}{subsection.4.4.2}%
 \contentsline {subsubsection}{\nonumberline Atenuación Directa}{17}{subsubsection*.42}%
-\contentsline {subsubsection}{\nonumberline Difracción Corporal}{18}{subsubsection*.44}%
-\contentsline {subsubsection}{\nonumberline Multitrayecto Inducido por el Cuerpo}{18}{subsubsection*.46}%
+\contentsline {subsubsection}{\nonumberline Difracción Corporal}{17}{subsubsection*.44}%
+\contentsline {subsubsection}{\nonumberline Multitrayecto Inducido por el Cuerpo}{17}{subsubsection*.46}%
 \contentsline {subsection}{\numberline {4.4.3}Factores que Influyen en la Magnitud del Efecto}{18}{subsection.4.4.3}%
 \contentsline {subsubsection}{\nonumberline Orientación Relativa}{18}{subsubsection*.48}%
 \contentsline {subsubsection}{\nonumberline Ubicación del Dispositivo en el Cuerpo}{18}{subsubsection*.50}%
 \contentsline {subsubsection}{\nonumberline Características Antropométricas}{18}{subsubsection*.52}%
-\contentsline {subsubsection}{\nonumberline Frecuencia de Operación}{19}{subsubsection*.54}%
-\contentsline {subsection}{\numberline {4.4.4}Impacto en Sistemas de Posicionamiento UWB}{19}{subsection.4.4.4}%
+\contentsline {subsubsection}{\nonumberline Frecuencia de Operación}{18}{subsubsection*.54}%
+\contentsline {subsection}{\numberline {4.4.4}Impacto en Sistemas de Posicionamiento UWB}{18}{subsection.4.4.4}%
 \contentsline {section}{\numberline {4.5}FILTRADO Y ESTIMACIÓN DE ESTADO}{19}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Fundamentos del Filtro de Kalman}{19}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Aplicación a Sistemas de Posicionamiento}{20}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Limitaciones y Extensiones}{20}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.2}Aplicación a Sistemas de Posicionamiento}{19}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Limitaciones y Extensiones}{19}{subsection.4.5.3}%
 \contentsline {section}{\numberline {4.6}SÍNTESIS DEL CAPÍTULO}{20}{section.4.6}%
-\contentsline {chapter}{\numberline {5}REVISIÓN SISTEMÁTICA DE LITERATURA}{22}{chapter.5}%
-\contentsline {section}{\numberline {5.1}METODOLOGÍA DE REVISIÓN SISTEMÁTICA DE LITERATURA}{22}{section.5.1}%
-\contentsline {section}{\numberline {5.2}PROCESO DE FILTRADO DE ARTÍCULOS}{23}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Estudios Basados en Simulación}{24}{subsection.5.2.1}%
-\contentsline {subsubsection}{\nonumberline Referencias de literatura considerada:}{25}{subsubsection*.57}%
-\contentsline {subsection}{\numberline {5.2.2}Estudios Experimentales}{30}{subsection.5.2.2}%
-\contentsline {subsubsection}{\nonumberline Referencias de literatura considerada:}{30}{subsubsection*.61}%
-\contentsline {subsection}{\numberline {5.2.3}Estudios Basados en la Mitigación del Error}{44}{subsection.5.2.3}%
-\contentsline {subsubsection}{\nonumberline Referencias de la literatura considerada}{44}{subsubsection*.63}%
-\contentsline {section}{\numberline {5.3}ANÁLISIS DE LA REVISIÓN SISTEMÁTICA DE LITERATURA}{48}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Metodología de la Revisión}{48}{subsection.5.3.1}%
-\contentsline {subsubsection}{\nonumberline Fase de Identificación}{48}{subsubsection*.67}%
-\contentsline {subsubsection}{\nonumberline Fase de Cribado (Screening)}{49}{subsubsection*.69}%
-\contentsline {subsubsection}{\nonumberline Fase de Elegibilidad}{50}{subsubsection*.71}%
-\contentsline {subsubsection}{\nonumberline Fase de Inclusión}{50}{subsubsection*.73}%
-\contentsline {subsection}{\numberline {5.3.2}Distribución de Estudios por Tipo de Investigación}{50}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Frecuencias de Operación Utilizadas en los Estudios}{51}{subsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.3.4}Posiciones del Cuerpo Evaluadas}{53}{subsection.5.3.4}%
-\contentsline {subsection}{\numberline {5.3.5}Técnicas de Mitigación Empleadas}{54}{subsection.5.3.5}%
-\contentsline {subsubsection}{\nonumberline Aprendizaje Automático (43\%)}{54}{subsubsection*.79}%
-\contentsline {subsubsection}{\nonumberline Filtros Estadísticos (43\%)}{55}{subsubsection*.81}%
-\contentsline {subsection}{\numberline {5.3.6}Evolución Temporal de las Investigaciones (2019-2024)}{56}{subsection.5.3.6}%
-\contentsline {subsubsection}{\nonumberline Fase de Crecimiento (2019-2022)}{57}{subsubsection*.84}%
-\contentsline {subsubsection}{\nonumberline Fase de Consolidación (2023-2024)}{57}{subsubsection*.86}%
-\contentsline {section}{\numberline {5.4}ANÁLISIS Y DISCUSIÓN DE LOS HALLAZGOS DE LA REVISIÓN SISTEMÁTICA DE LITERATURA}{57}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Síntesis de Hallazgos Principales}{57}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Impacto Cuantificado de la Obstrucción Corporal}{58}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Evolución de las Técnicas de Mitigación}{58}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}La Promesa Inexplorada de 6.5 GHz}{59}{subsection.5.4.4}%
-\contentsline {subsection}{\numberline {5.4.5}Limitaciones Sistemáticas en la Literatura Actual}{59}{subsection.5.4.5}%
-\contentsline {subsection}{\numberline {5.4.6}Oportunidades de Innovación y Contribución}{60}{subsection.5.4.6}%
-\contentsline {subsection}{\numberline {5.4.7}Implicaciones para el Futuro del Campo de Investigación}{60}{subsection.5.4.7}%
-\contentsline {subsection}{\numberline {5.4.8}Conclusión}{61}{subsection.5.4.8}%
-\contentsline {chapter}{\numberline {6}METODOLOGÍA Y ACTIVIDADES}{62}{chapter.6}%
-\contentsline {section}{\numberline {6.1}METODOLOGÍA}{62}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Diseño Experimental y Protocolo de Recolección de Datos}{64}{subsection.6.1.1}%
-\contentsline {subsubsection}{\nonumberline Población y Muestra}{64}{subsubsection*.91}%
-\contentsline {subsubsection}{\nonumberline Entorno de Prueba Detallado}{64}{subsubsection*.93}%
-\contentsline {subsubsection}{\nonumberline Técnicas de Aumentación de Datos}{64}{subsubsection*.95}%
-\contentsline {section}{\numberline {6.2}ACTIVIDADES}{64}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Fase 1: Análisis de Requerimientos}{64}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Fase 2: Diseño del Sistema}{65}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Fase 3: Implementación}{65}{subsection.6.2.3}%
-\contentsline {subsection}{\numberline {6.2.4}Fase 4: Pruebas de Desempeño}{65}{subsection.6.2.4}%
-\contentsline {subsection}{\numberline {6.2.5}Fase 5: Análisis de Resultados}{66}{subsection.6.2.5}%
-\contentsline {subsection}{\numberline {6.2.6}Fase 6: Entrega}{66}{subsection.6.2.6}%
-\contentsline {section}{\numberline {6.3}ESTADO ACTUAL DEL TRABAJO Y AVANCES}{66}{section.6.3}%
-\contentsline {section}{\numberline {6.4}CRONOGRAMA}{68}{section.6.4}%
-\contentsline {chapter}{\numberline {7}CONDICIONES DE ENTREGA Y PRESUPUESTO}{69}{chapter.7}%
-\contentsline {section}{\numberline {7.1}CONDICIONES DE ENTREGA}{69}{section.7.1}%
-\contentsline {section}{\numberline {7.2}PRESUPUESTO ESTIMADO Y FUENTES DE FINANCIACIÓN}{69}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Descripción y Fuentes de Financiación del Presupuesto:}{69}{subsection.7.2.1}%
-\contentsline {chapter}{\numberline {8}DISEÑO METODOLÓGICO}{72}{chapter.8}%
-\contentsline {section}{\numberline {8.1}ENFOQUE METODOLÓGICO}{72}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}Estructura del Modelo en V Aplicado}{72}{subsection.8.1.1}%
-\contentsline {subsubsection}{\nonumberline Brazo Descendente: Especificación y Diseño}{72}{subsubsection*.98}%
-\contentsline {subsubsection}{\nonumberline Brazo Ascendente: Validación y Verificación}{73}{subsubsection*.100}%
-\contentsline {section}{\numberline {8.2}CONFIGURACIÓN DEL HARDWARE}{74}{section.8.2}%
-\contentsline {subsection}{\numberline {8.2.1}Dispositivos UWB}{74}{subsection.8.2.1}%
-\contentsline {subsubsection}{\nonumberline Selección de Dispositivos}{74}{subsubsection*.102}%
-\contentsline {subsubsection}{\nonumberline Parámetros de Configuración}{75}{subsubsection*.104}%
-\contentsline {subsection}{\numberline {8.2.2}Sistema de Sensores Inerciales}{75}{subsection.8.2.2}%
-\contentsline {subsection}{\numberline {8.2.3}Sistema de Referencia de Posición}{75}{subsection.8.2.3}%
-\contentsline {section}{\numberline {8.3}DISEÑO DEL ESCENARIO EXPERIMENTAL}{75}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Selección y Características del Entorno}{75}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Disposición de Nodos Ancla}{76}{subsection.8.3.2}%
-\contentsline {section}{\numberline {8.4}PROTOCOLO DE RECOLECCIÓN DE DATOS}{76}{section.8.4}%
-\contentsline {subsection}{\numberline {8.4.1}Población y Muestra}{76}{subsection.8.4.1}%
-\contentsline {subsection}{\numberline {8.4.2}Posiciones del Dispositivo en el Cuerpo}{77}{subsection.8.4.2}%
-\contentsline {subsection}{\numberline {8.4.3}Trayectorias y Posiciones de Medición}{77}{subsection.8.4.3}%
-\contentsline {subsubsection}{\nonumberline Mediciones Estáticas}{77}{subsubsection*.106}%
-\contentsline {subsubsection}{\nonumberline Mediciones Dinámicas}{78}{subsubsection*.108}%
-\contentsline {subsection}{\numberline {8.4.4}Condiciones de Control}{78}{subsection.8.4.4}%
-\contentsline {subsection}{\numberline {8.4.5}Procedimiento de Medición}{78}{subsection.8.4.5}%
-\contentsline {section}{\numberline {8.5}PROCESAMIENTO Y ANÁLISIS DE DATOS}{79}{section.8.5}%
-\contentsline {subsection}{\numberline {8.5.1}Preprocesamiento de Datos Crudos}{79}{subsection.8.5.1}%
-\contentsline {subsection}{\numberline {8.5.2}Cálculo de Métricas de Error}{80}{subsection.8.5.2}%
-\contentsline {subsection}{\numberline {8.5.3}Análisis Estadístico}{81}{subsection.8.5.3}%
-\contentsline {subsubsection}{\nonumberline Caracterización de Distribuciones}{81}{subsubsection*.110}%
-\contentsline {subsubsection}{\nonumberline Análisis de Varianza (ANOVA)}{81}{subsubsection*.112}%
-\contentsline {subsubsection}{\nonumberline Análisis de Correlación}{81}{subsubsection*.114}%
-\contentsline {subsection}{\numberline {8.5.4}Estimación de Posición y Evaluación del Sistema Completo}{82}{subsection.8.5.4}%
-\contentsline {subsubsection}{\nonumberline Trilateración por Mínimos Cuadrados}{82}{subsubsection*.116}%
-\contentsline {subsubsection}{\nonumberline Filtro de Kalman}{82}{subsubsection*.118}%
-\contentsline {subsubsection}{\nonumberline Métricas de Error de Posición}{82}{subsubsection*.120}%
-\contentsline {section}{\numberline {8.6}HERRAMIENTAS DE SOFTWARE}{83}{section.8.6}%
-\contentsline {subsection}{\numberline {8.6.1}Software de Adquisición de Datos}{83}{subsection.8.6.1}%
-\contentsline {subsection}{\numberline {8.6.2}Software de Procesamiento y Análisis}{83}{subsection.8.6.2}%
-\contentsline {subsection}{\numberline {8.6.3}Control de Versiones y Reproducibilidad}{83}{subsection.8.6.3}%
-\contentsline {section}{\numberline {8.7}CONSIDERACIONES ÉTICAS}{83}{section.8.7}%
-\contentsline {section}{\numberline {8.8}RESUMEN DEL CAPÍTULO}{84}{section.8.8}%
-\contentsline {chapter}{\numberline {9}RESULTADOS EXPERIMENTALES}{85}{chapter.9}%
-\contentsline {section}{\numberline {9.1}VERIFICACIÓN Y CALIBRACIÓN DEL SISTEMA}{85}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Pruebas de Línea de Vista (LOS)}{85}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}Estabilidad Temporal del Sistema}{86}{subsection.9.1.2}%
-\contentsline {section}{\numberline {9.2}CARACTERIZACIÓN ANTROPOMÉTRICA DE LOS PARTICIPANTES}{86}{section.9.2}%
-\contentsline {section}{\numberline {9.3}ANÁLISIS DEL ERROR DE DISTANCIA POR UBICACIÓN CORPORAL}{86}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}Dispositivo en el Pecho (Frente)}{86}{subsection.9.3.1}%
-\contentsline {subsection}{\numberline {9.3.2}Dispositivo en la Espalda}{87}{subsection.9.3.2}%
-\contentsline {subsection}{\numberline {9.3.3}Dispositivo en la Cadera}{87}{subsection.9.3.3}%
-\contentsline {subsection}{\numberline {9.3.4}Dispositivo en la Muñeca}{87}{subsection.9.3.4}%
-\contentsline {subsection}{\numberline {9.3.5}Dispositivo en el Tobillo}{87}{subsection.9.3.5}%
-\contentsline {subsection}{\numberline {9.3.6}Comparación Entre Ubicaciones Corporales}{87}{subsection.9.3.6}%
-\contentsline {section}{\numberline {9.4}ANÁLISIS ESTADÍSTICO DE LAS DISTRIBUCIONES DE ERROR}{88}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}Ajuste de Distribuciones Teóricas}{88}{subsection.9.4.1}%
-\contentsline {subsection}{\numberline {9.4.2}Análisis de Varianza (ANOVA)}{88}{subsection.9.4.2}%
-\contentsline {section}{\numberline {9.5}CORRELACIÓN CON VARIABLES ANTROPOMÉTRICAS}{89}{section.9.5}%
-\contentsline {section}{\numberline {9.6}DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}{89}{section.9.6}%
-\contentsline {subsection}{\numberline {9.6.1}Error de Posición 2D}{89}{subsection.9.6.1}%
-\contentsline {subsection}{\numberline {9.6.2}Mapas de Calor de Error de Posición}{90}{subsection.9.6.2}%
-\contentsline {section}{\numberline {9.7}ANÁLISIS DE CASOS EXTREMOS}{90}{section.9.7}%
-\contentsline {subsection}{\numberline {9.7.1}Condiciones de Peor Caso}{90}{subsection.9.7.1}%
-\contentsline {subsection}{\numberline {9.7.2}Condiciones de Mejor Caso}{90}{subsection.9.7.2}%
-\contentsline {section}{\numberline {9.8}EFECTOS DE SEGUNDA ORDEN}{91}{section.9.8}%
-\contentsline {subsection}{\numberline {9.8.1}Influencia de la Distancia}{91}{subsection.9.8.1}%
-\contentsline {subsection}{\numberline {9.8.2}Efecto del Multitrayecto del Entorno}{91}{subsection.9.8.2}%
-\contentsline {section}{\numberline {9.9}SÍNTESIS DE RESULTADOS}{91}{section.9.9}%
-\contentsline {chapter}{\numberline {10}ANÁLISIS Y DISCUSIÓN}{92}{chapter.10}%
-\contentsline {section}{\numberline {10.1}INTERPRETACIÓN DE LOS PATRONES DE ERROR OBSERVADOS}{92}{section.10.1}%
-\contentsline {subsection}{\numberline {10.1.1}Efecto de la Ubicación Corporal del Dispositivo}{92}{subsection.10.1.1}%
-\contentsline {subsection}{\numberline {10.1.2}Dependencia del Ángulo de Orientación Relativo (RHA)}{93}{subsection.10.1.2}%
-\contentsline {subsection}{\numberline {10.1.3}Comparación con Frecuencias Inferiores}{93}{subsection.10.1.3}%
-\contentsline {section}{\numberline {10.2}ANÁLISIS DE LA VARIABILIDAD ESTADÍSTICA}{94}{section.10.2}%
-\contentsline {subsection}{\numberline {10.2.1}Naturaleza de las Distribuciones de Error}{94}{subsection.10.2.1}%
-\contentsline {subsection}{\numberline {10.2.2}Implicaciones para Algoritmos de Localización}{94}{subsection.10.2.2}%
-\contentsline {section}{\numberline {10.3}CORRELACIÓN CON CARACTERÍSTICAS ANTROPOMÉTRICAS}{95}{section.10.3}%
-\contentsline {section}{\numberline {10.4}DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}{95}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Exactitud de Localización Alcanzada}{95}{subsection.10.4.1}%
-\contentsline {subsection}{\numberline {10.4.2}Dependencia de la Geometría del Despliegue}{96}{subsection.10.4.2}%
-\contentsline {subsection}{\numberline {10.4.3}Propagación del Error de Distancia al Error de Posición}{96}{subsection.10.4.3}%
-\contentsline {section}{\numberline {10.5}COMPARACIÓN CON EL ESTADO DEL ARTE}{96}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Contraste con Estudios de Simulación}{96}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}Concordancia con Estudios Experimentales}{96}{subsection.10.5.2}%
-\contentsline {subsection}{\numberline {10.5.3}Aporte Diferencial de este Estudio}{97}{subsection.10.5.3}%
-\contentsline {section}{\numberline {10.6}IMPLICACIONES PARA APLICACIONES PRÁCTICAS}{97}{section.10.6}%
-\contentsline {subsection}{\numberline {10.6.1}Recomendaciones de Diseño}{97}{subsection.10.6.1}%
-\contentsline {subsection}{\numberline {10.6.2}Aplicabilidad a Casos de Uso Específicos}{98}{subsection.10.6.2}%
-\contentsline {section}{\numberline {10.7}LIMITACIONES DEL ESTUDIO}{98}{section.10.7}%
-\contentsline {section}{\numberline {10.8}SÍNTESIS DEL CAPÍTULO}{99}{section.10.8}%
-\contentsline {chapter}{\numberline {11}CONCLUSIONES Y RECOMENDACIONES}{100}{chapter.11}%
-\contentsline {section}{\numberline {11.1}CUMPLIMIENTO DE LOS OBJETIVOS}{100}{section.11.1}%
-\contentsline {subsection}{\numberline {11.1.1}Objetivo General}{100}{subsection.11.1.1}%
-\contentsline {subsection}{\numberline {11.1.2}Objetivos Específicos}{100}{subsection.11.1.2}%
-\contentsline {section}{\numberline {11.2}CONCLUSIONES PRINCIPALES}{101}{section.11.2}%
-\contentsline {section}{\numberline {11.3}CONTRIBUCIONES DE LA INVESTIGACIÓN}{102}{section.11.3}%
-\contentsline {subsection}{\numberline {11.3.1}Contribuciones Científicas}{103}{subsection.11.3.1}%
-\contentsline {subsection}{\numberline {11.3.2}Contribuciones Prácticas}{103}{subsection.11.3.2}%
-\contentsline {section}{\numberline {11.4}TRABAJOS FUTUROS}{103}{section.11.4}%
-\contentsline {subsection}{\numberline {11.4.1}Extensiones Experimentales}{104}{subsection.11.4.1}%
-\contentsline {subsection}{\numberline {11.4.2}Desarrollo de Técnicas de Mitigación}{104}{subsection.11.4.2}%
-\contentsline {subsection}{\numberline {11.4.3}Estudios Comparativos}{105}{subsection.11.4.3}%
-\contentsline {subsection}{\numberline {11.4.4}Modelado y Simulación}{105}{subsection.11.4.4}%
-\contentsline {subsection}{\numberline {11.4.5}Aplicaciones Especializadas}{105}{subsection.11.4.5}%
-\contentsline {section}{\numberline {11.5}REFLEXIÓN FINAL}{106}{section.11.5}%
+\contentsline {chapter}{\numberline {5}REVISIÓN SISTEMÁTICA DE LITERATURA}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}METODOLOGÍA DE REVISIÓN SISTEMÁTICA DE LITERATURA}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}PROCESO DE FILTRADO DE ARTÍCULOS}{22}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Estudios Basados en Simulación}{23}{subsection.5.2.1}%
+\contentsline {subsubsection}{\nonumberline Referencias de literatura considerada:}{24}{subsubsection*.57}%
+\contentsline {subsection}{\numberline {5.2.2}Estudios Experimentales}{29}{subsection.5.2.2}%
+\contentsline {subsubsection}{\nonumberline Referencias de literatura considerada:}{29}{subsubsection*.61}%
+\contentsline {subsection}{\numberline {5.2.3}Estudios Basados en la Mitigación del Error}{43}{subsection.5.2.3}%
+\contentsline {subsubsection}{\nonumberline Referencias de la literatura considerada}{43}{subsubsection*.63}%
+\contentsline {section}{\numberline {5.3}ANÁLISIS DE LA REVISIÓN SISTEMÁTICA DE LITERATURA}{47}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Metodología de la Revisión}{47}{subsection.5.3.1}%
+\contentsline {subsubsection}{\nonumberline Fase de Identificación}{47}{subsubsection*.67}%
+\contentsline {subsubsection}{\nonumberline Fase de Cribado (Screening)}{48}{subsubsection*.69}%
+\contentsline {subsubsection}{\nonumberline Fase de Elegibilidad}{49}{subsubsection*.71}%
+\contentsline {subsubsection}{\nonumberline Fase de Inclusión}{49}{subsubsection*.73}%
+\contentsline {subsection}{\numberline {5.3.2}Distribución de Estudios por Tipo de Investigación}{49}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Frecuencias de Operación Utilizadas en los Estudios}{50}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}Posiciones del Cuerpo Evaluadas}{52}{subsection.5.3.4}%
+\contentsline {subsection}{\numberline {5.3.5}Técnicas de Mitigación Empleadas}{53}{subsection.5.3.5}%
+\contentsline {subsubsection}{\nonumberline Aprendizaje Automático (43\%)}{53}{subsubsection*.79}%
+\contentsline {subsubsection}{\nonumberline Filtros Estadísticos (43\%)}{54}{subsubsection*.81}%
+\contentsline {subsection}{\numberline {5.3.6}Evolución Temporal de las Investigaciones (2019-2024)}{55}{subsection.5.3.6}%
+\contentsline {subsubsection}{\nonumberline Fase de Crecimiento (2019-2022)}{56}{subsubsection*.84}%
+\contentsline {subsubsection}{\nonumberline Fase de Consolidación (2023-2024)}{56}{subsubsection*.86}%
+\contentsline {section}{\numberline {5.4}ANÁLISIS Y DISCUSIÓN DE LOS HALLAZGOS DE LA REVISIÓN SISTEMÁTICA DE LITERATURA}{56}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Síntesis de Hallazgos Principales}{56}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Impacto Cuantificado de la Obstrucción Corporal}{57}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Evolución de las Técnicas de Mitigación}{57}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}La Promesa Inexplorada de 6.5 GHz}{58}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Limitaciones Sistemáticas en la Literatura Actual}{58}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}Oportunidades de Innovación y Contribución}{59}{subsection.5.4.6}%
+\contentsline {subsection}{\numberline {5.4.7}Implicaciones para el Futuro del Campo de Investigación}{59}{subsection.5.4.7}%
+\contentsline {subsection}{\numberline {5.4.8}Conclusión}{60}{subsection.5.4.8}%
+\contentsline {chapter}{\numberline {6}METODOLOGÍA Y ACTIVIDADES}{61}{chapter.6}%
+\contentsline {section}{\numberline {6.1}METODOLOGÍA}{61}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Diseño Experimental y Protocolo de Recolección de Datos}{63}{subsection.6.1.1}%
+\contentsline {subsubsection}{\nonumberline Población y Muestra}{63}{subsubsection*.91}%
+\contentsline {subsubsection}{\nonumberline Entorno de Prueba Detallado}{63}{subsubsection*.93}%
+\contentsline {subsubsection}{\nonumberline Técnicas de Aumentación de Datos}{63}{subsubsection*.95}%
+\contentsline {section}{\numberline {6.2}ACTIVIDADES}{63}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Fase 1: Análisis de Requerimientos}{63}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Fase 2: Diseño del Sistema}{64}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Fase 3: Implementación}{64}{subsection.6.2.3}%
+\contentsline {subsection}{\numberline {6.2.4}Fase 4: Pruebas de Desempeño}{64}{subsection.6.2.4}%
+\contentsline {subsection}{\numberline {6.2.5}Fase 5: Análisis de Resultados}{65}{subsection.6.2.5}%
+\contentsline {subsection}{\numberline {6.2.6}Fase 6: Entrega}{65}{subsection.6.2.6}%
+\contentsline {section}{\numberline {6.3}ESTADO ACTUAL DEL TRABAJO Y AVANCES}{65}{section.6.3}%
+\contentsline {section}{\numberline {6.4}CRONOGRAMA}{67}{section.6.4}%
+\contentsline {chapter}{\numberline {7}CONDICIONES DE ENTREGA Y PRESUPUESTO}{68}{chapter.7}%
+\contentsline {section}{\numberline {7.1}CONDICIONES DE ENTREGA}{68}{section.7.1}%
+\contentsline {section}{\numberline {7.2}PRESUPUESTO ESTIMADO Y FUENTES DE FINANCIACIÓN}{68}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Descripción y Fuentes de Financiación del Presupuesto:}{68}{subsection.7.2.1}%
+\contentsline {chapter}{\numberline {8}DISEÑO METODOLÓGICO}{71}{chapter.8}%
+\contentsline {section}{\numberline {8.1}ENFOQUE METODOLÓGICO}{71}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Estructura del Modelo en V Aplicado}{71}{subsection.8.1.1}%
+\contentsline {subsubsection}{\nonumberline Brazo Descendente: Especificación y Diseño}{71}{subsubsection*.98}%
+\contentsline {subsubsection}{\nonumberline Brazo Ascendente: Validación y Verificación}{72}{subsubsection*.100}%
+\contentsline {section}{\numberline {8.2}CONFIGURACIÓN DEL HARDWARE}{73}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Dispositivos UWB}{73}{subsection.8.2.1}%
+\contentsline {subsubsection}{\nonumberline Selección de Dispositivos}{73}{subsubsection*.102}%
+\contentsline {subsubsection}{\nonumberline Parámetros de Configuración}{74}{subsubsection*.104}%
+\contentsline {subsection}{\numberline {8.2.2}Sistema de Sensores Inerciales}{74}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Sistema de Referencia de Posición}{74}{subsection.8.2.3}%
+\contentsline {section}{\numberline {8.3}DISEÑO DEL ESCENARIO EXPERIMENTAL}{74}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Selección y Características del Entorno}{74}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Disposición de Nodos Ancla}{75}{subsection.8.3.2}%
+\contentsline {section}{\numberline {8.4}PROTOCOLO DE RECOLECCIÓN DE DATOS}{75}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Población y Muestra}{75}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Posiciones del Dispositivo en el Cuerpo}{76}{subsection.8.4.2}%
+\contentsline {subsection}{\numberline {8.4.3}Trayectorias y Posiciones de Medición}{76}{subsection.8.4.3}%
+\contentsline {subsubsection}{\nonumberline Mediciones Estáticas}{76}{subsubsection*.106}%
+\contentsline {subsubsection}{\nonumberline Mediciones Dinámicas}{77}{subsubsection*.108}%
+\contentsline {subsection}{\numberline {8.4.4}Condiciones de Control}{77}{subsection.8.4.4}%
+\contentsline {subsection}{\numberline {8.4.5}Procedimiento de Medición}{77}{subsection.8.4.5}%
+\contentsline {section}{\numberline {8.5}PROCESAMIENTO Y ANÁLISIS DE DATOS}{78}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Preprocesamiento de Datos Crudos}{78}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Cálculo de Métricas de Error}{79}{subsection.8.5.2}%
+\contentsline {subsection}{\numberline {8.5.3}Análisis Estadístico}{80}{subsection.8.5.3}%
+\contentsline {subsubsection}{\nonumberline Caracterización de Distribuciones}{80}{subsubsection*.110}%
+\contentsline {subsubsection}{\nonumberline Análisis de Varianza (ANOVA)}{80}{subsubsection*.112}%
+\contentsline {subsubsection}{\nonumberline Análisis de Correlación}{80}{subsubsection*.114}%
+\contentsline {subsection}{\numberline {8.5.4}Estimación de Posición y Evaluación del Sistema Completo}{81}{subsection.8.5.4}%
+\contentsline {subsubsection}{\nonumberline Trilateración por Mínimos Cuadrados}{81}{subsubsection*.116}%
+\contentsline {subsubsection}{\nonumberline Filtro de Kalman}{81}{subsubsection*.118}%
+\contentsline {subsubsection}{\nonumberline Métricas de Error de Posición}{81}{subsubsection*.120}%
+\contentsline {section}{\numberline {8.6}HERRAMIENTAS DE SOFTWARE}{82}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Software de Adquisición de Datos}{82}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}Software de Procesamiento y Análisis}{82}{subsection.8.6.2}%
+\contentsline {subsection}{\numberline {8.6.3}Control de Versiones y Reproducibilidad}{82}{subsection.8.6.3}%
+\contentsline {section}{\numberline {8.7}CONSIDERACIONES ÉTICAS}{82}{section.8.7}%
+\contentsline {section}{\numberline {8.8}RESUMEN DEL CAPÍTULO}{83}{section.8.8}%
+\contentsline {chapter}{\numberline {9}RESULTADOS EXPERIMENTALES}{84}{chapter.9}%
+\contentsline {section}{\numberline {9.1}VERIFICACIÓN Y CALIBRACIÓN DEL SISTEMA}{84}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Pruebas de Línea de Vista (LOS)}{84}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Estabilidad Temporal del Sistema}{85}{subsection.9.1.2}%
+\contentsline {section}{\numberline {9.2}CARACTERIZACIÓN ANTROPOMÉTRICA DE LOS PARTICIPANTES}{85}{section.9.2}%
+\contentsline {section}{\numberline {9.3}ANÁLISIS DEL ERROR DE DISTANCIA POR UBICACIÓN CORPORAL}{85}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Dispositivo en el Pecho (Frente)}{85}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Dispositivo en la Espalda}{86}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Dispositivo en la Cadera}{86}{subsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.3.4}Dispositivo en la Muñeca}{86}{subsection.9.3.4}%
+\contentsline {subsection}{\numberline {9.3.5}Dispositivo en el Tobillo}{86}{subsection.9.3.5}%
+\contentsline {subsection}{\numberline {9.3.6}Comparación Entre Ubicaciones Corporales}{86}{subsection.9.3.6}%
+\contentsline {section}{\numberline {9.4}ANÁLISIS ESTADÍSTICO DE LAS DISTRIBUCIONES DE ERROR}{87}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Ajuste de Distribuciones Teóricas}{87}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Análisis de Varianza (ANOVA)}{87}{subsection.9.4.2}%
+\contentsline {section}{\numberline {9.5}CORRELACIÓN CON VARIABLES ANTROPOMÉTRICAS}{88}{section.9.5}%
+\contentsline {section}{\numberline {9.6}DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}{88}{section.9.6}%
+\contentsline {subsection}{\numberline {9.6.1}Error de Posición 2D}{88}{subsection.9.6.1}%
+\contentsline {subsection}{\numberline {9.6.2}Mapas de Calor de Error de Posición}{89}{subsection.9.6.2}%
+\contentsline {section}{\numberline {9.7}ANÁLISIS DE CASOS EXTREMOS}{89}{section.9.7}%
+\contentsline {subsection}{\numberline {9.7.1}Condiciones de Peor Caso}{89}{subsection.9.7.1}%
+\contentsline {subsection}{\numberline {9.7.2}Condiciones de Mejor Caso}{89}{subsection.9.7.2}%
+\contentsline {section}{\numberline {9.8}EFECTOS DE SEGUNDA ORDEN}{90}{section.9.8}%
+\contentsline {subsection}{\numberline {9.8.1}Influencia de la Distancia}{90}{subsection.9.8.1}%
+\contentsline {subsection}{\numberline {9.8.2}Efecto del Multitrayecto del Entorno}{90}{subsection.9.8.2}%
+\contentsline {section}{\numberline {9.9}SÍNTESIS DE RESULTADOS}{90}{section.9.9}%
+\contentsline {chapter}{\numberline {10}ANÁLISIS Y DISCUSIÓN}{91}{chapter.10}%
+\contentsline {section}{\numberline {10.1}INTERPRETACIÓN DE LOS PATRONES DE ERROR OBSERVADOS}{91}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Efecto de la Ubicación Corporal del Dispositivo}{91}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}Dependencia del Ángulo de Orientación del Cuerpo}{92}{subsection.10.1.2}%
+\contentsline {subsection}{\numberline {10.1.3}Comparación con Frecuencias Inferiores}{92}{subsection.10.1.3}%
+\contentsline {section}{\numberline {10.2}ANÁLISIS DE LA VARIABILIDAD ESTADÍSTICA}{93}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Naturaleza de las Distribuciones de Error}{93}{subsection.10.2.1}%
+\contentsline {subsection}{\numberline {10.2.2}Implicaciones para Algoritmos de Localización}{93}{subsection.10.2.2}%
+\contentsline {section}{\numberline {10.3}CORRELACIÓN CON CARACTERÍSTICAS ANTROPOMÉTRICAS}{94}{section.10.3}%
+\contentsline {section}{\numberline {10.4}DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}{94}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Exactitud de Localización Alcanzada}{94}{subsection.10.4.1}%
+\contentsline {subsection}{\numberline {10.4.2}Dependencia de la Geometría del Despliegue}{95}{subsection.10.4.2}%
+\contentsline {subsection}{\numberline {10.4.3}Propagación del Error de Distancia al Error de Posición}{95}{subsection.10.4.3}%
+\contentsline {section}{\numberline {10.5}COMPARACIÓN CON EL ESTADO DEL ARTE}{95}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Contraste con Estudios de Simulación}{95}{subsection.10.5.1}%
+\contentsline {subsection}{\numberline {10.5.2}Concordancia con Estudios Experimentales}{95}{subsection.10.5.2}%
+\contentsline {subsection}{\numberline {10.5.3}Aporte Diferencial de este Estudio}{96}{subsection.10.5.3}%
+\contentsline {section}{\numberline {10.6}IMPLICACIONES PARA APLICACIONES PRÁCTICAS}{96}{section.10.6}%
+\contentsline {subsection}{\numberline {10.6.1}Recomendaciones de Diseño}{96}{subsection.10.6.1}%
+\contentsline {subsection}{\numberline {10.6.2}Aplicabilidad a Casos de Uso Específicos}{97}{subsection.10.6.2}%
+\contentsline {section}{\numberline {10.7}LIMITACIONES DEL ESTUDIO}{97}{section.10.7}%
+\contentsline {section}{\numberline {10.8}SÍNTESIS DEL CAPÍTULO}{98}{section.10.8}%
+\contentsline {chapter}{\numberline {11}CONCLUSIONES Y RECOMENDACIONES}{99}{chapter.11}%
+\contentsline {section}{\numberline {11.1}CUMPLIMIENTO DE LOS OBJETIVOS}{99}{section.11.1}%
+\contentsline {subsection}{\numberline {11.1.1}Objetivo General}{99}{subsection.11.1.1}%
+\contentsline {subsection}{\numberline {11.1.2}Objetivos Específicos}{99}{subsection.11.1.2}%
+\contentsline {section}{\numberline {11.2}CONCLUSIONES PRINCIPALES}{100}{section.11.2}%
+\contentsline {section}{\numberline {11.3}CONTRIBUCIONES DE LA INVESTIGACIÓN}{101}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}Contribuciones Científicas}{102}{subsection.11.3.1}%
+\contentsline {subsection}{\numberline {11.3.2}Contribuciones Prácticas}{102}{subsection.11.3.2}%
+\contentsline {section}{\numberline {11.4}TRABAJOS FUTUROS}{102}{section.11.4}%
+\contentsline {subsection}{\numberline {11.4.1}Extensiones Experimentales}{103}{subsection.11.4.1}%
+\contentsline {subsection}{\numberline {11.4.2}Desarrollo de Técnicas de Mitigación}{103}{subsection.11.4.2}%
+\contentsline {subsection}{\numberline {11.4.3}Estudios Comparativos}{104}{subsection.11.4.3}%
+\contentsline {subsection}{\numberline {11.4.4}Modelado y Simulación}{104}{subsection.11.4.4}%
+\contentsline {subsection}{\numberline {11.4.5}Aplicaciones Especializadas}{104}{subsection.11.4.5}%
+\contentsline {section}{\numberline {11.5}REFLEXIÓN FINAL}{105}{section.11.5}%
 \contentsline {chapter}{BIBLIOGRAFÍA}{110}{chapter*.131}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
