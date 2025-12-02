@@ -3,48 +3,6 @@
 
 En este capítulo se describe detalladamente la metodología empleada para llevar a cabo la investigación experimental. Se presenta el enfoque metodológico general, el diseño del sistema de medición, la configuración del escenario experimental, los protocolos de recolección de datos y las técnicas de procesamiento y análisis que permitirán responder a las preguntas de investigación planteadas.
 
-\section{ENFOQUE METODOLÓGICO}
-\label{sec:enfoque_metodologico}
-
-Para abordar los objetivos de esta investigación, se ha adoptado el Modelo en V como marco metodológico principal. Este enfoque, ampliamente utilizado en proyectos de ingeniería que requieren desarrollo de sistemas y validación experimental rigurosa, establece una correspondencia directa entre cada fase de diseño e implementación con su respectiva fase de verificación y validación.
-
-La elección del Modelo en V responde a la naturaleza técnica y experimental de este trabajo, donde resulta fundamental garantizar que cada componente del sistema de medición funcione correctamente antes de proceder con la recolección de datos. Este modelo permite identificar y corregir errores de manera temprana, reduciendo el riesgo de invalidar datos experimentales debido a configuraciones incorrectas o malfuncionamientos del hardware.
-
-\subsection{Estructura del Modelo en V Aplicado}
-
-La implementación del Modelo en V para este proyecto se estructura en dos trayectorias principales:
-
-\subsubsection{Brazo Descendente: Especificación y Diseño}
-
-Esta trayectoria comprende las etapas de definición y diseño del experimento:
-
-\begin{enumerate}
-\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos específicos de la investigación, traduciendo las preguntas de investigación en requerimientos técnicos medibles. Esto incluye la definición de las métricas de desempeño que se evaluarán (error de distancia, error de posición, desviación estándar), los rangos de condiciones experimentales que se explorarán (posiciones del dispositivo en el cuerpo, orientaciones relativas, distancias) y los criterios de aceptación de los resultados.
-
-\item \textbf{Diseño del Sistema:} Se especifica la arquitectura completa del sistema experimental, incluyendo la selección del hardware UWB (modelo de dispositivos, frecuencia de operación, configuración de parámetros de transmisión), el diseño del escenario de prueba (dimensiones, ubicación de nodos ancla, posiciones de referencia), y la especificación del software de adquisición y procesamiento de datos.
-
-\item \textbf{Diseño de Componentes:} Se detallan las especificaciones técnicas de cada elemento del sistema: características de los dispositivos UWB, sistema de posicionamiento de referencia (si aplica), sensores inerciales para determinar la orientación corporal, y las interfaces de comunicación entre componentes.
-
-\item \textbf{Implementación:} Se ensambla el sistema físico, se configura el software de adquisición de datos, se instalan los nodos ancla en el escenario y se realizan las configuraciones necesarias en los dispositivos UWB.
-\end{enumerate}
-
-\subsubsection{Brazo Ascendente: Validación y Verificación}
-
-Esta trayectoria comprende las etapas de prueba y validación que corresponden simétricamente a cada fase de diseño:
-
-\begin{enumerate}
-\item \textbf{Pruebas Unitarias:} Se verifica el funcionamiento individual de cada componente. Esto incluye comprobar que los dispositivos UWB se comunican correctamente, que las mediciones de ToF son estables en condiciones controladas, que el sistema de registro de datos funciona sin pérdidas de información, y que los sensores auxiliares proporcionan lecturas válidas.
-
-\item \textbf{Pruebas de Integración:} Se verifica que todos los componentes operan correctamente como sistema integrado. Se realizan mediciones preliminares en condiciones de LOS para establecer una línea base de desempeño y confirmar que la exactitud alcanzada es consistente con las especificaciones del fabricante y los valores reportados en la literatura.
-
-\item \textbf{Pruebas de Validación:} Se ejecuta el protocolo experimental completo, recolectando datos en todas las condiciones planificadas. Se verifica que los datos obtenidos son suficientes en cantidad y calidad para responder a las preguntas de investigación.
-
-\item \textbf{Análisis y Validación de Resultados:} Se procesan y analizan los datos recolectados, se calculan las métricas de desempeño definidas, se realizan análisis estadísticos y se comparan los resultados con el estado del arte. Se verifica que los hallazgos sean consistentes, reproducibles y científicamente válidos.
-\end{enumerate}
-
-Este enfoque metodológico estructurado garantiza la trazabilidad de todos los aspectos del experimento, desde los requerimientos iniciales hasta los resultados finales, facilitando la reproducibilidad del estudio y la identificación de fuentes potenciales de error o sesgo.
-
-
 \section{CONFIGURACIÓN DEL HARDWARE}
 \label{sec:configuracion_hardware}
 
@@ -222,10 +180,6 @@ donde $d_{\text{real},i}$ es la distancia euclidiana verdadera calculada a parti
 Se definen las siguientes métricas estadísticas:
 
 \begin{itemize}
-\item \textbf{Error Medio (Mean Error, ME):}
-\begin{equation}
-\text{ME} = \frac{1}{N} \sum_{j=1}^{N} e_j
-\end{equation}
 
 \item \textbf{Error Absoluto Medio (Mean Absolute Error, MAE):}
 \begin{equation}
@@ -237,10 +191,6 @@ Se definen las siguientes métricas estadísticas:
 \text{RMSE} = \sqrt{\frac{1}{N} \sum_{j=1}^{N} e_j^2}
 \end{equation}
 
-\item \textbf{Desviación Estándar del Error:}
-\begin{equation}
-\sigma_e = \sqrt{\frac{1}{N-1} \sum_{j=1}^{N} (e_j - \text{ME})^2}
-\end{equation}
 
 \item \textbf{Percentiles:} Se calculan los percentiles 50 (mediana), 90 y 95 del error absoluto para caracterizar la distribución completa del error.
 \end{itemize}
@@ -255,7 +205,6 @@ Para cada condición experimental (combinación de ubicación corporal, orientac
 \item Normal (Gaussiana)
 \item Log-normal
 \item Gamma
-\item Mixtura de Gaussianas (para modelar transiciones LOS/NLOS)
 \end{itemize}
 
 La bondad de ajuste se evalúa mediante pruebas de Kolmogorov-Smirnov y criterios de información (AIC, BIC).
@@ -266,7 +215,6 @@ Se emplea ANOVA multifactorial para determinar qué factores experimentales tien
 
 \begin{itemize}
 \item Factor 1: Ubicación del dispositivo en el cuerpo (5 niveles)
-\item Factor 2: Ángulo de orientación del cuerpo (8 niveles)
 \item Factor 3: Distancia del nodo móvil a cada ancla (variable continua o discretizada)
 \item Factor 4: Características antropométricas del participante (covariables)
 \end{itemize}
