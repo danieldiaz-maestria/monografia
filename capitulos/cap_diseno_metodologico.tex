@@ -1,7 +1,13 @@
 \chapter{DISEÑO METODOLÓGICO}
 \label{ch:metodologia_experimental}
 
-En este capítulo se describe detalladamente la metodología empleada para llevar a cabo la investigación experimental. Se presenta el enfoque metodológico general, el diseño del sistema de medición, la configuración del escenario experimental, los protocolos de recolección de datos y las técnicas de procesamiento y análisis que permitirán responder a las preguntas de investigación planteadas.
+En este capítulo se describe detalladamente la metodología empleada para llevar a cabo la investigación experimental, estructurada en dos fases secuenciales:
+
+\textbf{Fase 1 - Plan de Pruebas de Validación:} Evaluación exhaustiva de la exactitud en la estimación de distancia UWB analizando el impacto de la ubicación del dispositivo móvil en diferentes partes del cuerpo humano bajo condiciones de propagación LOS y NLOS en dos escenarios representativos (exterior e interior). Esta fase, ya ejecutada y documentada en el artículo de validación, establece la línea base de desempeño del sistema.
+
+\textbf{Fase 2 - Sistema de Posicionamiento 2D:} Implementación y evaluación del sistema completo de localización utilizando cuatro nodos ancla para determinar posiciones 2D mediante trilateración. Esta fase integrará los hallazgos de la Fase 1 para evaluar el error de posicionamiento en el plano.
+
+Este capítulo se enfoca en describir la metodología de la Fase 1, que constituye el plan de pruebas de validación completo del sistema de estimación de distancia a 6.5 GHz.
 
 \section{CONFIGURACIÓN DEL HARDWARE}
 \label{sec:configuracion_hardware}
@@ -37,84 +43,149 @@ Los dispositivos UWB se configuran con los siguientes parámetros operacionales:
 
 Estos parámetros se seleccionan para optimizar el compromiso entre exactitud de medición, alcance efectivo y consumo energético, siguiendo las recomendaciones del fabricante y las mejores prácticas identificadas en la revisión de literatura.
 
-\subsection{Sistema de Referencia de Posición}
 
-[COMPLETAR: Describir si se utiliza un sistema óptico de captura de movimiento, marcadores fiduciales, o un método manual de posicionamiento con puntos de referencia marcados en el piso]
-
-
-\section{DISEÑO DEL ESCENARIO EXPERIMENTAL}
+\section{DISEÑO DEL ESCENARIO EXPERIMENTAL - FASE 1}
 \label{sec:escenario_experimental}
 
-\subsection{Selección y Características del Entorno}
+\subsection{Descripción General}
 
-El experimento se desarrolla en [ESPECIFICAR UBICACIÓN EXACTA, ej. "el Salón 305 del Edificio de Ingeniería Electrónica y Telecomunicaciones de la Universidad del Cauca"]. Este espacio ha sido seleccionado por presentar características representativas de escenarios de interiores típicos donde se implementan sistemas de posicionamiento:
+El plan de pruebas de validación (Fase 1) se implementó en dos escenarios principales diseñados para evaluar diferentes condiciones de propagación características de aplicaciones reales de sistemas de posicionamiento indoor y outdoor. La selección de estos escenarios permite caracterizar el comportamiento del sistema UWB tanto en ambientes con mínima reflexión (exterior) como en entornos con alta dispersión multitrayecto (interior tipo corredor).
+
+\subsection{Escenario Exterior}
+
+Se utilizó un campo abierto con dimensiones similares a las de un campo de fútbol. Este escenario fue diseñado para:
 
 \begin{itemize}
-\item \textbf{Dimensiones:} 20 m de largo × 3 m de ancho (escenario tipo corredor)
+\item Minimizar las reflexiones provenientes de estructuras verticales como paredes y edificios.
+\item Proporcionar un entorno base para analizar los efectos primarios de propagación.
+\item Aislar el impacto de la obstrucción corporal (BS) sobre la señal directa.
+\item Considerar fenómenos fundamentales de propagación como las Pérdidas en Espacio Libre (FSPL) y el multitrayecto generado por reflexión en el suelo.
+\end{itemize}
+
+\textbf{Características del Escenario Exterior:}
+\begin{itemize}
+\item \textbf{Tipo:} Campo abierto (dimensiones ~100 m × 60 m)
+\item \textbf{Superficie:} Césped natural
+\item \textbf{Obstrucciones:} Mínimas (ausencia de paredes y estructuras verticales cercanas)
+\item \textbf{Condiciones climáticas:} Mediciones realizadas en días despejados para minimizar variables ambientales
+\end{itemize}
+
+\subsection{Escenario Interior}
+
+Se empleó un corredor de edificio universitario para representar condiciones típicas de aplicaciones indoor:
+
+\textbf{Características del Escenario Interior:}
+\begin{itemize}
+\item \textbf{Dimensiones:} 20 m de largo × 3 m de ancho
 \item \textbf{Materiales constructivos:} Paredes de concreto, piso de baldosa cerámica, techo de placa de concreto
-\item \textbf{Mobiliario:} Corredor típico de edificio universitario con mobiliario mínimo
-\item \textbf{Fuentes de interferencia:} Redes WiFi institucionales activas en bandas de 2.4 GHz y 5 GHz, equipos electrónicos de oficinas adyacentes
+\item \textbf{Mobiliario:} Corredor típico con mobiliario mínimo
+\item \textbf{Características de propagación:} Introduce efectos de multitrayecto controlados resultantes de reflexiones en paredes, techo y piso
+\item \textbf{Fuentes de interferencia:} Redes WiFi institucionales activas en bandas de 2.4 GHz y 5 GHz, equipos electrónicos en oficinas adyacentes
 \end{itemize}
 
-\subsection{Disposición de Nodos Ancla}
+Este escenario permite evaluar cómo las reflexiones especulares en superficies confinadas afectan la estimación de distancia, representando condiciones realistas para sistemas de localización indoor.
 
-Se despliegan cuatro nodos ancla fijos en configuración [ESPECIFICAR: rectangular, cuadrada, etc.] que define el área de cobertura del sistema de posicionamiento. Las coordenadas de instalación de los nodos ancla son:
+\subsection{Configuración de Nodos - Fase 1}
+
+En la Fase 1 del plan de pruebas de validación, la configuración experimental consistió en:
 
 \begin{itemize}
-\item \textbf{Ancla 1:} $(x_1, y_1$ = [ESPECIFICAR coordenadas en metros]
-\item \textbf{Ancla 2:} $(x_2, y_2)$ = [ESPECIFICAR coordenadas en metros]
-\item \textbf{Ancla 3:} $(x_3, y_3)$ = [ESPECIFICAR coordenadas en metros]
-\item \textbf{Ancla 4:} $(x_4, y_4)$ = [ESPECIFICAR coordenadas en metros]
+\item \textbf{Nodo Fijo de Referencia:} Un módulo DWM1001 montado en un trípode a una altura estándar de 1.5 m sobre el nivel del piso, actuando como ancla de referencia para las mediciones de distancia.
+\item \textbf{Nodo Móvil:} Un módulo DWM1001 portado por el sujeto de prueba en diferentes ubicaciones corporales.
 \end{itemize}
 
-Los nodos ancla se montan a una altura de 1.5 metros sobre el nivel del piso, utilizando trípodes, asegurando estabilidad mecánica durante todo el período experimental.
+Esta configuración punto a punto permite evaluar la exactitud fundamental de la estimación de distancia antes de implementar el sistema completo de posicionamiento 2D. El nodo fijo permanece en una ubicación constante durante cada sesión de medición, mientras el sujeto se desplaza a distancias conocidas siguiendo un protocolo sistemático.
 
-La geometría de despliegue se diseña para minimizar la dilución de precisión geométrica (GDOP) en el área de interés, maximizando así la exactitud de localización en condiciones de LOS.
+\textbf{Nota:} La Fase 2 implementará un sistema con cuatro nodos ancla en configuración geométrica optimizada para trilateración y posicionamiento 2D.
 
 
 \section{PROTOCOLO DE RECOLECCIÓN DE DATOS}
 \label{sec:protocolo_recoleccion}
 
-\subsection{Población y Muestra}
+\subsection{Sujeto de Prueba}
 
-Para evaluar la variabilidad del efecto de obstrucción corporal entre individuos con diferentes características antropométricas, el estudio incluye la participación de [ESPECIFICAR número] voluntarios. Los criterios de selección consideran diversidad en:
+El plan de pruebas de validación (Fase 1) fue conducido como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque metodológico permite:
 
 \begin{itemize}
-\item \textbf{Estatura:} Rango de [ESPECIFICAR] a [ESPECIFICAR] cm
-\item \textbf{Peso:} Rango de [ESPECIFICAR] a [ESPECIFICAR] kg
-\item \textbf{Índice de Masa Corporal:} Cubriendo categorías [ESPECIFICAR]
-\item \textbf{Género:} [ESPECIFICAR distribución]
+\item Caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo sin variabilidad inter-sujeto.
+\item Evaluación sistemática de todas las combinaciones de ubicación corporal, condición de canal (LOS/NLOS) y escenario bajo condiciones antropométricas constantes.
+\item Establecimiento de la línea base de desempeño del sistema antes de considerar la variabilidad antropométrica.
+\item Control riguroso de variables experimentales para aislar el efecto de la obstrucción corporal.
 \end{itemize}
 
-Cada participante firma un consentimiento informado donde se explica el propósito del estudio, los procedimientos a realizar, y el uso de los datos recolectados, siguiendo los lineamientos éticos establecidos por [ESPECIFICAR comité de ética o normativa aplicable].
+\textbf{Justificación del Enfoque:} Como se reconoce en el artículo de validación, este trabajo constituye un caso de estudio fundacional que prioriza la exhaustividad en la evaluación de configuraciones (7 ubicaciones × 2 condiciones × 2 escenarios = 28 configuraciones) sobre la cantidad de sujetos. Para garantizar la generalización de estos hallazgos para aplicaciones wearables robustas, se reconoce que futuros trabajos deberán incluir un plan de pruebas exhaustivo con múltiples sujetos que presenten diversas características antropométricas (altura, peso, Índice de Masa Corporal, género).
 
-\subsection{Posiciones del Dispositivo en el Cuerpo}
+El sujeto de prueba participó bajo consentimiento informado, con conocimiento completo del propósito del estudio, los procedimientos a realizar y el uso de los datos recolectados.
 
-Se evalúan múltiples ubicaciones de portación del nodo móvil UWB, seleccionadas por su relevancia en aplicaciones prácticas de seguimiento de personas:
+\subsection{Ubicaciones del Dispositivo Móvil en el Cuerpo}
+
+Se evaluaron siete ubicaciones corporales del dispositivo móvil UWB, seleccionadas estratégicamente por su relevancia en aplicaciones prácticas de seguimiento de personas y dispositivos wearables:
 
 \begin{enumerate}
-\item \textbf{Frente (Pecho):} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante.
-\item \textbf{Espalda:} Dispositivo colocado en el centro de la espalda, entre los omóplatos, orientado hacia atrás.
-\item \textbf{Cintura (Cadera):} Dispositivo ubicado en la cintura, sobre la cadera derecha, orientado lateralmente.
-\item \textbf{Muñeca:} Dispositivo colocado en la muñeca izquierda, simulando un dispositivo tipo smartwatch.
-\item \textbf{Tobillo:} Dispositivo colocado en el tobillo derecho, orientado lateralmente.
+\item \textbf{Cabeza (Head):} Dispositivo ubicado en la parte superior craneal. Esta posición es relevante para aplicaciones de realidad aumentada y cascos inteligentes.
+
+\item \textbf{Pecho (Chest):} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante. Representa la ubicación típica de badges de identificación y monitores cardíacos.
+
+\item \textbf{Cadera (Hip):} Dispositivo posicionado lateralmente a nivel de la cintura/cadera. Común en dispositivos clip-on y sistemas de rastreo industrial.
+
+\item \textbf{Mano (Hand):} Dispositivo sostenido directamente en la mano dominante. Simula el escenario de un usuario portando activamente un dispositivo móvil o herramienta.
+
+\item \textbf{Muñeca (Wrist):} Dispositivo colocado en la muñeca como si fuera un reloj inteligente (smartwatch), representando uno de los wearables más populares.
+
+\item \textbf{Rodilla (Knee):} Dispositivo ubicado en la superficie frontal o lateral de la rodilla. Relevante para aplicaciones de análisis biomecánico y monitoreo deportivo.
+
+\item \textbf{Tobillo (Ankle):} Dispositivo posicionado en la superficie externa del tobillo. Utilizado en sistemas de monitoreo de marcha y rastreo en aplicaciones de seguridad.
 \end{enumerate}
 
-Para cada ubicación se registra la altura exacta sobre el nivel del piso y la orientación del dispositivo mediante fotografías y anotaciones en el protocolo experimental.
+Para cada ubicación corporal, el dispositivo fue fijado de manera segura para minimizar el movimiento relativo durante las mediciones. Se documentó fotográficamente cada configuración para asegurar reproducibilidad en futuras réplicas del experimento.
 
-\subsection{Trayectorias y Posiciones de Medición}
+\subsection{Condiciones de Propagación: LOS y NLOS}
 
-\subsubsection{Mediciones Estáticas}
+Para cada combinación de ubicación corporal del dispositivo y escenario (exterior/interior), se evaluaron dos condiciones de propagación fundamentales definidas por la orientación del cuerpo del sujeto respecto al nodo fijo de referencia:
 
-En una primera fase, se realizan mediciones estáticas donde el participante permanece inmóvil en posiciones específicas dentro del escenario. Se define una malla de puntos de referencia con separación de 1 metro, cubriendo un rango de distancias desde 1 m hasta 13 m entre el nodo móvil y el nodo fijo.
+\textbf{Condición LOS (Line of Sight):} Se aseguró la existencia de una trayectoria visual directa entre el nodo fijo y el dispositivo móvil. El sujeto se orientó de manera que la parte del cuerpo que portaba el dispositivo mantuviera visibilidad directa con el nodo de referencia. Esta condición representa el escenario óptimo donde la señal UWB puede propagarse sin obstrucción corporal significativa.
 
-En cada posición de la malla, el participante adopta 2 orientaciones diferentes (LOS y NLOS), permitiendo evaluar el efecto de la obstrucción corporal de manera sistemática. En la condición LOS, el participante se orienta de manera que la parte del cuerpo que porta el dispositivo mantiene visibilidad directa con el nodo de referencia. En la condición NLOS, el participante se orienta de espaldas al nodo fijo.
+\textbf{Condición NLOS (Non-Line of Sight):} Se obstruyó deliberadamente la línea de visión directa entre el nodo fijo y el dispositivo móvil mediante el cuerpo humano. Esta condición se logró orientando al sujeto de espaldas al nodo fijo (rotación de 180°), asegurando que el torso y la parte del cuerpo con el dispositivo bloquearan la propagación directa de la señal.
 
-Para cada combinación de posición-orientación-ubicación del dispositivo, se registran 250 mediciones de distancia estimada, asegurando un análisis estadístico robusto.
+\textbf{Control de Postura:} Para garantizar la consistencia y reproducibilidad en todas las mediciones NLOS, se instruyó al sujeto a mantener una postura corporal estandarizada:
+\begin{itemize}
+\item Postura erguida y vertical
+\item Orientación directamente opuesta al nodo fijo (180°)
+\item Brazos descansando naturalmente a los costados del cuerpo
+\item Evitar movimientos durante la adquisición de cada conjunto de mediciones
+\end{itemize}
 
-\subsubsection{Mediciones Dinámicas}
+Esta dicotomía LOS/NLOS permite caracterizar el efecto máximo de la obstrucción corporal (BS) sobre la exactitud de la estimación de distancia, aislando este factor de otras fuentes de error.
 
-[ESPECIFICAR si se incluyen: En una segunda fase, se realizan mediciones dinámicas donde el participante se desplaza siguiendo trayectorias predefinidas...]
+\subsection{Protocolo de Medición - Fase 1}
+
+\subsubsection{Configuración del Grid de Medición}
+
+Las mediciones se realizaron siguiendo un protocolo sistemático de posiciones estáticas donde el sujeto permanece inmóvil durante la adquisición de datos:
+
+\begin{itemize}
+\item \textbf{Distancias evaluadas:} 1 m, 2 m, 3 m, ..., 13 m (incrementos de 1 metro)
+\item \textbf{Rango total:} 1 m a 13 m (13 puntos de medición por configuración)
+\item \textbf{Método de marcación:} Distancias reales marcadas con cinta métrica de alta precisión
+\item \textbf{Alineación:} El sujeto se posiciona en línea recta desde el nodo fijo de referencia
+\end{itemize}
+
+\subsubsection{Muestras por Punto de Medición}
+
+Para cada combinación de:
+\begin{itemize}
+\item Ubicación corporal (7 opciones: cabeza, pecho, cadera, mano, muñeca, rodilla, tobillo)
+\item Condición de canal (2 opciones: LOS, NLOS)
+\item Escenario (2 opciones: exterior, interior)
+\item Distancia (13 puntos: 1-13 m)
+\end{itemize}
+
+Se registraron \textbf{250 mediciones de distancia estimada} por el sistema UWB. Este tamaño de muestra asegura análisis estadístico robusto y permite caracterizar adecuadamente la variabilidad de las mediciones.
+
+\textbf{Total de mediciones - Fase 1:}
+$$7 \text{ ubicaciones} \times 2 \text{ condiciones} \times 2 \text{ escenarios} \times 13 \text{ distancias} \times 250 \text{ muestras} = 91,000 \text{ mediciones}$$
+
+\textbf{Nota:} No todas las combinaciones fueron evaluadas en el plan de validación (algunas ubicaciones solo se probaron en ciertos escenarios), pero se lograron 28 configuraciones completas documentadas en los resultados.
 
 \subsection{Condiciones de Control}
 
@@ -127,51 +198,101 @@ Para garantizar la reproducibilidad del experimento y minimizar la variabilidad 
 \item Se realiza una medición de calibración en LOS (sin participante presente) al inicio de cada sesión experimental para verificar la estabilidad del sistema.
 \end{itemize}
 
-\subsection{Procedimiento de Medición}
+\subsection{Procedimiento Detallado de Medición}
 
-El protocolo detallado para cada sesión experimental es el siguiente:
+El protocolo experimental para cada sesión de medición siguió los siguientes pasos sistemáticos:
 
 \begin{enumerate}
-\item \textbf{Preparación:} Encendido de los nodos ancla, verificación de comunicación, sincronización de relojes del sistema, inicialización del software de adquisición de datos.
+\item \textbf{Preparación del Sistema:}
+\begin{itemize}
+    \item Encendido y verificación de funcionamiento de los módulos DWM1001
+    \item Montaje del nodo fijo en trípode a altura de 1.5 m
+    \item Inicialización del firmware PANS y configuración de parámetros UWB
+    \item Verificación de comunicación entre nodo fijo y nodo móvil
+\end{itemize}
 
-\item \textbf{Calibración LOS:} Mediciones de referencia en ausencia de obstrucción, colocando el nodo móvil en posiciones conocidas para verificar la exactitud del sistema.
+\item \textbf{Marcación del Grid de Medición:}
+\begin{itemize}
+    \item Marcación precisa de distancias desde 1 m hasta 13 m con cinta métrica
+    \item Alineación recta desde el nodo fijo
+    \item Verificación visual de las marcas
+\end{itemize}
 
-\item \textbf{Instrumentación del Participante:} Colocación del dispositivo UWB en la ubicación corporal correspondiente a la sesión actual, verificación de la correcta sujeción y orientación.
+\item \textbf{Calibración LOS Inicial:}
+\begin{itemize}
+    \item Mediciones de referencia sin sujeto presente (nodo móvil en trípode)
+    \item Verificación de exactitud del sistema en ausencia de obstrucción
+    \item Identificación de posibles sesgos sistemáticos
+\end{itemize}
 
-\item \textbf{Adquisición de Datos:} El participante se posiciona en cada punto de la malla según las instrucciones del operador. En cada posición, adopta secuencialmente las orientaciones especificadas. El sistema registra automáticamente las mediciones de ToF hacia los cuatro nodos ancla. El operador anota en la planilla experimental cualquier observación relevante.
+\item \textbf{Instrumentación del Sujeto:}
+\begin{itemize}
+    \item Fijación segura del nodo móvil en la ubicación corporal correspondiente
+    \item Verificación de orientación correcta del dispositivo
+    \item Documentación fotográfica de la configuración
+\end{itemize}
 
-\item \textbf{Verificación de Integridad de Datos:} Al finalizar cada conjunto de mediciones, se verifica que no haya pérdidas de paquetes o datos corruptos. Si se detectan anomalías, se repite el conjunto afectado.
+\item \textbf{Adquisición de Datos - Condición LOS:}
+\begin{itemize}
+    \item Sujeto se posiciona en la primera distancia (1 m)
+    \item Orientación frontal hacia el nodo fijo (condición LOS)
+    \item Adquisición automática de 250 mediciones de distancia
+    \item Sujeto permanece inmóvil durante adquisición (~30 segundos)
+    \item Repetir para cada distancia (2 m, 3 m, ..., 13 m)
+\end{itemize}
 
-\item \textbf{Descarga y Respaldo de Datos:} Los datos se descargan del sistema de adquisición, se organizan en la estructura de directorios definida y se realiza un respaldo en ubicaciones redundantes.
+\item \textbf{Adquisición de Datos - Condición NLOS:}
+\begin{itemize}
+    \item Sujeto se posiciona en la primera distancia (1 m)
+    \item Rotación 180° (de espaldas al nodo fijo, condición NLOS)
+    \item Adquisición automática de 250 mediciones
+    \item Repetir para cada distancia
+\end{itemize}
+
+\item \textbf{Cambio de Ubicación Corporal:}
+\begin{itemize}
+    \item Cambio del nodo móvil a la siguiente ubicación corporal
+    \item Repetir pasos 5-6 para las 7 ubicaciones
+\end{itemize}
+
+\item \textbf{Cambio de Escenario:}
+\begin{itemize}
+    \item Repetir procedimiento completo en el segundo escenario
+\end{itemize}
+
+\item \textbf{Verificación y Respaldo:}
+\begin{itemize}
+    \item Verificación de integridad de datos (ausencia de pérdidas o corrupciones)
+    \item Descarga y organización de datos recolectados
+    \item Respaldo en ubicaciones redundantes
+\end{itemize}
 \end{enumerate}
 
 
-\section{PROCESAMIENTO Y ANÁLISIS DE DATOS}
+\section{PROCESAMIENTO Y ANÁLISIS DE DATOS - FASE 1}
 \label{sec:procesamiento_datos}
 
 \subsection{Preprocesamiento de Datos Crudos}
 
-Los datos crudos registrados por el sistema UWB incluyen timestamps de alta resolución, mediciones de ToF, estimaciones de potencia de señal recibida y otros parámetros de diagnóstico. El preprocesamiento comprende:
+Los datos crudos registrados por el sistema UWB incluyen timestamps de alta resolución, mediciones de ToF entre el nodo móvil y el nodo fijo, estimaciones de potencia de señal recibida y otros parámetros de diagnóstico. El preprocesamiento de la Fase 1 comprende:
 
 \begin{itemize}
-\item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas (ej. ToF negativo, distancias fuera del rango físico posible) mediante criterios estadísticos robustos.
+\item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas (ej. ToF negativo, distancias fuera del rango físico posible de 1-13 m) mediante criterios estadísticos robustos.
 
-\item \textbf{Conversión de ToF a Distancia:} Aplicación de la ecuación $d = \text{ToF} \times c$, donde $c$ es la velocidad de la luz.
+\item \textbf{Conversión de ToF a Distancia:} Aplicación de la ecuación $d = \text{ToF} \times c$, donde $c = 299{,}792{,}458$ m/s es la velocidad de la luz en el vacío.
 
-\item \textbf{Corrección de sesgos sistemáticos:} Si se identifican sesgos consistentes en las mediciones de calibración LOS, se aplican correcciones de offset para cada nodo ancla.
-
-\item \textbf{Sincronización temporal:} Alineación temporal de las mediciones desde los cuatro nodos ancla cuando corresponden a la misma posición instantánea del participante.
+\item \textbf{Corrección de sesgos sistemáticos:} Si se identifican sesgos consistentes en las mediciones de calibración LOS (sin sujeto), se aplican correcciones de offset al nodo de referencia.
 \end{itemize}
 
 \subsection{Cálculo de Métricas de Error}
 
-Para cada medición de distancia entre el nodo móvil y un nodo ancla, se calcula:
+Para cada medición de distancia entre el nodo móvil y el nodo fijo de referencia, se calcula el error de distancia:
 
 \begin{equation}
 e_i = d_{\text{medida},i} - d_{\text{real},i}
 \end{equation}
 
-donde $d_{\text{real},i}$ es la distancia euclidiana verdadera calculada a partir de las coordenadas conocidas del nodo ancla $i$ y la posición de referencia del participante.
+donde $d_{\text{medida},i}$ es la distancia estimada por el sistema UWB y $d_{\text{real},i}$ es la distancia física real marcada con cinta métrica (1 m, 2 m, ..., 13 m).
 
 Se definen las siguientes métricas estadísticas:
 
@@ -191,76 +312,32 @@ Se definen las siguientes métricas estadísticas:
 \item \textbf{Percentiles:} Se calculan los percentiles 50 (mediana), 90 y 95 del error absoluto para caracterizar la distribución completa del error.
 \end{itemize}
 
-\subsection{Análisis Estadístico}
+\subsection{Análisis Estadístico - Fase 1}
 
 \subsubsection{Caracterización de Distribuciones}
 
-Para cada condición experimental (combinación de ubicación corporal, orientación del cuerpo, distancia), se ajustan distribuciones de probabilidad teóricas a los errores observados. Se evalúan distribuciones:
+Para cada condición experimental (combinación de ubicación corporal, condición LOS/NLOS, escenario, distancia), se caracteriza la distribución estadística de los errores observados. Se evalúan distribuciones de probabilidad teóricas:
 
 \begin{itemize}
 \item Normal (Gaussiana)
-\item Log-normal
+\item Log-normal  
 \item Gamma
 \end{itemize}
 
-La bondad de ajuste se evalúa mediante pruebas de Kolmogorov-Smirnov y criterios de información (AIC, BIC).
+La bondad de ajuste se evalúa mediante pruebas de Kolmogorov-Smirnov y criterios de información (AIC, BIC). Esta caracterización permite identificar si las distribuciones de error son simétricas (gaussianas) o presentan asimetría positiva con colas extendidas hacia errores mayores, lo cual tiene implicaciones para el diseño de algoritmos de mitigación.
 
-\subsubsection{Análisis de Varianza (ANOVA)}
+\subsubsection{Factores Experimentales Analizados}
 
-Se emplea ANOVA multifactorial para determinar qué factores experimentales tienen efecto estadísticamente significativo sobre el error de distancia:
-
-\begin{itemize}
-\item Factor 1: Ubicación del dispositivo en el cuerpo (5 niveles)
-\item Factor 3: Distancia del nodo móvil a cada ancla (variable continua o discretizada)
-\item Factor 4: Características antropométricas del participante (covariables)
-\end{itemize}
-
-Las interacciones entre factores también se analizan para identificar si, por ejemplo, el efecto de la orientación del cuerpo depende de la ubicación corporal del dispositivo.
-
-\subsubsection{Análisis de Correlación}
-
-Se calcula el coeficiente de correlación de Pearson entre el error de distancia y variables continuas como:
-\begin{itemize}
-\item Distancia verdadera nodo móvil - nodo ancla
-\item Ángulo de orientación del cuerpo
-\item Estatura del participante
-\item Peso del participante
-\item Potencia de señal recibida (RSS)
-\end{itemize}
-
-\subsection{Estimación de Posición y Evaluación del Sistema Completo}
-
-A partir de las mediciones de distancia (con error introducido por BS) hacia los cuatro nodos ancla, se estima la posición 2D del nodo móvil mediante algoritmos de trilateración:
-
-\subsubsection{Trilateración por Mínimos Cuadrados}
-
-Se plantea el sistema de ecuaciones:
-\begin{equation}
-\sqrt{(x - x_i)^2 + (y - y_i)^2} = d_{\text{medida},i} \quad \text{para } i = 1, 2, 3, 4
-\end{equation}
-
-donde $(x, y)$ es la posición desconocida del nodo móvil y $(x_i, y_i)$ son las coordenadas conocidas de los nodos ancla. Este sistema no lineal se linealiza y resuelve mediante el método de mínimos cuadrados ponderados.
-
-\subsubsection{Filtro de Kalman}
-
-[ESPECIFICAR si se implementa: Se implementa un Filtro de Kalman para suavizar las estimaciones de posición a lo largo del tiempo...]
-
-\subsubsection{Métricas de Error de Posición}
-
-Para la posición estimada $(\hat{x}, \hat{y})$ respecto a la posición verdadera $(x_{\text{real}}, y_{\text{real}})$, se calculan:
+Los principales factores experimentales evaluados en la Fase 1 son:
 
 \begin{itemize}
-\item \textbf{Error de Posición 2D:}
-\begin{equation}
-e_{\text{pos}} = \sqrt{(\hat{x} - x_{\text{real}})^2 + (\hat{y} - y_{\text{real}})^2}
-\end{equation}
-
-\item \textbf{Error de posición medio, mediana, RMSE, percentiles} siguiendo las mismas definiciones que para el error de distancia.
-
-\item \textbf{Error Circular Probable (CEP):} Radio del círculo centrado en la posición verdadera que contiene el 50\% de las estimaciones de posición.
-
-\item \textbf{Exactitud al 95\%:} Radio del círculo que contiene el 95\% de las estimaciones.
+\item \textbf{Ubicación Corporal:} 7 niveles (cabeza, pecho, cadera, mano, muñeca, rodilla, tobillo)
+\item \textbf{Condición de Canal:} 2 niveles (LOS, NLOS)
+\item \textbf{Escenario:} 2 niveles (exterior, interior)
+\item \textbf{Distancia:} Variable continua o discretizada (1-13 m)
 \end{itemize}
+
+Se analiza el efecto individual de cada factor sobre el error de distancia, así como las interacciones entre factores (e.g., si el efecto de la condición LOS/NLOS depende de la ubicación corporal).
 
 
 \section{HERRAMIENTAS DE SOFTWARE}
