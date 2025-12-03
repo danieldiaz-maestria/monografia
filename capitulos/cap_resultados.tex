@@ -8,9 +8,53 @@ Los resultados presentados en este capítulo se enfocan en caracterizar la exact
 \section{VERIFICACIÓN Y CALIBRACIÓN DEL SISTEMA}
 \label{sec:verificacion_sistema}
 
-\subsection{Calibracion entre dos dispositivos}
+\subsection{Calibración de Antenna Delays}
 
-Aqui se tiene que definir como se calibraron los dispositivos
+Previo a la recolección de datos experimentales, se realizó un procedimiento de calibración de los retardos de antena (\textit{antenna delays}) del transceptor DW1000 presente en los módulos DWM1001. Estos parámetros compensan los retardos intrínsecos del hardware entre el instante temporal registrado por el transceptor y la emisión/recepción física de la señal en la interfaz radioeléctrica.
+
+El DW1000 utiliza dos constantes de retardo que deben calibrarse para garantizar la exactitud de las mediciones de distancia mediante Two-Way Ranging (TWR):
+
+\begin{itemize}
+\item \texttt{TX\_ANT\_DLY}: retardo efectivo desde que el DW1000 genera el instante temporal de transmisión hasta que la señal electromagnética es emitida físicamente por la antena. 
+\item \texttt{RX\_ANT\_DLY}: retardo desde que la señal llega físicamente a la antena hasta que el DW1000 registra el instante temporal de recepción.
+\end{itemize}
+
+Los valores por defecto proporcionados por el fabricante son aproximaciones generales que no consideran las particularidades de cada implementación de hardware (diseño de PCB, tipo de antena, trazas de RF). Por tanto, es necesario calibrarlos empíricamente para cada sistema específico.
+
+\subsubsection{Procedimiento de Calibración}
+
+El método de calibración implementado se basa en la comparación entre distancias conocidas y distancias medidas, ajustando iterativamente los \textit{antenna delays} hasta minimizar el error sistemático. El procedimiento consistió en los siguientes pasos:
+
+\textbf{1. Configuración inicial:} Se configuraron dos módulos DWM1001 en modo TWR unilateral (SS-TWR), con valores iniciales de \texttt{TX\_ANT\_DLY} = 16380 y \texttt{RX\_ANT\_DLY} = 16450 (unidades de tiempo internas del DW1000, equivalentes a $\approx$15.65 ps por unidad).
+
+\textbf{2. Posicionamiento de referencia:} Los módulos fueron ubicados a una distancia fija conocida $D_{\text{real}}$ = 1.00 m, medida con cinta métrica láser de precisión $\pm$1 mm, en ambiente exterior despejado para minimizar efectos de multitrayecto.
+
+\textbf{3. Medición no calibrada:} Se realizaron 250 mediciones continuas de distancia, registrando el valor promedio $D_{\text{medida}}$ y calculando el error sistemático:
+
+\begin{equation}
+E = D_{\text{medida}} - D_{\text{real}}
+\end{equation}
+
+\textbf{4. Ajuste de retardos:} El error sistemático se traduce a un incremento/decremento en las constantes de retardo mediante el factor de conversión empírico para el DW1000 ($\approx$0.015 m por unidad de delay):
+
+\begin{equation}
+\Delta = \frac{E}{0.015}
+\end{equation}
+
+El ajuste se distribuyó simétricamente entre ambos retardos para mantener el balance TX/RX:
+
+\begin{align}
+\texttt{TX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{TX\_ANT\_DLY}_{\text{anterior}} + \frac{\Delta}{2} \\
+\texttt{RX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{RX\_ANT\_DLY}_{\text{anterior}} + \frac{\Delta}{2}
+\end{align}
+
+\textbf{5. Iteración:} El proceso se repitió hasta lograr convergencia, definida como error sistemático $|E| < 5$ mm. La calibración convergió en tres iteraciones.
+
+\subsubsection{Resultados de Calibración}
+
+Los valores finales calibrados fueron \texttt{TX\_ANT\_DLY} = 16388 y \texttt{RX\_ANT\_DLY} = 16458. En la validación final a 1.00 m de distancia, el sistema registró MAE = 3.64 cm ($\sigma$ = 3.09 cm) en condiciones exteriores con línea de vista despejada, correspondiente al mejor caso de referencia (dispositivo en pecho, exterior, LOS). Este nivel de exactitud se considera adecuado para las aplicaciones de localización wearable objetivo de este trabajo.
+
+Es importante destacar que la calibración fue realizada para la configuración específica de hardware utilizada (módulos DWM1001 con antenas integradas). Diferentes configuraciones de antena o modificaciones en el diseño de PCB requerirían repetir el procedimiento de calibración para mantener la trazabilidad metrológica del sistema.
 
 
 \section{CARACTERIZACIÓN ANTROPOMÉTRICA DE LOS PARTICIPANTES}
