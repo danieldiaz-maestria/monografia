@@ -201,7 +201,7 @@ Mano y muñeca mantienen desempeño moderado y estable en la mayoría de configu
 \begin{tabular}{lllccc}
 \toprule
 \rowcolor{headerblue}
-\textbf{Ubicación} & \textbf{Escenario} & \textbf{Condición} & \textbf{MAE(cm)} & \textbf{Desv.Est.(cm)} & \textbf{Error Máx.(cm)} \\
+\textbf{Ubicación} & \textbf{Escenario} & \textbf{Condición} & \textbf{MAE(cm)} & \textbf{Std(cm)} & \textbf{Error Máx.(cm)} \\
 \midrule
 \multirow{4}{*}{Mano} & \multirow{2}{*}{Exterior}& LOS & 8.98 & 6.39 & 32 \\
 &  & NLOS & 41.60 & 12.14 & 73 \\
@@ -284,71 +284,115 @@ El percentil 95 indica que el 95\% de todas las mediciones presentan errores inf
 
 \subsection{Distribución Probabilística de Errores}
 
-La distribución probabilística de errores mostró asimetría positiva con cola extendida hacia errores mayores, indicando naturaleza no gaussiana en configuraciones específicas, particularmente bajo condiciones NLOS severas. Este comportamiento sugiere que modelos de error tradicionales basados en distribuciones gaussianas pueden ser inadecuados para caracterizar sistemas UWB con obstrucción corporal.
+La distribución probabilística de los errores evidencia una asimetría positiva, con una cola extendida hacia valores de error elevados, lo que indica un comportamiento claramente no gaussiano en configuraciones específicas, particularmente bajo condiciones severas de no línea de vista (NLOS). Este comportamiento sugiere que los modelos de error tradicionales basados en distribuciones gaussianas resultan inadecuados para caracterizar el desempeño de sistemas UWB en presencia de obstrucción corporal.
 
-\textcolor{red}{Aqui faltan algunas gráficas que muestren la distribución de los datos, además recodar que el ingeniero también solicitó un análisis del tiempo de vuelo, eso es importante colocarlo pues tenemos que analizar que pasa con las anclas en LOS y en NLOS, tenemos que ver como se comporta esa variabilidad}\\
+Uno de los gráficos que permite observar este fenómeno es el diagrama de cajas y bigotes, mostrado en la Figura~\ref{fig:box_plot_los_nlos}, donde se aprecia de manera clara el contraste en la distribución del error al pasar de condiciones LOS a NLOS.
 
-\textcolor{red}{Otra cosa importante es que tenemos que mirar como podemos acceder al cir, algo que no está tan claro en principio, pero ahí vemos qué sucede con el cir en algunas posiciciones y con una sola medición}
-
-
-
-\chapter{FASE 2: SISTEMA DE POSICIONAMIENTO 2D COMPLETO}
-\label{sec:desempeno_posicionamiento}
-
-La Fase 2 de esta investigación corresponde a la implementación y evaluación del sistema completo de posicionamiento 2D utilizando cuatro nodos ancla en configuración geométrica. Esta fase integrará las mediciones de distancia hacia múltiples anclas para estimar posiciones 2D del nodo móvil mediante algoritmos de trilateración.
-
-Los resultados de la Fase 1 presentados en el anterior capítulo establecen la línea base de desempeño del sistema de estimación de distancia bajo diferentes condiciones de obstrucción corporal. La Fase 2 utilizará estos hallazgos para:
-
-\begin{itemize}
-\item Implementar el sistema completo de localización con cuatro nodos ancla en el escenario experimental.
-\item Evaluar el error de posicionamiento 2D (distancia euclidiana entre posición estimada y real).
-\item Analizar métricas como el error euclidiano, exactitud al 95\%, y RMSE de posición.
-\item Evaluar la robustez de un filtro de Kalman extendido para mitigar el error de posicionamiento.
-\item Generar mapas de calor de error de posición en el área del escenario experimental.
-\end{itemize}
-
-Los resultados de la Fase 2 serán presentados en sección subsiguiente una vez completada la experimentación correspondiente.
-
-[COMPLETAR: Incluir figuras mostrando mapas de calor del error de posición en el área del escenario experimental para cada ubicación corporal]
-
-\begin{figure}[ht]
+\begin{figure}[hbt]
     \centering
-    % \includegraphics[width=1.0\textwidth]{imagenes/mapa_error_pecho.pdf}
-    \caption{Mapa de Calor del Error de Posición - Dispositivo en Pecho}
-    \label{fig:mapa_error_pecho}
+    \includegraphics[width=0.8\linewidth]{imagenes/boxplot_los_nlos.png}
+    \caption{Distribución probabilística de los errores en condiciones LOS y NLOS}
+    \label{fig:box_plot_los_nlos}
 \end{figure}
 
+Con base en la Figura~\ref{fig:box_plot_los_nlos}, se observa que, cuando se presenta obstrucción corporal, el error puede alcanzar valores de hasta aproximadamente 5 metros. Este comportamiento implica que ciertas ubicaciones corporales introducen una distorsión significativa en la señal, atenuándola de tal forma que el sistema pierde confiabilidad y su desempeño se degrada considerablemente.
 
-\section{ANÁLISIS DE CASOS EXTREMOS}
-\label{sec:casos_extremos}
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.8\linewidth]{imagenes/exactitud_vs_precision_NLOS.png}
+    \caption{Exactitud versus precisión del MAE en configuración NLOS}
+    \label{fig:exactitud_vs_precision_nlos}
+\end{figure}
 
-\subsection{Condiciones de Peor Caso}
+Al analizar el gráfico de exactitud versus precisión, presentado en la Figura~\ref{fig:exactitud_vs_precision_nlos}, se observa que las ubicaciones correspondientes a la cadera y el pecho presentan simultáneamente los valores más altos de MAE y de desviación estándar. Este resultado es consistente con la estructura anatómica de dichas partes del cuerpo, la cual dificulta la propagación de la señal y limita severamente su llegada al receptor, generando así un desempeño deficiente del sistema.
 
-Se identificaron las combinaciones de ubicación corporal, orientación del cuerpo y posición en el escenario que resultaron en los mayores errores de estimación de distancia y posición.
+Si bien estos resultados proporcionan una primera caracterización del fenómeno, resulta necesario extender el análisis a escenarios en interiores, que constituyen el foco principal del presente trabajo. En este contexto, el siguiente paso consiste en evaluar el comportamiento del MAE bajo configuración NLOS en entornos interiores, tal como se muestra en la Figura~\ref{fig:exactitud_vs_precision_nlos_interiores}.
 
-[COMPLETAR: Describir los escenarios de peor caso observados, con datos cuantitativos]
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.8\linewidth]{imagenes/exactitud_vs_precision_nlos_pasillo.png}
+    \caption{Exactitud versus precisión del MAE en configuración NLOS en interiores}
+    \label{fig:exactitud_vs_precision_nlos_interiores}
+\end{figure}
 
-\subsection{Condiciones de Mejor Caso}
+La Figura~\ref{fig:exactitud_vs_precision_nlos_interiores} muestra que la mayor parte de la variabilidad observada en condiciones NLOS está dominada por el escenario del Interiores. En este contexto, tanto la cadera como el pecho continúan presentando errores absolutos elevados y altas desviaciones estándar, confirmando su bajo rendimiento en términos de exactitud y precisión.
 
-[COMPLETAR: Similar al anterior, para condiciones óptimas]
+Un hallazgo relevante es que las ubicaciones correspondientes a la cabeza, la mano y la muñeca presentan consistentemente valores de MAE y desviación estándar cercanos a los umbrales establecidos. Este comportamiento constituye una evidencia del fenómeno conocido como \textit{multitrayecto constructivo}, en el cual ciertas configuraciones geométricas favorecen la superposición coherente de trayectorias reflejadas, mejorando el desempeño del sistema.
 
-
-\section{EFECTOS DE SEGUNDA ORDEN}
-\label{sec:efectos_segunda_orden}
-
-\subsection{Influencia de la Distancia}
-
-[COMPLETAR: Analizar si el error de BS depende de la distancia entre el nodo móvil y los nodos ancla]
-
-\subsection{Efecto del Multitrayecto del Entorno}
-
-[COMPLETAR: Si es posible distinguir, analizar la contribución del multitrayecto del entorno vs. el efecto directo de la obstrucción corporal]
+Si bien estos resultados representan un primer hallazgo significativo, resulta pertinente profundizar el análisis mediante la aplicación de pruebas estadísticas formales, tales como ANOVA y la prueba post-hoc de Tukey o pruebas no paramétricas. La inclusión de estas pruebas permitiría sustentar de manera más robusta las conclusiones sobre la BS y relacionadas con el fenómeno de multitrayecto constructivo y su impacto en el desempeño del sistema.
 
 
-\section{SÍNTESIS DE RESULTADOS}
 
-Este capítulo ha presentado los resultados experimentales obtenidos al evaluar sistemáticamente el efecto de la obstrucción corporal en un sistema de posicionamiento UWB operando en la banda de 6.5 GHz. Los datos recolectados abarcan múltiples ubicaciones de portación del dispositivo, orientaciones relativas del cuerpo, y participantes con características antropométricas diversas.
 
-Los resultados evidencian que [COMPLETAR: resumen cualitativo de los hallazgos principales sin interpretación profunda, ej. "el error de distancia varía significativamente según la ubicación corporal del dispositivo y la orientación relativa, con valores que van desde X cm en condiciones óptimas hasta X metros en condiciones de obstrucción severa"].
+\subsection{Análisis Estadístico No Paramétrico}
 
-El siguiente capítulo profundizará en la interpretación de estos resultados, comparándolos con el estado del arte y discutiendo las implicaciones prácticas y teóricas de los hallazgos.
+\subsubsection{Justificación de la Metodología No Paramétrica}
+
+Un análisis preliminar de la distribución del Error Absoluto (AE) de las mediciones reveló una desviación significativa de la normalidad. La prueba de Shapiro-Wilk sobre una muestra representativa de los datos arrojó un p-valor extremadamente bajo ($p \ll 0.001$), lo que obliga a rechazar la hipótesis de normalidad. Adicionalmente, la prueba de Levene para la homogeneidad de varianzas entre las distintas ubicaciones corporales también resultó altamente significativa ($p \ll 0.001$), indicando que las varianzas no son iguales entre los grupos.
+
+Dada la violación de los supuestos de normalidad y homocedasticidad, el uso de pruebas paramétricas como ANOVA o t-test sería metodológicamente incorrecto. Por consiguiente, todo el análisis inferencial se fundamenta en pruebas no paramétricas, específicamente la prueba U de Mann-Whitney, que es robusta ante estas condiciones y permite comparar distribuciones entre grupos independientes.
+
+\subsubsection{Análisis de Configuraciones Extremas y Relevancia Práctica}
+
+Para evaluar la magnitud de las diferencias de rendimiento, se compararon las dos mejores configuraciones (menor MAE y dispersión) con las dos peores (mayor MAE y dispersión), tanto en condiciones de Línea de Vista (LOS) como de No Línea de Vista (NLOS). La Tabla~\ref{tab:extremos} resume los resultados.
+
+\begin{table}[h!]
+\centering
+\caption{Comparación de rendimiento entre las configuraciones extremas. Se reporta el MAE, su Intervalo de Confianza (IC) del 95\% estimado por bootstrap, y el tamaño del efecto (correlación rank-biserial, $r$).}
+\label{tab:extremos}
+\begin{tabular}{llcccc}
+\toprule
+\rowcolor{headerblue}
+\textbf{Condición} & \textbf{Grupo} & \textbf{MAE [m]} & \textbf{IC 95\% [m]} & \textbf{Tamaño Efecto ($r$)} & \textbf{$p$-valor} \\
+\midrule
+\addlinespace
+LOS & Mejores & 0.047 & [0.047, 0.048] & \multirow{2}{*}{0.705} & \multirow{2}{*}{$\ll 0.001$} \\
+ & Peores & 0.282 & [0.276, 0.287] & & \\
+\addlinespace
+\midrule
+\addlinespace
+NLOS & Mejores & 0.101 & [0.100, 0.103] & \multirow{2}{*}{0.968} & \multirow{2}{*}{$\ll 0.001$} \\
+ & Peores & 0.935 & [0.923, 0.947] & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Los resultados muestran que las diferencias son estadísticamente significativas en ambos casos. Sin embargo, el análisis va más allá del p-valor: el tamaño del efecto es \textbf{grande} en ambas condiciones ($r > 0.5$), y los intervalos de confianza para los grupos de 'Mejores' y 'Peores' no se superponen en absoluto. Esto demuestra de manera concluyente que las diferencias no solo son estadísticamente detectables, sino también de una magnitud muy relevante desde el punto de vista práctico. La condición NLOS exhibe una diferencia de casi un orden de magnitud en el MAE, con un tamaño de efecto cercano a la máxima disimilitud ($r \approx 1$).
+
+\subsubsection{Impacto del Escenario en Condiciones NLOS}
+
+Con el fin de analizar cómo el entorno influye en el desempeño del sistema bajo las condiciones más adversas, se realizó una comparación pareada entre los escenarios \textit{Exteriores} y \textit{Interiores} para cada ubicación corporal, considerando exclusivamente mediciones en condición NLOS. Los resultados de este análisis se presentan en la Tabla~\ref{tab:nlos_escenario}.
+
+\begin{table}[h!]
+\centering
+\caption{Análisis comparativo del MAE en condiciones NLOS entre los escenarios \textit{Exteriores} y \textit{Interiores} para cada ubicación corporal.}
+\label{tab:nlos_escenario}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Ubicación} & \textbf{Exteriores[m]} & \textbf{Interiores[m]} & \textbf{$p$-valor} & Efecto ($r$) & \textbf{Magnitud} \\
+\midrule
+CABEZA  & 0.320 & 0.187 & $\ll 0.001$ & -0.660 & grande  \\
+CADERA  & 0.948 & 0.978 & 0.028       &  0.049 & trivial \\
+MANO    & 0.416 & 0.260 & $\ll 0.001$ & -0.693 & grande  \\
+MUÑECA  & 0.241 & 0.220 & $\ll 0.001$ & -0.273 & pequeño \\
+PECHO   & 0.790 & 0.895 & 0.590       & -0.012 & trivial \\
+RODILLA & 0.555 & 0.496 & $\ll 0.001$ & -0.392 & medio   \\
+TOBILLO & 0.389 & 0.300 & $\ll 0.001$ & -0.488 & medio   \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Discusión e Interpretación Física}
+
+Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que para varias ubicaciones corporales la mediana del MAE es \emph{menor en el escenario Interiores que en Exteriores}, a pesar de que el Interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación clara de la interacción entre obstrucción corporal y propagación por multitrayecto.
+
+En ubicaciones del torso como \textbf{CADERA} y \textbf{PECHO}, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{obstrucción corporal severa} domina completamente el proceso de propagación, atenuando la señal de forma tal que el entorno circundante tiene un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logra mitigar significativamente el error.
+
+En contraste, para ubicaciones en extremidades como \textbf{CABEZA}, \textbf{MANO}, \textbf{RODILLA} y \textbf{TOBILLO}, se observa un comportamiento sistemático donde el error es mayor en \textit{Exteriores} que en \textit{Interiores}, con tamaños de efecto que van de moderados a grandes. Este resultado se explica por el fenómeno de \textbf{multitrayecto constructivo}. En un Interiores, las reflexiones en paredes, suelo y techo generan múltiples trayectorias indirectas que pueden compensar parcialmente la obstrucción de la señal directa, reduciendo el error mediano. En espacios abiertos, estas superficies reflectantes están ausentes o demasiado alejadas, por lo que, ante una obstrucción corporal, el sistema carece de trayectorias alternativas robustas, incrementando el error.
+
+El caso de la ubicación \textbf{MANO} es particularmente ilustrativo: presenta un tamaño del efecto grande ($r = -0.693$), lo que indica que el entorno tiene una influencia práctica muy relevante. Esto sugiere que la mano, al ser una extremidad altamente móvil y con geometría variable, es especialmente sensible a la disponibilidad de trayectorias reflejadas.
+
+En síntesis, el hecho de que el escenario \textit{Interiores} presente MAE menor que \textit{Exteriores} para varias ubicaciones no constituye una anomalía, sino una evidencia clara de que, en condiciones NLOS, un entorno confinado puede favorecer el rendimiento mediante multitrayecto constructivo. Estos resultados refuerzan la necesidad de analizar conjuntamente la ubicación corporal y el entorno, y tienen implicaciones directas para el diseño y despliegue de sistemas UWB, particularmente en aplicaciones donde la NLOS es inevitable.
+
+
+
