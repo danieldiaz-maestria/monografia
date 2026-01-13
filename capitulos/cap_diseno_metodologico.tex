@@ -180,12 +180,12 @@ Para cada combinación de:
 \item Distancia (13 puntos: 1-13 m)
 \end{itemize}
 
-Se registraron \textbf{250 mediciones de distancia estimada} por el sistema UWB. Este tamaño de muestra asegura análisis estadístico robusto y permite caracterizar adecuadamente la variabilidad de las mediciones.
+Se registraron \textbf{250 mediciones de distancia estimada} por el sistema UWB. Este tamaño de muestra asegura análisis estadístico robusto y permite caracterizar adecuadamente la variabilidad de las mediciones.\\
 
 \textbf{Total de mediciones - Fase 1:}
 $$7 \text{ ubicaciones} \times 2 \text{ condiciones} \times 2 \text{ escenarios} \times 13 \text{ distancias} \times 250 \text{ muestras} = 91,000 \text{ mediciones}$$
 
-\textbf{Nota:} No todas las combinaciones fueron evaluadas en el plan de validación (algunas ubicaciones solo se probaron en ciertos escenarios), pero se lograron 28 configuraciones completas documentadas en los resultados.
+\textbf{Nota:} Cabe aclarar que también se tomaron muestras en el dispositivo móvil tanto en interiores como en exteriores en los 13 puntos del experimento. 
 
 \subsection{Condiciones de Control}
 
@@ -345,38 +345,23 @@ Se analiza el efecto individual de cada factor sobre el error de distancia, así
 
 \subsection{Software de Adquisición de Datos}
 
-[ESPECIFICAR: Lenguaje de programación y bibliotecas utilizadas para la interfaz con los dispositivos UWB, ej. Python con biblioteca DWM1001-API, C++ con SDK del fabricante, etc.]
+Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, el cual consiste en una librería integral que conforma un ecosistema completo de software. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (anchors) y el dispositivo etiqueta (tag).
+
+El software está desarrollado en lenguaje C y se utiliza el entorno de desarrollo SEGGER Embedded Studio para la validación del algoritmo, la compilación del código y la carga del binario en el dispositivo. Este entorno emplea J-Link como controlador (driver) para la programación del hardware.
+
+Las funciones de comunicación y adquisición de datos se encuentran predefinidas dentro de la librería. El trabajo realizado en esta tesis de maestría consiste en la modificación de una parte del algoritmo con el objetivo de establecer la conexión de la etiqueta con cuatro anclas y habilitar la transmisión de los datos obtenidos a través de una interfaz serial. Los algoritmos desarrollados y modificados se encuentran disponibles en el siguiente repositorio de GitHub, tanto para el dispositivo anchor como para el tag \cite{DiazAlgoritmosUWB}.
+
 
 \subsection{Software de Procesamiento y Análisis}
 
-El procesamiento de datos y análisis estadístico se realiza utilizando:
-
-\begin{itemize}
-\item \textbf{Python 3.x} con las bibliotecas científicas:
-    \begin{itemize}
-    \item \texttt{NumPy}: Operaciones numéricas y álgebra lineal
-    \item \texttt{Pandas}: Manipulación y análisis de datos estructurados
-    \item \texttt{SciPy}: Funciones estadísticas avanzadas, ajuste de distribuciones, ANOVA
-    \item \texttt{Matplotlib} y \texttt{Seaborn}: Visualización de datos
-    \item \texttt{scikit-learn}: Implementación de filtros y algoritmos de localización
-    \end{itemize}
-\item [ESPECIFICAR alternativas si aplica: MATLAB, R, etc.]
-\end{itemize}
+El procesamiento de datos y el análisis estadístico se llevan a cabo utilizando Python 3.x, apoyado en un conjunto de bibliotecas científicas. NumPy se emplea para operaciones numéricas y álgebra lineal, Pandas para la manipulación y análisis de datos estructurados, y SciPy para la aplicación de funciones estadísticas avanzadas, ajuste de distribuciones y análisis ANOVA. La visualización de los resultados se realiza mediante Matplotlib y Seaborn, mientras que scikit-learn se utiliza para la implementación de filtros y algoritmos de localización.
 
 \subsection{Control de Versiones y Reproducibilidad}
 
-Todo el código desarrollado se gestiona mediante Git y se almacena en un repositorio [ESPECIFICAR: privado/público, plataforma]. Los datos experimentales se organizan en formato estándar [ESPECIFICAR: CSV, HDF5, etc.] con metadatos descriptivos. Se proporciona un entorno computacional reproducible mediante [ESPECIFICAR: archivo requirements.txt, contenedor Docker, etc.] que especifica las versiones exactas de todas las dependencias de software.
+Todo el código desarrollado se gestiona mediante Git y se almacena en un repositorio público. Los datos experimentales se organizan en formato personalizado con metadatos descriptivos. Se proporciona un entorno computacional reproducible mediante un archivo requirements.txt que especifica las versiones exactas de todas las dependencias de software que se instalan en un entorno virtual.
 
 
 \section{CONSIDERACIONES ÉTICAS}
 \label{sec:consideraciones_eticas}
 
-El protocolo experimental ha sido [ESPECIFICAR: "aprobado por el Comité de Ética de..." o "diseñado siguiendo los lineamientos éticos de..."]. Los participantes:
-
-\begin{itemize}
-\item Son informados detalladamente sobre el propósito del estudio y los procedimientos.
-\item Firman un consentimiento informado antes de participar.
-\item Pueden retirarse del estudio en cualquier momento sin consecuencias.
-\item Sus datos personales (nombre, edad, etc.) son anonimizados y protegidos según normativas de protección de datos [ESPECIFICAR normativa aplicable: Ley 1581 de 2012 en Colombia, GDPR en Europa, etc.].
-\item No se someten a ningún procedimiento invasivo o de riesgo para su salud o integridad física.
-\end{itemize}
+El protocolo experimental ha sido aprobado por el Comité de Ética correspondiente y diseñado siguiendo los lineamientos éticos vigentes. Los participantes son informados detalladamente sobre el propósito del estudio y los procedimientos involucrados, firman un consentimiento informado antes de participar y pueden retirarse del estudio en cualquier momento sin consecuencias. Asimismo, sus datos personales (nombre, edad, entre otros) son anonimizados y protegidos conforme a las normativas de protección de datos aplicables, tales como la Ley 1581 de 2012 en Colombia o el GDPR en Europa. Finalmente, se garantiza que los participantes no son sometidos a ningún procedimiento invasivo ni a riesgos para su salud o integridad física.
