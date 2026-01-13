@@ -22,14 +22,6 @@ El análisis del error en función del ángulo de orientación del cuerpo muestr
 
 \textbf{Régimen NLOS (orientación $\approx$ 90°, 180° y 270°):} La obstrucción aumenta significativamente, con errores que alcanzan [X.X] cm en promedio y picos de hasta [X.X] metros. En estas configuraciones, las señales directas son severamente atenuadas (estimadas en 20-40 dB según la literatura), y los trayectos dominantes corresponden a difracción alrededor del cuerpo o reflexiones en paredes y objetos del entorno. El retardo introducido por estos trayectos más largos se traduce directamente en sobreestimación de la distancia.
 
-\subsection{Comparación con Frecuencias Inferiores}
-
-La banda de 6.5 GHz presenta características de propagación particulares en comparación con las bandas más comúnmente estudiadas (3-5 GHz). [COMPLETAR: Si se puede contrastar con literatura:]
-
-A frecuencias más altas, la atenuación por unidad de longitud en tejido biológico aumenta, lo cual podría sugerir mayor degradación en condiciones de BS. Sin embargo, la longitud de onda más corta también facilita la difracción alrededor de obstáculos con dimensiones corporales. Los resultados obtenidos [COMPLETAR: sugieren que en la banda de 6.5 GHz, el error en NLOS es comparable/ligeramente superior/inferior a los valores reportados en X GHz por Autor et al.].
-
-Adicionalmente, la mayor resolución temporal inherente al mayor ancho de banda disponible en frecuencias altas permite una mejor separación de trayectos múltiples, lo cual podría compensar parcialmente la mayor atenuación. Los algoritmos de detección del primer arribo de señal se benefician de pulsos más estrechos para identificar con mayor exactitud el ToF del trayecto directo o el primer trayecto significativo.
-
 
 \section{ANÁLISIS DE LA VARIABILIDAD ESTADÍSTICA}
 \label{sec:analisis_variabilidad}
@@ -141,7 +133,7 @@ Basándose en los resultados obtenidos, se pueden derivar recomendaciones práct
 Es importante reconocer las limitaciones inherentes a este estudio experimental:
 
 \begin{enumerate}
-\item \textbf{Tamaño muestral limitado:} Con [N] participantes, la generalización de las conclusiones sobre la influencia de características antropométricas debe tomarse con cautela. Estudios futuros con mayor número de participantes permitirían análisis estadísticos más robustos.
+\item \textbf{Tamaño muestral limitado:} Con 3 participantes, la generalización de las conclusiones sobre la influencia de características antropométricas debe tomarse con cautela. Estudios futuros con mayor número de participantes permitirían análisis estadísticos más robustos.
 
 \item \textbf{Escenario experimental único:} Los experimentos se realizaron en [descripción breve del escenario]. Las características específicas de este entorno (materiales constructivos, dimensiones, mobiliario) pueden influir en los resultados. La replicación en múltiples escenarios con geometrías y características de propagación diversas fortalecería la validez externa de las conclusiones.
 

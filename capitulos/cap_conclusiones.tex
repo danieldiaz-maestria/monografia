@@ -1,30 +1,15 @@
 \chapter{CONCLUSIONES Y RECOMENDACIONES}
 \label{ch:conclusiones}
 
-Este capítulo final presenta las conclusiones derivadas de la investigación realizada, evalúa el cumplimiento de los objetivos planteados, resume las contribuciones principales del trabajo, y propone direcciones para investigaciones futuras que profundicen o extiendan los hallazgos obtenidos.
+Este capítulo final presenta de manera integrada las conclusiones derivadas de la investigación realizada, evalúa el grado de cumplimiento de los objetivos planteados, sintetiza las principales contribuciones del trabajo y plantea líneas de investigación futura orientadas a profundizar y extender los resultados obtenidos.
 
-\section{CUMPLIMIENTO DE LOS OBJETIVOS}
-\label{sec:cumplimiento_objetivos}
+El objetivo general de este trabajo de maestría consistió en analizar el efecto de la obstrucción corporal sobre el desempeño de un sistema de posicionamiento en interiores basado en UWB, operando en la banda de 6.5 GHz, cuando el dispositivo móvil se ubica en diferentes partes del cuerpo humano. Dicho objetivo fue cumplido satisfactoriamente mediante el diseño e implementación de un sistema experimental completo que permitió caracterizar de forma sistemática el fenómeno de la obstrucción corporal bajo múltiples configuraciones. El conjunto de datos recolectados y su posterior análisis proporcionan una comprensión cuantitativa del impacto de la body shadowing sobre la exactitud de las mediciones de distancia y sobre el error final de localización del nodo móvil, con especial énfasis en la banda de 6.5 GHz, la cual ha sido escasamente abordada en la literatura previa.
 
-\subsection{Objetivo General}
+Con cada una de las fases del proyecto, en primer lugar se evaluó el efecto de la obstrucción corporal sobre las medidas de señal y la estimación de distancias en un enlace de comunicación UWB, considerando distintas ubicaciones del dispositivo sobre el cuerpo humano. Para ello se analizaron sistemáticamente cinco posiciones corporales —pecho, espalda, cadera, muñeca y tobillo—, recolectando mediciones de tiempo de vuelo (ToF) bajo múltiples orientaciones relativas del cuerpo y diferentes posiciones espaciales. Los resultados obtenidos permitieron cuantificar cómo cada ubicación presenta patrones característicos de error dependientes del ángulo de orientación corporal, con variaciones que abarcan desde [COMPLETAR: rango de errores observados], evidenciando la fuerte influencia de la geometría cuerpo–dispositivo sobre el desempeño del enlace.
 
-El objetivo general de este trabajo de maestría fue: \textit{"Analizar el efecto de la obstrucción corporal sobre el desempeño de un sistema de posicionamiento en un escenario de interiores basado en UWB, cuando este sistema opera en la banda de 6.5 GHz y el dispositivo móvil se ubica en diferentes partes del cuerpo."}
+En segundo lugar, se abordó el análisis estadístico del efecto de la obstrucción corporal sobre el enlace de comunicación basado en UWB. Este análisis incluyó la caracterización de distribuciones de error, la aplicación de análisis de varianza multifactorial y el ajuste de modelos probabilísticos. Se determinó que, bajo condiciones de no línea de vista (NLOS) inducidas por el cuerpo humano, las distribuciones de error se apartan significativamente del comportamiento gaussiano, presentando [COMPLETAR: características observadas, como asimetría, colas pesadas, etc.]. Estos hallazgos tienen implicaciones directas para el diseño y la selección de algoritmos de localización robustos, especialmente aquellos que asumen modelos estadísticos simplificados del error.
 
-Este objetivo ha sido cumplido satisfactoriamente. Se diseñó e implementó un sistema experimental completo que permitió caracterizar de manera sistemática el fenómeno de obstrucción corporal en múltiples configuraciones. Los datos recolectados y analizados proporcionan una comprensión cuantitativa del impacto de la BS sobre la exactitud de las mediciones de distancia y la localización final del nodo móvil, específicamente en la banda de 6.5 GHz, que ha sido insuficientemente estudiada en la literatura previa.
-
-\subsection{Objetivos Específicos}
-
-\textbf{Objetivo 1:} \textit{"Evaluar el efecto de la obstrucción corporal sobre las medidas de señal de un enlace de comunicación entre dos dispositivos UWB y la estimación de distancias, cuando uno de los dispositivos se ubica en diferentes partes del cuerpo humano."}
-
-Se evaluaron sistemáticamente cinco ubicaciones corporales (pecho, espalda, cadera, muñeca, tobillo), recolectando mediciones de ToF en múltiples orientaciones relativas y posiciones espaciales. Los resultados cuantifican cómo cada ubicación corporal presenta patrones característicos de error en función del ángulo de orientación del cuerpo, con variaciones que van desde [COMPLETAR: rango de errores observados].
-
-\textbf{Objetivo 2:} \textit{"Analizar el efecto estadístico de la obstrucción corporal sobre el enlace de comunicación basado en UWB."}
-
-Se realizó un análisis estadístico exhaustivo que incluye caracterización de distribuciones de error, análisis de varianza multifactorial, y ajuste de modelos probabilísticos. Se determinó que las distribuciones de error en condiciones NLOS se apartan significativamente de la gaussianidad, presentando [COMPLETAR: características observadas: asimetría, colas pesadas, etc.], lo cual tiene implicaciones directas para el diseño de algoritmos de localización robustos.
-
-\textbf{Objetivo 3:} \textit{"Evaluar el desempeño de un sistema de posicionamiento, i.e., 4 dispositivos fijos y un dispositivo móvil, basado en UWB y en un escenario de interiores, cuando el dispositivo móvil se ubica en diferentes partes del cuerpo humano."}
-
-Se evaluó el sistema completo de posicionamiento calculando estimaciones de posición 2D mediante trilateración. Se determinaron métricas de desempeño (error medio, mediana, RMSE, CEP, percentil 95) para cada ubicación corporal, estableciendo que el sistema alcanza exactitudes de [COMPLETAR: valores obtenidos] dependiendo de la ubicación del dispositivo y las condiciones de propagación predominantes.
+Finalmente, se evaluó el desempeño del sistema completo de posicionamiento en interiores, conformado por cuatro dispositivos fijos y un dispositivo móvil, considerando nuevamente las diferentes ubicaciones corporales del nodo móvil. A partir de las mediciones obtenidas se calcularon estimaciones de posición bidimensional mediante técnicas de trilateración, y se analizaron diversas métricas de desempeño, entre ellas el error medio, la mediana del error, el RMSE, el CEP y el percentil 95. Los resultados muestran que el sistema alcanza exactitudes del orden de [COMPLETAR: valores obtenidos], las cuales dependen de manera significativa tanto de la ubicación del dispositivo sobre el cuerpo como de las condiciones de propagación predominantes, confirmando la relevancia de considerar explícitamente la obstrucción corporal en el diseño y evaluación de sistemas UWB de posicionamiento en interiores.
 
 
 \section{CONCLUSIONES PRINCIPALES}
@@ -126,14 +111,3 @@ Los hallazgos de esta investigación abren múltiples direcciones para trabajos 
 \item \textbf{Integración con arquitecturas IoT:} Desarrollar arquitecturas completas que integren los IPS UWB con infraestructura IoT, plataformas de analítica de datos y sistemas de toma de decisiones para aplicaciones industriales 4.0.
 \end{enumerate}
 
-
-\section{REFLEXIÓN FINAL}
-\label{sec:reflexion_final}
-
-El presente trabajo de maestría ha demostrado que el fenómeno de obstrucción corporal representa un desafío técnico significativo pero no insuperable para los sistemas de posicionamiento en interiores basados en tecnología UWB. La comprensión cuantitativa del efecto de BS en la banda de 6.5 GHz, obtenida mediante experimentación rigurosa, constituye un paso necesario hacia el diseño de sistemas más robustos y exactos que puedan operar confiablemente en escenarios reales donde la interacción entre las señales de radiofrecuencia y el cuerpo humano es inevitable.
-
-Los resultados de esta investigación no solo contribuyen al conocimiento científico en el campo de las comunicaciones inalámbricas y los sistemas de localización, sino que también tienen potencial para impactar positivamente el desarrollo tecnológico de aplicaciones que mejoren la seguridad industrial, optimicen procesos logísticos, faciliten la atención médica personalizada, y habiliten nuevas experiencias en deportes y entretenimiento.
-
-La tecnología de Banda Ultra Ancha continúa evolucionando, con nuevos estándares (IEEE 802.15.4z), chipsets más avanzados y técnicas de procesamiento de señal cada vez más sofisticadas. La caracterización fundamental del fenómeno de obstrucción corporal realizada en este trabajo proporciona una base sólida sobre la cual futuras innovaciones podrán construir para alcanzar los niveles de exactitud y confiabilidad que demandan las aplicaciones emergentes del Internet de las Cosas y las Ciudades Inteligentes.
-
-La investigación científica es, por naturaleza, un proceso iterativo y colaborativo. Este trabajo cierra algunas preguntas mientras abre otras nuevas. Es nuestra esperanza que las contribuciones aquí presentadas inspiren y faciliten investigaciones futuras que continúen avanzando el estado del arte en sistemas de posicionamiento en interiores, acercándonos cada vez más a la visión de localización ubicua, transparente y de alta precisión en cualquier entorno.
