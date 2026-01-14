@@ -38,7 +38,227 @@ Las filas de marcas se colocan a las siguientes distancias desde el lado más la
     \item Tercera fila: 5.40 m
 \end{itemize}
 
-La separación entre marcas a lo largo de cada fila es de 1.5 m.
+La separación entre marcas a lo largo de cada fila es de 1.5 m y las 18 posiciones de medición se distribuyen en una cuadrícula de 3 filas × 6 columnas. Las coordenadas $(x, y)$ de cada marca se presentan en la figura \ref{fig:croquis_experimental_2d}.
 
-Las 18 posiciones de medición se distribuyen en una cuadrícula de 3 filas × 6 columnas. Las coordenadas $(x, y)$ de cada marca se presentan en la siguiente \textcolor{red}{figura}
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.7\textwidth]{imagenes/RepresentacionPosiciones.jpeg}
+    \caption{Croquis del escenario experimental 2D con las posiciones de las anclas y las marcas de la etiqueta y la orientación del sistema de referencia.}
+    \label{fig:croquis_experimental_2d}
+\end{figure}
 
+
+\section{RESULTADOS GRÁFICOS}
+\label{sec:resultados_graficos_2d}
+
+\subsection{Resultados del filtro de Kalman}
+
+Las Figuras \ref{fig:kalman_tag} a \ref{fig:kalman_pecho_s3} muestran las trayectorias estimadas aplicando el filtro de Kalman para diferentes configuraciones de medición. En estas gráficas se comparan las posiciones reales (referencia) con las estimaciones obtenidas mediante multilateración (sin filtrado) y las estimaciones refinadas con el filtro de Kalman.
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_tag.pdf}
+    \caption{Trayectoria estimada para el tag: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_tag}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_cadera_sujeto1.pdf}
+    \caption{Trayectoria estimada para cadera del sujeto 1: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_cadera_s1}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_cadera_sujeto2.pdf}
+    \caption{Trayectoria estimada para cadera del sujeto 2: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_cadera_s2}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_cadera_sujeto3.pdf}
+    \caption{Trayectoria estimada para cadera del sujeto 3: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_cadera_s3}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_pecho_sujeto1.pdf}
+    \caption{Trayectoria estimada para pecho del sujeto 1: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_pecho_s1}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_pecho_sujeto2.pdf}
+    \caption{Trayectoria estimada para pecho del sujeto 2: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_pecho_s2}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.75\textwidth]{imagenes/kalman_pecho_sujeto3.pdf}
+    \caption{Trayectoria estimada para pecho del sujeto 3: comparación entre posiciones reales, estimación por multilateración y estimación con filtro de Kalman.}
+    \label{fig:kalman_pecho_s3}
+\end{figure}
+
+
+\section{ANÁLISIS ESTADÍSTICO}
+\label{sec:analisis_estadistico_2d}
+
+A continuación se presentan los resultados estadísticos del error de estimación para cada configuración evaluada, comparando el desempeño del filtro de Kalman con la multilateración sin filtrado.
+
+\subsection{Estadísticas del tag}
+
+Para el caso del tag, que representa la medición de referencia sin cuerpo humano, se obtuvieron los siguientes resultados:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para el tag}
+\label{tab:estadisticas_tag}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.0386 \\
+Error máximo (m) & 1.8900 & 0.8652 \\
+Error promedio (m) & 0.7985 & 0.4802 \\
+Desviación std (m) & 0.4355 & 0.2178 \\
+Error mediana (m) & 0.8657 & 0.5341 \\
+\hline
+\end{tabular}
+\end{table}
+
+En este caso, la multilateración presenta un mejor desempeño con un error promedio de 0.4802 m, siendo 0.3183 m menor que el filtro de Kalman. Esto sugiere que para el tag sin interferencia del cuerpo humano, el algoritmo de multilateración directo proporciona estimaciones más precisas.
+
+\subsection{Estadísticas para cadera}
+
+Los resultados para las mediciones con el dispositivo ubicado en la cadera de los tres sujetos se presentan en las Tablas \ref{tab:estadisticas_cadera_s1}, \ref{tab:estadisticas_cadera_s2} y \ref{tab:estadisticas_cadera_s3}.
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para cadera del sujeto 1}
+\label{tab:estadisticas_cadera_s1}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.1970 \\
+Error máximo (m) & 1.0622 & 1.0994 \\
+Error promedio (m) & 0.6422 & 0.6049 \\
+Desviación std (m) & 0.2813 & 0.2936 \\
+Error mediana (m) & 0.7006 & 0.6124 \\
+\hline
+\end{tabular}
+\end{table}
+
+Para el sujeto 1, la multilateración muestra un mejor desempeño con una diferencia de 0.0373 m en el error promedio. Ambos métodos presentan errores máximos similares (alrededor de 1.1 m).
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para cadera del sujeto 2}
+\label{tab:estadisticas_cadera_s2}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.0841 \\
+Error máximo (m) & 2.3179 & 1.4634 \\
+Error promedio (m) & 0.9525 & 0.5521 \\
+Desviación std (m) & 0.5055 & 0.3487 \\
+Error mediana (m) & 0.8871 & 0.4754 \\
+\hline
+\end{tabular}
+\end{table}
+
+Para el sujeto 2, la multilateración muestra un desempeño notablemente superior con un error promedio de 0.5521 m, siendo 0.4004 m menor que el filtro de Kalman. Sin embargo, el filtro de Kalman logra reducir el error máximo de 2.32 m a 1.46 m.
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para cadera del sujeto 3}
+\label{tab:estadisticas_cadera_s3}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.0792 \\
+Error máximo (m) & 1.6716 & 2.9926 \\
+Error promedio (m) & 0.7664 & 0.8081 \\
+Desviación std (m) & 0.3928 & 0.6984 \\
+Error mediana (m) & 0.8135 & 0.7099 \\
+\hline
+\end{tabular}
+\end{table}
+
+En el caso del sujeto 3, el filtro de Kalman presenta un mejor desempeño con un error promedio de 0.7664 m, siendo 0.0417 m menor que la multilateración. Además, el filtro reduce significativamente el error máximo de 2.99 m a 1.67 m y la desviación estándar.
+
+\subsection{Estadísticas para pecho}
+
+Los resultados para las mediciones con el dispositivo ubicado en el pecho de los tres sujetos se presentan en las Tablas \ref{tab:estadisticas_pecho_s1}, \ref{tab:estadisticas_pecho_s2} y \ref{tab:estadisticas_pecho_s3}.
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para pecho del sujeto 1}
+\label{tab:estadisticas_pecho_s1}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.2390 \\
+Error máximo (m) & 1.3731 & 2.6677 \\
+Error promedio (m) & 0.7454 & 0.8471 \\
+Desviación std (m) & 0.3386 & 0.5835 \\
+Error mediana (m) & 0.7545 & 0.7389 \\
+\hline
+\end{tabular}
+\end{table}
+
+En el caso del pecho del sujeto 1, el filtro de Kalman muestra un mejor desempeño con un error promedio de 0.7454 m, siendo 0.1017 m menor que la multilateración. Además, el filtro de Kalman reduce significativamente el error máximo (1.3731 m vs 2.6677 m).
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para pecho del sujeto 2}
+\label{tab:estadisticas_pecho_s2}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.0644 \\
+Error máximo (m) & 1.6964 & 3.2228 \\
+Error promedio (m) & 0.9108 & 0.7761 \\
+Desviación std (m) & 0.4176 & 0.7136 \\
+Error mediana (m) & 0.9639 & 0.6766 \\
+\hline
+\end{tabular}
+\end{table}
+
+Para el pecho del sujeto 2, la multilateración presenta un error promedio ligeramente menor (0.7761 m vs 0.9108 m), pero el filtro de Kalman es especialmente efectivo en reducir el error máximo de 3.22 m a 1.70 m y la desviación estándar de 0.71 m a 0.42 m, lo que indica mayor estabilidad en las estimaciones.
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de error para pecho del sujeto 3}
+\label{tab:estadisticas_pecho_s3}
+\begin{tabular}{lcc}
+\hline
+\textbf{Métrica} & \textbf{Filtro de Kalman} & \textbf{Multilateración} \\
+\hline
+Error mínimo (m) & 0.0000 & 0.0863 \\
+Error máximo (m) & 1.4035 & 2.6466 \\
+Error promedio (m) & 0.7027 & 0.7175 \\
+Desviación std (m) & 0.3238 & 0.5985 \\
+Error mediana (m) & 0.6438 & 0.5506 \\
+\hline
+\end{tabular}
+\end{table}
+
+En el pecho del sujeto 3, el filtro de Kalman logra un error promedio marginalmente mejor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y la desviación estándar (de 0.60 m a 0.32 m), lo que demuestra su capacidad para estabilizar las estimaciones en presencia de condiciones NLOS.
+
+
+\section{DISCUSIÓN DE RESULTADOS}
+\label{sec:discusion_resultados_2d}
+
+Los resultados obtenidos muestran que el desempeño del sistema de posicionamiento 2D varía dependiendo de la configuración de medición y del algoritmo utilizado. Para el tag sin interferencia del cuerpo humano, la multilateración directa presenta mejor precisión, mientras que en presencia del cuerpo humano (especialmente en la posición de pecho), el filtro de Kalman logra reducir significativamente los errores y mejorar la estabilidad de las estimaciones.
+
+La aplicación del filtro de Kalman es particularmente efectiva para reducir los errores máximos, como se observa en el caso del pecho del sujeto 1, donde se reduce de 2.67 m a 1.37 m. Esto demuestra la capacidad del filtro para suavizar las trayectorias y reducir el impacto de las mediciones atípicas causadas por condiciones NLOS.
