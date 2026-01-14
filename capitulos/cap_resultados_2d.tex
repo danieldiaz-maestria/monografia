@@ -1,60 +1,44 @@
 \chapter{FASE 2: SISTEMA DE POSICIONAMIENTO 2D COMPLETO}
 \label{sec:desempeno_posicionamiento}
+En esta fase se evalúa el desempeño del sistema de posicionamiento en un entorno 2D completo, utilizando las técnicas y algoritmos desarrollados en las fases anteriores. Se realizan experimentos en un salón cerrado con dimensiones conocidas, donde se colocan anclas en posiciones fijas y se mide la precisión del sistema al estimar la posición de una etiqueta móvil a lo largo de 18 posiciones distribuidas en el área del salón.
 
-La Fase 2 de esta investigación corresponde a la implementación y evaluación del sistema completo de posicionamiento 2D utilizando cuatro nodos ancla en configuración geométrica. Esta fase integrará las mediciones de distancia hacia múltiples anclas para estimar posiciones 2D del nodo móvil mediante algoritmos de trilateración.
 
-Los resultados de la Fase 1 presentados en el anterior capítulo establecen la línea base de desempeño del sistema de estimación de distancia bajo diferentes condiciones de obstrucción corporal. La Fase 2 utilizará estos hallazgos para:
+\section{ESCENARIO EXPERIMENTAL}
+\label{sec:escenario_experimental_2d}
 
+\subsection{Configuración de anclas}
+
+La información de las anclas se refiere a cada una de las paredes del salón. Cada par de medidas indica: la primera medida respecto de la sección más larga del salón y la segunda respecto de la sección más corta.
+
+La primera ancla se coloca en la puerta y, a partir de ella, en sentido horario se colocan las restantes en cada esquina. Se toma como sistema de referencia un eje cartesiano con origen $(0,0)$ ubicado en la esquina próxima al punto junto al Ancla 2. El eje $x$ recorre el largo del salón (0 a 10.4 m) y el eje $y$ recorre el ancho (0 a 7.4 m). Las medidas de las anclas se expresan en centímetros en el croquis original; se convierten a metros para obtener coordenadas.
+
+Dados los pares (distancia respecto de la sección más larga, distancia respecto de la sección más corta) y siguiendo la disposición en sentido horario, las coordenadas relativas a $(0,0)$ son:
 \begin{itemize}
-\item Implementar el sistema completo de localización con cuatro nodos ancla en el escenario experimental.
-\item Evaluar el error de posicionamiento 2D (distancia euclidiana entre posición estimada y real).
-\item Analizar métricas como el error euclidiano, exactitud al 95\%, y RMSE de posición.
-\item Evaluar la robustez de un filtro de Kalman extendido para mitigar el error de posicionamiento.
-\item Generar mapas de calor de error de posición en el área del escenario experimental.
+    \item Ancla 1 (37,29) → $A=(0.37\,\mathrm{m},\,0.29\,\mathrm{m})$ en el croquis; como está en la esquina opuesta en $x$: $x=10.4-0.29=10.11\,$m, $y=0.37\,$m. Coordenadas: $(10.11,\;0.37)$ m.
+    \item Ancla 2 (38,28) → cercana al origen: $x=0.28\,$m, $y=0.38\,$m. Coordenadas: $(0.28,\;0.38)$ m.
+    \item Ancla 3 (68,28) → esquina opuesta en $y$: $x=0.28\,$m, $y=7.4-0.68=6.72\,$m. Coordenadas: $(0.28,\;6.72)$ m.
+    \item Ancla 4 (43,31) → esquina lejana en $x$ y $y$: $x=10.4-0.31=10.09\,$m, $y=7.4-0.43=6.97\,$m. Coordenadas: $(10.09,\;6.97)$ m.
 \end{itemize}
 
-Los resultados de la Fase 2 serán presentados en sección subsiguiente una vez completada la experimentación correspondiente.
+Todas las anclas están colocadas a una altura de 1.52 m sobre el suelo.
 
-[COMPLETAR: Incluir figuras mostrando mapas de calor del error de posición en el área del escenario experimental para cada ubicación corporal]
+El salón experimental presenta las siguientes dimensiones:
+\begin{itemize}
+    \item Ancho: 7.4 m
+    \item Largo: 10.4 m
+\end{itemize}
 
-\begin{figure}[ht]
-    \centering
-    % \includegraphics[width=1.0\textwidth]{imagenes/mapa_error_pecho.pdf}
-    \caption{Mapa de Calor del Error de Posición - Dispositivo en Pecho}
-    \label{fig:mapa_error_pecho}
-\end{figure}
+Las marcas de la etiqueta (posiciones del nodo móvil/etiqueta) se disponen tal como se muestra en la figura correspondiente del croquis experimental.
 
+Las filas de marcas se colocan a las siguientes distancias desde el lado más largo del salón donde está ubicado el punto de referencia (origen $(0,0)$):
 
-\section{ANÁLISIS DE CASOS EXTREMOS}
-\label{sec:casos_extremos}
+\begin{itemize}
+    \item Primera fila: 0.70 m
+    \item Segunda fila: 3.00 m
+    \item Tercera fila: 5.40 m
+\end{itemize}
 
-\subsection{Condiciones de Peor Caso}
+La separación entre marcas a lo largo de cada fila es de 1.5 m.
 
-Se identificaron las combinaciones de ubicación corporal, orientación del cuerpo y posición en el escenario que resultaron en los mayores errores de estimación de distancia y posición.
+Las 18 posiciones de medición se distribuyen en una cuadrícula de 3 filas × 6 columnas. Las coordenadas $(x, y)$ de cada marca se presentan en la siguiente \textcolor{red}{figura}
 
-[COMPLETAR: Describir los escenarios de peor caso observados, con datos cuantitativos]
-
-\subsection{Condiciones de Mejor Caso}
-
-[COMPLETAR: Similar al anterior, para condiciones óptimas]
-
-
-\section{EFECTOS DE SEGUNDA ORDEN}
-\label{sec:efectos_segunda_orden}
-
-\subsection{Influencia de la Distancia}
-
-[COMPLETAR: Analizar si el error de BS depende de la distancia entre el nodo móvil y los nodos ancla]
-
-\subsection{Efecto del Multitrayecto del Entorno}
-
-[COMPLETAR: Si es posible distinguir, analizar la contribución del multitrayecto del entorno vs. el efecto directo de la obstrucción corporal]
-
-
-\section{SÍNTESIS DE RESULTADOS}
-
-Este capítulo ha presentado los resultados experimentales obtenidos al evaluar sistemáticamente el efecto de la obstrucción corporal en un sistema de posicionamiento UWB operando en la banda de 6.5 GHz. Los datos recolectados abarcan múltiples ubicaciones de portación del dispositivo, orientaciones relativas del cuerpo, y participantes con características antropométricas diversas.
-
-Los resultados evidencian que [COMPLETAR: resumen cualitativo de los hallazgos principales sin interpretación profunda, ej. "el error de distancia varía significativamente según la ubicación corporal del dispositivo y la orientación relativa, con valores que van desde X cm en condiciones óptimas hasta X metros en condiciones de obstrucción severa"].
-
-El siguiente capítulo profundizará en la interpretación de estos resultados, comparándolos con el estado del arte y discutiendo las implicaciones prácticas y teóricas de los hallazgos.
