@@ -73,16 +73,6 @@ Adicionalmente, la propagación de exactitud de distancia hacia exactitud de pos
 \section{COMPARACIÓN CON EL ESTADO DEL ARTE}
 \label{sec:comparacion_estado_arte}
 
-\subsection{Contraste con Estudios de Simulación}
-
-Los resultados experimentales pueden contrastarse con los modelos de simulación revisados en el capítulo de revisión sistemática de literatura.
-
-El estudio de Otim et al. (2019) predijo mediante simulaciones FDTD que la atenuación por obstrucción corporal en UWB alcanzaría valores de 20-40 dB dependiendo de la ubicación del dispositivo y la orientación del cuerpo. Sus simulaciones sugirieron que la difracción alrededor del cuerpo humano introduce retardos adicionales equivalentes a errores de distancia de 30-80 cm en condiciones NLOS. Nuestros resultados experimentales en 6.5 GHz corroboran este rango, obteniendo MAE de 32.43 cm (cabeza, NLOS exterior) hasta 94.78 cm (cadera, NLOS exterior), confirmando las predicciones del modelo FDTD.
-
-Sin embargo, las simulaciones de Otim et al. no capturaron completamente la variabilidad inter-ubicación observada experimentalmente. El modelo FDTD utilizó un maniquí homogéneo simplificado, mientras que nuestras mediciones con sujetos reales revelan que la heterogeneidad del tejido biológico y la variabilidad postural introducen dispersión estadística significativa (desviación estándar 10-71 cm en NLOS según ubicación). Esto sugiere que modelos de simulación más sofisticados con anatomía realista multi-tejido serían necesarios para predecir con exactitud la distribución completa del error, no solo su valor medio.
-
-El trabajo de Fan et al. (2019) empleó simulaciones de canal UWB en MATLAB para caracterizar condiciones NLOS, reportando que características espectrales de la señal (ancho de pulso, amplitud del primer arribo) permitían clasificar LOS vs NLOS con exactitud superior al 90\%. Este hallazgo es consistente con nuestras observaciones: la diferencia en MAE entre LOS (4.6-8.3 cm) y NLOS (18-95 cm) es suficientemente marcada para que técnicas de detección NLOS basadas en características de señal sean viables, aunque no implementadas en este estudio.
-
 \subsection{Concordancia con Estudios Experimentales}
 
 Varios estudios experimentales previos han caracterizado el efecto de la obstrucción corporal en sistemas UWB, permitiendo comparaciones directas con nuestros resultados.
@@ -92,8 +82,6 @@ El trabajo de Tanghe et al. (2023) reportó errores de distancia promedio de 15-
 El estudio de Schimtt et al. (2019) analizó el impacto de BS en IPS basados en RF, reportando degradación de exactitud de 12 cm (LOS) a 85 cm (NLOS promedio) para dispositivos en torso. Nuestros resultados para pecho muestran concordancia notable: 4.62-13.74 cm (LOS) degradando a 63.69-83.98 cm (NLOS). La similitud cuantitativa confirma que la magnitud del efecto de BS en la banda 6-7 GHz es consistente entre diferentes implementaciones de hardware UWB.
 
 Pradabphon et al. (2019) evaluaron experimentalmente la propagación UWB con cuerpo humano, reportando que la ubicación en cabeza presentaba menor variabilidad de error que ubicaciones en torso. Este hallazgo es directamente confirmado por nuestros datos: la desviación estándar del error en cabeza (3.72-11.20 cm) es consistentemente menor que en cadera (5.34-71.00 cm) y pecho (3.09-58.35 cm), validando la recomendación de cabeza como ubicación óptima para aplicaciones que requieren exactitud consistente.
-
-El trabajo experimental de Sasaki et al. sobre BS en UWB-WBANs reportó atenuación máxima de 30 dB para señales que atraviesan el torso. Asumiendo que 30 dB de atenuación adicional puede resultar en pérdida completa de detección del primer arribo y dependencia en trayectos difractados, esto es consistente con nuestros errores máximos observados de 1.5-2.9 m en cadera NLOS, donde la señal directa es completamente bloqueada por torso y pelvis.
 
 \subsection{Aporte Diferencial de este Estudio}
 
