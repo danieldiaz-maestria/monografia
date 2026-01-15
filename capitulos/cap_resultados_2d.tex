@@ -263,9 +263,158 @@ Error mediana (m) & 0.6438 & 0.5506 \\
 En el pecho del sujeto 3, el filtro de Kalman logra un error promedio marginalmente mejor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y la desviación estándar (de 0.60 m a 0.32 m), lo que demuestra su capacidad para estabilizar las estimaciones en presencia de condiciones NLOS.
 
 
-\section{DISCUSIÓN DE RESULTADOS}
-\label{sec:discusion_resultados_2d}
+\section{ANÁLISIS DEL TIEMPO DE VUELO (ToF)}
+\label{sec:analisis_tiempo_vuelo_2d}
 
-Los resultados obtenidos muestran que el desempeño del sistema de posicionamiento 2D varía dependiendo de la configuración de medición y del algoritmo utilizado. Para el tag sin interferencia del cuerpo humano, la multilateración directa presenta mejor precisión, mientras que en presencia del cuerpo humano (especialmente en la posición de pecho), el filtro de Kalman logra reducir significativamente los errores y mejorar la estabilidad de las estimaciones.
+El análisis del Tiempo de Vuelo (ToF) permite caracterizar directamente la calidad de las mediciones de distancia en el sistema de posicionamiento 2D. En esta sección se presentan los resultados del análisis comparativo entre condiciones LOS y NLOS para cada configuración evaluada.
 
-La aplicación del filtro de Kalman es particularmente efectiva para reducir los errores máximos, como se observa en el caso del pecho del sujeto 1, donde se reduce de 2.67 m a 1.37 m. Esto demuestra la capacidad del filtro para suavizar las trayectorias y reducir el impacto de las mediciones atípicas causadas por condiciones NLOS.
+\subsection{Estadísticas Globales de ToF}
+
+El análisis consolidado de todas las mediciones (252 mediciones LOS y 252 NLOS) revela patrones importantes en el comportamiento del sistema:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas globales de ToF: Comparación LOS vs NLOS}
+\label{tab:tof_global}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Estadística} & \textbf{LOS} & \textbf{NLOS} & \textbf{$\Delta$ (NLOS-LOS)} \\
+\hline
+ToF Promedio (ns) & 24.58 & 21.85 & -2.73 \\
+ToF Mediana (ns) & 24.72 & 22.45 & -2.27 \\
+ToF Desv. Std (ns) & 7.33 & 8.18 & 0.86 \\
+ToF Rango (ns) & 28.52 & 42.86 & 14.35 \\
+Desv. Std Promedio (ns) & 0.18 & 0.63 & 0.45 \\
+Coef. Variación (\%) & 29.63 & 36.44 & 6.81 \\
+\hline
+\end{tabular}
+\end{table}
+
+El hallazgo más crítico es el incremento de 251.64\% en la desviación estándar promedio al pasar de condiciones LOS a NLOS, señalando mayor incertidumbre en las mediciones. El rango de valores ToF en NLOS (42.86 ns) es 1.50× mayor que en LOS, indicando mayor dispersión temporal de las mediciones. Este aumento en variabilidad es directamente responsable de la degradación en exactitud de posicionamiento observada en la sección anterior.
+
+\subsection{Resultados por Configuración}
+
+\subsubsection{Tag (Referencia)}
+
+Para el tag sin obstrucción corporal, se obtuvieron los siguientes resultados:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para el tag}
+\label{tab:tof_tag}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS} & \textbf{NLOS} & \textbf{Diferencia} \\
+\hline
+ToF Desv. Estándar (ns) & 7.50 & 8.07 & 0.57 \\
+ToF Rango (ns) & 27.97 & 28.44 & 0.47 \\
+Desv. Std Promedio (ns) & 0.10 & 0.09 & -0.02 \\
+Coef. Variación (\%) & 29.39 & 37.70 & 8.31 \\
+\hline
+\end{tabular}
+\end{table}
+
+El tag presenta variabilidad mínima y consistente entre LOS y NLOS, confirmando que sin obstrucción corporal, el sistema mantiene excelente estabilidad temporal.
+
+\subsubsection{Cadera}
+
+Los resultados para cadera muestran incremento moderado en variabilidad:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para cadera (promedio de 3 sujetos)}
+\label{tab:tof_cadera}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS} & \textbf{NLOS} & \textbf{Diferencia} \\
+\hline
+ToF Desv. Std (ns) - S1 & 7.34 & 7.62 & 0.28 \\
+ToF Desv. Std (ns) - S2 & 7.22 & 7.47 & 0.25 \\
+ToF Desv. Std (ns) - S3 & 7.31 & 8.22 & 0.91 \\
+Desv. Std Prom (ns) - S1 & 0.21 & 0.61 & 0.40 \\
+Desv. Std Prom (ns) - S2 & 0.18 & 0.59 & 0.40 \\
+Desv. Std Prom (ns) - S3 & 0.19 & 0.97 & 0.78 \\
+\hline
+\end{tabular}
+\end{table}
+
+La cadera presenta incremento en desviación estándar promedio de 0.40-0.78 ns entre sujetos, con el sujeto 3 mostrando mayor degradación (0.97 ns en NLOS).
+
+\subsubsection{Pecho}
+
+El pecho exhibe la mayor variabilidad en condiciones NLOS:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para pecho (3 sujetos)}
+\label{tab:tof_pecho}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS} & \textbf{NLOS} & \textbf{Diferencia} \\
+\hline
+ToF Desv. Std (ns) - S1 & 7.40 & 8.36 & 0.95 \\
+ToF Desv. Std (ns) - S2 & 7.22 & 9.08 & 1.86 \\
+ToF Desv. Std (ns) - S3 & 7.28 & 8.20 & 0.92 \\
+ToF Rango (ns) - S2 & 27.37 & 42.86 & 15.49 \\
+Desv. Std Prom (ns) - S1 & 0.20 & 0.90 & 0.70 \\
+Desv. Std Prom (ns) - S2 & 0.18 & 0.56 & 0.38 \\
+Desv. Std Prom (ns) - S3 & 0.18 & 0.69 & 0.52 \\
+\hline
+\end{tabular}
+\end{table}
+
+El pecho del sujeto 2 presenta el máximo rango ToF registrado (42.86 ns) y desviación estándar de 9.08 ns en NLOS, correlacionando directamente con los errores de posicionamiento más altos observados en este sujeto.
+
+\subsection{Visualización de ToF por Ancla}
+
+La Figura \ref{fig:tof_pecho_s1} muestra la distribución temporal de ToF para cada una de las cuatro anclas en el caso del pecho del sujeto 1, permitiendo identificar patrones de variabilidad específicos por ancla.
+
+\begin{figure}[hbt]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{PruebasFinales/SALON/Resultados_Kalman/graficas_tof/pecho/sujeto1/pecho_sujeto1_ancla1_tof_sin_outliers.png}
+        \\ (a) Ancla 1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{PruebasFinales/SALON/Resultados_Kalman/graficas_tof/pecho/sujeto1/pecho_sujeto1_ancla2_tof_sin_outliers.png}
+        \\ (b) Ancla 2
+    \end{minipage}
+    
+    \vspace{0.3cm}
+    
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{PruebasFinales/SALON/Resultados_Kalman/graficas_tof/pecho/sujeto1/pecho_sujeto1_ancla3_tof_sin_outliers.png}
+        \\ (c) Ancla 3
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{PruebasFinales/SALON/Resultados_Kalman/graficas_tof/pecho/sujeto1/pecho_sujeto1_ancla4_tof_sin_outliers.png}
+        \\ (d) Ancla 4
+    \end{minipage}
+    
+    \caption{Distribución de ToF sin outliers para cada ancla - Pecho Sujeto 1. Se observa la diferenciación clara entre condiciones LOS y NLOS, con mayor dispersión temporal en NLOS.}
+    \label{fig:tof_pecho_s1}
+\end{figure}
+
+Las gráficas revelan que la Ancla 2 presenta la mayor variabilidad en condiciones NLOS (desviación estándar de 8.52 ns, rango 33.70 ns), mientras que las Anclas 3 y 4 mantienen mejor estabilidad. Esta variabilidad diferencial por ancla sugiere que factores geométricos y de obstrucción corporal específicos afectan cada enlace de manera distinta.
+
+\subsection{Implicaciones para Detección NLOS}
+
+El análisis de ToF permite establecer que la variabilidad (desviación estándar) constituye el indicador más confiable para distinguir condiciones LOS/NLOS:
+
+\begin{itemize}
+\item \textbf{Umbral sugerido:} Mediciones con desviación estándar > 0.49 ns son probablemente NLOS
+\item \textbf{Incremento de variabilidad:} 251.64\% en promedio al pasar de LOS a NLOS
+\item \textbf{Factor de peso:} Se recomienda aplicar peso de 0.28 a mediciones NLOS en algoritmos de trilateración
+\end{itemize}
+
+Estos hallazgos respaldan la implementación de algoritmos de detección NLOS basados en análisis de variabilidad temporal de ToF, los cuales podrían mejorar significativamente la robustez del sistema de posicionamiento al permitir descartar o ponderar adecuadamente mediciones degradadas por obstrucción corporal.
