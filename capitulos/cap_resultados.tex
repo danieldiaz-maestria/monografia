@@ -504,26 +504,35 @@ Para visualizar mejor la desviación respecto a la normalidad en las colas de la
 \subsection{Parametrización de los Modelos Ajustados}
 \label{sec:parametrizacion_modelos}
 
-Con base en el análisis de bondad de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. Antes de presentar los valores específicos, se definen las tres distribuciones teóricas seleccionadas y la interpretación física de sus parámetros:
+Con base en el análisis de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. Antes de presentar los valores específicos, se definen las tres distribuciones teóricas seleccionadas y la interpretación física de sus parámetros:
 
 \begin{itemize}
-    \item \textbf{Distribución Gamma:} Frecuentemente utilizada para modelar errores asimétricos positivos.
+    \item \textbf{Distribución Gamma:} 
     \begin{equation}
     f(x) = \frac{x^{\alpha-1} e^{-x/\theta}}{\theta^\alpha \Gamma(\alpha)}
     \end{equation}
     Donde $\alpha$ (parámetro de forma) define la curtosis de la distribución y $\theta$ (parámetro de escala) modula la dispersión de la cola.
     
-    \item \textbf{Distribución Weibull:} Común en análisis de confiabilidad y tiempos de fallo.
+    \item \textbf{Distribución Weibull:}
     \begin{equation}
     f(x) = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-(x/\lambda)^k}
     \end{equation}
     Donde $k$ es el parámetro de forma y $\lambda$ el parámetro de escala. Un $k < 1$ indica una tasa de probabilidad decreciente.
     
-    \item \textbf{Distribución Log-normal:} Modela variables resultantes de procesos multiplicativos (como la atenuación por múltiples obstáculos).
+    \item \textbf{Distribución Log-normal:}
     \begin{equation}
     f(x) = \frac{1}{x \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln x - \mu)^2}{2\sigma^2}\right)
     \end{equation}
     Donde $\mu$ y $\sigma$ representan la media y desviación estándar del logaritmo natural de la variable, respectivamente.
+\end{itemize}
+
+Es crucial detallar la metodología utilizada para la obtención de estos parámetros a partir de los datos crudos. El ajuste no se basó en el método de momentos (igualación simple de medias y varianzas), sino en el método de \textbf{Máxima Verosimilitud (Maximum Likelihood Estimation - MLE)}. Este algoritmo busca iterativamente los valores de los parámetros que maximizan la probabilidad matemática de observar la muestra experimental exacta, garantizando un ajuste óptimo incluso en distribuciones con colas pesadas.
+
+Conceptualmente, sin embargo, los parámetros conservan una relación física directa con la estadística descriptiva de los datos reales:
+\begin{itemize}
+    \item En el caso \textbf{Gamma}, $\alpha$ y $\theta$ dependen de la relación señal-ruido inherente a los datos ($E[x]^2 / Var[x]$). Una varianza alta en comparación con la media resulta en un parámetro de forma $\alpha$ bajo.
+    \item En el caso \textbf{Log-normal}, los parámetros $\mu$ y $\sigma$ corresponden exactamente al promedio y la desviación estándar de los datos transformados logarítmicamente ($y = \ln(x)$).
+    \item En el caso \textbf{Weibull}, el parámetro de escala $\lambda$ representa un valor de error característico, mientras que la forma $k$ modela la pendiente de la distribución.
 \end{itemize}
 
 La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada comparando el MAE teórico del modelo con el experimental.
