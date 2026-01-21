@@ -369,6 +369,7 @@ Con el fin de analizar cómo el entorno influye en el desempeño del sistema baj
 \label{tab:nlos_escenario}
 \begin{tabular}{lccccc}
 \toprule
+\rowcolor{headerblue}
 \textbf{Ubicación} & \textbf{Exteriores[m]} & \textbf{Interiores[m]} & \textbf{$p$-valor} & Efecto ($r$) & \textbf{Magnitud} \\
 \midrule
 CABEZA  & 0.320 & 0.187 & $\ll 0.001$ & -0.660 & grande  \\
@@ -397,13 +398,32 @@ En síntesis, el hecho de que el escenario \textit{Interiores} presente MAE meno
 \section{Análisis de la Distribución de Probabilidad del MAE}
 \label{sec:analisis_distribucion_mae}
 
-Con el objetivo de caracterizar formalmente el comportamiento estocástico del error de medición y validar la hipótesis de no normalidad sugerida en las secciones anteriores, se realizó un análisis de ajuste de distribuciones probabilísticas sobre el conjunto total de datos experimentales ($N=101,552$ muestras). Se evaluaron seis distribuciones teóricas candidatas: Normal, Log-normal, Gamma, Weibull, Exponencial y Uniforme. La bondad de ajuste se determinó mediante el Criterio de Información de Akaike (AIC) y el Criterio de Información Bayesiano (BIC), donde valores menores indican un mejor compromiso entre la fidelidad del ajuste y la complejidad del modelo.
+Con el objetivo de caracterizar formalmente el comportamiento estocástico del error de medición y validar la hipótesis de no normalidad sugerida en las secciones anteriores, se realizó un análisis de ajuste de distribuciones probabilísticas sobre el conjunto total de datos experimentales ($N=101,552$ muestras). Se evaluaron seis distribuciones teóricas candidatas: Normal, Log-normal, Gamma, Weibull, Exponencial y Uniforme. El ajuste se determinó mediante el Criterio de Información de Akaike (AIC) y el Criterio de Información Bayesiano (BIC), donde valores menores indican un mejor compromiso entre la fidelidad del ajuste y la complejidad del modelo.
 
 \subsection{Ajuste Global de Datos}
 
-El análisis del conjunto global de datos confirma de manera concluyente que la distribución Normal es inadecuada para modelar el error de distancia en sistemas UWB bajo condiciones mixtas (LOS/NLOS). El análisis de bondad de ajuste revela que la distribución Normal presenta valores de AIC significativamente superiores (peor ajuste) en comparación con distribuciones asimétricas como Gamma o Log-normal.
+El análisis del conjunto global de datos confirma de manera concluyente que la distribución Normal es inadecuada para modelar el error de distancia en sistemas UWB bajo condiciones mixtas (LOS/NLOS). El análisis del ajuste revela que la distribución Normal presenta valores de AIC significativamente superiores (peor ajuste) en comparación con distribuciones asimétricas como Gamma o Log-normal.
 
 La Figura~\ref{fig:ajuste_todos} presenta el histograma del error absoluto para la totalidad de las mediciones, superpuesto con las curvas de densidad de probabilidad ajustadas. Se evidencia claramente la asimetría positiva de los datos experimentales, característica que es capturada eficazmente por la distribución Gamma (mejor ajuste global), mientras que la curva Normal subestima la densidad en la región cercana a cero y no logra modelar adecuadamente la cola pesada de la distribución.
+
+\begin{table}[ht]
+\centering
+\caption{Ajuste para el conjunto total de datos ($N=101,552$). Se ordenan las distribuciones por el criterio AIC de menor a mayor (mejor ajuste).}
+\label{tab:ajuste_todos}
+\begin{tabular}{lcccc}
+\toprule
+\rowcolor{headerblue}
+\textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
+\midrule
+Gamma       & -125,845.02 & -125,816.43 & 0.2261 & 0.00 \\
+Log-normal  & -83,510.28  & -83,481.70  & 0.0378 & 0.00 \\
+Exponencial & -79,051.37  & -79,032.31  & 0.1008 & 0.00 \\
+Normal      & 55,016.18   & 55,035.24   & 0.2160 & 0.00 \\
+Uniforme    & 339,868.33  & 339,887.39  & 0.8005 & 0.00 \\
+Weibull     & 2,289,166.27& 2,289,194.85& 0.0561 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[hbt]
     \centering
@@ -414,7 +434,7 @@ La Figura~\ref{fig:ajuste_todos} presenta el histograma del error absoluto para 
 
 \subsection{Análisis Comparativo LOS vs. NLOS}
 
-Al segregar los datos por condición de propagación, se revelan diferencias fundamentales en la estructura probabilística del error.
+Al segmentar los datos por condición de propagación, se revelan diferencias fundamentales en la estructura probabilística del error.
 
 \textbf{Condición de Línea de Vista (LOS):} En condiciones LOS ($N=56,571$), la distribución Gamma se mantiene como el modelo óptimo (ver Figura~\ref{fig:ajuste_los}). El error se concentra fuertemente en valores bajos, con una dispersión controlada. Aunque la asimetría persiste, es menos pronunciada que en el caso global.
 
@@ -425,7 +445,26 @@ Al segregar los datos por condición de propagación, se revelan diferencias fun
     \label{fig:ajuste_los}
 \end{figure}
 
-\textbf{Condición de No Línea de Vista (NLOS):} En condiciones NLOS ($N=44,981$), la distribución del error sufre una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC indica que la distribución Log-normal ofrece el mejor ajuste para estos datos, superando ligeramente a la Gamma. Este cambio de modelo sugiere que los mecanismos físicos de obstrucción y multitrayecto introducen efectos multiplicativos en el error, lo cual es consistente con la génesis de procesos log-normales.
+La Tabla~\ref{tab:ajuste_los} detalla las métricas de ajuste para el escenario LOS, donde la distribución Gamma minimiza tanto el AIC como el BIC.
+
+\begin{table}[ht]
+\centering
+\caption{Ajuste para condiciones de Línea de Vista (LOS).}
+\label{tab:ajuste_los}
+\begin{tabular}{lcccc}
+\toprule
+\rowcolor{headerblue}
+\textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
+\midrule
+Gamma       & -132,051.35 & -132,024.52 & 0.0883 & 0.00 \\
+Log-normal  & -124,128.73 & -124,101.90 & 0.0551 & 0.00 \\
+Exponencial & -123,109.07 & -123,091.19 & 0.0746 & 0.00 \\
+Normal      & -61,789.28  & -61,771.40  & 0.2069 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Condición de No Línea de Vista (NLOS):} En condiciones NLOS ($N=44,981$), la distribución del error sufre una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC muestra que la Log-normal supera ligeramente a la Gamma como mejor ajuste. Esto indica efectos multiplicativos por obstrucción y multitrayecto, típicos de procesos log-normales
 
 \begin{figure}[hbt]
     \centering
@@ -433,6 +472,25 @@ Al segregar los datos por condición de propagación, se revelan diferencias fun
     \caption{Ajuste de distribuciones para mediciones en condición NLOS.}
     \label{fig:ajuste_nlos}
 \end{figure}
+
+Como se observa en la Tabla~\ref{tab:ajuste_nlos}, en condiciones NLOS la distribución Log-normal presenta el mejor ajuste (menor AIC), desplazando a la Gamma.
+
+\begin{table}[ht]
+\centering
+\caption{Ajuste para condiciones de No Línea de Vista (NLOS).}
+\label{tab:ajuste_nlos}
+\begin{tabular}{lcccc}
+\toprule
+\rowcolor{headerblue}
+\textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
+\midrule
+Log-normal  & 7,145.36    & 7,171.50    & 0.0522 & 0.00 \\
+Gamma       & 7,762.93    & 7,789.07    & 0.0663 & 0.00 \\
+Exponencial & 9,075.48    & 9,092.91    & 0.0717 & 0.00 \\
+Normal      & 44,631.39   & 44,648.82   & 0.1829 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Para visualizar mejor la desviación respecto a la normalidad en las colas de la distribución (donde ocurren los errores grandes, críticos para la confiabilidad del sistema), se presenta el gráfico Q-Q (Quantile-Quantile) para los datos NLOS en la Figura~\ref{fig:qq_nlos}. La divergencia de los puntos experimentales (azul) respecto a la línea roja de referencia (distribución normal teórica) en los extremos confirma que los errores grandes son mucho más frecuentes de lo que predeciría un modelo gaussiano.
 
