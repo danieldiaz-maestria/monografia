@@ -504,35 +504,54 @@ Para visualizar mejor la desviación respecto a la normalidad en las colas de la
 \subsection{Parametrización de los Modelos Ajustados}
 \label{sec:parametrizacion_modelos}
 
-Con base en el análisis de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. Antes de presentar los valores específicos, se definen las tres distribuciones teóricas seleccionadas y la interpretación física de sus parámetros:
+Con base en el análisis de bondad de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. A continuación se presentan las ecuaciones teóricas de las distribuciones seleccionadas y la interpretación física de sus parámetros, conforme al marco teórico utilizado para la caracterización.
 
+\subsubsection{Distribuciones de Probabilidad Teóricas}
+
+\textbf{1. Distribución Gamma} (Frecuentemente óptima para LOS y errores asimétricos):
+\begin{equation}
+f(x) = \frac{(x-\gamma)^{\alpha-1} e^{-(x-\gamma)/\theta}}{\theta^\alpha \Gamma(\alpha)}
+\end{equation}
+Donde:
 \begin{itemize}
-    \item \textbf{Distribución Gamma:} 
-    \begin{equation}
-    f(x) = \frac{x^{\alpha-1} e^{-x/\theta}}{\theta^\alpha \Gamma(\alpha)}
-    \end{equation}
-    Donde $\alpha$ (parámetro de forma) define la curtosis de la distribución y $\theta$ (parámetro de escala) modula la dispersión de la cola.
-    
-    \item \textbf{Distribución Weibull:}
-    \begin{equation}
-    f(x) = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-(x/\lambda)^k}
-    \end{equation}
-    Donde $k$ es el parámetro de forma y $\lambda$ el parámetro de escala. Un $k < 1$ indica una tasa de probabilidad decreciente.
-    
-    \item \textbf{Distribución Log-normal:}
-    \begin{equation}
-    f(x) = \frac{1}{x \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln x - \mu)^2}{2\sigma^2}\right)
-    \end{equation}
-    Donde $\mu$ y $\sigma$ representan la media y desviación estándar del logaritmo natural de la variable, respectivamente.
+    \item $x$: Variable aleatoria (Error de posicionamiento en metros).
+    \item $\alpha$ (o $k$): Parámetro de forma. Define la curtosis o qué tan "picuda" es la curva.
+    \item $\theta$ (o \textit{scale}): Parámetro de escala. Define la dispersión hacia la derecha.
+    \item $\Gamma(\cdot)$: Función Gamma.
+    \item $\gamma$ (o \textit{loc}): Desplazamiento del origen.
 \end{itemize}
 
-Es crucial detallar la metodología utilizada para la obtención de estos parámetros a partir de los datos crudos. El ajuste no se basó en el método de momentos (igualación simple de medias y varianzas), sino en el método de \textbf{Máxima Verosimilitud (Maximum Likelihood Estimation - MLE)}. Este algoritmo busca iterativamente los valores de los parámetros que maximizan la probabilidad matemática de observar la muestra experimental exacta, garantizando un ajuste óptimo incluso en distribuciones con colas pesadas.
-
-Conceptualmente, sin embargo, los parámetros conservan una relación física directa con la estadística descriptiva de los datos reales:
+\textbf{2. Distribución Weibull} (Común en análisis de confiabilidad):
+\begin{equation}
+f(x) = \frac{k}{\lambda} \left(\frac{x-\gamma}{\lambda}\right)^{k-1} \exp\left(-\left(\frac{x-\gamma}{\lambda}\right)^k\right)
+\end{equation}
+Donde:
 \begin{itemize}
-    \item En el caso \textbf{Gamma}, $\alpha$ y $\theta$ dependen de la relación señal-ruido inherente a los datos ($E[x]^2 / Var[x]$). Una varianza alta en comparación con la media resulta en un parámetro de forma $\alpha$ bajo.
-    \item En el caso \textbf{Log-normal}, los parámetros $\mu$ y $\sigma$ corresponden exactamente al promedio y la desviación estándar de los datos transformados logarítmicamente ($y = \ln(x)$).
-    \item En el caso \textbf{Weibull}, el parámetro de escala $\lambda$ representa un valor de error característico, mientras que la forma $k$ modela la pendiente de la distribución.
+    \item $k$ (o \textit{shape}): Parámetro de forma. Si $k < 1$, la tasa de probabilidad decrece.
+    \item $\lambda$ (o \textit{scale}): Parámetro de escala.
+    \item $\gamma$ (o \textit{loc}): Desplazamiento del origen.
+\end{itemize}
+
+\textbf{3. Distribución Log-normal} (Común en NLOS y procesos multiplicativos):
+\begin{equation}
+f(x) = \frac{1}{(x-\gamma) \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln(x-\gamma) - \mu)^2}{2\sigma^2}\right)
+\end{equation}
+Donde:
+\begin{itemize}
+    \item $\mu$: Media del logaritmo de los datos.
+    \item $\sigma$ (o \textit{shape}): Desviación estándar del logaritmo.
+    \item $\gamma$ (o \textit{loc}): Desplazamiento.
+\end{itemize}
+
+\subsubsection{Metodología de Obtención de Parámetros}
+
+El paso de los datos experimentales a los parámetros del modelo se realizó mediante el \textbf{Método de Máxima Verosimilitud (MLE)}. A diferencia del método de momentos (que iguala medias y varianzas), el MLE busca iterativamente los valores de los parámetros que maximizan la probabilidad matemática de haber observado exactamente la muestra de datos recolectada ($x_1, x_2, ..., x_n$).
+
+No obstante, existe una relación conceptual entre la estadística descriptiva y los parámetros obtenidos:
+\begin{itemize}
+    \item \textbf{Caso Gamma:} $\alpha \approx E[x]^2 / Var[x]$ y $\theta \approx Var[x] / E[x]$. Si la varianza es alta respecto a la media, $\alpha$ tiende a ser bajo.
+    \item \textbf{Caso Log-normal:} Los parámetros surgen de transformar los datos $y = \ln(x-\gamma)$, donde $\mu = \bar{y}$ y $\sigma = S_y$.
+    \item \textbf{Caso Weibull:} $\lambda$ representa un valor característico cercano a la media, mientras que $k$ controla la pendiente de la distribución.
 \end{itemize}
 
 La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada comparando el MAE teórico del modelo con el experimental.
@@ -586,7 +605,37 @@ Es importante notar que este modelo incluye un parámetro de desplazamiento (\te
 
 \subsubsection{Modelos Específicos por Ubicación}
 
-Para ubicaciones críticas como la cadera y el pecho, los modelos ajustados revelan comportamientos particulares. En NLOS, tanto cadera como pecho se ajustan mejor a distribuciones Gamma con parámetros de forma $\alpha > 2.5$, lo que indica una distribución más acampanada y desplazada hacia la derecha en comparación con el caso LOS. Sorprendentemente, para el caso LOS en estas ubicaciones, la distribución Weibull ofrece un mejor ajuste que la Gamma, sugiriendo que la obstrucción parcial del propio cuerpo altera la naturaleza del error incluso cuando existe línea de vista geométrica.
+El análisis desagregado para las ubicaciones más críticas (Cadera y Pecho) revela patrones específicos que difieren del modelo global, lo cual justifica el uso de modelos adaptativos si se conoce la ubicación del dispositivo.
+
+\paragraph{Ubicación: Cadera}
+En condiciones LOS, la distribución Weibull ofrece el mejor ajuste, con un parámetro de forma $k \approx 1.58$. En contraste, para NLOS, el error sigue una distribución Gamma desplazada significativamente ($\gamma \approx 0.12$ m) y con un parámetro de forma alto ($\alpha \approx 3.43$), lo que refleja una distribución más simétrica y alejada del cero que el caso global.
+
+\begin{itemize}
+    \item \textbf{Cadera LOS (Weibull):}
+    \begin{equation}
+    f(x) = \frac{1.5768}{0.0901} \left(\frac{x + 0.0040}{0.0901}\right)^{0.5768} \exp\left(-\left(\frac{x + 0.0040}{0.0901}\right)^{1.5768}\right)
+    \end{equation}
+    
+    \item \textbf{Cadera NLOS (Gamma):}
+    \begin{equation}
+    f(x) = \frac{(x - 0.1268)^{2.4311} e^{-(x - 0.1268)/0.2464}}{0.2464^{3.4311} \Gamma(3.4311)}
+    \end{equation}
+\end{itemize}
+
+\paragraph{Ubicación: Pecho}
+Similar a la cadera, el pecho en LOS se modela mejor con una Weibull, pero con $k < 1$ ($k \approx 0.87$), lo que sugiere una alta probabilidad de errores pequeños pero con una cola pesada de errores ocasionales grandes incluso con línea de vista. En NLOS, la distribución Gamma nuevamente es dominante.
+
+\begin{itemize}
+    \item \textbf{Pecho LOS (Weibull):}
+    \begin{equation}
+    f(x) = \frac{0.8679}{0.1265} \left(\frac{x}{0.1265}\right)^{-0.1321} \exp\left(-\left(\frac{x}{0.1265}\right)^{0.8679}\right)
+    \end{equation}
+    
+    \item \textbf{Pecho NLOS (Gamma):}
+    \begin{equation}
+    f(x) = \frac{(x + 0.0416)^{1.5971} e^{-(x + 0.0416)/0.3542}}{0.3542^{2.5971} \Gamma(2.5971)}
+    \end{equation}
+\end{itemize}
 
 
 
