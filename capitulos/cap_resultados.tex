@@ -501,15 +501,85 @@ Para visualizar mejor la desviación respecto a la normalidad en las colas de la
     \label{fig:qq_nlos}
 \end{figure}
 
-\subsection{Conclusiones del Análisis de Distribución}
+\subsection{Parametrización de los Modelos Ajustados}
+\label{sec:parametrizacion_modelos}
 
-El análisis estadístico permite establecer tres conclusiones fundamentales para el diseño de algoritmos de posicionamiento:
+Con base en el análisis de bondad de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. Antes de presentar los valores específicos, se definen las tres distribuciones teóricas seleccionadas y la interpretación física de sus parámetros:
 
-\begin{enumerate}
-\item \textbf{Rechazo de la hipótesis de normalidad:} El error de distancia UWB no es gaussiano. Asumir normalidad (como hacen los filtros de Kalman estándar o mínimos cuadrados ordinarios) subestimará sistemáticamente la probabilidad de grandes errores, especialmente en NLOS.
-\item \textbf{Modelos dependientes del contexto:} La mejor descripción probabilística cambia con el entorno: Gamma para LOS y Log-normal (o Gamma con parámetros distintos) para NLOS.
-\item \textbf{Implicación para algoritmos robustos:} Los algoritmos de fusión de datos deberían incorporar modelos de error de cola pesada o mecanismos adaptativos que ajusten la varianza del modelo en función de la detección de condiciones NLOS.
-\end{enumerate}
+\begin{itemize}
+    \item \textbf{Distribución Gamma:} Frecuentemente utilizada para modelar errores asimétricos positivos.
+    \begin{equation}
+    f(x) = \frac{x^{\alpha-1} e^{-x/\theta}}{\theta^\alpha \Gamma(\alpha)}
+    \end{equation}
+    Donde $\alpha$ (parámetro de forma) define la curtosis de la distribución y $\theta$ (parámetro de escala) modula la dispersión de la cola.
+    
+    \item \textbf{Distribución Weibull:} Común en análisis de confiabilidad y tiempos de fallo.
+    \begin{equation}
+    f(x) = \frac{k}{\lambda} \left(\frac{x}{\lambda}\right)^{k-1} e^{-(x/\lambda)^k}
+    \end{equation}
+    Donde $k$ es el parámetro de forma y $\lambda$ el parámetro de escala. Un $k < 1$ indica una tasa de probabilidad decreciente.
+    
+    \item \textbf{Distribución Log-normal:} Modela variables resultantes de procesos multiplicativos (como la atenuación por múltiples obstáculos).
+    \begin{equation}
+    f(x) = \frac{1}{x \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln x - \mu)^2}{2\sigma^2}\right)
+    \end{equation}
+    Donde $\mu$ y $\sigma$ representan la media y desviación estándar del logaritmo natural de la variable, respectivamente.
+\end{itemize}
+
+La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada comparando el MAE teórico del modelo con el experimental.
+
+\begin{table}[ht]
+\centering
+\scriptsize
+\caption{Parámetros de los modelos de error ajustados para escenarios globales y específicos.}
+\label{tab:modelos_parametricos}
+\begin{tabular}{lllcc}
+\toprule
+\rowcolor{headerblue}
+\textbf{Escenario} & \textbf{Modelo} & \textbf{Parámetros Estimados} & \textbf{MAE Exp.[m]} & \textbf{MAE Teor.[m]} \\
+\midrule
+\textbf{Global LOS} & Gamma & $\alpha=0.9407$, $\theta=0.1292$ & 0.1239 & 0.1215 \\
+\addlinespace
+\textbf{Global NLOS} & Log-normal & $\sigma=0.8283$, $\mu=-1.1511$ & 0.4069 & 0.4115 \\
+\addlinespace
+\textbf{Cadera LOS} & Weibull & $k=1.5768$, $\lambda=0.0901$ & 0.0771 & 0.0769 \\
+\addlinespace
+\textbf{Cadera NLOS} & Gamma & $\alpha=3.4311$, $\theta=0.2464$ & 0.9723 & 0.9723 \\
+\addlinespace
+\textbf{Pecho LOS} & Weibull & $k=0.8679$, $\lambda=0.1265$ & 0.1117 & 0.1359 \\
+\addlinespace
+\textbf{Pecho NLOS} & Gamma & $\alpha=2.5971$, $\theta=0.3542$ & 0.8783 & 0.8783 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A continuación se detallan las ecuaciones de densidad de probabilidad parametrizadas para los casos globales, las cuales constituyen insumo directo para simulaciones y diseño de filtros de navegación.
+
+\subsubsection{Modelo Global para Condiciones de Línea de Vista (LOS)}
+
+El error en condiciones LOS se modela óptimamente mediante una distribución Gamma con parámetros de forma $\alpha \approx 0.94$ y escala $\theta \approx 0.13$. La función de densidad de probabilidad (PDF) está dada por:
+
+\begin{equation}
+f_{LOS}(x) = \frac{x^{-0.0593} e^{-x/0.1292}}{0.1292^{0.9407} \Gamma(0.9407)}
+\end{equation}
+
+El modelo predice un valor esperado del error de 0.1215 m, lo cual difiere del valor experimental (0.1239 m) en apenas un 1.95\%, validando la alta fidelidad del modelo para representar el comportamiento nominal del sistema.
+
+\subsubsection{Modelo Global para Condiciones de No Línea de Vista (NLOS)}
+
+En condiciones NLOS, el error sigue una distribución Log-normal, caracterizada por parámetros $\sigma \approx 0.83$ y $\mu \approx -1.15$. La PDF se expresa como:
+
+\begin{equation}
+f_{NLOS}(x) = \frac{1}{(x + 0.0342) \cdot 0.8283 \sqrt{2\pi}} \exp\left(-\frac{(\ln(x + 0.0342) + 1.1511)^2}{1.3722}\right)
+\end{equation}
+
+Es importante notar que este modelo incluye un parámetro de desplazamiento (\textit{loc}) de -0.0342 m para optimizar el ajuste. El modelo predice un MAE teórico de 0.4115 m frente a un experimental de 0.4069 m (diferencia de 1.14\%), demostrando su capacidad para capturar la naturaleza de cola pesada de los errores por obstrucción.
+
+\subsubsection{Modelos Específicos por Ubicación}
+
+Para ubicaciones críticas como la cadera y el pecho, los modelos ajustados revelan comportamientos particulares. En NLOS, tanto cadera como pecho se ajustan mejor a distribuciones Gamma con parámetros de forma $\alpha > 2.5$, lo que indica una distribución más acampanada y desplazada hacia la derecha en comparación con el caso LOS. Sorprendentemente, para el caso LOS en estas ubicaciones, la distribución Weibull ofrece un mejor ajuste que la Gamma, sugiriendo que la obstrucción parcial del propio cuerpo altera la naturaleza del error incluso cuando existe línea de vista geométrica.
+
+
 
 
 
