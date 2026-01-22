@@ -414,7 +414,16 @@ El análisis de ToF permite establecer que la variabilidad (desviación estánda
 \begin{itemize}
 \item \textbf{Umbral sugerido:} Mediciones con desviación estándar > 0.49 ns son probablemente NLOS
 \item \textbf{Incremento de variabilidad:} 251.64\% en promedio al pasar de LOS a NLOS
-\item \textbf{Factor de peso:} Se recomienda aplicar peso de 0.28 a mediciones NLOS en algoritmos de trilateración
-\end{itemize}
+\item \textbf{Factor de peso:} Se recomienda aplicar un factor de peso a las mediciones NLOS en los algoritmos de posicionamiento para mitigar su impacto negativo. Este factor se obtiene mediante la relación entre las desviaciones estándar promedio de ambas condiciones:
 
+\begin{equation}
+    \text{Factor de peso} = \frac{\text{Desviación Estándar Promedio (LOS)}}{\text{Desviación Estándar Promedio (NLOS)}} = \frac{0.18}{0.63} \approx 0.28
+\end{equation}
+
+Donde:
+\begin{itemize}
+    \item \textbf{Desviación Estándar Promedio (LOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo condiciones de Línea de Vista (LOS).
+    \item \textbf{Desviación Estándar Promedio (NLOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo condiciones de No Línea de Vista (NLOS).
+\end{itemize}
+\end{itemize}
 Estos hallazgos respaldan la implementación de algoritmos de detección NLOS basados en análisis de variabilidad temporal de ToF, los cuales podrían mejorar significativamente la robustez del sistema de posicionamiento al permitir descartar o ponderar adecuadamente mediciones degradadas por obstrucción corporal.

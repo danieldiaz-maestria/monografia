@@ -102,39 +102,106 @@ Esta configuración punto a punto permite evaluar la exactitud fundamental de la
 \section{PROTOCOLO DE RECOLECCIÓN DE DATOS}
 \label{sec:protocolo_recoleccion}
 
-\subsection{Sujeto de Prueba}
+\subsection{Sujetos de Prueba}
 
-El plan de pruebas de validación (Fase 1) fue conducido como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque metodológico permite:
+La Fase 1 de este estudio fue conducida como un caso de estudio fundacional con el Sujeto de Prueba 2. Este enfoque metodológico permitió una caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo sin variabilidad inter-sujeto, estableciendo una línea base de desempeño del sistema y un control riguroso de variables experimentales.
 
-\begin{itemize}
-\item Caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo sin variabilidad inter-sujeto.
-\item Evaluación sistemática de todas las combinaciones de ubicación corporal, condición de canal (LOS/NLOS) y escenario bajo condiciones antropométricas constantes.
-\item Establecimiento de la línea base de desempeño del sistema antes de considerar la variabilidad antropométrica.
-\item Control riguroso de variables experimentales para aislar el efecto de la obstrucción corporal.
-\end{itemize}
+Para la Fase 2, se contó con la participación de los tres sujetos de prueba (Sujeto 1, Sujeto 2 y Sujeto 3, siendo este último el mismo participante de la Fase 1). Este plan de pruebas exhaustivo, que involucró a múltiples sujetos con diversas características antropométricas, ha permitido una evaluación más robusta y generalizable del sistema de posicionamiento. Los sujetos de prueba participaron bajo consentimiento informado, con conocimiento completo del propósito del estudio, los procedimientos a realizar y el uso de los datos recolectados.
 
-\textbf{Justificación del Enfoque:} Como se reconoce en el artículo de validación, este trabajo constituye un caso de estudio fundacional que prioriza la exhaustividad en la evaluación de configuraciones (7 ubicaciones × 2 condiciones × 2 escenarios = 28 configuraciones) sobre la cantidad de sujetos. Para garantizar la generalización de estos hallazgos para aplicaciones wearables robustas, se reconoce que futuros trabajos deberán incluir un plan de pruebas exhaustivo con múltiples sujetos que presenten diversas características antropométricas (altura, peso, Índice de Masa Corporal, género).
+A continuación, se presentan las características antropométricas detalladas de los tres sujetos participantes en la Fase 2, así como sus respectivas fotografías:
 
-El sujeto de prueba participó bajo consentimiento informado, con conocimiento completo del propósito del estudio, los procedimientos a realizar y el uso de los datos recolectados.
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.3\textwidth]{imagenes/sujeto1.jpg}
+    \caption{Sujeto de prueba 1}
+    \label{fig:sujeto1}
+\end{figure}
+
+\begin{table}[hbt]
+    \centering
+    \caption{Características Antropométricas - Sujeto 1}
+    \label{tab:antropometricas_sujeto1}
+    \begin{tabular}{lcc}
+        \toprule
+        \rowcolor{headerblue}
+        \textbf{Característica} & \textbf{Valor} & \textbf{Unidad} \\
+        \midrule
+        Estatura                & 1.75           & m                \\
+        Peso                    & 70             & kg               \\
+        Índice de Masa Corporal & 22.86          & kg/m²            \\
+        Género                  & Masculino      & -                \\
+        Edad                    & 25             & años             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.3\textwidth]{imagenes/sujeto2.jpg}
+    \caption{Sujeto de prueba 2}
+    \label{fig:sujeto2}
+\end{figure}
+
+\begin{table}[hbt]
+    \centering
+    \caption{Características Antropométricas - Sujeto 2}
+    \label{tab:antropometricas_sujeto2}
+    \begin{tabular}{lcc}
+        \toprule
+        \rowcolor{headerblue}
+        \textbf{Característica} & \textbf{Valor} & \textbf{Unidad} \\
+        \midrule
+        Estatura                & 1.62           & m                \\
+        Peso                    & 60             & kg               \\
+        Índice de Masa Corporal & 22.86          & kg/m²            \\
+        Género                  & Masculino      & -                \\
+        Edad                    & 28             & años             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.3\textwidth]{imagenes/sujeto3.jpg}
+    \caption{Sujeto de prueba 3}
+    \label{fig:sujeto3}
+\end{figure}
+
+\begin{table}[hbt]
+    \centering
+    \caption{Características Antropométricas - Sujeto 3}
+    \label{tab:antropometricas_sujeto3}
+    \begin{tabular}{lcc}
+        \toprule
+        \rowcolor{headerblue}
+        \textbf{Característica} & \textbf{Valor} & \textbf{Unidad} \\
+        \midrule
+        Estatura                & 1.80           & m                \\
+        Peso                    & 85             & kg               \\
+        Índice de Masa Corporal & 26.23          & kg/m²            \\
+        Género                  & Masculino      & -                \\
+        Edad                    & 30             & años             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \subsection{Ubicaciones del Dispositivo Móvil en el Cuerpo}
 
 Se evaluaron siete ubicaciones corporales del dispositivo móvil UWB, seleccionadas estratégicamente por su relevancia en aplicaciones prácticas de seguimiento de personas y dispositivos wearables:
 
 \begin{enumerate}
-\item \textbf{Cabeza (Head):} Dispositivo ubicado en la parte superior craneal. Esta posición es relevante para aplicaciones de realidad aumentada y cascos inteligentes.
+\item \textbf{Cabeza:} Dispositivo ubicado en la parte superior craneal. Esta posición es relevante para aplicaciones de realidad aumentada y cascos inteligentes.
 
-\item \textbf{Pecho (Chest):} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante. Representa la ubicación típica de badges de identificación y monitores cardíacos.
+\item \textbf{Pecho:} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante. Representa la ubicación típica de badges de identificación y monitores cardíacos.
 
-\item \textbf{Cadera (Hip):} Dispositivo posicionado lateralmente a nivel de la cintura/cadera. Común en dispositivos clip-on y sistemas de rastreo industrial.
+\item \textbf{Cadera:} Dispositivo posicionado lateralmente a nivel de la cintura/cadera. Común en dispositivos clip-on y sistemas de rastreo industrial.
 
-\item \textbf{Mano (Hand):} Dispositivo sostenido directamente en la mano dominante. Simula el escenario de un usuario portando activamente un dispositivo móvil o herramienta.
+\item \textbf{Mano:} Dispositivo sostenido directamente en la mano dominante. Simula el escenario de un usuario portando activamente un dispositivo móvil o herramienta.
+\item \textbf{Muñeca:} Dispositivo colocado en la muñeca como si fuera un reloj inteligente (smartwatch), representando uno de los wearables más populares.
 
-\item \textbf{Muñeca (Wrist):} Dispositivo colocado en la muñeca como si fuera un reloj inteligente (smartwatch), representando uno de los wearables más populares.
+\item \textbf{Rodilla:} Dispositivo ubicado en la superficie frontal o lateral de la rodilla. Relevante para aplicaciones de análisis biomecánico y monitoreo deportivo.
 
-\item \textbf{Rodilla (Knee):} Dispositivo ubicado en la superficie frontal o lateral de la rodilla. Relevante para aplicaciones de análisis biomecánico y monitoreo deportivo.
-
-\item \textbf{Tobillo (Ankle):} Dispositivo posicionado en la superficie externa del tobillo. Utilizado en sistemas de monitoreo de marcha y rastreo en aplicaciones de seguridad.
+\item \textbf{Tobillo:} Dispositivo posicionado en la superficie externa del tobillo. Utilizado en sistemas de monitoreo de marcha y rastreo en aplicaciones de seguridad.
 \end{enumerate}
 
 Para cada ubicación corporal, el dispositivo fue fijado de manera segura para minimizar el movimiento relativo durante las mediciones. Se documentó fotográficamente cada configuración para asegurar reproducibilidad en futuras réplicas del experimento.
@@ -200,74 +267,15 @@ Para garantizar la reproducibilidad del experimento y minimizar la variabilidad 
 
 \subsection{Procedimiento Detallado de Medición}
 
-El protocolo experimental para cada sesión de medición siguió los siguientes pasos sistemáticos:
+El protocolo experimental implementado en cada sesión de medición se estructuró de manera sistemática para garantizar la integridad y reproducibilidad de los datos. Inicialmente, se procedió con la preparación del sistema, que abarcaba el encendido y la verificación funcional de los módulos DWM1001, así como el montaje del nodo fijo en un trípode a una altura estándar de 1.5 metros. Posteriormente, se realizó la inicialización del firmware PANS junto con la configuración de los parámetros UWB, finalizando esta etapa con la confirmación de la comunicación efectiva entre el nodo fijo y el nodo móvil.
 
-\begin{enumerate}
-\item \textbf{Preparación del Sistema:}
-\begin{itemize}
-    \item Encendido y verificación de funcionamiento de los módulos DWM1001
-    \item Montaje del nodo fijo en trípode a altura de 1.5 m
-    \item Inicialización del firmware PANS y configuración de parámetros UWB
-    \item Verificación de comunicación entre nodo fijo y nodo móvil
-\end{itemize}
+De manera paralela, se llevó a cabo la marcación del grid de medición, utilizando una cinta métrica para delimitar con precisión las distancias desde 1 metro hasta 13 metros en línea recta desde el nodo fijo.. Antes de iniciar las pruebas con el participante, se ejecutó una calibración inicial en línea de vista (LOS) situando el nodo móvil en un trípode sin la presencia del sujeto; esto permitía verificar la exactitud del sistema en ausencia de obstrucciones e identificar posibles sesgos sistemáticos.
 
-\item \textbf{Marcación del Grid de Medición:}
-\begin{itemize}
-    \item Marcación precisa de distancias desde 1 m hasta 13 m con cinta métrica
-    \item Alineación recta desde el nodo fijo
-    \item Verificación visual de las marcas
-\end{itemize}
+Una vez validado el sistema, se procedió a la instrumentación del sujeto, fijando de manera segura el nodo móvil en la ubicación corporal correspondiente y verificando su correcta orientación, proceso que era documentado fotográficamente. La adquisición de datos comenzó en condición LOS y en cada parte del cuerpo, donde el sujeto se posicionaba a 1 metro de distancia con orientación frontal hacia el nodo fijo. En esta posición, permaneciendo inmóvil durante aproximadamente 30 segundos, se registraban automáticamente 250 mediciones de distancia. Este procedimiento se repetía secuencialmente para cada punto marcado hasta alcanzar los 13 metros.
 
-\item \textbf{Calibración LOS Inicial:}
-\begin{itemize}
-    \item Mediciones de referencia sin sujeto presente (nodo móvil en trípode)
-    \item Verificación de exactitud del sistema en ausencia de obstrucción
-    \item Identificación de posibles sesgos sistemáticos
-\end{itemize}
+Posteriormente, se realizó la adquisición de datos en condición de no línea de vista (NLOS). Para ello, el sujeto se ubicó nuevamente en la primera marca de distancia y realizó una rotación de 180 grados para quedar de espaldas al nodo fijo, bloqueando la señal con con el nodo en cada una de las 7 posiciones corporales. Se adquirieron entonces otras 250 mediciones automáticas, repitiendo el proceso en cada una de las distancias establecidas.
 
-\item \textbf{Instrumentación del Sujeto:}
-\begin{itemize}
-    \item Fijación segura del nodo móvil en la ubicación corporal correspondiente
-    \item Verificación de orientación correcta del dispositivo
-    \item Documentación fotográfica de la configuración
-\end{itemize}
-
-\item \textbf{Adquisición de Datos - Condición LOS:}
-\begin{itemize}
-    \item Sujeto se posiciona en la primera distancia (1 m)
-    \item Orientación frontal hacia el nodo fijo (condición LOS)
-    \item Adquisición automática de 250 mediciones de distancia
-    \item Sujeto permanece inmóvil durante adquisición (~30 segundos)
-    \item Repetir para cada distancia (2 m, 3 m, ..., 13 m)
-\end{itemize}
-
-\item \textbf{Adquisición de Datos - Condición NLOS:}
-\begin{itemize}
-    \item Sujeto se posiciona en la primera distancia (1 m)
-    \item Rotación 180° (de espaldas al nodo fijo, condición NLOS)
-    \item Adquisición automática de 250 mediciones
-    \item Repetir para cada distancia
-\end{itemize}
-
-\item \textbf{Cambio de Ubicación Corporal:}
-\begin{itemize}
-    \item Cambio del nodo móvil a la siguiente ubicación corporal
-    \item Repetir pasos 5-6 para las 7 ubicaciones
-\end{itemize}
-
-\item \textbf{Cambio de Escenario:}
-\begin{itemize}
-    \item Repetir procedimiento completo en el segundo escenario
-\end{itemize}
-
-\item \textbf{Verificación y Respaldo:}
-\begin{itemize}
-    \item Verificación de integridad de datos (ausencia de pérdidas o corrupciones)
-    \item Descarga y organización de datos recolectados
-    \item Respaldo en ubicaciones redundantes
-\end{itemize}
-\end{enumerate}
-
+Al completar las mediciones en una posición específica, se efectuó el cambio de ubicación corporal del nodo móvil a la siguiente zona de interés, repitiendo los ciclos de adquisición LOS y NLOS para las siete ubicaciones definidas. Una vez cubiertas todas las ubicaciones corporales, se replicó el procedimiento completo en el segundo escenario experimental (Exterior).
 
 \section{PROCESAMIENTO Y ANÁLISIS DE DATOS - FASE 1}
 \label{sec:procesamiento_datos}
