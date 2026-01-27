@@ -30,16 +30,26 @@ Para este estudio se han seleccionado módulos de desarrollo Qorvo DWM1001, que 
 
 Los dispositivos UWB se configuran con los siguientes parámetros operacionales:
 
-\begin{itemize}
-\item \textbf{Frecuencia central:} 6489.6 MHz (Canal 5)
-\item \textbf{Ancho de banda:} 499.2 MHz
-\item \textbf{Tasa de transmisión de datos:} 6.8 Mbps
-\item \textbf{Frecuencia de repetición de pulsos (PRF):} 64 MHz
-\item \textbf{Longitud del preámbulo:} 128 símbolos
-\item \textbf{Código del preámbulo (TX/RX):} 10
-\item \textbf{Potencia de transmisión:} -17 dBm
-\item \textbf{Sensibilidad del receptor:} -93 dBm
-\end{itemize}
+\begin{table}[hbt]
+    \centering
+    \caption{Parámetros de Configuración de los Dispositivos UWB}
+    \label{tab:configuracion_uwb}
+    \begin{tabular}{ll}
+        \toprule
+        \rowcolor{headerblue}
+        \textbf{Parámetro} & \textbf{Valor} \\
+        \midrule
+        Frecuencia central                     & 6489.6 MHz (Canal 5) \\
+        Ancho de banda                         & 499.2 MHz            \\
+        Tasa de transmisión de datos           & 6.8 Mbps             \\
+        Frecuencia de repetición de pulsos (PRF) & 64 MHz               \\
+        Longitud del preámbulo                 & 128 símbolos         \\
+        Código del preámbulo (TX/RX)           & 10                   \\
+        Potencia de transmisión                & -17 dBm              \\
+        Sensibilidad del receptor              & -93 dBm              \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 Estos parámetros se seleccionan para optimizar el compromiso entre exactitud de medición, alcance efectivo y consumo energético, siguiendo las recomendaciones del fabricante y las mejores prácticas identificadas en la revisión de literatura.
 
