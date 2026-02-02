@@ -59,7 +59,7 @@ Se encontraron cuatro artículos relevantes sobre estudios que emplean simulaci�
 \begin{enumerate}
     \item \textbf{FDTD and Empirical Exploration of Human Body and UWB Radiation Interaction on \gls{tof} Ranging} \cite{Otim2019}: Este estudio utiliza simulaciones basadas en el método de Diferencias Finitas en el Dominio del Tiempo (\gls{fdtd}) y medidas experimentales extensivas para explorar cómo la señal UWB en 3990 MHz interactúa con el cuerpo humano en escenarios de interiores y de exteriores, y para diferentes condiciones de canal, i.e., LOS, Cuasi Línea de Vista (QLOS) y NLOS.
     
-    Los autores investigan cómo la BS afecta la estimación de distancia basada en el ToF entre un nodo móvil y un nodo fijo y cómo las condiciones del cuerpo modifican el nivel del campo eléctrico recibido. Aunque no se mide la potencia recibida directamente, el análisis relaciona las variaciones del campo eléctrico incidente con las variaciones de la ganancia del receptor.
+    Los autores investigan cómo la BS afecta la estimación de distancia basada en el ToF entre un nodo móvil y un nodo fijo y cómo las condiciones del cuerpo modifican el nivel del campo eléctrico recibido. Aunque no se mide directamente la potencia recibida, el análisis relaciona las variaciones del campo eléctrico incidente con las variaciones de la ganancia del receptor.
 
     La Figura \ref{fig:ganancia_wave} visualiza el fenómeno físico de la BS mediante una simulación que genera un mapa de calor de la intensidad de la señal UWB, donde los colores cálidos (amarillo, ~0 dB) indican una señal fuerte y los fríos (azul oscuro, $<$ -40 dB) representan una atenuación severa. Para entender la figura, conviene notar que la señal se propaga de izquierda a derecha.
     
@@ -81,7 +81,7 @@ Se encontraron cuatro artículos relevantes sobre estudios que emplean simulaci�
 
     \begin{figure}[ht]
         \centering   \includegraphics[width=1\textwidth]{imagenes/RHA_ref17.pdf}
-        \caption{Posición Relativa entre el Nodo Móvil y el Nodo Fijo (a) Ejemplo 1, (b) Ejemplo 2.}
+        \caption{Posición Relativa entre el Nodo Móvil y el Nodo Fijo: (a) Ejemplo 1; (b) Ejemplo 2.}
         \label{fig:posicion_relativa_nodo_fijo_movil}
     \end{figure}
 
@@ -93,7 +93,7 @@ Se encontraron cuatro artículos relevantes sobre estudios que emplean simulaci�
 
     Los autores concluyen que, para la condición LOS, i.e., RHA $\approx$ 0, el error es mínimo, con una media de 5.5~cm y una desviación estándar de 3.6~cm. En la zona de transición con QLOS y RHA de $\approx 92\degree$, la difracción de la señal por el costado del cuerpo eleva el error a una media de 11.8~cm con una desviación estándar de 4.5~cm. En condición NLOS, i.e., RHA = $180\degree$, la obstrucción total del torso provoca que el error alcance su punto máximo, con una media de 38.9~cm y una desviación estándar de 13.9~cm.
 
-    \item \textbf{Non-Line-of-Sight Identification based on Unsupervised Machine Learning in Ultra Wideband Systems} \cite{Fan2019}: Aunque este estudio clasifica en simulación, también es relevante en mitigación del error NLOS mediante técnicas de Aprendizaje Automático (ML, \textit{Machine Learning}) no supervisado, que se utilizan para identificar condiciones de propagación LOS y NLOS en sistemas de localización basados en UWB. 
+    \item \textbf{Non-Line-of-Sight Identification based on Unsupervised Machine Learning in Ultra Wideband Systems} \cite{Fan2019}: Aunque este estudio clasifica en simulación, también es relevante en la mitigación del error NLOS mediante técnicas de Aprendizaje Automático (ML, \textit{Machine Learning}) no supervisado, que se utilizan para identificar condiciones de propagación LOS y NLOS en sistemas de localización basados en UWB. 
     
     Para este análisis, se realizaron simulaciones en MATLAB utilizando un modelo de canal UWB en un escenario de interiores, generando 1000 formas de onda, de las cuales 500 representaban condiciones LOS y 500 NLOS. A partir de estas señales, se extrajeron tres características clave: número de caminos significativos (NP), retardo en exceso medio ($\tau_{\textrm{MED}}$) y dispersión del retardo RMS ($\tau_{\textrm{RMS}}$). Estas características se utilizaron para entrenar un algoritmo de ML  no supervisado basado en la Maximización de la Expectativa (EM, \textit{Expectation Maximization}) para Modelos de Mezcla Gaussiana (GMM, \textit{Gaussian Mixture Model}) \cite{ref20}. Un GMM es un modelo probabilístico que asume que los datos pueden representarse como una combinación de varias distribuciones gaussianas (o normales). Cada una de estas distribuciones gaussianas representa un componente de la mezcla y puede describir un subconjunto específico de los datos; es decir, un GMM asume que cada grupo de datos sigue una distribución normal. 
     %
@@ -311,12 +311,12 @@ En esta categoría se encuentran estudios que se enfocan en identificar y mitiga
         \node[citation] at (3, -1.2) {\cite{Fan2019}};
 
     \end{tikzpicture}
-    \caption{Clasificación de los Artículos Analizados en Estudios Experimentales, de Mitigación y Estudios Híbridos que Combinan Ambas Metodologías.}
+    \caption{Clasificación de los Artículos Analizados en Estudios Experimentales, de Mitigación e Híbridos que Combinan Ambas Metodologías.}
     \label{fig:venn_clasificacion}
 \end{figure}
 
 \textbf{Contribución}\\
-La contribución fundamental de los estudios de mitigación es el desarrollo y la validación de un diverso ecosistema de técnicas capaces de contrarrestar el error inducido por la BS. Una característica destacada de este grupo de trabajos, como se observa en la figura \ref{fig:venn_clasificacion} es que no son puramente teóricos; la gran mayoría valida sus propuestas a través de implementaciones experimentales, demostrando su aplicabilidad en el mundo real. Estas estrategias de mitigación se pueden agrupar en tres enfoques principales: 1) Clasificación de Canal basada en Machine Learning, donde se emplean algoritmos como SVM, k-NN \cite{ref7} o GMM \cite{ref20} para identificar condiciones LOS/NLOS en tiempo real; 2) Filtrado Estadístico y Estimación de Estados, que utiliza técnicas como Mínimos Cuadrados Ponderados \cite{ref11}, el EKF \cite{ref4} o PF Bayesianos \cite{Falcone2012} para corregir y suavizar las mediciones; y 3) Optimización a Nivel de Sistema, que se enfoca en el ajuste de parámetros del receptor como el PT \cite{ref18} o en la selección del algoritmo de localización más robusto, como Geo-n \cite{ref19}. En conjunto, estos estudios establecen que la mitigación del error por BS es un problema multifacético que puede ser abordado desde el procesamiento de la señal hasta la fusión de datos, proporcionando una caja de herramientas validada experimentalmente para el desarrollo de IPS más precisos y fiables.
+La contribución fundamental de los estudios de mitigación es el desarrollo y la validación de un diverso conjunto de técnicas capaces de contrarrestar el error inducido por la BS. Una característica destacada de este grupo de trabajos, como se observa en la figura \ref{fig:venn_clasificacion}, es que no son puramente teóricos; la gran mayoría valida sus propuestas mediante implementaciones experimentales, demostrando su aplicabilidad en el mundo real. Estas estrategias de mitigación se pueden agrupar en tres enfoques principales: 1) Clasificación de Canal basada en Machine Learning, donde se emplean algoritmos como SVM, k-NN \cite{ref7} o GMM \cite{ref20} para identificar condiciones LOS/NLOS en tiempo real; 2) Filtrado Estadístico y Estimación de Estados, que utiliza técnicas como Mínimos Cuadrados Ponderados \cite{ref11}, el EKF \cite{ref4} o PF Bayesianos \cite{Falcone2012} para corregir y suavizar las mediciones; y 3) Optimización a Nivel de Sistema, que se enfoca en el ajuste de parámetros del receptor como el PT \cite{ref18} o en la selección del algoritmo de localización más robusto, como Geo-n \cite{ref19}. En conjunto, estos estudios establecen que la mitigación del error por BS es un problema multifacético que puede abordarse desde el procesamiento de la señal hasta la fusión de datos, y proporcionan herramientas validadas experimentalmente para el desarrollo de IPS más exactos y fiables.
 
 
 
@@ -325,7 +325,7 @@ La contribución fundamental de los estudios de mitigación es el desarrollo y l
 
 \subsection{Metodología de la  Revisión}
 
-Para garantizar un proceso de revisión de literatura transparente, riguroso y reproducible, se adoptó la metodología PRISMA (\textit{Preferred Reporting Items for Systematic Reviews and Meta-Analyses}) \cite{PRISMA2020}. PRISMA proporciona una guía basada en evidencia para estructurar la revisión en cuatro fases: Identificación, Cribado (\textit{Screening}), Elegibilidad e Inclusión. Este enfoque documenta el flujo de información desde la búsqueda exhaustiva hasta la selección final de los estudios que conforman el núcleo de este análisis.
+Para garantizar un proceso de revisión de literatura  transparente, riguroso y reproducible, se adoptó la metodología PRISMA (\textit{Preferred Reporting Items for Systematic Reviews and Meta-Analyses}) \cite{PRISMA2020}. PRISMA proporciona una guía basada en evidencia para estructurar la revisión en cuatro fases: Identificación, Cribado (\textit{Screening}), Elegibilidad e Inclusión. Este enfoque documenta el flujo de información desde la búsqueda exhaustiva hasta la selección final de los estudios que conforman el núcleo de este análisis.
 
 \begin{figure}[ht]
     \centering
@@ -392,27 +392,27 @@ Para garantizar un proceso de revisión de literatura transparente, riguroso y r
         \draw[arrow] (included.east) -> (fulltext_excluded.west);
 
     \end{tikzpicture}
-    \caption{Diagrama de Flujo PRISMA del Proceso de Revisión Sistemática de Literatura.}
+    \caption{Diagrama de Flujo PRISMA del Proceso de Revisión Sistemática de la Literatura.}
     \label{fig:prisma_flow}
 \end{figure}
 
 \subsubsection{Fase de Identificación}
-El objetivo de esta fase fue encontrar la mayor cantidad posible de literatura relevante. Se realizaron búsquedas sistemáticas en cuatro bases de datos académicas clave para el campo de la ingeniería y las telecomunicaciones: Scopus y Web of Science (WoS). Se utilizó una combinación de las siguientes palabras clave: UWB localization, Body Shadowing, Ultra-Wideband Signal Propagation e Indoor Positioning Systems. Las bases de datos arrojaron 107 registros y WoS, con 101 registros. Contando todas las fuentes, la búsqueda inicial identificó un total de 208 registros. En esta fase se filtraron los 208 registros. Primero, utilizando software de gestión de referencias Mendeley, se identificaron y eliminaron 4 registros duplicados, quedando así 204 artículos para la fase de cribado o screening. 
+El objetivo de esta fase es identificar la mayor cantidad posible de literatura relevante. Se realizaron búsquedas sistemáticas en cuatro bases de datos académicas clave para el campo de la ingeniería y las telecomunicaciones: Scopus y Web of Science (WoS). Se utilizó una combinación de las siguientes palabras clave: UWB localization, Body Shadowing, Ultra-Wideband Signal Propagation e Indoor Positioning Systems. Las bases de datos arrojaron 107 y 101 registros. Contando todas las fuentes, la búsqueda inicial identificó 208 registros. En esta fase se filtraron los 208 registros. Primero, utilizando software de gestión el de referencias Mendeley, se identificaron y eliminaron 4 registros duplicados, quedando así 204 artículos para la fase de cribado o screening. 
 
 \subsubsection{Fase de Cribado (Screening)}
- Los 204 registros únicos restantes fueron sometidos a un cribado basado en título y resumen para excluir aquellos que eran claramente irrelevantes. Se excluyeron 120 artículos en esta etapa por no estar centrados en UWB como tecnología principal, por tratar con aplicaciones distintas a la localización o por enfocarse en escenarios no aplicables.
+ Los 204 registros únicos restantes fueron sometidos a un cribado basado en el título y el resumen para excluir aquellos que resultaban claramente irrelevantes. Se excluyeron 120 artículos en esta etapa por no centrarse en UWB como tecnología principal, por abordar  aplicaciones distintas a la localización o por enfocarse en escenarios no aplicables.
 
 \subsubsection{Fase de Elegibilidad}
 Los 84 artículos que superaron la fase de cribado fueron sometidos a una revisión de texto completo para determinar su elegibilidad final. En esta etapa, se evaluaron en profundidad la metodología, los resultados y el análisis de cada estudio. Se excluyeron 27 artículos adicionales por razones como:
 \begin{itemize}
     \item Falta de datos cuantitativos sobre el efecto de la BS.
     \item Metodología experimental no reproducible o insuficientemente descrita.
-    \item Enfoque principal en diseño de antenas en lugar de en sistemas de posicionamiento.
+    \item Enfoque principal en el diseño de antenas en lugar de en sistemas de posicionamiento.
     \item Ser resúmenes de conferencias sin un artículo completo disponible.
 \end{itemize}
 
 \subsubsection{Fase de Inclusión}
-El proceso culminó con la selección de 20 artículos que cumplieron con todos los criterios de inclusión. Estos 20 estudios constituyen la base de la síntesis cualitativa y el análisis del estado del arte presentados en este capítulo. El flujo completo de este proceso se visualiza en el diagrama PRISMA de la Figura \ref{fig:prisma_flow}.
+El proceso culminó con la selección de 20 artículos que cumplieron con todos los criterios de inclusión. Estos 20 estudios constituyen la base de la síntesis cualitativa y el análisis del estado del arte presentados en este capítulo. El flujo completo de este proceso se muestra en el diagrama PRISMA de la Figura \ref{fig:prisma_flow}.
 \label{subsec:contexto_analisis}
 
 
@@ -429,9 +429,9 @@ El proceso culminó con la selección de 20 artículos que cumplieron con todos 
 %
 La Figura \ref{fig:distribucion_tipos} muestra que el 45\% de los estudios son experimentales (9 artículos), seguidos por 35\% de estudios de mitigación (7 artículos) y 20\% de simulación (4 artículos). Esta distribución revela una tendencia marcada hacia la validación práctica de los efectos de la BS, lo cual es fundamental para el desarrollo de sistemas comerciales viables. Los estudios experimentales predominantes incluyen trabajos como \cite{ref4} y \cite{ref14}, que evalúan directamente el impacto de diferentes posiciones del nodo móvil en el cuerpo humano en escenarios controlados.
 
-La proporción relativamente baja de estudios de simulación (20\%) presenta tanto ventajas como desafíos. Por un lado, indica que la comunidad científica prioriza la validación empírica sobre modelos teóricos. Por otro lado, la escasez de simulaciones sofisticadas podría limitar la exploración de escenarios complejos o frecuencias no disponibles comercialmente, como es precisamente el caso de la banda de 6.5 GHz que constituye el foco de esta investigación.
+La proporción relativamente baja de estudios de simulación (20\%) presenta tanto ventajas como desafíos. Por un lado, indica que la comunidad científica prioriza la validación empírica sobre los modelos teóricos. Por otro lado, la escasez de simulaciones sofisticadas podría limitar la exploración de escenarios complejos o de frecuencias no disponibles comercialmente, como es precisamente el caso de la banda de 6.5 GHz, que constituye el foco de esta investigación.
 
-Es importante destacar que esta distribución también refleja la madurez tecnológica del campo. En las etapas iniciales de una tecnología, los estudios de simulación suelen dominar debido a la falta de hardware disponible. Sin embargo, la predominancia actual de estudios experimentales sugiere que la tecnología UWB ha alcanzado un nivel de madurez que permite validación directa, aunque, paradójicamente, esta madurez se concentra principalmente en las bandas de frecuencia inferiores.
+Es importante destacar que esta distribución también refleja la madurez tecnológica del campo. En las etapas iniciales de una tecnología, los estudios de simulación suelen predominar debido a la escasez de hardware disponible. Sin embargo, la predominancia actual de estudios experimentales sugiere que la tecnología UWB ha alcanzado un nivel de madurez que permite la validación directa, aunque, paradójicamente, dicha madurez se concentra principalmente en las bandas de frecuencia inferiores.
 
 \subsection{Frecuencias de Operación Utilizadas en los Estudios}
 \label{subsec:frecuencias_operacion}
@@ -443,18 +443,18 @@ Es importante destacar que esta distribución también refleja la madurez tecnol
     \label{fig:frecuencias}
 \end{figure}
 
-La Figura \ref{fig:frecuencias} presenta una concentración abrumadora de investigaciones en las bandas inferiores del espectro UWB. Específicamente, el 70\% de los estudios, i.e., 14 artículos, operan en el rango de 3-5 GHz, mientras que solo el 5\% i.e., 1 artículo, explora frecuencias entre 6 y 7 GHz. Esta distribución no es casual, sino que responde a factores históricos y tecnológicos: la banda de 3.1-5 GHz fue la primera autorizada por la FCC para aplicaciones UWB comerciales, y consecuentemente, la mayoría del hardware disponible opera en este rango.
+La Figura \ref{fig:frecuencias} muestra una concentración abrumadora de investigaciones en las bandas inferiores del espectro UWB. Específicamente, el 70\% de los estudios, i.e., 14 artículos, operan en el rango de 3-5 GHz, mientras que solo el 5\%, i.e., 1 artículo, explora frecuencias entre 6 y 7 GHz. Esta distribución no es casual, sino que responde a factores históricos y tecnológicos: la banda de 3.1-5 GHz fue la primera autorizada por la FCC para aplicaciones UWB comerciales, y consecuentemente, la mayoría del hardware disponible opera en este rango.
 
-Solo el 5\% de los estudios analizados operan en frecuencias superiores a 6 GHz. La banda de 6-6.5 GHz permanece prácticamente inexplorada en el contexto de la BS, lo que justifica plenamente el objetivo de esta investigación de analizar el desempeño de sistemas de posicionamiento en 6.5 GHz. Esta frecuencia ofrece ventajas potenciales en términos de resolución espacial mejorada y menor interferencia con otros sistemas de comunicaciones.
+Solo el 5\% de los estudios analizados operan en frecuencias superiores a 6 GHz. La banda de 6-6.5 GHz permanece prácticamente inexplorada en el contexto de la BS, lo que justifica plenamente el objetivo de esta investigación: analizar el desempeño de sistemas de posicionamiento en 6.5 GHz. Esta frecuencia ofrece ventajas potenciales en términos de resolución espacial mejorada y menor interferencia con otros sistemas de comunicaciones.
 
 La concentración de sistemas en frecuencias bajas tiene implicaciones significativas para el desarrollo futuro de la tecnología. Las frecuencias más altas ofrecen ventajas teóricas importantes, tales como:
 %
 \begin{itemize}
-    \item \textbf{Mayor resolución espacial:} La principal ventaja de UWB es su alta resolución espacial, i.e., la distancia mínima que el sistema puede resolver es del orden de los centímetros, que está determinada por su alta resolución temporal, i.e., pulsos muy angostos del orden de los $ns$ y que implican un ancho de banda del orden de los 500 MHz. Esta capacidad permite al receptor UWB distinguir con gran exactitud la señal que llega por el primer trayecto o camino directo de los ecos de la misma señal que llegan $ns$ después. Los sistemas que operan en la banda de 6.5 GHz pueden alcanzar una resolución espacial del orden de centímetros, lo que es fundamental para la localización de alta exactitud y precisión.    
+    \item \textbf{Mayor resolución espacial:} La principal ventaja de UWB es su alta resolución espacial, i.e., la distancia mínima que el sistema puede resolver es del orden de los centímetros, que está determinada por su alta resolución temporal, i.e., pulsos muy angostos del orden de los $ns$ y que implican un ancho de banda del orden de los 500 MHz. Esta capacidad permite al receptor UWB distinguir con gran exactitud la señal que llega por el primer trayecto o camino directo de los ecos de la misma señal que llegan $ns$ después. Los sistemas que operan en la banda de 6.5 GHz pueden alcanzar una resolución espacial del orden de centímetros, lo cual es fundamental para la localización con alta exactitud y precisión.    
     
-    \item \textbf{Menor tamaño de antena:} Las dimensiones de las antenas son proporcionales a la longitud de onda. A 6.5 GHz, las antenas pueden ser aproximadamente 35\% más pequeñas que a 4 GHz, facilitando la integración en dispositivos portátiles.
+    \item \textbf{Menor tamaño de antena:} Las dimensiones de las antenas son proporcionales a la longitud de onda. A 6.5 GHz, las antenas pueden ser aproximadamente un 35\% más pequeñas que a 4 GHz, lo que facilita su integración en dispositivos portátiles.
     
-    \item \textbf{Diferentes características de propagación:} Las frecuencias más altas alteran fundamentalmente la interacción de la señal con el entorno. Por un lado, se ha observado que frecuencias mayores, como 8 y 12 GHz, experimentan una atenuación más pronunciada y dependiente del RHA al interactuar con el cuerpo humano en comparación con frecuencias más bajas como 4 GHz \cite{ref19}. Por otro lado, estas mismas frecuencias exhiben patrones de difracción más complejos. Como demuestran estudios en entornos de alta dispersión (como oficinas), estos fenómenos de multitrayecto y difracción pueden ser explotados, ya que los ecos y las señales que rodean el cuerpo pueden compensar la pérdida de la señal directa, mejorando la robustez y la cobertura general del sistema \cite{ref15, ref18}.
+    \item \textbf{Diferentes características de propagación:} Las frecuencias más altas alteran fundamentalmente la interacción de la señal con el entorno. Por un lado, se ha observado que frecuencias más altas, como 8 y 12 GHz, presentan una atenuación más pronunciada y dependiente del RHA al interactuar con el cuerpo humano, en comparación con frecuencias más bajas, como 4 GHz \cite{ref19}. Por otro lado, estas mismas frecuencias presentan patrones de difracción más complejos. Como demuestran estudios en entornos de alta dispersión (como oficinas), estos fenómenos de multitrayecto y difracción pueden ser explotados, ya que los ecos y las señales que rodean el cuerpo pueden compensar la pérdida de la señal directa, mejorando la robustez y la cobertura general del sistema \cite{ref15, ref18}.
 \end{itemize}
 
 \subsection{Posiciones del Cuerpo Evaluadas}
@@ -466,21 +466,21 @@ La concentración de sistemas en frecuencias bajas tiene implicaciones significa
     \label{fig:posiciones}
 \end{figure}
 %
-La Figura \ref{fig:posiciones} presenta un diagrama radar que ilustra la frecuencia con la que diferentes posiciones corporales han sido evaluadas en la literatura. El pecho y la muñeca emergen como las ubicaciones más estudiadas i.e., 18\% cada una, seguidas por la frente i.e., 15\%. Esta preferencia se debe a consideraciones prácticas: el pecho representa el peor escenario en términos de BS, con errores de localización reportados de hasta 4.5 $m$ en condiciones NLOS \cite{ref4}, mientras que la muñeca simula dispositivos \textit{wearables} comunes como relojes inteligentes.
+La Figura \ref{fig:posiciones} presenta un diagrama de radar que muestra la frecuencia con la que diferentes posiciones corporales han sido evaluadas en la literatura. El pecho y la muñeca emergen como las ubicaciones más estudiadas, i.e., 18\% cada una, seguidas por la frente i.e., 15\%. Esta preferencia se debe a consideraciones prácticas: el pecho representa el peor escenario en términos de BS, con errores de localización reportados de hasta 4.5 $m$ en condiciones NLOS \cite{ref4}, mientras que la muñeca simula dispositivos \textit{wearables} comunes como relojes inteligentes.
 
 El análisis detallado de las posiciones revela patrones interesantes:
 %
 \begin{itemize}
-    \item \textbf{Pecho (18\%):} Representa el caso más desafiante debido a la máxima BS. Los estudios como \cite{ref4} reportan errores de hasta 4.5 m en condiciones NLOS cuando el nodo se ubica en esta posición.
+    \item \textbf{Pecho (18\%):} Representa el caso más desafiante debido a la BS máxima. Los estudios como \cite{ref4} reportan errores de hasta 4.5 m en condiciones NLOS cuando el nodo se ubica en esta posición.
     
-    \item \textbf{Muñeca (18\%):} Popular debido a la proliferación de dispositivos \textit{wearables}. Sin embargo, esta posición presenta alta variabilidad debido al movimiento natural del brazo durante la marcha.
+    \item \textbf{Muñeca (18\%):} Popular debido a la proliferación de dispositivos \textit{wearables}. Sin embargo, esta posición presenta una alta variabilidad debido al movimiento natural del brazo durante la marcha.
     
-    \item \textbf{Frente (15\%):} Consistentemente muestra el mejor desempeño, con errores típicos de 20 cm en LOS según \cite{ref14}. La forma curva de la cabeza favorece la difracción de señales UWB.
+    \item \textbf{Frente (15\%):} Muestra consistentemente el mejor desempeño, con errores típicos de 20 cm en LOS, según \cite{ref14}. La forma curva de la cabeza favorece la difracción de señales UWB.
     
-    \item \textbf{Posiciones subrepresentadas:} El brazo (8\%), muslo (7\%) y espalda (2\%) han recibido atención marginal, a pesar de su relevancia en aplicaciones específicas.
+    \item \textbf{Posiciones subrepresentadas:} El brazo (8\%), el muslo (7\%) y la espalda (2\%) han recibido atención marginal, a pesar de su relevancia en aplicaciones específicas.
 \end{itemize}
 
-Esta distribución heterogénea sugiere la necesidad imperante de estudios exhaustivos e integrales que evalúen sistemáticamente múltiples posiciones del nodo móvil en el cuerpo humano bajo las mismas condiciones experimentales, permitiendo comparaciones directas y la identificación de patrones.
+Esta distribución heterogénea sugiere la necesidad imperante de estudios exhaustivos e integrales que evalúen sistemáticamente múltiples posiciones del nodo móvil en el cuerpo humano bajo las mismas condiciones experimentales, lo que permita comparaciones directas y la identificación de patrones.
 
 \subsection{Técnicas de Mitigación Empleadas}
 \label{subsec:tecnicas_mitigacion}
@@ -492,16 +492,16 @@ Esta distribución heterogénea sugiere la necesidad imperante de estudios exhau
     \label{fig:mitigacion}
 \end{figure}
 %
-La Figura \ref{fig:mitigacion} ilustra mediante un gráfico polar la distribución de técnicas empleadas para mitigar los efectos de la BS. El análisis revela tendencias significativas en los enfoques adoptados:
+La Figura \ref{fig:mitigacion} ilustra, mediante un gráfico polar, la distribución de las técnicas empleadas para mitigar los efectos de la BS. El análisis revela tendencias significativas en los enfoques adoptados:
 
 \subsubsection{Aprendizaje Automático (43\%)}
 
-Las técnicas de ML dominan el panorama con 6 estudios, reflejando la tendencia actual hacia soluciones basadas en datos. Estas técnicas incluyen:
+Las técnicas de ML dominan el panorama con 6 estudios, lo que refleja la tendencia actual hacia soluciones basadas en datos. Estas técnicas incluyen:
 
 \begin{itemize}
-    \item \textbf{Clasificadores supervisados:} Random Forest, SVM y Gradient Boosting, como en \cite{ref7}, que logran tasas de clasificación LOS/NLOS superiores al 85\%.
+    \item \textbf{Clasificadores supervisados:} Random Forest, SVM y Gradient Boosting, como en \cite{ref7}, que alcanzan tasas de clasificación LOS/NLOS superiores al 85\%.
     
-    \item \textbf{Aprendizaje no supervisado:} GMM con algoritmo EM, como en \cite{ref20}, que permite identificación de NLOS sin etiquetado manual previo.
+    \item \textbf{Aprendizaje no supervisado:} GMM con el algoritmo EM, como en \cite{ref20}, que permite la identificación de NLOS sin etiquetado manual previo.
     
     \item \textbf{Redes neuronales:} Aunque menos comunes, algunos estudios exploran arquitecturas profundas para capturar relaciones no lineales complejas.
 \end{itemize}
@@ -516,7 +516,7 @@ Representan soluciones más tradicionales pero efectivas:\\
     
     \item \textbf{Filtros de partículas (29\%)} Utilizados en \cite{Falcone2012} para manejar distribuciones no gaussianas en NLOS.
     
-    \item \textbf{Estimadores robustos:} son técnicas estadísticas avanzadas que se utilizan para mejorar la exactitud de los sistemas de posicionamiento UWB. Su función principal es identificar y minimizar el impacto de mediciones extremadamente erróneas (outliers).
+    \item \textbf{Estimadores robustos:} son técnicas estadísticas avanzadas utilizadas para mejorar la exactitud de los sistemas de posicionamiento UWB. Su función principal es identificar y minimizar el impacto de mediciones extremadamente erróneas (outliers).
 \end{itemize}
 
 
@@ -525,7 +525,7 @@ Representan soluciones más tradicionales pero efectivas:\\
 Sorprendentemente subutilizado considerando sus ventajas:
 
 \begin{itemize}
-    \item Eficiencia computacional superior a la de técnicas de ML.
+    \item Eficiencia computacional superior a la de las técnicas de ML.
     \item Capacidad de fusión de datos multinodo.
     \item Predicción de estados futuros útil para seguimiento  continuo.
     \item Implementación madura y bien documentada.
