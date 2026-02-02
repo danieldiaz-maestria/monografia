@@ -6,17 +6,17 @@ Este capítulo presenta los fundamentos teóricos necesarios para comprender el 
 \section{SISTEMAS DE POSICIONAMIENTO EN INTERIORES}
 \label{sec:sistemas_posicionamiento}
 
-La localización en interiores representa un desafío técnico significativamente distinto al de la localización en exteriores. Mientras que en espacios abiertos el Sistema de Posicionamiento Global (\gls{gps}) proporciona cobertura satelital directa, los escenarios de interiores presentan limitaciones inherentes que degradan o impiden por completo la recepción de señales GNSS. Las paredes, techos y estructuras metálicas atenúan las señales satelitales hasta niveles por debajo del umbral de sensibilidad de los receptores convencionales, lo que hace necesario el desarrollo de tecnologías alternativas específicamente diseñadas para estos entornos.
+La localización en interiores representa un desafío técnico significativamente distinto al de la localización en exteriores. Mientras que en espacios abiertos el Sistema de Posicionamiento Global (\gls{gps}) proporciona cobertura satelital directa, los escenarios de interiores presentan limitaciones inherentes que degradan o impiden por completo la recepción de señales GNSS. Las paredes, techos y estructuras metálicas atenúan las señales satelitales hasta niveles por debajo del umbral de sensibilidad de los receptores convencionales, lo que hace necesario desarrollar tecnologías alternativas específicamente diseñadas para estos entornos.
 
 Los Sistemas de Posicionamiento en Interiores (\gls{ips}) surgieron como respuesta a esta problemática, aprovechando diversas tecnologías de radiofrecuencia que operan en rangos de potencia y frecuencia adecuados para espacios cerrados. Entre las tecnologías más utilizadas se encuentran Wi-Fi, Bluetooth de Baja Energía (\gls{ble}), Zigbee, RFID y, más recientemente, Banda Ultra Ancha (\gls{uwb}). Cada una de estas tecnologías presenta características particulares en términos de exactitud, alcance, consumo energético y costo de implementación.
 
 \subsection{Métricas de Señal para Localización}
 
-La estimación de la posición en un IPS se fundamenta en la medición de características específicas de las señales de radiofrecuencia que se propagan entre dispositivos fijos (anclas o \textit{anchors}) y dispositivos móviles (etiquetas o \textit{tags}). Las principales métricas utilizadas son:
+La estimación de la posición en un IPS se basa en la medición de características específicas de las señales de radiofrecuencia que se propagan entre dispositivos fijos (anclas o \textit{anchors}) y dispositivos móviles (etiquetas o \textit{tags}). Las principales métricas utilizadas son:
 
 \subsubsection{Intensidad de Señal Recibida (RSS)}
 
-La \gls{rss} mide la potencia de la señal recibida por el receptor. Aunque es la métrica más simple de implementar, su relación con la distancia está fuertemente afectada por el multitrayecto, las reflexiones y las obstrucciones presentes en entornos de interiores. Su variabilidad temporal y espacial limita su exactitud, ubicándola típicamente en el rango de 2 a 5 metros de error.
+La \gls{rss} mide la potencia de la señal recibida por el receptor. Aunque es la métrica más simple de implementar, su relación con la distancia está fuertemente afectada por el multitrayecto, las reflexiones y las obstrucciones presentes en entornos de interiores. Su variabilidad temporal y espacial limita su exactitud, ubicándola típicamente en un rango de error de 2 a 5 m.
 
 \subsubsection{Tiempo de Llegada (ToA) y Tiempo de Vuelo (ToF)}
 
@@ -24,11 +24,11 @@ El \gls{toa} mide el instante en que una señal llega al receptor, mientras que 
 
 \subsubsection{Ángulo de Llegada (AoA)}
 
-El \gls{aoa} determina la dirección desde la cual llega la señal al receptor mediante el uso de arreglos de antenas. Esta técnica permite triangular la posición del dispositivo móvil sin necesidad de medir distancias directamente. No obstante, requiere hardware especializado y es particularmente sensible a las reflexiones en el escenario.
+El \gls{aoa} determina la dirección desde la que llega la señal al receptor mediante el uso de arreglos de antenas. Esta técnica permite triangular la posición del dispositivo móvil sin necesidad de medir distancias directamente. No obstante, requiere hardware especializado y es particularmente sensible a las reflexiones en el escenario.
 
 \subsubsection{Fase de Llegada (PoA)}
 
-La \gls{poa} analiza el cambio de fase de la señal portadora para estimar la distancia recorrida. Aunque puede proporcionar alta resolución, presenta ambigüedades cuando la distancia excede la longitud de onda de la señal portadora, lo que requiere técnicas adicionales para resolverlas.
+La \gls{poa} analiza el cambio de fase de la señal portadora para estimar la distancia recorrida. Aunque puede proporcionar alta resolución, presenta ambigüedades cuando la distancia excede la longitud de onda de la señal portadora, lo que requiere técnicas adicionales para su resolución.
 
 \subsection{Técnicas de Localización}
 
@@ -36,7 +36,7 @@ Las métricas de señal descritas anteriormente se utilizan en conjunto con dife
 
 \subsubsection{Trilateración y Multilateración}
 
-Estas técnicas calculan la posición del objetivo mediante la intersección de círculos (en 2D) o de esferas (en 3D) centrados en los nodos ancla, cuyos radios corresponden a las distancias estimadas. La trilateración requiere al menos 3 anclas en 2D o 4 en 3D. Cuando las mediciones contienen ruido, se emplean métodos de optimización, como el de mínimos cuadrados, para encontrar la mejor estimación de la posición.
+Estas técnicas calculan la posición del objetivo mediante la intersección de círculos (en 2D) o de esferas (en 3D) centrados en los nodos ancla, cuyos radios corresponden a las distancias estimadas. La trilateración requiere al menos 3 anclas en 2D o 4 en 3D. Cuando las mediciones contienen ruido, se emplean métodos de optimización, como el de mínimos cuadrados, para estimar la posición.
 
 \subsubsection{Triangulación}
 
@@ -44,17 +44,17 @@ A partir de mediciones de AoA desde múltiples anclas, la triangulación determi
 
 \subsubsection{Fingerprinting}
 
-Esta técnica opera en dos fases: una fase offline donde se construye una base de datos (mapa de huellas) que asocia ubicaciones conocidas con patrones de señal característicos, y una fase online donde se compara la señal medida con el mapa para estimar la posición. Aunque es robusta frente al multitrayecto, requiere un proceso de calibración exhaustivo y no se adapta bien a cambios en el escenario de pruebas o de implementación.
+Esta técnica opera en dos fases: una fase \textit{offline}, en la que se construye una base de datos (mapa de huellas) que asocia ubicaciones conocidas con patrones de señal característicos; y una fase \textit{online}, en la que se compara la señal medida con el mapa para estimar la posición. Aunque es robusta frente al multitrayecto, requiere un proceso de calibración exhaustivo y no se adapta bien a cambios en el escenario de pruebas o de implementación.
 
 
 \section{TECNOLOGÍA DE BANDA ULTRAANCHA}
 \label{sec:tecnologia_uwb}
 
-La tecnología de Banda Ultraancha representa un avance significativo en las comunicaciones inalámbricas de corto alcance y en los sistemas de localización de alta precisión. A diferencia de las tecnologías de banda estrecha tradicionales, UWB transmite información mediante pulsos de radiofrecuencia de duración extremadamente corta, típicamente del orden de 2 nanosegundos, lo que resulta en un espectro de frecuencias extremadamente amplio, superior a 500 MHz.
+La tecnología UWB representa un avance significativo en las comunicaciones inalámbricas de corto alcance y en los sistemas de localización de alta precisión. A diferencia de las tecnologías de banda estrecha tradicionales, UWB transmite información mediante pulsos de radiofrecuencia de duración extremadamente corta, típicamente del orden de 2 nanosegundos, lo que se traduce en un espectro de frecuencias amplio, superior a 500 MHz.
 
 \subsection{Principios de Operación}
 
-Las señales UWB ocupan un ancho de banda considerable, distribuyendo su energía a través de un amplio rango de frecuencias. Esta característica fundamental confiere a UWB varias ventajas distintivas:
+Las señales UWB ocupan un ancho de banda considerable y distribuyen su energía a través de un amplio rango de frecuencias. Esta característica fundamental confiere a UWB varias ventajas distintivas:
 
 \textbf{Baja densidad espectral de potencia:} Al distribuir la energía de transmisión sobre un ancho de banda amplio, la densidad de potencia por unidad de frecuencia es muy baja, lo que minimiza la interferencia con otros sistemas de radiofrecuencia que operan en rangos de frecuencia superpuestos.
 
@@ -66,7 +66,7 @@ Las señales UWB ocupan un ancho de banda considerable, distribuyendo su energí
 
 \subsection{Regulación y Bandas de Frecuencia}
 
-La regulación del espectro UWB varía según la jurisdicción. En Estados Unidos, la Comisión Federal de Comunicaciones (FCC) permite la operación UWB entre 3.1 y 10.6 GHz, con restricciones sobre la densidad espectral de potencia. En Europa, el Instituto Europeo de Normas de Telecomunicaciones (ETSI) establece regulaciones similares, pero con restricciones más estrictas en ciertas bandas para proteger los servicios existentes.
+La regulación del espectro UWB varía según la jurisdicción. En Estados Unidos, la Comisión Federal de Comunicaciones (FCC) permite la operación UWB entre 3.1 y 10.6 GHz, con restricciones sobre la densidad espectral de potencia. En Europa, el Instituto Europeo de Normas de Telecomunicaciones (ETSI) establece regulaciones similares, pero con restricciones más estrictas en ciertas bandas de frecuencia para proteger los servicios existentes.
 
 Para aplicaciones de localización en interiores, las bandas más comúnmente utilizadas son:
 \begin{itemize}
@@ -75,7 +75,7 @@ Para aplicaciones de localización en interiores, las bandas más comúnmente ut
     \item \textbf{Banda alta (7.25 - 10.6 GHz):} Permite la mayor exactitud de localización, pero con un alcance reducido.
 \end{itemize}
 
-El presente trabajo se enfoca en la banda de 6.5 GHz, seleccionada por representar un compromiso óptimo entre exactitud de localización y características de propagación en escenarios de interiores con presencia de obstrucción corporal.
+El presente trabajo se enfoca en la banda de 6.5 GHz para establecer experimentalmente la relación entre las características de propagación en escenarios de interiores, la obstrucción corporal y la exactitud del sistema de localización.
 
 \subsection{Medición de Distancia en Dos Vías}
 
@@ -115,7 +115,7 @@ La condición \gls{nlos} ocurre cuando uno o más obstáculos bloquean el trayec
 
 \subsubsection{Multitrayecto}
 
-El multitrayecto se produce cuando réplicas de la señal transmitida alcanzan al receptor por diferentes trayectos debido a las reflexiones en paredes, techos, pisos y objetos. Cada réplica llega con una amplitud y un retardo diferentes. En sistemas de banda estrecha, estas réplicas se superponen de forma coherente, causando un desvanecimiento selectivo en frecuencia. En UWB, la alta resolución temporal permite distinguir las réplicas individuales, aunque siguen afectando los algoritmos de detección del primer arribo de la señal.
+El multitrayecto se produce cuando réplicas de la señal transmitida alcanzan al receptor por diferentes trayectos debido a las reflexiones en paredes, techos, pisos y objetos. Cada réplica llega con una amplitud y un retardo. En sistemas de banda estrecha, estas réplicas se superponen de forma coherente, lo que provoca un desvanecimiento selectivo en frecuencia. En UWB, la alta resolución temporal permite distinguir las réplicas individuales, aunque siguen afectando los algoritmos de detección del primer arribo de la señal.
 
 \subsubsection{Reflexión}
 
@@ -127,7 +127,7 @@ La difracción permite que las ondas electromagnéticas se propaguen alrededor d
 
 \subsubsection{Dispersión}
 
-Cuando las ondas encuentran superficies rugosas o conjuntos de objetos pequeños, la energía se dispersa en múltiples direcciones. Este fenómeno es relevante en escenarios con mobiliario complejo, estanterías con objetos diversos y elementos decorativos.
+Cuando las ondas se encuentran con superficies rugosas o con conjuntos de objetos pequeños, la energía se dispersa en múltiples direcciones. Este fenómeno es relevante en escenarios con mobiliario complejo, estanterías con objetos diversos y elementos decorativos.
 
 
 \section{OBSTRUCCIÓN CORPORAL}
@@ -145,13 +145,13 @@ Cuantifica la capacidad del tejido para almacenar energía eléctrica cuando se 
 
 \subsubsection{Conductividad Eléctrica ($\sigma$)}
 
-Representa la capacidad del tejido para conducir corriente eléctrica. Está directamente relacionada con el contenido de iones y agua en el tejido. La conductividad varía significativamente entre distintos tipos de tejido y aumenta con la frecuencia debido a mecanismos de relajación dieléctrica.
+Representa la capacidad del tejido para conducir corriente eléctrica. Está directamente relacionada con el contenido de iones y de agua en el tejido. La conductividad varía significativamente entre distintos tipos de tejido y aumenta con la frecuencia debido a mecanismos de relajación dieléctrica.
 
 \subsubsection{Permeabilidad Magnética ($\mu_r$)}
 
 En tejidos biológicos, la permeabilidad magnética relativa es aproximadamente igual a 1, ya que los tejidos humanos son materiales no magnéticos. Por lo tanto, este parámetro tiene un impacto mínimo en la propagación de señales UWB a través del cuerpo.
 
-La combinación de alta permitividad y conductividad no despreciable resulta en una absorción significativa de la energía electromagnética y una velocidad de propagación reducida dentro del tejido. La profundidad de penetración (profundidad pelicular) disminuye con el aumento de la frecuencia, lo que hace que las señales de frecuencias más altas (como 6.5 GHz) experimenten una mayor atenuación al atravesar el cuerpo.
+La combinación de alta permitividad y conductividad no despreciable resulta en una absorción significativa de la energía electromagnética y en una velocidad de propagación reducida dentro del tejido. La profundidad de penetración (profundidad pelicular) disminuye con el aumento de la frecuencia, lo que hace que las señales de frecuencias más altas (como 6.5 GHz) experimenten una mayor atenuación al atravesar el cuerpo.
 
 \subsection{Mecanismos de Degradación de Señal}
 
@@ -187,7 +187,7 @@ Las frecuencias más altas experimentan una mayor atenuación por unidad de long
 
 El efecto de BS introduce dos tipos principales de error en las mediciones de ToF:
 
-\textbf{Error de sesgo positivo:} La obstrucción corporal aumenta sistemáticamente el ToF medido con respecto al valor real, debido a que las señales siguen trayectos más largos (difracción) o experimentan retardos de grupo al atravesar tejido biológico. Este error puede variar entre 0.1 y 1.5 m dependiendo de la severidad de la obstrucción.
+\textbf{Error de sesgo positivo:} La obstrucción corporal aumenta sistemáticamente el ToF medido con respecto al valor real, debido a que las señales siguen trayectos más largos (difracción) o experimentan retardos de grupo al atravesar tejido biológico. Este error puede variar entre 0.1 y 1.5 m, según la severidad de la obstrucción.
 
 \textbf{Aumento de la variabilidad:} La naturaleza dinámica del cuerpo humano (movimientos respiratorios, desplazamientos, cambios posturales) introduce variabilidad temporal en las mediciones. La desviación estándar del error puede aumentar de 5 cm en LOS a 40 cm en NLOS severo.
 
@@ -224,4 +224,4 @@ Además, el ruido introducido por la obstrucción corporal no es estrictamente g
 
 Este capítulo ha establecido las bases teóricas necesarias para comprender el fenómeno de la obstrucción corporal en sistemas de posicionamiento UWB. Se han revisado los principios de operación de los IPS, las características distintivas de la tecnología UWB, los mecanismos de propagación en interiores y la naturaleza de la interacción entre las ondas electromagnéticas y el cuerpo humano.
 
-La evidencia presentada revela que la obstrucción corporal constituye un desafío técnico significativo que puede degradar la exactitud de la la localización de valores subdecimétricos en errores métricos. La banda de 6.5 GHz, aunque prometedosuicas de compromiso entre penetración y resolución, ha sido insuficientemente estudiada en presenobstrucciones corporales, lo que justificando la necesidad de la investigación experimental que se desarrollará en los capítulos subsecuentes.
+La evidencia presentada revela que la obstrucción corporal constituye un desafío técnico significativo que puede degradar la exactitud de la localización con valores subdecimétricos en la banda de 6.5 GHz, lo que justifica la necesidad de la investigación experimental que se desarrollará en los capítulos siguientes.
