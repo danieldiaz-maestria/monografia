@@ -25,7 +25,7 @@ Los valores por defecto proporcionados por el fabricante son aproximaciones gene
 
 El método de calibración implementado se basa en la comparación entre distancias conocidas y distancias medidas, ajustando iterativamente los \textit{antenna delays} hasta minimizar el error sistemático. El procedimiento consistió en los siguientes pasos:
 
-\textbf{1. Configuración inicial:} Se configuraron dos módulos DWM1001 en modo TWR unilateral (SS-TWR), con valores iniciales de \texttt{TX\_ANT\_DLY} = 16380 y \texttt{RX\_ANT\_DLY} = 16450 (unidades de tiempo internas del DW1000, equivalentes a $\approx$15.65 ps por unidad).
+\textbf{1. Configuración inicial:} Se configuraron dos módulos DWM1001 en modo TWR unilateral (SS-TWR), con valores iniciales de \texttt{TX\_ANT\_DLY} = 16380 y \texttt{RX\_ANT\_DLY} = 16450 (unidades de tiempo internas del DW1000, equivalentes a $\approx$15.64 ps por unidad).
 
 \textbf{2. Posicionamiento de referencia:} Los módulos fueron ubicados a una distancia fija conocida $D_{\text{real}}$ = 1.00 m, medida con cinta métrica láser de precisión $\pm$1 mm, en ambiente exterior despejado para minimizar efectos de multitrayecto.
 
@@ -52,7 +52,7 @@ El ajuste se distribuyó simétricamente entre ambos retardos para mantener el b
 
 \subsubsection{Resultados de Calibración}
 
-Los valores finales calibrados fueron \texttt{TX\_ANT\_DLY} = 16388 y \texttt{RX\_ANT\_DLY} = 16458. En la validación final a 1.00 m de distancia, el sistema registró MAE = 3.64 cm ($\sigma$ = 3.09 cm) en condiciones exteriores con línea de vista despejada, correspondiente al mejor caso de referencia (dispositivo en pecho, exterior, LOS). Este nivel de exactitud se considera adecuado para las aplicaciones de localización wearable objetivo de este trabajo.
+Los valores finales calibrados fueron \texttt{TX\_ANT\_DLY} = 16388 y \texttt{RX\_ANT\_DLY} = 16458. En la validación final a 1.00 m de distancia, el sistema registró MAE = 3.64 cm ($\sigma$ = 3.08 cm) en condiciones exteriores con línea de vista despejada, correspondiente al mejor caso de referencia (dispositivo en pecho, exterior, LOS). Este nivel de exactitud se considera adecuado para las aplicaciones de localización objetivo de este trabajo.
 
 Es importante destacar que la calibración fue realizada para la configuración específica de hardware utilizada (módulos DWM1001 con antenas integradas). Diferentes configuraciones de antena o modificaciones en el diseño de PCB requerirían repetir el procedimiento de calibración para mantener la trazabilidad metrológica del sistema.
 
@@ -60,7 +60,7 @@ Es importante destacar que la calibración fue realizada para la configuración 
 \section{CARACTERIZACIÓN ANTROPOMÉTRICA DE LOS PARTICIPANTES}
 \label{sec:caracteristicas_participantes}
 
-Tal como se indicó en la fase de validación, este trabajo fue conducido como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque permitió una caracterización detallada de los efectos de la ubicación del dispositivo y las condiciones de canal, minimizando la variabilidad inter-sujeto. Se reconoce que para garantizar la generalización de estos hallazgos para aplicaciones wearables robustas, futuros trabajos deberán enfocarse en un plan de pruebas exhaustivo involucrando múltiples sujetos con diversas condiciones corporales y características antropométricas.
+Tal como se indicó en la fase de validación, este trabajo fue conducido como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque permitió una caracterización detallada de los efectos de la ubicación del dispositivo y las condiciones de canal, minimizando la variabilidad entre sujetos de prueba. Se reconoce que para garantizar la generalización de estos hallazgos para aplicaciones wearables robustas, futuros trabajos deberán enfocarse en un plan de pruebas exhaustivo involucrando múltiples sujetos con diversas condiciones corporales y características antropométricas.
 
 \section{ANÁLISIS DEL ERROR DE DISTANCIA POR UBICACIÓN CORPORAL}
 \label{sec:error_por_ubicacion}

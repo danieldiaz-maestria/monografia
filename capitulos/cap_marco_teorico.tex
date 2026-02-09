@@ -103,7 +103,7 @@ La propagación de señales de radiofrecuencia en escenarios de interiores difie
 
 \subsubsection{Línea de Vista (LOS)}
 
-Una condición \gls{los} se da cuando existe un trayecto directo y despejado entre el transmisor y el receptor. En esta situación, la señal experimenta una atenuación mínima y su comportamiento se aproxima al de un modelo de propagación en espacio libre. Para señales UWB en LOS, la exactitud de las mediciones de distancia suele situarse entre 5 y 15 cm, dependiendo del ancho de banda y de la relación señal-ruido.
+Una condición \gls{los} se da cuando existe un trayecto directo y despejado entre el transmisor y el receptor. En esta situación, la señal experimenta una atenuación mínima y su comportamiento se aproxima al de un modelo de propagación en espacio libre. Para señales UWB en LOS, la exactitud de las mediciones de distancia suele situarse entre 5 y 15 cm, dependiendo del ancho de banda.
 
 \subsubsection{Sin Línea de Vista (NLOS)}
 
@@ -133,7 +133,7 @@ Cuando las ondas se encuentran con superficies rugosas o con conjuntos de objeto
 \section{OBSTRUCCIÓN CORPORAL}
 \label{sec:obstruccion_corporal}
 
-La obstrucción corporal \textit{Body Shadowing} (\gls{bs}) representa uno de los fenómenos más críticos que afectan el desempeño de los sistemas de localización basados en tecnologías inalámbricas, particularmente en aplicaciones en las que el dispositivo móvil se porta sobre o cerca del cuerpo humano. Este fenómeno se manifiesta cuando el cuerpo humano se interpone entre el transmisor y el receptor, actuando como un obstáculo que atenúa, refracta y difracta las ondas electromagnéticas.
+La BS representa uno de los fenómenos más críticos que afectan el desempeño de los sistemas de localización basados en tecnologías inalámbricas, particularmente en aplicaciones en las que el dispositivo móvil se porta sobre o cerca del cuerpo humano. Este fenómeno se manifiesta cuando el cuerpo humano se interpone entre el transmisor y el receptor, actuando como un obstáculo que atenúa, refracta y difracta las ondas electromagnéticas.
 
 \subsection{Interacción de las Ondas Electromagnéticas con el Cuerpo Humano}
 
@@ -165,7 +165,7 @@ Cuando el cuerpo obstruye por completo el trayecto directo, las señales pueden 
 
 \subsubsection{Multitrayecto Inducido por el Cuerpo}
 
-El cuerpo humano actúa como un reflector irregular, generando múltiples trayectos de señal que pueden interferir con el trayecto directo o difractado. La naturaleza dieléctrica compleja del cuerpo introduce variaciones de fase que dificultan la detección del primer arribo de la señal.
+El cuerpo humano actúa como un reflector irregular, generando múltiples trayectos de señal que pueden interferir con el trayecto directo o difractado. La naturaleza dieléctrica compleja del cuerpo introduce retardos.
 
 \subsection{Factores que Influyen en la Magnitud del Efecto}
 
@@ -201,7 +201,7 @@ Para mitigar los efectos de la obstrucción corporal y mejorar la exactitud de l
 
 \subsection{Fundamentos del Filtro de Kalman}
 
-El Filtro de Kalman es un algoritmo recursivo que estima el estado de un sistema dinámico a partir de mediciones ruidosas. Opera en dos etapas alternadas:
+El KF es un algoritmo recursivo que estima el estado de un sistema dinámico a partir de mediciones ruidosas. Opera en dos etapas alternadas:
 
 \textbf{Predicción:} Utiliza el modelo dinámico del sistema para predecir el estado futuro y su covarianza asociada.
 
@@ -215,7 +215,7 @@ El KF es particularmente efectivo para suavizar las fluctuaciones de corto plazo
 
 \subsection{Limitaciones y Extensiones}
 
-El KF estándar asume linealidad en el modelo del sistema y gaussianidad en los ruidos de proceso y de medición. En sistemas de posicionamiento, la relación entre el estado (posición) y las mediciones (distancias) es intrínsecamente no lineal, lo que requiere el uso de extensiones como el Filtro de Kalman Extendido (EKF) o el Filtro de Kalman Unscented (UKF).
+El KF estándar asume linealidad en el modelo del sistema y gaussianidad en los ruidos de proceso y de medición. En sistemas de posicionamiento, la relación entre el estado (posición) y las mediciones (distancias) es intrínsecamente no lineal, lo que requiere el uso de extensiones como el EKF.
 
 Además, el ruido introducido por la obstrucción corporal no es estrictamente gaussiano, presentando colas pesadas y multimodalidad en condiciones de NLOS severas. Enfoques adaptativos que ajustan dinámicamente las matrices de covarianza del filtro según la condición de propagación detectada pueden mejorar significativamente el desempeño.
 
