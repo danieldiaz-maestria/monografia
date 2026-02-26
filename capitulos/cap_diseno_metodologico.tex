@@ -62,7 +62,7 @@ Los dispositivos UWB operan con el firmware PANS (Positioning and Networking Sta
 
 \subsubsection{Software de Adquisición de Datos}
 
-Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, que consiste en una librería integral que conforma un ecosistema de software completo. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (anchors) y el dispositivo etiqueta (tag).
+Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, que consiste en una librería integral que conforma un ecosistema de software completo. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (ancla) y el dispositivo móvil (tag).
 
 El software está desarrollado en C y se utiliza el entorno de desarrollo SEGGER Embedded Studio para validar el algoritmo, compilar el código y cargar el binario en el dispositivo. Este entorno utiliza J-Link como controlador (\textit{driver}) para programar el hardware.
 
@@ -328,7 +328,7 @@ donde, $d_{\text{medida},i}$ es la distancia estimada por el sistema UWB y $d_{\
     \textrm{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} e_i^2}.
 \end{equation}
 %
-\item \textbf{Percentiles:} Se calculan los percentiles 50 (mediana), 90 y 95 del error absoluto.
+\item \textbf{Percentiles:} Se calculan el p50, p90 y p95 del error absoluto.
 \end{itemize}
 
 \subsubsection{Análisis Estadístico - Fase 1}
