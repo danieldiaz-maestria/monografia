@@ -12,7 +12,7 @@ Los Sistemas de Posicionamiento en Interiores (\gls{ips}) surgieron como respues
 
 \subsection{Métricas de Señal para Localización}
 
-La estimación de la posición en un IPS se basa en la medición de características específicas de las señales de radiofrecuencia que se propagan entre dispositivos fijos (anclas o \textit{anchors}) y dispositivos móviles (etiquetas o \textit{tags}). Las principales métricas utilizadas son:
+La estimación de la posición en un IPS se basa en la medición de características específicas de las señales de radiofrecuencia que se propagan entre anclas y dispositivos móviles. Las principales métricas utilizadas son:
 
 \subsubsection{Intensidad de Señal Recibida (RSS)}
 
@@ -82,7 +82,7 @@ El presente trabajo se enfoca en la banda de 6.5 GHz para establecer experimenta
 La técnica de \gls{twr} constituye el método más robusto para la estimación de distancias en sistemas UWB, sin necesidad  de sincronización entre dispositivos. El proceso opera mediante el siguiente protocolo:
 
 \begin{enumerate}
-    \item El nodo móvil (TAG) inicia el proceso al transmitir un mensaje de consulta (\textit{poll}) dirigido a un nodo ancla (ANCHOR) específico.
+    \item El dispositivo móvil inicia el proceso al transmitir un mensaje de consulta (\textit{poll}) dirigido a un ancla específico.
     \item El nodo ancla recibe el mensaje, lo procesa durante un tiempo conocido, $t_{\text{reply}}$, y transmite una respuesta.
     \item El nodo móvil recibe la respuesta y calcula el tiempo total de ida y vuelta $t_{\text{round}}$.
     \item El ToF se obtiene como: $\text{ToF} = \frac{1}{2}(t_{\text{round}} - t_{\text{reply}})$.
