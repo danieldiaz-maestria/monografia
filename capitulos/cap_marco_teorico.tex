@@ -1,12 +1,12 @@
 \chapter{MARCO TEÓRICO}
 \label{ch:marco_teorico}
 
-Este capítulo presenta los fundamentos teóricos necesarios para comprender el desarrollo de esta investigación. Se abordan los conceptos relacionados con los sistemas de posicionamiento en interiores, la tecnología de Banda Ultraancha y el fenómeno de obstrucción corporal que afecta la propagación de señales de radiofrecuencia.
+Este capítulo presenta los fundamentos teóricos necesarios para comprender el desarrollo de esta investigación. Se abordan los conceptos relacionados con los sistemas de posicionamiento en interiores, la tecnología de banda Ultraancha (UWB) y el fenómeno de obstrucción corporal que afecta la propagación de señales de radiofrecuencia.
 
 \section{SISTEMAS DE POSICIONAMIENTO EN INTERIORES}
 \label{sec:sistemas_posicionamiento}
 
-La localización en interiores representa un desafío técnico significativamente distinto al de la localización en exteriores. Mientras que en espacios abiertos el Sistema de Posicionamiento Global (\gls{gps}) proporciona cobertura satelital directa, los escenarios de interiores presentan limitaciones inherentes que degradan o impiden por completo la recepción de señales GNSS. Las paredes, techos y estructuras metálicas atenúan las señales satelitales hasta niveles por debajo del umbral de sensibilidad de los receptores convencionales, lo que hace necesario desarrollar tecnologías alternativas específicamente diseñadas para estos entornos.
+La localización en interiores representa un desafío técnico significativamente distinto al de la localización en exteriores. Mientras que en espacios abiertos el Sistema de Posicionamiento Global (\gls{gps}) proporciona cobertura satelital directa, los escenarios de interiores presentan limitaciones inherentes que degradan o impiden por completo la recepción de señales GNSS. Las paredes, techos y estructuras metálicas atenúan las señales satelitales hasta niveles por debajo del umbral de sensibilidad de los receptores convencionales, lo que hace necesario desarrollar tecnologías alternativas específicamente diseñadas para los escenarios de interiores.
 
 Los Sistemas de Posicionamiento en Interiores (\gls{ips}) surgieron como respuesta a esta problemática, aprovechando diversas tecnologías de radiofrecuencia que operan en rangos de potencia y frecuencia adecuados para espacios cerrados. Entre las tecnologías más utilizadas se encuentran Wi-Fi, Bluetooth de Baja Energía (\gls{ble}), Zigbee, RFID y, más recientemente, Banda Ultra Ancha (\gls{uwb}). Cada una de estas tecnologías presenta características particulares en términos de exactitud, alcance, consumo energético y costo de implementación.
 
@@ -16,11 +16,11 @@ La estimación de la posición en un IPS se basa en la medición de característ
 
 \subsubsection{Intensidad de Señal Recibida (RSS)}
 
-La \gls{rss} mide la potencia de la señal recibida por el receptor. Aunque es la métrica más simple de implementar, su relación con la distancia está fuertemente afectada por el multitrayecto, las reflexiones y las obstrucciones presentes en entornos de interiores. Su variabilidad temporal y espacial limita su exactitud, ubicándola típicamente en un rango de error de 2 a 5 m.
+La \gls{rss} mide la potencia de la señal recibida por el receptor. Aunque es la métrica más simple de implementar, su relación con la distancia está fuertemente afectada por el multitrayecto, las reflexiones y las obstrucciones presentes en entornos de interiores. Su variabilidad temporal y espacial limita su exactitud, lo que la ubica típicamente en un rango de error de 2 a 5 m.
 
 \subsubsection{Tiempo de Llegada (ToA) y Tiempo de Vuelo (ToF)}
 
-El \gls{toa} mide el instante en que una señal llega al receptor, mientras que el \gls{tof} cuantifica el tiempo que tarda en viajar desde el transmisor hasta el receptor. Estas métricas requieren una sincronización precisa entre los dispositivos, lo que representa un desafío técnico considerable. Sin embargo, cuando se implementan correctamente, permiten alcanzar exactitudes en el orden de decímetros o incluso de centímetros.
+El \gls{toa} mide el instante en que una señal llega al receptor, mientras que el \gls{tof} cuantifica el tiempo que tarda en viajar desde el transmisor hasta el receptor. Estas métricas requieren una sincronización precisa entre los dispositivos, lo que supone un desafío técnico considerable. Sin embargo, cuando se implementan correctamente, permiten alcanzar exactitudes en el orden de decímetros o incluso de centímetros.
 
 \subsubsection{Ángulo de Llegada (AoA)}
 
@@ -50,11 +50,11 @@ Esta técnica opera en dos fases: una fase \textit{offline}, en la que se constr
 \section{TECNOLOGÍA DE BANDA ULTRAANCHA}
 \label{sec:tecnologia_uwb}
 
-La tecnología UWB representa un avance significativo en las comunicaciones inalámbricas de corto alcance y en los sistemas de localización de alta precisión. A diferencia de las tecnologías de banda estrecha tradicionales, UWB transmite información mediante pulsos de radiofrecuencia de duración extremadamente corta, típicamente del orden de 2 nanosegundos, lo que se traduce en un espectro de frecuencias amplio, superior a 500 MHz.
+La tecnología UWB representa un avance significativo en las comunicaciones inalámbricas de corto alcance y en los sistemas de localización de alta precisión. A diferencia de las tecnologías de banda estrecha tradicionales, UWB transmite información mediante pulsos de radiofrecuencia de duración extremadamente corta, típicamente del orden de 2 nanosegundos, lo que se traduce en un amplio espectro de frecuencias, superior a 500 MHz.
 
 \subsection{Principios de Operación}
 
-Las señales UWB ocupan un ancho de banda considerable y distribuyen su energía a través de un amplio rango de frecuencias. Esta característica fundamental confiere a UWB varias ventajas distintivas:
+Las señales UWB ocupan un ancho de banda considerable y distribuyen su energía a lo largo de un amplio rango de frecuencias. Esta característica fundamental confiere a UWB varias ventajas distintivas:
 
 \textbf{Baja densidad espectral de potencia:} Al distribuir la energía de transmisión sobre un ancho de banda amplio, la densidad de potencia por unidad de frecuencia es muy baja, lo que minimiza la interferencia con otros sistemas de radiofrecuencia que operan en rangos de frecuencia superpuestos.
 
@@ -91,7 +91,7 @@ La técnica de \gls{twr} constituye el método más robusto para la estimación 
 
 Esta técnica elimina los errores de sincronización de reloj entre dispositivos, ya que ambas mediciones temporales se realizan con el mismo oscilador local. Sin embargo, la exactitud depende críticamente de la precisión con que se mida $t_{\text{reply}}$ y de la estabilidad de los osciladores durante el intervalo de medición.
 
-Existen variantes más sofisticadas, como el TWR Simétrico de Doble Cara (\gls{ds-twr}), que realiza un intercambio adicional de mensajes para compensar las imperfecciones de los osciladores de los dispositivos, mejorando aún más la exactitud de la medición.
+Existen variantes más sofisticadas, como el TWR Simétrico de Doble Cara (\gls{ds-twr}), que realiza un intercambio adicional de mensajes para compensar las imperfecciones de los osciladores de los dispositivos, lo que mejora aún más la exactitud de la medición.
 
 
 \section{PROPAGACIÓN DE SEÑALES EN INTERIORES}
@@ -103,11 +103,11 @@ La propagación de señales de radiofrecuencia en escenarios de interiores difie
 
 \subsubsection{Línea de Vista (LOS)}
 
-Una condición \gls{los} se da cuando existe un trayecto directo y despejado entre el transmisor y el receptor. En esta situación, la señal experimenta una atenuación mínima y su comportamiento se aproxima al de un modelo de propagación en espacio libre. Para señales UWB en LOS, la exactitud de las mediciones de distancia suele situarse entre 5 y 15 cm, dependiendo del ancho de banda.
+Una condición \gls{los} se da cuando existe un trayecto directo y despejado entre el transmisor y el receptor. En esta situación, la señal experimenta una atenuación mínima y su comportamiento se aproxima al de un modelo de propagación en espacio libre. Para señales UWB en LOS, la exactitud de las mediciones de distancia suele situarse entre 5 y 15 cm, según el ancho de banda.
 
 \subsubsection{Sin Línea de Vista (NLOS)}
 
-La condición \gls{nlos} ocurre cuando uno o más obstáculos bloquean el trayecto directo entre el transmisor y el receptor. La señal debe entonces propagarse mediante reflexión, difracción o difusión alrededor de los obstáculos. Estos trayectos indirectos son más largos que el trayecto directo, introduciendo retardos adicionales que, si no se detectan y corrigen, se traducen directamente en errores de estimación de distancia. En condiciones NLOS severas, el error puede superar los 4 metros.
+La condición \gls{nlos} se da cuando uno o más obstáculos bloquean el trayecto directo entre el transmisor y el receptor. La señal debe entonces propagarse mediante reflexión, difracción o difusión alrededor de los obstáculos. Estos trayectos indirectos son más largos que el trayecto directo, introduciendo retardos adicionales que, si no se detectan y corrigen, se traducen directamente en errores de estimación de distancia. En condiciones NLOS severas, el error puede superar los 4 metros.
 
 \subsubsection{Cuasi Línea de Vista (QLOS)}
 
@@ -145,13 +145,13 @@ Cuantifica la capacidad del tejido para almacenar energía eléctrica cuando se 
 
 \subsubsection{Conductividad Eléctrica ($\sigma$)}
 
-Representa la capacidad del tejido para conducir corriente eléctrica. Está directamente relacionada con el contenido de iones y de agua en el tejido. La conductividad varía significativamente entre distintos tipos de tejido y aumenta con la frecuencia debido a mecanismos de relajación dieléctrica.
+Representa la capacidad del tejido para conducir corriente eléctrica. Está directamente relacionada con el contenido de iones y agua en el tejido. La conductividad varía significativamente entre distintos tipos de tejido y aumenta con la frecuencia debido a mecanismos de relajación dieléctrica.
 
 \subsubsection{Permeabilidad Magnética ($\mu_r$)}
 
 En tejidos biológicos, la permeabilidad magnética relativa es aproximadamente igual a 1, ya que los tejidos humanos son materiales no magnéticos. Por lo tanto, este parámetro tiene un impacto mínimo en la propagación de señales UWB a través del cuerpo.
 
-La combinación de alta permitividad y conductividad no despreciable resulta en una absorción significativa de la energía electromagnética y en una velocidad de propagación reducida dentro del tejido. La profundidad de penetración (profundidad pelicular) disminuye con el aumento de la frecuencia, lo que hace que las señales de frecuencias más altas (como 6.5 GHz) experimenten una mayor atenuación al atravesar el cuerpo.
+La combinación de alta permitividad y conductividad no despreciable resulta en una absorción significativa de la energía electromagnética y una velocidad de propagación reducida dentro del tejido. La profundidad de penetración (profundidad pelicular) disminuye con el aumento de la frecuencia, lo que hace que las señales de frecuencias más altas (como 6.5 GHz) experimenten una mayor atenuación al atravesar el cuerpo.
 
 \subsection{Mecanismos de Degradación de Señal}
 
@@ -215,13 +215,7 @@ El KF es particularmente efectivo para suavizar las fluctuaciones de corto plazo
 
 \subsection{Limitaciones y Extensiones}
 
-El KF estándar asume linealidad en el modelo del sistema y gaussianidad en los ruidos de proceso y de medición. En sistemas de posicionamiento, la relación entre el estado (posición) y las mediciones (distancias) es intrínsecamente no lineal, lo que requiere el uso de extensiones como el EKF.
+El KF estándar asume linealidad en el modelo del sistema y gaussianidad de los ruidos de proceso y de medición. En sistemas de posicionamiento, la relación entre el estado (posición) y las mediciones (distancias) es intrínsecamente no lineal, lo que requiere el uso de extensiones como el EKF.
 
 Además, el ruido introducido por la obstrucción corporal no es estrictamente gaussiano, presentando colas pesadas y multimodalidad en condiciones de NLOS severas. Enfoques adaptativos que ajustan dinámicamente las matrices de covarianza del filtro según la condición de propagación detectada pueden mejorar significativamente el desempeño.
 
-
-\section{SÍNTESIS DEL CAPÍTULO}
-
-Este capítulo ha establecido las bases teóricas necesarias para comprender el fenómeno de la obstrucción corporal en sistemas de posicionamiento UWB. Se han revisado los principios de operación de los IPS, las características distintivas de la tecnología UWB, los mecanismos de propagación en interiores y la naturaleza de la interacción entre las ondas electromagnéticas y el cuerpo humano.
-
-La evidencia presentada revela que la obstrucción corporal constituye un desafío técnico significativo que puede degradar la exactitud de la localización con valores subdecimétricos en la banda de 6.5 GHz, lo que justifica la necesidad de la investigación experimental que se desarrollará en los capítulos siguientes.

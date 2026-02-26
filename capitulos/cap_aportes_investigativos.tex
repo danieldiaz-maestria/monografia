@@ -4,11 +4,11 @@
 
 \section{METODOLOGÍA}
 \label{sec:metodologia_propuesta}
-Para el desarrollo del presente trabajo de grado, se adoptará la metodología del Modelo en V, un enfoque riguroso derivado del modelo en cascada que enfatiza la relación entre cada fase de desarrollo y su correspondiente fase de pruebas \cite{forsberg1991relationship}. La elección de este modelo responde a la necesidad de una validación continua en un proyecto de carácter técnico y experimental. A diferencia de un modelo puramente secuencial, el Modelo en V establece un paralelismo entre la construcción y la validación, lo que garantiza que los objetivos definidos en las primeras etapas sean verificados sistemáticamente en las últimas.
-Este modelo es especialmente adecuado para este proyecto, ya que asegura que el diseño del sistema de posicionamiento, la configuración del hardware y la implementación del software sean validados mediante pruebas específicas, minimizando errores y garantizando la fiabilidad de los resultados. El proceso se visualiza como una "V", donde el brazo izquierdo representa la descomposición del problema y el diseño e implementación, y el brazo derecho representa la integración y validación de los componentes del sistema.
+Para el desarrollo del presente trabajo de grado, se adoptará la metodología del Modelo en V, un enfoque riguroso derivado del Modelo en Cascada que enfatiza la relación entre cada fase de desarrollo y su correspondiente fase de pruebas \cite{forsberg1991relationship}. La elección de este modelo responde a la necesidad de una validación continua en un proyecto de carácter técnico y experimental. A diferencia de un modelo puramente secuencial, el Modelo en V establece un paralelismo entre la construcción y la validación, lo que garantiza que los objetivos definidos en las primeras etapas sean verificados sistemáticamente en las últimas.
+Este modelo es especialmente adecuado para este proyecto, ya que asegura que el diseño del sistema de posicionamiento, la configuración del hardware y la implementación del software sean validados mediante pruebas específicas, minimizando errores y garantizando la fiabilidad de los resultados. El proceso se visualiza como una "V", donde el brazo izquierdo representa la descomposición del problema y el diseño e implementación, y el brazo derecho, la integración y la validación de los componentes del sistema.
 El flujo de trabajo se estructurará siguiendo las fases del Modelo en V, como se muestra en la Figura  \ref{fig:modelV}, adaptadas a los objetivos de esta investigación. 
 %
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/ModelV.pdf}
     \caption{Modelo en V}
@@ -19,56 +19,57 @@ El flujo de trabajo se estructurará siguiendo las fases del Modelo en V, como s
 
 En esta trayectoria descendente, se definen y diseñan los componentes del proyecto.
 \begin{enumerate}
-\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos fundamentales de la investigación: analizar cómo el efecto de la BS impacta las mediciones de ToF en un sistema UWB, cuantificar el error en la estimación de distancia y utilizar el KF para mitigar el efecto de la BS sobre la exactitud del sistema de posicionamiento. El resultado de esta fase es la especificación detallada de los objetivos, los requerimientos y los criterios de aceptación de los resultados.
+\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos fundamentales de la investigación: analizar cómo el efecto de la BS afecta las mediciones de ToF en un sistema UWB, cuantificar el error en la estimación de distancia y utilizar el KF para mitigar dicho efecto y mejorar la exactitud del sistema de posicionamiento. El resultado de esta fase es la especificación detallada de los objetivos, los requerimientos y los criterios de aceptación de los resultados.
 
-\item \textbf{Diseño del Sistema:} Se diseña la arquitectura general del experimento. Esto incluye la definición del escenario de prueba y del modelo general del sistema, la selección y justificación del hardware y software, y la especificación de los parámetros de operación del sistema UWB (frecuencia, ancho de banda).
+\item \textbf{Diseño del Sistema:} Se define la arquitectura general del experimento. Esto incluye la definición del escenario de prueba y del modelo general del sistema, la selección y justificación del hardware y software, y la especificación de los parámetros de operación del sistema UWB (frecuencia, ancho de banda).
 
 \end{enumerate}
 
 \subsection*{Brazo Derecho: Pruebas y Resultados}
-En esta trayectoria ascendente, cada entregable de la fase de diseño es probado y validado.
+En esta trayectoria ascendente, cada entregable de la fase de diseño se prueba y se valida.
 \begin{enumerate}
 
-\item \textbf{Pruebas Unitarias:} Corresponden a la fase de implementación. Se verifica que cada componente de software y hardware funcione correctamente de forma aislada.
+\item \textbf{Pruebas Unitarias:} Corresponden a la fase de implementación. Se verifica que cada componente de software y de hardware funcione correctamente de forma aislada.
 
-\item \textbf{Integración:} Se integran todos los componentes de software y hardware en un único sistema que es capaz de recolectar los datos en cada posición del TAG en el cuerpo humano y en cada posición (x,y) dentro del escenario. 
+\item \textbf{Integración:} Se integran todos los componentes de software y hardware en un único sistema capaz de recolectar los datos en cada posición del TAG en el cuerpo humano y en cada posición (x,y) dentro del escenario. 
 
-\item \textbf{Pruebas de Desempeño y Validación de Resultados:} Es la fase cumbre y corresponde a la recolección y análisis de los datos. Se ejecuta el experimento completo en el escenario definido. Se  recolectan y se analizan los datos. Se verifica si el sistema desarrollado permite responder a las preguntas de investigación, requerimientos planteados y se relacionan los resultados con los de otros trabajos.
+\item \textbf{Pruebas de Desempeño y Validación de Resultados:} Es la fase cumbre y corresponde a la recolección y al análisis de los datos. Se ejecuta el experimento completo en el escenario definido. Se  recolectan y se analizan los datos. Se verifica si el sistema desarrollado permite responder a las preguntas de investigación y a los requerimientos planteados y se relacionan los resultados con los de otros trabajos.
 
 \end{enumerate}
 
-Este enfoque metodológico garantiza que cada etapa de diseño sea validada por una fase de prueba correspondiente, lo que asegura la trazabilidad, minimiza la propagación de errores y confiere una alta fiabilidad y reproducibilidad a los resultados experimentales, aspectos cruciales en una investigación científica rigurosa.
+Este enfoque metodológico garantiza que cada etapa de diseño sea validada por una fase de prueba correspondiente, lo que asegura la trazabilidad, minimiza la propagación de errores y confiere alta fiabilidad y reproducibilidad a los resultados experimentales, aspectos cruciales en una investigación científica rigurosa.
 
 
 
 \subsection{Diseño Experimental y Protocolo de Recolección de Datos}
 
 \subsubsection{Población y Muestra}
-Para garantizar la generalización de los resultados, el estudio contará con un mínimo de 3 participantes con diversidad de complexión física (estatura y peso). Cada participante realizará el recorrido predefinido con el nodo móvil en la peor posición en NLOS en interiores arrojada por el plan de pruebas de validación.
+
+Para garantizar la generalización de los resultados, el estudio contará con un mínimo de 3 participantes con diversidad de complexión física (estatura y peso). Cada participante realizará el recorrido predefinido con el nodo móvil en la peor posición en NLOS en interiores, según el plan de pruebas de validación.
 
 \subsubsection{Entorno de Prueba Detallado}
-Las pruebas se realizarán en un salón de clases de la universidad del Cauca. Se incluirá un mapa del entorno, señalando la posición de los nodos ancla (hardware y altura), el mobiliario principal y las fuentes potenciales de interferencia. Se realizará una calibración inicial del sistema sin obstrucción para establecer una línea base.
+Las pruebas se realizarán en un salón de clases de la Universidad del Cauca. Se incluirá un mapa del entorno, señalando la posición de los nodos ancla (hardware y altura), el mobiliario principal y las fuentes potenciales de interferencia. Se realizará una calibración inicial del sistema, sin obstrucciones, para establecer una línea base.
 
 \section{ACTIVIDADES}
 \label{sec:actividades}
 
-Las actividades del proyecto se estructuran en fases que se corresponden con la progresión a través del Modelo en V, asegurando que cada etapa de diseño sea seguida por una etapa de validación.
+Las actividades del proyecto se estructuran en fases que corresponden a la progresión a través del Modelo en V, asegurando que cada etapa de diseño esté seguida de una de validación.
 
 \subsection{Fase 1: Análisis de Requerimientos}
 Esta fase inicial, ubicada en la cima del brazo izquierdo del Modelo en V, se centra en la revisión conceptual y la definición del alcance de la investigación.
 \begin{itemize}
-    \item \textbf{Actividad 1.1}: Revisión de información sobre la tecnología UWB y la métrica ToF, además, su uso en posicionamiento.
-    \item \textbf{Actividad 1.2}: Revisión de información sobre la técnica de multilateración y su aplicación.
-    \item \textbf{Actividad 1.3}: Revisión de información sobre la BS y su efecto en posicionamiento.
-    \item \textbf{Actividad 1.4}: Revisión de filtros de estimación y mitigación, como el KF.
+    \item \textbf{Actividad 1.1}: Revisión de la información sobre la tecnología UWB y la métrica ToF, así como de su uso en el posicionamiento.
+    \item \textbf{Actividad 1.2}: Revisión de la información sobre la técnica de multilateración y su aplicación.
+    \item \textbf{Actividad 1.3}: Revisión de la información sobre la BS y su efecto en el posicionamiento.
+    \item \textbf{Actividad 1.4}: Revisión de filtros de estimación y de mitigación, como el filtro KF.
 \end{itemize}
 
 \subsection{Fase 2: Diseño del Sistema}
-Descendiendo por el brazo izquierdo, esta fase se enfoca en el diseño arquitectónico del sistema y la planificación detallada de los experimentos.
+Descendiendo por el brazo izquierdo, esta fase se centra en el diseño arquitectónico del sistema y en la planificación detallada de los experimentos.
 \begin{itemize}
-    \item \textbf{Actividad 2.1}: Selección de escenarios para pruebas.
-    \item \textbf{Actividad 2.2}: Diseño del sistema prototipo de posicionamiento UWB.
-    \item \textbf{Actividad 2.3}: Diseño de la metodología experimental definiendo posiciones del TAG, una parte del cuerpo y la ruta a seguir por los sujetos bajo pruebas, considerando una muestra diversa en características antropométricas (i.e, altura, complexión) para garantizar la generalización de los resultados.
+    \item \textbf{Actividad 2.1}: Selección de escenarios de prueba.
+    \item \textbf{Actividad 2.2}: Diseño del prototipo de sistema de posicionamiento UWB.
+    \item \textbf{Actividad 2.3}: Diseño de la metodología experimental, definiendo las posiciones del TAG en dos partes del cuerpo, i.e., pecho y cadera, y la ruta a seguir por los sujetos en prueba, considerando una muestra diversa en características antropométricas,  i.e., altura y complexión, para garantizar la generalización de los resultados.
 \end{itemize}
 
 \subsection{Fase 3: Implementación}
@@ -76,11 +77,11 @@ Esta fase se sitúa en el vértice de la V y consiste en la materialización del
 \begin{itemize}
     \item \textbf{Actividad 3.1}: Selección de software y hardware para la implementación del sistema UWB.
     \item \textbf{Actividad 3.2}: Definición del plan de pruebas unitarias o de validación. 
-    \item \textbf{Actividad 3.3}: Ejecución del plan de pruebas unitario o de validación.
+    \item \textbf{Actividad 3.3}: Ejecución del plan de pruebas unitarias o de validación.
 \end{itemize}
 
 \subsection{Fase 4: Pruebas de Desempeño}
-Iniciando el ascenso por el brazo derecho del modelo, esta fase valida que los componentes del sistema interactúan correctamente.
+Al iniciar el ascenso por el brazo derecho del modelo, esta fase valida que los componentes del sistema interactúan correctamente.
 \begin{itemize}
     \item \textbf{Actividad 4.1}: Definición del plan de pruebas de desempeño.
     \item \textbf{Actividad 4.2}: Ejecución del plan de pruebas de desempeño.
@@ -90,13 +91,13 @@ Iniciando el ascenso por el brazo derecho del modelo, esta fase valida que los c
 En la cima del brazo derecho, se analizan los resultados obtenidos sobre el efecto de la BS en interiores.
 %
 \begin{itemize}
-    \item \textbf{Actividad 5.1}: Evaluación de la exactitud y precisión del sistema de posicionamiento considerando la BS.
+    \item \textbf{Actividad 5.1}: Evaluación de la exactitud y la precisión del sistema de posicionamiento, considerando la BS.
     \item \textbf{Actividad 5.2}: Análisis final del efecto de la BS en el sistema de posicionamiento.
 \end{itemize}
 
 \subsection{Fase 6: Entrega}
-Esta fase concluye el proyecto con la documentación y presentación de los resultados.
+Esta fase concluye el proyecto mediante la documentación y la presentación de los resultados.
 \begin{itemize}
     \item \textbf{Actividad 6.1}: Elaboración del documento final y del artículo del trabajo de maestría.
-    \item \textbf{Actividad 6.2}: Entrega del documento final de maestría y sustentación.
+    \item \textbf{Actividad 6.2}: Entrega del documento final de la maestría y de la sustentación.
 \end{itemize}

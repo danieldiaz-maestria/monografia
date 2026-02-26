@@ -1,19 +1,19 @@
-\chapter{FASE 4: PRUEBAS DE DESEMPEÑO DE ESTIMACIÓN DE DISTANCIA}
+\chapter{FASE 4: PRUEBAS DE VALIDACIÓN DE ESTIMACIÓN DE DISTANCIA}
 \label{ch:resultados}
 
-Este capítulo presenta los resultados obtenidos durante la Fase 1 de la investigación experimental, correspondiente a la validación del sistema de estimación de distancia UWB. Se exponen de manera sistemática los datos recolectados y procesados según la metodología descrita en el capítulo anterior, organizados por categorías que facilitan su interpretación posterior.
+Este capítulo presenta los resultados obtenidos durante la Fase 1 de la investigación experimental, correspondiente a la validación del sistema de estimación de distancia UWB. Se exponen de manera sistemática los datos recolectados y procesados según la metodología descrita en el capítulo anterior, organizados en categorías que facilitan su interpretación posterior.
 
-Los resultados presentados en este capítulo se enfocan en caracterizar la exactitud de las mediciones de distancia punto a punto bajo diferentes condiciones de obstrucción corporal y propagación. La Fase 2, correspondiente al sistema completo de posicionamiento 2D con cuatro nodos ancla, será presentada en secciones subsiguientes una vez completada la experimentación.
+Los resultados presentados en este capítulo se enfocan en caracterizar la exactitud de las mediciones de distancia punto a punto bajo diferentes condiciones de BS y de propagación. La Fase 2, correspondiente al sistema completo de posicionamiento 2D con cuatro nodos ancla, será presentada en secciones subsiguientes una vez completada la experimentación.
 
 \section{VERIFICACIÓN Y CALIBRACIÓN DEL SISTEMA}
 \label{sec:verificacion_sistema}
 
 \subsection{Calibración de Dispositivos}
 
-Previo a la recolección de datos experimentales, se realizó un procedimiento de calibración de los retardos de antena (\textit{antenna delays}) del transceptor DW1000 presente en los módulos DWM1001. Estos parámetros compensan los retardos intrínsecos del hardware entre el instante temporal registrado por el transceptor y la emisión/recepción física de la señal en la interfaz radioeléctrica.
+Previo a la recolección de datos experimentales, se calibraron los retardos de antena (\textit{antenna delays}) del transceptor DWM1001. Estos parámetros compensan los retardos intrínsecos del hardware entre el instante temporal registrado por el transceptor y la emisión/recepción física de la señal en la interfaz radioeléctrica.
 
 El DW1000 utiliza dos constantes de retardo que deben calibrarse para garantizar la exactitud de las mediciones de distancia mediante Two-Way Ranging (TWR):
-
+%
 \begin{itemize}
 \item \texttt{TX\_ANT\_DLY}: retardo efectivo desde que el DW1000 genera el instante temporal de transmisión hasta que la señal electromagnética es emitida físicamente por la antena. 
 \item \texttt{RX\_ANT\_DLY}: retardo desde que la señal llega físicamente a la antena hasta que el DW1000 registra el instante temporal de recepción.
@@ -23,57 +23,57 @@ Los valores por defecto proporcionados por el fabricante son aproximaciones gene
 
 \subsubsection{Procedimiento de Calibración}
 
-El método de calibración implementado se basa en la comparación entre distancias conocidas y distancias medidas, ajustando iterativamente los \textit{antenna delays} hasta minimizar el error sistemático. El procedimiento consistió en los siguientes pasos:
+El método de calibración implementado se basa en comparar distancias conocidas con las medidas, ajustando iterativamente los \textit{antenna delays} hasta minimizar el error sistemático. El procedimiento consistió en los siguientes pasos:
 
 \textbf{1. Configuración inicial:} Se configuraron dos módulos DWM1001 en modo TWR unilateral (SS-TWR), con valores iniciales de \texttt{TX\_ANT\_DLY} = 16380 y \texttt{RX\_ANT\_DLY} = 16450 (unidades de tiempo internas del DW1000, equivalentes a $\approx$15.64 ps por unidad).
 
-\textbf{2. Posicionamiento de referencia:} Los módulos fueron ubicados a una distancia fija conocida $D_{\text{real}}$ = 1.00 m, medida con cinta métrica láser de precisión $\pm$1 mm, en ambiente exterior despejado para minimizar efectos de multitrayecto.
+\textbf{2. Posicionamiento de referencia:} Los módulos fueron ubicados a una distancia fija conocida, $D_{\text{real}}$ = 1.00 m, medida con cinta métrica láser de precisión $\pm$1 mm, en un escenario de exteriores despejado para minimizar los efectos de multitrayecto.
 
 \textbf{3. Medición no calibrada:} Se realizaron 250 mediciones continuas de distancia, registrando el valor promedio $D_{\text{medida}}$ y calculando el error sistemático:
-
+%
 \begin{equation}
-E = D_{\text{real}} - D_{\text{medida}}
+E = D_{\text{real}} - D_{\text{medida}}.
 \end{equation}
-
-\textbf{4. Ajuste de retardos:} El error sistemático se traduce a un incremento/decremento en las constantes de retardo mediante el factor de conversión empírico para el DW1000 ($\approx$0.015 m por unidad de delay):
-
+%
+\textbf{4. Ajuste de retardos:} El error sistemático se traduce en un incremento/decremento en las constantes de retardo mediante el factor de conversión empírico para el DW1000, i.e., $\approx$0.015 m por unidad de delay:
+%
 \begin{equation}
-\Delta = \frac{E}{0.015}
+\Delta = \frac{E}{0.015}.
 \end{equation}
-
+%
 El ajuste se distribuyó simétricamente entre ambos retardos para mantener el balance TX/RX:
-
+%
 \begin{align}
-\texttt{TX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{TX\_ANT\_DLY}_{\text{anterior}} - \frac{\Delta}{2} \\
-\texttt{RX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{RX\_ANT\_DLY}_{\text{anterior}} - \frac{\Delta}{2}
+\texttt{TX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{TX\_ANT\_DLY}_{\text{anterior}} - \frac{\Delta}{2}. \\
+\texttt{RX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{RX\_ANT\_DLY}_{\text{anterior}} - \frac{\Delta}{2}.
 \end{align}
-
-\textbf{5. Iteración:} El proceso se repitió hasta lograr convergencia, definida como error sistemático $|E| < 5$ mm. La calibración convergió en tres iteraciones.
+%
+\textbf{5. Iteración:} El proceso se repitió hasta lograr convergencia, definida como un error sistemático de v$|E| < 5$ mm. La calibración convergió en tres iteraciones.
 
 \subsubsection{Resultados de Calibración}
 
-Los valores finales calibrados fueron \texttt{TX\_ANT\_DLY} = 16388 y \texttt{RX\_ANT\_DLY} = 16458. En la validación final a 1.00 m de distancia, el sistema registró MAE = 3.64 cm ($\sigma$ = 3.08 cm) en condiciones exteriores con línea de vista despejada, correspondiente al mejor caso de referencia (dispositivo en pecho, exterior, LOS). Este nivel de exactitud se considera adecuado para las aplicaciones de localización objetivo de este trabajo.
+Los valores finales calibrados fueron \texttt{TX\_ANT\_DLY} = 16388 y \texttt{RX\_ANT\_DLY} = 16458. En la validación final a 1 m de distancia, el sistema registró MAE = 3.64 cm ($\sigma$ = 3.08 cm) en el escenario de exteriores bajo la condición de LOS, correspondiente al mejor caso de referencia, i.e., dispositivo en el pecho, escenario de exteriores y condición de LOS. Este nivel de exactitud se considera adecuado para las aplicaciones de localización objetivo de este trabajo.
 
-Es importante destacar que la calibración fue realizada para la configuración específica de hardware utilizada (módulos DWM1001 con antenas integradas). Diferentes configuraciones de antena o modificaciones en el diseño de PCB requerirían repetir el procedimiento de calibración para mantener la trazabilidad metrológica del sistema.
+Es importante destacar que la calibración se realizó para la configuración específica del hardware utilizado, i.e., módulos DWM1001 con antenas integradas. Diferentes configuraciones de antena o modificaciones en el diseño de PCB requerirían repetir el procedimiento de calibración para mantener la trazabilidad metrológica del sistema.
 
 
 \section{CARACTERIZACIÓN ANTROPOMÉTRICA DE LOS PARTICIPANTES}
 \label{sec:caracteristicas_participantes}
 
-Tal como se indicó en la fase de validación, este trabajo fue conducido como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque permitió una caracterización detallada de los efectos de la ubicación del dispositivo y las condiciones de canal, minimizando la variabilidad entre sujetos de prueba. Se reconoce que para garantizar la generalización de estos hallazgos para aplicaciones wearables robustas, futuros trabajos deberán enfocarse en un plan de pruebas exhaustivo involucrando múltiples sujetos con diversas condiciones corporales y características antropométricas.
+Tal como se indicó en la fase de validación, este trabajo se llevó a cabo como un caso de estudio fundacional con un único sujeto de prueba. Este enfoque permitió una caracterización detallada de los efectos de la ubicación del dispositivo y de las condiciones de canal, minimizando la variabilidad entre los sujetos de prueba. Se reconoce que, para garantizar la generalización de estos hallazgos en aplicaciones robustas de \textit{wearables}, futuros trabajos deberán centrarse en un plan de pruebas exhaustivo que incluya múltiples sujetos con diversas condiciones corporales y características antropométricas.
 
 \section{ANÁLISIS DEL ERROR DE DISTANCIA POR UBICACIÓN CORPORAL}
 \label{sec:error_por_ubicacion}
 
-En esta sección se presentan los resultados de la Fase 1, correspondientes a las mediciones de distancia entre un nodo móvil (ubicado en diferentes partes del cuerpo) y un nodo fijo de referencia. Estas mediciones constituyen la base fundamental para el sistema de posicionamiento 2D, ya que la exactitud de la localización depende directamente de la calidad de las estimaciones de distancia hacia cada nodo ancla.
+En esta sección se presentan los resultados de la Fase 1, correspondientes a las mediciones de distancia entre un nodo móvil (ubicado en distintas partes del cuerpo) y un nodo fijo de referencia. Estas mediciones constituyen la base fundamental del sistema de posicionamiento 2D, ya que la exactitud de la localización depende directamente de la calidad de las estimaciones de distancia a cada nodo ancla.
 
-Se evaluaron siete ubicaciones corporales del dispositivo móvil: cabeza, cadera, mano, muñeca, pecho, rodilla y tobillo, bajo dos condiciones de propagación (LOS y NLOS) en dos escenarios diferentes (exterior e interior). A continuación se presentan los resultados organizados por ubicación corporal.
+Se evaluaron siete ubicaciones corporales del dispositivo móvil: cabeza, cadera, mano, muñeca, pecho, rodilla y tobillo, en dos escenarios:  exteriores e interiores, bajo dos condiciones de propagación: LOS y NLOS. A continuación se presentan los resultados organizados por ubicación corporal.
 
 \subsection{Dispositivo en el Pecho}
 
-El pecho representa una de las ubicaciones más críticas para la evaluación de la obstrucción corporal, ya que el torso constituye la mayor masa de tejido que puede obstruir la señal directa entre el nodo móvil y el nodo fijo.
-
-\begin{table}[ht]
+El pecho representa una de las ubicaciones más críticas en la evaluación de la BS , ya que el torso constituye la mayor masa de tejido que puede obstruir la señal directa entre el nodo móvil y el nodo fijo.
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Pecho}
 \label{tab:error_pecho}
@@ -82,22 +82,22 @@ El pecho representa una de las ubicaciones más críticas para la evaluación de
 \rowcolor{headerblue}
 \textbf{Escenario} & \textbf{Condición} & \textbf{MAE (cm)} \\
 \midrule
-\multirow{2}{*}{Exterior}   & LOS & 4.62 \\
+\multirow{2}{*}{Exteriores}   & LOS & 4.62 \\
                             & NLOS & 63.69 \\
 \midrule
-\multirow{2}{*}{Interior}   & LOS & 13.74 \\
+\multirow{2}{*}{Interiores}   & LOS & 13.74 \\
                             & NLOS & 83.98 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-Los resultados muestran que el pecho alcanza valores de MAE de 4.62 cm en condiciones LOS exteriores, siendo esta la mejor configuración registrada en todo el estudio. Sin embargo, experimenta una degradación significativa al pasar a condiciones NLOS, alcanzando 63.69 cm en exterior y 83.98 cm en interior (factor de degradación de 13.8× y 6.1× respectivamente). Esta degradación se debe a que el torso bloquea completamente la línea de vista directa, forzando al sistema a estimar la distancia basándose en señales difractadas alrededor del cuerpo o reflejadas por el entorno.
+%
+Los resultados muestran que el pecho alcanza un MAE de 4.62 cm en un escenario de exteriores bajo la condición de LOS, lo que constituye la mejor configuración registrada en todo el estudio. Sin embargo, experimenta una degradación significativa al pasar a la condición NLOS, alcanzando 63.69 cm en un escenario de exteriores y 83.98 cm en un escenario de interiores, i.e., factores de degradación de 13.8× y 6.1×, respectivamente. Esta degradación se debe a que el torso bloquea por completo la línea de vista directa, lo que obliga al sistema a estimar la distancia a partir de señales difractadas alrededor del cuerpo o reflejadas por el entorno.
 
 \subsection{Dispositivo en la Cabeza}
 
 La cabeza representa una ubicación estratégica debido a su geometría curva que favorece la difracción de señales UWB. Los resultados demuestran el comportamiento más consistente y predecible entre todas las ubicaciones evaluadas.
-
-\begin{table}[ht]
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Cabeza}
 \label{tab:error_cabeza}
@@ -106,22 +106,22 @@ La cabeza representa una ubicación estratégica debido a su geometría curva qu
 \toprule
 \textbf{Escenario} & \textbf{Condición} & \textbf{MAE (cm)} & \textbf{Desv. Est. (cm)} & \textbf{Error Máx. (cm)} \\
 \midrule
-\multirow{2}{*}{Exterior} & LOS  & 4.87  & 3.72  & 15 \\
+\multirow{2}{*}{Exteriores} & LOS  & 4.87  & 3.72  & 15 \\
                           & NLOS & 32.05 & 10.16 & 53 \\
 \midrule
-\multirow{2}{*}{Interior} & LOS  & 10.43 & 9.21  & 48 \\
+\multirow{2}{*}{Interiores} & LOS  & 10.43 & 9.21  & 48 \\
                           & NLOS & 18.66 & 11.20 & 64 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-La cabeza alcanza MAE de 4.87 cm en exterior LOS, comparable al pecho. Presenta degradación moderada en NLOS exterior (factor 6.6×) y excelente desempeño en interior con factor de degradación de solo 1.8× entre LOS y NLOS. La geometría esférica del cráneo permite que las señales se difracten efectivamente alrededor de la obstrucción, manteniendo la exactitud incluso en condiciones NLOS.
+%
+La cabeza alcanza un MAE de 4.87 cm en el escenario de exteriores bajo la condición de LOS, comparable al del pecho. Presenta degradación moderada en el escenario de exteriores bajo condición de NLOS, i.e., factor de degradación igual a 6.6×, y excelente desempeño en el escenario de interiores, i.e., factor de degradación igual a 1.8× bajo condiciones de LOS y NLOS. La geometría esférica del cráneo permite que las señales se difracten eficazmente alrededor de la obstrucción, manteniendo la exactitud incluso en condiciones de NLOS.
 
 \subsection{Dispositivo en la Cadera}
 
-La cadera exhibe el comportamiento más variable del estudio, con excelente desempeño en LOS pero degradación extrema en NLOS.
-
-\begin{table}[ht]
+La cadera presenta el comportamiento más variable del estudio, con un excelente desempeño en LOS, pero una degradación extrema en condiciones de NLOS.
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Cadera}
 \label{tab:error_cadera}
@@ -130,22 +130,22 @@ La cadera exhibe el comportamiento más variable del estudio, con excelente dese
 \rowcolor{headerblue}
 \textbf{Escenario} & \textbf{Condición} & \textbf{MAE (cm)} & \textbf{Desv. Est. (cm)} & \textbf{Error Máx. (cm)} \\
 \midrule
-\multirow{2}{*}{Exterior}   & LOS & 8.31 & 5.34 & 25 \\
+\multirow{2}{*}{Exteriores}   & LOS & 8.31 & 5.34 & 25 \\
                             & NLOS & 94.78 & 52.46 & 189 \\
 \midrule
-\multirow{2}{*}{Exterior}   & LOS & 7.19 & 7.86 & 37 \\
+\multirow{2}{*}{Exteriores}   & LOS & 7.19 & 7.86 & 37 \\
                             & NLOS & 97.76 & 71.00 & 290 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-La cadera presenta los mayores errores máximos registrados: 189 cm (exterior NLOS) y 290 cm (interior NLOS), con factores de degradación de 11.4× y 13.6× respectivamente. Esta ubicación sufre obstrucción severa por la pelvis y el torso, generando caminos de propagación altamente variables con elevada dispersión estadística.
+%
+La cadera presenta los mayores errores máximos registrados: 189 cm en el escenario de exteriores y 290 cm en el de interiores, bajo la condición de NLOS, con factores de degradación de 11.4× y 13.6×, respectivamente. Esta ubicación presenta una BS severa en la pelvis y el torso, lo que genera caminos de propagación altamente variables y una elevada dispersión estadística.
 
 \subsection{Dispositivo en la Rodilla}
 
-La rodilla muestra errores consistentemente elevados en todas las configuraciones, con alta variabilidad especialmente en condiciones NLOS.
-
-\begin{table}[ht]
+La rodilla muestra errores consistentemente elevados en todas las configuraciones, con alta variabilidad especialmente bajo condiciones de NLOS.
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Rodilla}
 \label{tab:error_rodilla}
@@ -154,22 +154,22 @@ La rodilla muestra errores consistentemente elevados en todas las configuracione
 \rowcolor{headerblue}
 \textbf{Escenario} & \textbf{Condición} & \textbf{MAE (cm)} & \textbf{Desv. Est. (cm)} & \textbf{Error Máx. (cm)} \\
 \midrule
-\multirow{2}{*}{Exterior}   & LOS & 14.99 & 10.59 & 46 \\
+\multirow{2}{*}{Exteriores}   & LOS & 14.99 & 10.59 & 46 \\
                             & NLOS & 55.54 & 36.11 & 131 \\
 \midrule
-\multirow{2}{*}{Interior}   & LOS & 12.04 & 8.43 & 35 \\
+\multirow{2}{*}{Interiores}   & LOS & 12.04 & 8.43 & 35 \\
                             & NLOS & 49.55 & 37.68 & 181 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-La rodilla presenta MAE superiores a 12 cm incluso en LOS, y alcanza 55.54 cm en exterior NLOS (factor 3.7×) y 49.55 cm en interior NLOS (factor 4.1×). La proximidad al suelo y la obstrucción por las extremidades inferiores generan multitrayecto complejo y atenuación significativa.
+%
+La rodilla presenta MAE superiores a 12 cm, incluso en LOS, y alcanza 55.54 cm en escenario  de exteriores bajo la condición de NLOS, i.e., factor de degradación 3.7×, y 49.55 cm en escenario de interiores bajo la condición de NLOS, i.e., factor de degradación 4.1×. La proximidad al suelo y la BS en las extremidades inferiores generan un multitrayecto complejo y una atenuación significativa.
 
 \subsection{Dispositivo en el Tobillo}
 
-El tobillo exhibe el comportamiento más atípico, con errores elevados incluso en LOS y un fenómeno contraintuitivo de mejora en NLOS interior.
-
-\begin{table}[ht]
+El tobillo exhibe el comportamiento más atípico, con errores elevados incluso en LOS y un fenómeno contraintuitivo de mejora en el escenario de interiores bajo la condición de NLOS.
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Tobillo}
 \label{tab:error_tobillo}
@@ -178,22 +178,22 @@ El tobillo exhibe el comportamiento más atípico, con errores elevados incluso 
 \rowcolor{headerblue}
 \textbf{Escenario} & \textbf{Condición} & \textbf{MAE (cm)} & \textbf{Desv. Est. (cm)} & \textbf{Error Máx. (cm)} \\
 \midrule
-\multirow{2}{*}{Exterior}   & LOS & 29.87 & 20.86 & 105 \\
+\multirow{2}{*}{Exteriores}   & LOS & 29.87 & 20.86 & 105 \\
                             & NLOS & 41.86 & 19.44 & 85 \\
 \midrule
-\multirow{2}{*}{Interior}   & LOS & 29.41 & 28.67 & 81 \\
+\multirow{2}{*}{Interiores}   & LOS & 29.41 & 28.67 & 81 \\
                             & NLOS & 38.67 & 15.89 & 147 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-El tobillo presenta MAE superiores a 29 cm en todas las configuraciones. En interior NLOS (38.67 cm) supera el desempeño de Exterior NLOS (41.86 cm). Este fenómeno sugiere que las reflexiones del piso y paredes en el corredor compensan parcialmente la atenuación por obstrucción corporal.
+%
+El tobillo presenta MAE superiores a 29 cm en todas las configuraciones. En el escenario de interiores, bajo la condición de NLOS (38.67 cm), el desempeño supera al de exteriores (41.86 cm). Este fenómeno sugiere que las reflexiones del piso y de las paredes del corredor compensan parcialmente la atenuación por la BS.
 
 \subsection{Dispositivo en Mano y Muñeca}
 
-Mano y muñeca mantienen desempeño moderado y estable en la mayoría de configuraciones.
-
-\begin{table}[ht]
+Mano y muñeca mantienen un desempeño moderado y estable en la mayoría de las configuraciones.
+%
+\begin{table}[t]
 \centering
 \caption{Error de Distancia - Dispositivo en Mano y Muñeca}
 \label{tab:error_mano_muneca}
@@ -202,36 +202,36 @@ Mano y muñeca mantienen desempeño moderado y estable en la mayoría de configu
 \rowcolor{headerblue}
 \textbf{Ubicación} & \textbf{Escenario} & \textbf{Condición} & \textbf{MAE(cm)} & \textbf{Std(cm)} & \textbf{Error Máx.(cm)} \\
 \midrule
-\multirow{4}{*}{Mano} & \multirow{2}{*}{Exterior}& LOS & 8.98 & 6.39 & 32 \\
+\multirow{4}{*}{Mano} & \multirow{2}{*}{Exteriores}& LOS & 8.98 & 6.39 & 32 \\
 &  & NLOS & 41.60 & 12.14 & 73 \\
 \cmidrule{3-6}
-& \multirow{2}{*}{Interior} & LOS & 9.47 & 7.74 & 35 \\
+& \multirow{2}{*}{Interiores} & LOS & 9.47 & 7.74 & 35 \\
 &  & NLOS & 26.01 & 23.92 & 156 \\
 \midrule
-\multirow{4}{*}{Muñeca} & \multirow{2}{*}{Exterior} & LOS & 7.78 & 5.99 & 32 \\
+\multirow{4}{*}{Muñeca} & \multirow{2}{*}{Exteriores} & LOS & 7.78 & 5.99 & 32 \\
 &  & NLOS & 24.07 & 7.71 & 45 \\
 \cmidrule{3-6}
-& \multirow{2}{*}{Interior} & LOS & 6.42 & 4.09 & 19 \\
+& \multirow{2}{*}{Interiores} & LOS & 6.42 & 4.09 & 19 \\
 &  & NLOS & 22.00 & 13.21 & 81 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-Mano y muñeca presentan MAE entre 6.42 cm y 9.47 cm en LOS, con degradación moderada en NLOS (factores entre 2.9× y 4.6×). La muñeca muestra mejor consistencia que la mano, con menor variabilidad y errores máximos más bajos. Ambas ubicaciones se benefician de la movilidad natural de las extremidades superiores que reduce la obstrucción persistente.
+%
+Mano y muñeca presentan MAE entre 6.42 cm y 9.47 cm en LOS, con degradación moderada bajo la condición de NLOS, i.e., factores de degradación entre 2.9× y 4.6×. La muñeca muestra una mejor consistencia que la mano, con menor variabilidad y errores máximos más bajos. Ambas ubicaciones se benefician de la movilidad natural de las extremidades superiores, lo que reduce la obstrucción persistente.
 
 \subsection{Comparativo General}
 
 La Tabla \ref{tab:resumen_todas_ubicaciones} consolida los resultados de todas las ubicaciones evaluadas.
-
-\begin{table}[ht]
+%
+\begin{table}[t]
 \centering
 \caption{Resumen de MAE por Ubicación Corporal y Condición - Fase 1}
 \label{tab:resumen_todas_ubicaciones}
 \begin{tabular}{lcccc}
 \toprule
 \multirow{2}{*}{\cellcolor{headerblue}}
-& \multicolumn{2}{c}{\cellcolor{headerblue}\textbf{Exterior}}
-& \multicolumn{2}{c}{\cellcolor{headerblue}\textbf{Interior}} \\
+& \multicolumn{2}{c}{\cellcolor{headerblue}\textbf{Exteriores}}
+& \multicolumn{2}{c}{\cellcolor{headerblue}\textbf{Interiores}} \\
 
 
 \cellcolor{headerblue}\textbf{Ubicación}& \cellcolor{headerblue}\textbf{LOS (cm)}
@@ -250,19 +250,18 @@ Tobillo  & 29.81 & 38.45 & 41.48 & 29.96 \\
 \end{tabular}
 \end{table}
 
-
 \textbf{Hallazgos principales:}
 
 \begin{itemize}
-\item \textbf{Cabeza:} Muestra el comportamiento más consistente entre todas las ubicaciones evaluadas. En exteriores presenta degradación moderada entre LOS (4.87 cm) y NLOS (32.43 cm) con factor 6.7×. En interiores mantiene valores relativamente bajos: 8.91 cm (LOS) y 18.16 cm (NLOS) con factor 2.0×. La forma curva de la cabeza favorece la difracción de señales UWB alrededor del cráneo.
+\item \textbf{Cabeza:} Muestra el comportamiento más consistente entre todas las ubicaciones evaluadas. En el escenario de exteriores, se observa una degradación moderada en las condiciones de LOS (4.87 cm) y de NLOS (32.43 cm), con un factor de degradación de 6.7×. En el escenario de interiores, mantiene valores relativamente bajos: 8.91 cm bajo la condición de LOS y 18.16 cm bajo la condición de NLOS con un factor de degradación de 2.0×. La forma curva de la cabeza favorece la difracción de señales UWB alrededor del cráneo.
 
-\item \textbf{Cadera:} Exhibe el desempeño más variable del estudio. Alcanza valores excelentes en LOS (8.31 cm exterior, 7.22 cm interior), pero experimenta la degradación más severa en NLOS con MAE de 89.99 cm (exterior) y 95.11 cm (interior), representando factores de degradación de 10.8× y 13.2× respectivamente.
+\item \textbf{Cadera:} Presenta el desempeño más variable del estudio. Alcanza valores excelentes en condición LOS, i.e., 8.31 cm en el escenario de exteriores y 7.22 cm en el escenario de interiores, pero experimenta la degradación más severa bajo la condición de NLOS, con MAE de 89.99 cm en el escenario de exteriores y 95.11 cm en el escenario de interiores, lo que representa factores de degradación de 10.8× y 13.2×, respectivamente.
 
-\item \textbf{Rodilla:} Presenta errores consistentemente elevados en todas las configuraciones. Los valores en LOS son moderados (14.99 cm exterior, 12.04 cm interior), pero en NLOS alcanza 51.36 cm (exterior) y 49.52 cm (interior), con factores de degradación de 3.4× y 4.1×.
+\item \textbf{Rodilla:} Presenta errores consistentemente elevados en todas las configuraciones. Los valores en condición LOS son moderados, 14.99 cm en el escenario de exteriores y 12.04 cm en el escenario de interiores, pero bajo la condición de NLOS alcanzan 51.36 cm en el escenario de exteriores y 49.52 cm en el escenario de interiores, con factores de degradación de 3.4× y 4.1×, respectivamente.
 
-\item \textbf{Tobillo:} Muestra un coportamiento interesante del estudio. Presenta MAE elevados en exteriores NLOS que en el escenario interior NLOS, por lo que este último exhibe mejor desempeño.
+\item \textbf{Tobillo:} Muestra un comportamiento interesante en el estudio. Presenta MAE elevados en escenarios exteriores bajo condiciones NLOS, en comparación con los de interiores, por lo que este último presenta un mejor desempeño.
 
-\item \textbf{Mano y Muñeca:} Mantienen desempeño moderado y consistente. La mano registra 9.28 cm (exterior LOS) y 9.09 cm (interior LOS), degradándose a 42.17 cm y 26.01 cm en NLOS respectivamente. La muñeca presenta valores similares: 7.78 cm (exterior LOS), 6.42 cm (interior LOS), degradándose a 24.21 cm y 22.00 cm en NLOS. Ambas ubicaciones muestran factores de degradación entre 2.9× y 4.5×.
+\item \textbf{Mano y Muñeca:} Mantienen un desempeño moderado y consistente. La mano registra 9.28 cm en el escenario de exteriores bajo la condición de LOS y 9.09 cm en el escenario de interiores bajo la condición de LOS, degradándose a 42.17 cm y 26.01 cm bajo la condición de NLOS, respectivamente. La muñeca presenta valores similares: 7.78 cm para el escenario de exteriores bajo la condición de LOS y 6.42 cm para el escenario de interiores en condición de LOS, que se degradan a 24.21 cm y 22.00 cm bajo la condición de NLOS, respectivamente. Ambas ubicaciones muestran factores de degradación entre 2.9× y 4.5×.
 \end{itemize}
 
 
@@ -272,72 +271,69 @@ Tobillo  & 29.81 & 38.45 & 41.48 & 29.96 \\
 \subsection{Métricas Globales del Sistema}
 
 Considerando las 28 configuraciones evaluadas (7 ubicaciones × 2 condiciones × 2 escenarios), el análisis global del sistema de estimación de distancia arroja las siguientes métricas:
-
+%
 \begin{itemize}
-\item \textbf{MAE Global:} 0.3944 m
-\item \textbf{RMSE Global:} 0.6690 m  
-\item \textbf{Percentil 95:} 1.1424 m
+\item \textbf{MAE Global:} 0.3944 m.
+\item \textbf{RMSE Global:} 0.6690 m.  
+\item \textbf{Percentil 95:} 1.1424 m.
 \end{itemize}
 
-El percentil 95 indica que el 95\% de todas las mediciones presentan errores inferiores a 1.14 m, proporcionando una medida de la variabilidad extrema del sistema. Se observó una tendencia sistemática a sobreestimar las distancias, fenómeno atribuible a efectos de multitrayecto y tiempos de procesamiento de señal en los dispositivos UWB.
+El percentil 95 indica que el 95\% de todas las mediciones presentan errores inferiores a 1.14 m, lo que proporciona una medida de la variabilidad extrema del sistema. Se observó una tendencia sistemática a sobreestimar las distancias, atribuible a efectos de multitrayecto y a los tiempos de procesamiento de señal en los dispositivos UWB.
 
 \subsection{Distribución Probabilística de Errores}
 
-La distribución probabilística de los errores evidencia una asimetría positiva, con una cola extendida hacia valores de error elevados, lo que indica un comportamiento claramente no gaussiano en configuraciones específicas, particularmente bajo condiciones severas de no línea de vista (NLOS). Este comportamiento sugiere que los modelos de error tradicionales basados en distribuciones gaussianas resultan inadecuados para caracterizar el desempeño de sistemas UWB en presencia de obstrucción corporal.
+La distribución probabilística de los errores evidencia una asimetría positiva, con una cola extendida hacia valores de error elevados, lo que indica un comportamiento claramente no gaussiano en configuraciones específicas, en particular bajo condiciones severas de no línea de vista (NLOS). Este comportamiento sugiere que los modelos de error tradicionales basados en distribuciones gaussianas resultan inadecuados para caracterizar el desempeño de sistemas UWB en presencia de BS.
 
-Uno de los gráficos que permite observar este fenómeno es el diagrama de cajas y bigotes, mostrado en la Figura~\ref{fig:box_plot_los_nlos}, donde se aprecia de manera clara el contraste en la distribución del error al pasar de condiciones LOS a NLOS.
-
-\begin{figure}[hbt]
+Uno de los gráficos que permiten observar este fenómeno es el diagrama de cajas y bigotes, mostrado en la Figura~\ref{fig:box_plot_los_nlos}, donde se aprecia con claridad el contraste en la distribución del error al pasar de la condición LOS a la condición NLOS.
+%
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/boxplot_los_nlos.png}
-    \caption{Distribución probabilística de los errores en condiciones LOS y NLOS}
+    \caption{Distribución probabilística de los errores bajo condiciones LOS y NLOS}
     \label{fig:box_plot_los_nlos}
 \end{figure}
-
-Con base en la Figura~\ref{fig:box_plot_los_nlos}, se observa que, cuando se presenta obstrucción corporal, el error puede alcanzar valores de hasta aproximadamente 5 m. Este comportamiento implica que ciertas ubicaciones corporales introducen una distorsión significativa en la señal, atenuándola de tal forma que el sistema pierde confiabilidad y su desempeño se degrada considerablemente.
-
-\begin{figure}[hbt]
+%
+Con base en la Figura~\ref{fig:box_plot_los_nlos}, se observa que cuando se presenta la BS, el error puede alcanzar aproximadamente 5 m. Este comportamiento implica que ciertas ubicaciones corporales introducen una distorsión significativa en la señal, lo que la atenúa hasta el punto de que el sistema pierde confiabilidad y su desempeño se degrada considerablemente.
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/exactitud_vs_precision_NLOS.png}
-    \caption{Exactitud versus precisión del MAE en configuración NLOS}
+    \includegraphics[width=0.9\textwidth]{imagenes/exactitud_vs_precision_NLOS.png}
+    \caption{Exactitud versus precisión del MAE bajo condiciones de NLOS}
     \label{fig:exactitud_vs_precision_nlos}
 \end{figure}
+%
+Al analizar el gráfico de exactitud versus precisión, presentado en la Figura~\ref{fig:exactitud_vs_precision_nlos}, se observa que las ubicaciones correspondientes a la cadera y el pecho presentan simultáneamente los valores más altos de MAE y de desviación estándar. Este resultado es consistente con la estructura anatómica de dichas partes del cuerpo, que dificulta la propagación de la señal y limita severamente su llegada al receptor, lo que provoca un desempeño deficiente del sistema.
 
-Al analizar el gráfico de exactitud versus precisión, presentado en la Figura~\ref{fig:exactitud_vs_precision_nlos}, se observa que las ubicaciones correspondientes a la cadera y el pecho presentan simultáneamente los valores más altos de MAE y de desviación estándar. Este resultado es consistente con la estructura anatómica de dichas partes del cuerpo, la cual dificulta la propagación de la señal y limita severamente su llegada al receptor, generando así un desempeño deficiente del sistema.
-
-Si bien estos resultados proporcionan una primera caracterización del fenómeno, resulta necesario extender el análisis a escenarios en interiores, que constituyen el foco principal del presente trabajo. En este contexto, el siguiente paso consiste en evaluar el comportamiento del MAE bajo configuración NLOS en entornos interiores, tal como se muestra en la Figura~\ref{fig:exactitud_vs_precision_nlos_interiores}.
-
-\begin{figure}[hbt]
+Si bien estos resultados proporcionan una primera caracterización del fenómeno, resulta necesario extender el análisis al escenario de interiores, que constituye el foco principal del presente trabajo. En este contexto, el siguiente paso consiste en evaluar el comportamiento del MAE en escenarios de interiores bajo la condición de NLOS, como se muestra en la Figura~\ref{fig:exactitud_vs_precision_nlos_interiores}.
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/exactitud_vs_precision_nlos_pasillo.png}
-    \caption{Exactitud versus precisión del MAE en configuración NLOS en interiores}
+    \includegraphics[width=0.9\textwidth]{imagenes/exactitud_vs_precision_nlos_pasillo.png}
+    \caption{Exactitud versus precisión del MAE en escenario de interiores bajo la condición de NLOS}
     \label{fig:exactitud_vs_precision_nlos_interiores}
 \end{figure}
 
-La Figura~\ref{fig:exactitud_vs_precision_nlos_interiores} muestra que la mayor parte de la variabilidad observada en condiciones NLOS está dominada por el escenario del Interiores. En este contexto, tanto la cadera como el pecho continúan presentando errores absolutos elevados y altas desviaciones estándar, confirmando su bajo rendimiento en términos de exactitud y precisión.
+La Figura~\ref{fig:exactitud_vs_precision_nlos_interiores} muestra que la mayor parte de la variabilidad observada en el escenario de interiores bajo la condición de NLOS. En este contexto, tanto la cadera como el pecho continúan presentando errores absolutos elevados y desviaciones estándar altas, lo que confirma su bajo desempeño en términos de exactitud y precisión.
 
-Un hallazgo relevante es que las ubicaciones correspondientes a la cabeza, la mano y la muñeca presentan consistentemente valores de MAE y desviación estándar cercanos a los umbrales establecidos. Este comportamiento constituye una evidencia del fenómeno conocido como \textit{multitrayecto constructivo}, en el cual ciertas configuraciones geométricas favorecen la superposición coherente de trayectorias reflejadas, mejorando el desempeño del sistema.
+Un hallazgo relevante es que las ubicaciones correspondientes a la cabeza, la mano y la muñeca presentan consistentemente valores de MAE y de desviación estándar cercanos a los umbrales establecidos. Este comportamiento constituye evidencia del fenómeno conocido como \textit{multitrayecto constructivo}, en el que ciertas configuraciones geométricas favorecen la superposición coherente de trayectorias reflejadas, lo que mejora el desempeño del sistema.
 
-Si bien estos resultados representan un primer hallazgo significativo, resulta pertinente profundizar el análisis mediante la aplicación de pruebas estadísticas formales, tales como ANOVA y la prueba post-hoc de Tukey o pruebas no paramétricas. La inclusión de estas pruebas permitiría sustentar de manera más robusta las conclusiones sobre la BS y relacionadas con el fenómeno de multitrayecto constructivo y su impacto en el desempeño del sistema.
-
-
-
+Si bien estos resultados representan un primer hallazgo significativo, resulta pertinente profundizar el análisis mediante la aplicación de pruebas estadísticas formales, tales como ANOVA y la prueba post hoc de Tukey, o de pruebas no paramétricas. La inclusión de estas pruebas permitiría sustentar de manera más robusta las conclusiones sobre la BS y las relacionadas con el fenómeno de multitrayecto constructivo y su impacto en el desempeño del sistema.
 
 \subsection{Análisis Estadístico No Paramétrico}
 
 \subsubsection{Justificación de la Metodología No Paramétrica}
 
-Un análisis preliminar de la distribución del Error Absoluto (AE) de las mediciones reveló una desviación significativa de la normalidad. La prueba de Shapiro-Wilk sobre una muestra representativa de los datos arrojó un p-valor extremadamente bajo ($p \ll 0.001$), lo que obliga a rechazar la hipótesis de normalidad. Adicionalmente, la prueba de Levene para la homogeneidad de varianzas entre las distintas ubicaciones corporales también resultó altamente significativa ($p \ll 0.001$), indicando que las varianzas no son iguales entre los grupos.
+Un análisis preliminar de la distribución del AE de las mediciones reveló una desviación significativa respecto de la normalidad. La prueba de Shapiro-Wilk sobre una muestra representativa de los datos arrojó un p-valor extremadamente bajo ($p \ll 0.001$), lo que obliga a rechazar la hipótesis de normalidad. Adicionalmente, la prueba de Levene para la homogeneidad de varianzas entre las distintas ubicaciones corporales también resultó altamente significativa ($p \ll 0.001$), lo que indica que las varianzas no son iguales entre los grupos.
 
-Dada la violación de los supuestos de normalidad y homocedasticidad, el uso de pruebas paramétricas como ANOVA o t-test sería metodológicamente incorrecto. Por consiguiente, todo el análisis inferencial se fundamenta en pruebas no paramétricas, específicamente la prueba U de Mann-Whitney, que es robusta ante estas condiciones y permite comparar distribuciones entre grupos independientes y levene para detectar diferencias significativas.
+Dada la violación de los supuestos de normalidad y homocedasticidad, el uso de pruebas paramétricas como la ANOVA o el t-test resultaría metodológicamente incorrecto. Por consiguiente, todo el análisis inferencial se fundamenta en pruebas no paramétricas, específicamente en la prueba U de Mann-Whitney, robusta ante estas condiciones y que permite comparar distribuciones entre grupos independientes, y en la prueba de Levene para detectar diferencias significativas.
 
 \subsubsection{Análisis de Configuraciones Extremas y Relevancia Práctica}
 
-Para evaluar la magnitud de las diferencias de rendimiento, se compararon las dos mejores configuraciones (menor MAE y dispersión) con las dos peores (mayor MAE y dispersión), tanto en condiciones de Línea de Vista (LOS) como de No Línea de Vista (NLOS). La Tabla~\ref{tab:extremos} resume los resultados.
-
-\begin{table}[h!]
+Para evaluar la magnitud de las diferencias de desempeño, se compararon las dos mejores configuraciones (menor MAE y dispersión) con las dos peores (mayor MAE y dispersión), tanto en condiciones de LOS como de NLOS. La Tabla~\ref{tab:extremos} resume los resultados.
+%
+\begin{table}[t]
 \centering
-\caption{Comparación de rendimiento entre las configuraciones extremas. Se reporta el MAE, su Intervalo de Confianza (IC) del 95\% estimado por bootstrap, y el tamaño del efecto (correlación rank-biserial, $r$).}
+\caption{Comparación de desempeño entre las configuraciones extremas. Se reporta el MAE, su Intervalo de Confianza (IC) del 95\% estimado por bootstrap, y el tamaño del efecto (correlación rank-biserial, $r$).}
 \label{tab:extremos}
 \begin{tabular}{llcccc}
 \toprule
@@ -355,22 +351,21 @@ NLOS & Mejores & 0.101 & [0.100, 0.103] & \multirow{2}{*}{0.968} & \multirow{2}{
 \bottomrule
 \end{tabular}
 \end{table}
+%
+Los resultados muestran que las diferencias son estadísticamente significativas en ambos casos. Sin embargo, el análisis va más allá del p-valor: el tamaño del efecto es \textbf{grande} en ambas condiciones, i.e., $r > 0.5$, y los intervalos de confianza de los grupos 'Mejores' y 'Peores' no se superponen en absoluto. Esto demuestra de manera concluyente que las diferencias no solo son estadísticamente detectables, sino que también son de una magnitud muy relevante desde el punto de vista práctico. La condición NLOS exhibe una diferencia de casi un orden de magnitud en el MAE, con un tamaño de efecto cercano a la máxima disimilitud, i.e., $r \approx 1$.
 
-Los resultados muestran que las diferencias son estadísticamente significativas en ambos casos. Sin embargo, el análisis va más allá del p-valor: el tamaño del efecto es \textbf{grande} en ambas condiciones ($r > 0.
-5$), y los intervalos de confianza para los grupos de 'Mejores' y 'Peores' no se superponen en absoluto. Esto demuestra de manera concluyente que las diferencias no solo son estadísticamente detectables, sino también de una magnitud muy relevante desde el punto de vista práctico. La condición NLOS exhibe una diferencia de casi un orden de magnitud en el MAE, con un tamaño de efecto cercano a la máxima disimilitud ($r \approx 1$).
+\subsubsection{Impacto del Escenario bajo Condición de NLOS}
 
-\subsubsection{Impacto del Escenario en Condiciones NLOS}
-
-Con el fin de analizar cómo el entorno influye en el desempeño del sistema bajo las condiciones más adversas, se realizó una comparación pareada entre los escenarios \textit{Exteriores} y \textit{Interiores} para cada ubicación corporal, considerando exclusivamente mediciones en condición NLOS. Los resultados de este análisis se presentan en la Tabla~\ref{tab:nlos_escenario}.
-
-\begin{table}[h!]
+Con el fin de analizar cómo el entorno influye en el desempeño del sistema bajo las condiciones más adversas, se realizó una comparación pareada entre los escenarios de exteriores e interiores para cada ubicación corporal, considerando exclusivamente mediciones en condición de NLOS. Los resultados de este análisis se presentan en la Tabla~\ref{tab:nlos_escenario}.
+%
+\begin{table}[t]
 \centering
-\caption{Análisis comparativo del MAE en condiciones NLOS entre los escenarios \textit{Exteriores} y \textit{Interiores} para cada ubicación corporal.}
+\caption{Análisis comparativo del MAE entre los escenarios de exteriores e interiores bajo condiciones de NLOS para cada ubicación corporal.}
 \label{tab:nlos_escenario}
 \begin{tabular}{lccccc}
 \toprule
 \rowcolor{headerblue}
-\textbf{Ubicación} & \textbf{Exteriores[m]} & \textbf{Interiores[m]} & \textbf{$p$-valor} & Efecto ($r$) & \textbf{Magnitud} \\
+\textbf{Ubicación} & \textbf{Exteriores[m]} & \textbf{Interiores[m]} & \textbf{$p$-valor} & \textbf{Efecto ($r$)} & \textbf{Magnitud} \\
 \midrule
 CABEZA  & 0.320 & 0.187 & $\ll 0.001$ & -0.660 & grande  \\
 CADERA  & 0.948 & 0.978 & 0.028       &  0.049 & trivial \\
@@ -385,30 +380,30 @@ TOBILLO & 0.389 & 0.300 & $\ll 0.001$ & -0.488 & medio   \\
 
 \subsubsection{Discusión e Interpretación Física}
 
-Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que para varias ubicaciones corporales la mediana del MAE es \emph{menor en el escenario Interiores que en Exteriores}, a pesar de que el Interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación clara de la interacción entre obstrucción corporal y propagación por multitrayecto.
+Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que, para varias ubicaciones corporales, la mediana del MAE es \emph{menor en el escenario de interiores que en el de exteriores}, a pesar de que el de interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación clara de la interacción entre BS y la propagación por multitrayecto.
 
-En ubicaciones del torso como \textbf{CADERA} y \textbf{PECHO}, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{obstrucción corporal severa} domina completamente el proceso de propagación, atenuando la señal de forma tal que el entorno circundante tiene un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logra mitigar significativamente el error.
+En ubicaciones del torso como \textbf{CADERA} y \textbf{PECHO}, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{BS severa} domina por completo el proceso de propagación, atenuando la señal de modo que el entorno circundante ejerce un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logran mitigar significativamente el error.
 
-En contraste, para ubicaciones en extremidades como \textbf{CABEZA}, \textbf{MANO}, \textbf{RODILLA} y \textbf{TOBILLO}, se observa un comportamiento sistemático donde el error es mayor en \textit{Exteriores} que en \textit{Interiores}, con tamaños de efecto que van de moderados a grandes. Este resultado se explica por el fenómeno de \textbf{multitrayecto constructivo}. En un Interiores, las reflexiones en paredes, suelo y techo generan múltiples trayectorias indirectas que pueden compensar parcialmente la obstrucción de la señal directa, reduciendo el error mediano. En espacios abiertos, estas superficies reflectantes están ausentes o demasiado alejadas, por lo que, ante una obstrucción corporal, el sistema carece de trayectorias alternativas robustas, incrementando el error.
+En contraste, para ubicaciones en extremidades como \textbf{CABEZA}, \textbf{MANO}, \textbf{RODILLA} y \textbf{TOBILLO}, se observa un comportamiento sistemático donde el error es mayor en el escenario de exteriores que en el escenario de interiores, con tamaños de efecto que van de moderados a grandes. Este resultado se explica por el fenómeno de \textbf{multitrayecto constructivo}. En un escenario de interiores, las reflexiones en paredes, suelo y techo generan múltiples trayectorias indirectas que pueden compensar parcialmente la obstrucción de la señal directa, reduciendo el error medio. En espacios abiertos, estas superficies reflectantes están ausentes o demasiado alejadas, por lo que, ante una BS, el sistema carece de trayectorias alternativas robustas, lo que incrementa el error.
 
-El caso de la ubicación \textbf{MANO} es particularmente ilustrativo: presenta un tamaño del efecto grande ($r = -0.693$), lo que indica que el entorno tiene una influencia práctica muy relevante. Esto sugiere que la mano, al ser una extremidad altamente móvil y con geometría variable, es especialmente sensible a la disponibilidad de trayectorias reflejadas.
+El caso de la ubicación \textbf{MANO} es particularmente ilustrativo: presenta un tamaño del efecto grande, es decir, $r = -0.693$, lo que indica que el entorno ejerce una influencia prácticamente muy relevante. Esto sugiere que la mano, al ser una extremidad altamente móvil y con geometría variable, es especialmente sensible a la disponibilidad de trayectorias reflejadas.
 
-En síntesis, el hecho de que el escenario \textit{Interiores} presente MAE menor que \textit{Exteriores} para varias ubicaciones no constituye una anomalía, sino una evidencia clara de que, en condiciones NLOS, un entorno confinado puede favorecer el rendimiento mediante multitrayecto constructivo. Estos resultados refuerzan la necesidad de analizar conjuntamente la ubicación corporal y el entorno, y tienen implicaciones directas para el diseño y despliegue de sistemas UWB, particularmente en aplicaciones donde la NLOS es inevitable.
+En síntesis, el hecho de que el escenario de interiores presente MAE menor que el de exteriores en varias ubicaciones no constituye una anomalía, sino una evidencia clara de que, bajo la condición de NLOS, un entorno confinado puede favorecer el desempeño mediante el multitrayecto constructivo. Estos resultados refuerzan la necesidad de analizar conjuntamente la ubicación corporal y el entorno, con  implicaciones directas para el diseño y el despliegue de sistemas UWB, en particular en aplicaciones donde la condición de NLOS es inevitable.
 
 \section{Análisis de la Distribución de Probabilidad del AE}
 \label{sec:analisis_distribucion_mae}
 
-Con el objetivo de caracterizar formalmente el comportamiento del error de medición y validar la hipótesis de no normalidad sugerida en las secciones anteriores, se realizó un análisis de ajuste de distribuciones probabilísticas sobre el conjunto total de datos experimentales ($N=101552$ muestras). Se evaluaron seis distribuciones teóricas candidatas: Normal, Log-normal, Gamma, Weibull, Exponencial y Uniforme. El ajuste se determinó mediante el Criterio de Información de Akaike (AIC) y el Criterio de Información Bayesiano (BIC), donde valores menores indican un mejor compromiso entre la fidelidad del ajuste y la complejidad del modelo.
+Con el objetivo de caracterizar formalmente el comportamiento del error de medición y validar la hipótesis de no normalidad sugerida en las secciones anteriores, se realizó un análisis de ajuste de distribuciones probabilísticas sobre el conjunto total de datos experimentales ($N=101552$ muestras). Se evaluaron seis distribuciones teóricas candidatas: normal, lognormal, gamma, Weibull, exponencial y uniforme. El ajuste se determinó mediante el Criterio de Información de Akaike (AIC) y el Criterio de Información Bayesiano (BIC), en los que los valores menores indican un mejor equilibrio entre la fidelidad del ajuste y la complejidad del modelo.
 
 \subsection{Ajuste Global de Datos}
 
-El análisis del conjunto global de datos confirma de manera concluyente que la distribución Normal es inadecuada para modelar el error de distancia en sistemas UWB bajo condiciones mixtas (LOS/NLOS). El análisis del ajuste revela que la distribución Normal presenta valores de AIC significativamente superiores (peor ajuste) en comparación con distribuciones asimétricas como Gamma o Log-normal.
+El análisis del conjunto de datos global confirma de manera concluyente que la distribución normal resulta inadecuada para modelar el error de distancia en sistemas UWB bajo condiciones mixtas (LOS/NLOS). El análisis del ajuste revela que la distribución normal presenta valores de AIC significativamente superiores (peor ajuste) en comparación con distribuciones asimétricas como gamma o lognormal.
 
-La Figura~\ref{fig:ajuste_todos} presenta el histograma del error absoluto para la totalidad de las mediciones, superpuesto con las curvas de densidad de probabilidad ajustadas. Se evidencia claramente la asimetría positiva de los datos experimentales, característica que es capturada eficazmente por la distribución Gamma (mejor ajuste global), mientras que la curva Normal subestima la densidad en la región cercana a cero y no logra modelar adecuadamente la cola pesada de la distribución.
-
-\begin{table}[ht]
+La Figura~\ref{fig:ajuste_todos} presenta el histograma del error absoluto de todas las mediciones, superpuesto a las curvas de densidad de probabilidad ajustadas. Se evidencia claramente la asimetría positiva de los datos experimentales, característica que la distribución gamma captura eficazmente (mejor ajuste global), mientras que la curva normal subestima la densidad en la región cercana a cero y no logra modelar adecuadamente la cola pesada de la distribución.
+%
+\begin{table}[t]
 \centering
-\caption{Ajuste para el conjunto total de datos ($N=101,552$). Se ordenan las distribuciones por el criterio AIC de menor a mayor (mejor ajuste).}
+\caption{Ajuste para el conjunto total de datos ($N=101,552$). Se ordenan las distribuciones por el criterio AIC, de menor a mayor (mejor ajuste).}
 \label{tab:ajuste_todos}
 \begin{tabular}{lcccc}
 \toprule
@@ -416,7 +411,7 @@ La Figura~\ref{fig:ajuste_todos} presenta el histograma del error absoluto para 
 \textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
 \midrule
 Gamma       & -125,845.02 & -125,816.43 & 0.2261 & 0.00 \\
-Log-normal  & -83,510.28  & -83,481.70  & 0.0378 & 0.00 \\
+Lognormal  & -83,510.28  & -83,481.70  & 0.0378 & 0.00 \\
 Exponencial & -79,051.37  & -79,032.31  & 0.1008 & 0.00 \\
 Normal      & 55,016.18   & 55,035.24   & 0.2160 & 0.00 \\
 Uniforme    & 339,868.33  & 339,887.39  & 0.8005 & 0.00 \\
@@ -424,7 +419,7 @@ Weibull     & 2,289,166.27& 2,289,194.85& 0.0561 & 0.00 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
+%
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Todos_los_Datos.png}
@@ -434,22 +429,22 @@ Weibull     & 2,289,166.27& 2,289,194.85& 0.0561 & 0.00 \\
 
 \subsection{Análisis Comparativo LOS vs. NLOS}
 
-Al segmentar los datos por condición de propagación, se revelan diferencias fundamentales en la estructura probabilística del error.
+Al segmentar los datos según la condición de propagación, se revelan diferencias fundamentales en la estructura probabilística del error.
 
-\textbf{Condición de Línea de Vista (LOS):} En condiciones LOS ($N=56,571$), la distribución Gamma se mantiene como el modelo óptimo (ver Figura~\ref{fig:ajuste_los}). El error se concentra fuertemente en valores bajos, con una dispersión controlada. Aunque la asimetría persiste, es menos pronunciada que en el caso global.
-
+\textbf{Condición de Línea de Vista (LOS):} En condiciones de LOS ($N=56,571$), la distribución gamma se mantiene como el modelo óptimo (ver Figura~\ref{fig:ajuste_los}). El error se concentra principalmente en valores bajos, con una dispersión controlada. Aunque la asimetría persiste, es menos pronunciada que en el caso global.
+%
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Datos_LOS.png}
-    \caption{Ajuste de distribuciones para mediciones en condición LOS.}
+    \caption{Ajuste de distribuciones de las mediciones en la condición de LOS.}
     \label{fig:ajuste_los}
 \end{figure}
 
-La Tabla~\ref{tab:ajuste_los} detalla las métricas de ajuste para el escenario LOS, donde la distribución Gamma minimiza tanto el AIC como el BIC.
-
-\begin{table}[ht]
+La Tabla~\ref{tab:ajuste_los} detalla las métricas de ajuste para el escenario LOS, en el que la distribución gamma minimiza tanto el AIC como el BIC.
+%
+\begin{table}[t]
 \centering
-\caption{Ajuste para condiciones de Línea de Vista (LOS).}
+\caption{Ajuste para la condición de Línea de Vista (LOS).}
 \label{tab:ajuste_los}
 \begin{tabular}{lcccc}
 \toprule
@@ -457,34 +452,34 @@ La Tabla~\ref{tab:ajuste_los} detalla las métricas de ajuste para el escenario 
 \textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
 \midrule
 Gamma       & -132,051.35 & -132,024.52 & 0.0883 & 0.00 \\
-Log-normal  & -124,128.73 & -124,101.90 & 0.0551 & 0.00 \\
+Lognormal  & -124,128.73 & -124,101.90 & 0.0551 & 0.00 \\
 Exponencial & -123,109.07 & -123,091.19 & 0.0746 & 0.00 \\
 Normal      & -61,789.28  & -61,771.40  & 0.2069 & 0.00 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Condición de No Línea de Vista (NLOS):} En condiciones NLOS ($N=44,981$), la distribución del error sufre una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC muestra que la Log-normal supera ligeramente a la Gamma como mejor ajuste. Esto indica efectos multiplicativos por obstrucción y multitrayecto, típicos de procesos log-normales
-
+\textbf{Condición de NLOS:} En la condición de NLOS ($N=44,981$), la distribución del error experimenta una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC muestra que la lognormal supera ligeramente a la gamma como el mejor ajuste. Esto indica efectos multiplicativos por obstrucción y multitrayecto, típicos de procesos lognormales
+%
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Datos_NLOS.png}
-    \caption{Ajuste de distribuciones para mediciones en condición NLOS.}
+    \caption{Ajuste de distribuciones para mediciones en la condición NLOS.}
     \label{fig:ajuste_nlos}
 \end{figure}
-
-Como se observa en la Tabla~\ref{tab:ajuste_nlos}, en condiciones NLOS la distribución Log-normal presenta el mejor ajuste (menor AIC), desplazando a la Gamma.
-
+%
+Como se observa en la Tabla~\ref{tab:ajuste_nlos}, en condiciones NLOS la distribución lognormal presenta el mejor ajuste (menor AIC), desplazando a la gamma.
+%
 \begin{table}[ht]
 \centering
-\caption{Ajuste para condiciones de No Línea de Vista (NLOS).}
+\caption{Ajuste para condiciones de NLOS.}
 \label{tab:ajuste_nlos}
 \begin{tabular}{lcccc}
 \toprule
 \rowcolor{headerblue}
 \textbf{Distribución} & \textbf{AIC} & \textbf{BIC} & \textbf{KS Stat} & \textbf{P-value} \\
 \midrule
-Log-normal  & 7,145.36    & 7,171.50    & 0.0522 & 0.00 \\
+Lognormal  & 7,145.36    & 7,171.50    & 0.0522 & 0.00 \\
 Gamma       & 7,762.93    & 7,789.07    & 0.0663 & 0.00 \\
 Exponencial & 9,075.48    & 9,092.91    & 0.0717 & 0.00 \\
 Normal      & 44,631.39   & 44,648.82   & 0.1829 & 0.00 \\
@@ -492,55 +487,63 @@ Normal      & 44,631.39   & 44,648.82   & 0.1829 & 0.00 \\
 \end{tabular}
 \end{table}
 
-Para visualizar mejor la desviación respecto a la normalidad en las colas de la distribución (donde ocurren los errores grandes, críticos para la confiabilidad del sistema), se presenta el gráfico Q-Q (Quantile-Quantile) para los datos NLOS en la Figura~\ref{fig:qq_nlos}. La divergencia de los puntos experimentales (azul) respecto a la línea roja de referencia (distribución normal teórica) en los extremos confirma que los errores grandes son mucho más frecuentes de lo que predeciría un modelo gaussiano.
-
+Para visualizar mejor la desviación respecto a la normalidad en las colas de la distribución (donde ocurren los errores grandes, críticos para la confiabilidad del sistema), se presenta el gráfico Q-Q (Quantile-Quantile) para los datos bajo la condición de NLOS en la Figura~\ref{fig:qq_nlos}. La divergencia de los puntos experimentales (azul) respecto a la línea roja de referencia (distribución normal teórica) en los extremos confirma que los errores grandes son mucho más frecuentes de lo que predeciría un modelo gaussiano.
+%
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{imagenes/ajuste_qq_Datos_NLOS.png}
-    \caption{Gráfico Q-Q comparando los datos NLOS con una distribución Normal teórica.}
+    \caption{Gráfico Q-Q que compara los datos bajo la condición de NLOS con una distribución normal teórica.}
     \label{fig:qq_nlos}
 \end{figure}
 
 \subsection{Parametrización de los Modelos Ajustados}
 \label{sec:parametrizacion_modelos}
 
-Con base en el análisis de bondad de ajuste, se determinaron los parámetros óptimos para los modelos probabilísticos que describen el error de medición. A continuación se presentan las ecuaciones teóricas de las distribuciones seleccionadas y la interpretación física de sus parámetros, conforme al marco teórico utilizado para la caracterización.
+Con base en el análisis de bondad de ajuste, se determinaron los parámetros óptimos de los modelos probabilísticos que describen el error de medición. A continuación se presentan las ecuaciones teóricas de las distribuciones seleccionadas y la interpretación física de sus parámetros, conforme al marco teórico utilizado para la caracterización.
 
 \subsubsection{Distribuciones de Probabilidad Teóricas}
 
-\textbf{1. Distribución Gamma} (Frecuentemente óptima para LOS y errores asimétricos):
+\textbf{1. Distribución gamma} (frecuentemente óptima para LOS y errores asimétricos):
+%
 \begin{equation}
-f(x) = \frac{(x-\gamma)^{\alpha-1} e^{-(x-\gamma)/\theta}}{\theta^\alpha \Gamma(\alpha)}
+f(x) = \frac{(x-\Gamma)^{\alpha-1} e^{-(x-\Gamma)/\theta}}{\theta^\alpha \Gamma(\alpha)},
 \end{equation}
-Donde:
+%
+donde:
+%
 \begin{itemize}
-    \item $x$: Variable aleatoria (Error de posicionamiento en metros).
+    \item $x$: Variable aleatoria (error de posicionamiento en metros).
     \item $\alpha$ (o $k$): Parámetro de forma. Define la curtosis o qué tan "picuda" es la curva.
     \item $\theta$ (o \textit{scale}): Parámetro de escala. Define la dispersión hacia la derecha.
-    \item $\Gamma(\cdot)$: Función Gamma.
-    \item $\gamma$ (o \textit{loc}): Desplazamiento del origen.
+    \item $\Gamma (\cdot)$: Función Gamma.
+    \item $\Gamma$ (o \textit{loc}): Desplazamiento del origen.
 \end{itemize}
 
-\textbf{2. Distribución Weibull} (Común en análisis de confiabilidad):
+\textbf{2. Distribución Weibull} (común en análisis de confiabilidad):
+%
 \begin{equation}
-f(x) = \frac{k}{\lambda} \left(\frac{x-\gamma}{\lambda}\right)^{k-1} \exp\left(-\left(\frac{x-\gamma}{\lambda}\right)^k\right)
+f(x) = \frac{k}{\lambda} \left(\frac{x-\Gamma}{\lambda}\right)^{k-1} \exp\left(-\left(\frac{x-\Gamma}{\lambda}\right)^k\right),
 \end{equation}
-Donde,
+%
+donde,
+%
 \begin{itemize}
-    \item $k$ (o \textit{shape}): Parámetro de forma. Si $k < 1$, la tasa de probabilidad decrece.
+    \item $k$ (o \textit{shape}): Parámetro de forma. Si $k < 1$, la probabilidad decrece.
     \item $\lambda$ (o \textit{scale}): Parámetro de escala.
-    \item $\gamma$ (o \textit{loc}): Desplazamiento del origen.
+    \item $\Gamma$ (o \textit{loc}): Desplazamiento del origen.
 \end{itemize}
 
-\textbf{3. Distribución Log-normal} (Común en NLOS y procesos multiplicativos):
+\textbf{3. Distribución lognormal (común bajo condición de NLOS y procesos multiplicativos):}
+%
 \begin{equation}
-f(x) = \frac{1}{(x-\gamma) \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln(x-\gamma) - \mu)^2}{2\sigma^2}\right)
+f(x) = \frac{1}{(x-\Gamma) \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln(x-\Gamma) - \mu)^2}{2\sigma^2}\right),
 \end{equation}
-Donde:
+donde:
+%
 \begin{itemize}
     \item $\mu$: Media del logaritmo de los datos.
     \item $\sigma$ (o \textit{shape}): Desviación estándar del logaritmo.
-    \item $\gamma$ (o \textit{loc}): Desplazamiento.
+    \item $\Gamma$ (o \textit{loc}): Desplazamiento.
 \end{itemize}
 
 \subsubsection{Metodología de Obtención de Parámetros}
@@ -548,14 +551,15 @@ Donde:
 El paso de los datos experimentales a los parámetros del modelo se realizó mediante el \textbf{Método de Máxima Verosimilitud (MLE)}. A diferencia del método de momentos (que iguala medias y varianzas), el MLE busca iterativamente los valores de los parámetros que maximizan la probabilidad matemática de haber observado exactamente la muestra de datos recolectada ($x_1, x_2, ..., x_n$).
 
 No obstante, existe una relación conceptual entre la estadística descriptiva y los parámetros obtenidos:
+%
 \begin{itemize}
-    \item \textbf{Caso Gamma:} $\alpha \approx E[x]^2 / Var[x]$ y $\theta \approx Var[x] / E[x]$. Si la varianza es alta respecto a la media, $\alpha$ tiende a ser bajo.
-    \item \textbf{Caso Log-normal:} Los parámetros surgen de transformar los datos $y = \ln(x-\gamma)$, donde $\mu = \bar{y}$ y $\sigma = S_y$.
+    \item \textbf{Caso gamma:} $\alpha \approx E[x]^2 / Var[x]$ y $\theta \approx Var[x] / E[x]$. Si la varianza es alta respecto a la media, $\alpha$ tiende a ser baja.
+    \item \textbf{Caso lognormal:} Los parámetros se obtienen tras transformar los datos mediante $y = \ln(x-\Gamma)$, donde $\mu = \bar{y}$ y $\sigma = S_y$.
     \item \textbf{Caso Weibull:} $\lambda$ representa un valor característico cercano a la media, mientras que $k$ controla la pendiente de la distribución.
 \end{itemize}
 
-La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada comparando el MAE teórico del modelo con el experimental.
-
+La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada que compara el MAE teórico del modelo con el MAE experimental.
+%
 \begin{table}[ht]
 \centering
 \scriptsize
@@ -566,65 +570,67 @@ La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para la
 \rowcolor{headerblue}
 \textbf{Escenario} & \textbf{Modelo} & \textbf{Parámetros Estimados} & \textbf{MAE Exp.[m]} & \textbf{MAE Teor.[m]} \\
 \midrule
-\textbf{Global LOS} & Gamma & $\alpha=0.9407$, $\theta=0.1292$ & 0.1239 & 0.1215 \\
+\textbf{Global LOS} & gamma & $\alpha=0.9407$, $\theta=0.1292$ & 0.1239 & 0.1215 \\
 \addlinespace
-\textbf{Global NLOS} & Log-normal & $\sigma=0.8283$, $\mu=-1.1511$ & 0.4069 & 0.4115 \\
+\textbf{Global NLOS} & lognormal & $\sigma=0.8283$, $\mu=-1.1511$ & 0.4069 & 0.4115 \\
 \addlinespace
 \textbf{Cadera LOS} & Weibull & $k=1.5768$, $\lambda=0.0901$ & 0.0771 & 0.0769 \\
 \addlinespace
-\textbf{Cadera NLOS} & Gamma & $\alpha=3.4311$, $\theta=0.2464$ & 0.9723 & 0.9723 \\
+\textbf{Cadera NLOS} & gamma & $\alpha=3.4311$, $\theta=0.2464$ & 0.9723 & 0.9723 \\
 \addlinespace
 \textbf{Pecho LOS} & Weibull & $k=0.8679$, $\lambda=0.1265$ & 0.1117 & 0.1359 \\
 \addlinespace
-\textbf{Pecho NLOS} & Gamma & $\alpha=2.5971$, $\theta=0.3542$ & 0.8783 & 0.8783 \\
+\textbf{Pecho NLOS} & gamma & $\alpha=2.5971$, $\theta=0.3542$ & 0.8783 & 0.8783 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A continuación se detallan las ecuaciones de densidad de probabilidad parametrizadas para los casos globales, las cuales constituyen insumo directo para simulaciones y diseño de filtros de navegación.
+A continuación se detallan las ecuaciones de densidad de probabilidad parametrizadas para los casos globales, que constituyen un insumo directo para simulaciones y para el diseño de filtros de navegación.
 
 \subsubsection{Modelo Global para Condiciones de Línea de Vista (LOS)}
 
-El error en condiciones LOS se modela óptimamente mediante una distribución Gamma con parámetros de forma $\alpha \approx 0.94$ y escala $\theta \approx 0.13$. La función de densidad de probabilidad (PDF) está dada por:
-
+El error en condiciones LOS se modela óptimamente mediante una distribución gamma con parámetros de forma $\alpha \approx 0.94$ y escala $\theta \approx 0.13$. La función de densidad de probabilidad (PDF) está dada por:
+%
 \begin{equation}
 f_{LOS}(x) = \frac{x^{-0.0593} e^{-x/0.1292}}{0.1292^{0.9407} \Gamma(0.9407)}
 \end{equation}
 
-El modelo predice un valor esperado del error de 0.1215 m, lo cual difiere del valor experimental (0.1239 m) en apenas un 1.95\%, validando la alta fidelidad del modelo para representar el comportamiento nominal del sistema.
+El modelo predice un valor esperado del error de 0.1215 m, que difiere del valor experimental (0.1239 m) en apenas 1.95\%, lo que valida la alta fidelidad del modelo para representar el comportamiento nominal del sistema.
 
-\subsubsection{Modelo Global para Condiciones de No Línea de Vista (NLOS)}
+\subsubsection{Modelo Global bajo Condición de NLOS}
 
-En condiciones NLOS, el error sigue una distribución Log-normal, caracterizada por parámetros $\sigma \approx 0.83$ y $\mu \approx -1.15$. La PDF se expresa como:
-
+En condiciones NLOS, el error sigue una distribución lognormal, caracterizada por los parámetros $\sigma \approx 0.83$ y $\mu \approx -1.15$. La PDF se expresa como:
+%
 \begin{equation}
 f_{NLOS}(x) = \frac{1}{(x + 0.0342) \cdot 0.8283 \sqrt{2\pi}} \exp\left(-\frac{(\ln(x + 0.0342) + 1.1511)^2}{1.3722}\right)
 \end{equation}
 
-Es importante notar que este modelo incluye un parámetro de desplazamiento (\textit{loc}) de -0.0342 m para optimizar el ajuste. El modelo predice un MAE teórico de 0.4115 m frente a un experimental de 0.4069 m (diferencia de 1.14\%), demostrando su capacidad para capturar la naturaleza de cola pesada de los errores por obstrucción.
+Es importante notar que este modelo incluye un parámetro de desplazamiento (\textit{loc}) de -0.0342 m para optimizar el ajuste. El modelo predice un MAE teórico de 0.4115 m frente a un MAE experimental de 0.4069 m, i.e., diferencia del 1.14\%, lo que demuestra su capacidad para capturar la naturaleza de cola pesada de los errores por obstrucción.
 
 \subsubsection{Modelos Específicos por Ubicación}
 
-El análisis desagregado para las ubicaciones más críticas (Cadera y Pecho) revela patrones específicos que difieren del modelo global, lo cual justifica el uso de modelos adaptativos si se conoce la ubicación del dispositivo.
+El análisis desagregado para las ubicaciones más críticas, i.e., cadera y pecho, revela patrones específicos que difieren del modelo global, lo que justifica el uso de modelos adaptativos si se conoce la ubicación del dispositivo.
 
 \paragraph{Ubicación: Cadera}
-En condiciones LOS, la distribución Weibull ofrece el mejor ajuste, con un parámetro de forma $k \approx 1.58$. En contraste, para NLOS, el error sigue una distribución Gamma desplazada significativamente ($\gamma \approx 0.12$ m) y con un parámetro de forma alto ($\alpha \approx 3.43$), lo que refleja una distribución más simétrica y alejada del cero que el caso global.
-
+En condiciones LOS, la distribución Weibull ofrece el mejor ajuste, con un parámetro de forma $k \approx 1.58$. En contraste, bajo condición de NLOS, el error sigue una distribución gamma desplazada significativamente, i.e., $\Gamma \approx 0.12$ m, y con un parámetro de forma elevado, i.e., $\alpha \approx 3.43$, lo que refleja una distribución más simétrica y alejada del cero que en el caso global.
+%
 \begin{itemize}
     \item \textbf{Cadera LOS (Weibull):}
+    %
     \begin{equation}
     f(x) = \frac{1.5768}{0.0901} \left(\frac{x + 0.0040}{0.0901}\right)^{0.5768} \exp\left(-\left(\frac{x + 0.0040}{0.0901}\right)^{1.5768}\right)
     \end{equation}
-    
+    %
     \item \textbf{Cadera NLOS (Gamma):}
+    %
     \begin{equation}
     f(x) = \frac{(x - 0.1268)^{2.4311} e^{-(x - 0.1268)/0.2464}}{0.2464^{3.4311} \Gamma(3.4311)}
     \end{equation}
 \end{itemize}
 
 \paragraph{Ubicación: Pecho}
-Similar a la cadera, el pecho en LOS se modela mejor con una Weibull, pero con $k < 1$ ($k \approx 0.87$), lo que sugiere una alta probabilidad de errores pequeños pero con una cola pesada de errores ocasionales grandes incluso con línea de vista. En NLOS, la distribución Gamma nuevamente es dominante.
-
+Similar a la cadera, el pecho en LOS se modela mejor con una Weibull, pero con $k < 1$ ($k \approx 0.87$), lo que sugiere una alta probabilidad de errores pequeños, pero con una cola pesada de errores ocasionales grandes, incluso en condición de LOS. Bajo la condición de NLOS, la distribución gamma vuelve a ser dominante.
+%
 \begin{itemize}
     \item \textbf{Pecho LOS (Weibull):}
     \begin{equation}
@@ -632,6 +638,7 @@ Similar a la cadera, el pecho en LOS se modela mejor con una Weibull, pero con $
     \end{equation}
     
     \item \textbf{Pecho NLOS (Gamma):}
+    %
     \begin{equation}
     f(x) = \frac{(x + 0.0416)^{1.5971} e^{-(x + 0.0416)/0.3542}}{0.3542^{2.5971} \Gamma(2.5971)}
     \end{equation}

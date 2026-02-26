@@ -1,7 +1,7 @@
-\chapter{ANÁLISIS DE REQUERIMIENTOS, DISEÑO DEL SISTEMA E IMPLEMENTACIÓN}
+\chapter{ANÁLISIS DE REQUERIMIENTOS, DISEÑO E IMPLEMENTACIÓN DEL SISTEMA}
 \label{ch:metodologia_experimental}
 
-En este capítulo se presentan las tres etapas fundamentales de la investigación experimental: el análisis de requerimientos que fundamenta la selección tecnológica, el diseño del sistema que detalla la arquitectura de hardware y software así como los escenarios de prueba, y finalmente la implementación y validación experimental que describe el protocolo de recolección y análisis de datos.
+En este capítulo se presentan las tres etapas fundamentales de la investigación experimental: el análisis de requerimientos, que fundamenta la selección tecnológica; el diseño del sistema, que detalla la arquitectura de hardware y software, así como los escenarios de prueba; y, finalmente, la implementación y validación experimental, que describe el protocolo de recolección y análisis de datos.
 
 \section{FASE 1: ANÁLISIS DE REQUERIMIENTOS}
 \label{sec:analisis_requerimientos}
@@ -14,29 +14,29 @@ Esta sección detalla los requerimientos fundamentales que guiaron la selección
 Para este estudio se han seleccionado módulos de desarrollo Qorvo DWM1001, que integran un transceptor UWB DW1000, un microcontrolador Nordic Semiconductor nRF52832 y un sensor de movimiento. La elección de estos dispositivos se fundamenta en los siguientes requerimientos técnicos y funcionales:
 
 \begin{itemize}
-\item Capacidad de operar en la banda de 6.5 GHz con el ancho de banda necesario para lograr resolución temporal adecuada.
+\item Capacidad para operar en la banda de 6.5 GHz, con el ancho de banda necesario para lograr una resolución temporal adecuada.
 \item Soporte nativo para mediciones TWR con registro de timestamps de alta precisión.
-\item Interfaz de comunicación accesible que permite la extracción de datos crudos de ToF y otras métricas de señal.
-\item Consumo energético compatible con operación portátil prolongada.
-\item Disponibilidad de documentación técnica detallada y herramientas de desarrollo.
+\item Interfaz de comunicación accesible que permite extraer datos crudos de ToF y otras métricas de señal.
+\item Consumo energético compatible con la operación portátil prolongada.
+\item Disponibilidad de documentación técnica detallada y de herramientas de desarrollo.
 \end{itemize}
 
 \subsection{Requerimientos Éticos y Normativos}
 \label{subsec:requerimientos_eticos}
 
-El protocolo experimental ha sido aprobado por el Comité de Ética correspondiente y diseñado siguiendo los lineamientos éticos vigentes. Los participantes son informados detalladamente sobre el propósito del estudio y los procedimientos involucrados, firman un consentimiento informado antes de participar y pueden retirarse del estudio en cualquier momento sin consecuencias. Asimismo, sus datos personales (nombre, edad, entre otros) son anonimizados y protegidos conforme a las normativas de protección de datos aplicables, tales como la Ley 1581 de 2012 en Colombia o el GDPR en Europa. Finalmente, se garantiza que los participantes no son sometidos a ningún procedimiento invasivo ni a riesgos para su salud o integridad física.
+El protocolo experimental ha sido aprobado por el Comité de Ética correspondiente y ha sido diseñado conforme a los lineamientos éticos vigentes. Los participantes son informados detalladamente sobre el propósito del estudio y los procedimientos involucrados, firman un consentimiento informado antes de participar y pueden retirarse del estudio en cualquier momento sin consecuencias. Asimismo, sus datos personales (nombre, edad, entre otros) son anonimizados y protegidos conforme a las normativas de protección de datos aplicables, tales como la Ley 1581 de 2012 en Colombia o el Reglamento (UE) 2016/679 (GDPR) en Europa. Finalmente, se garantiza que los participantes no son sometidos a ningún procedimiento invasivo ni a riesgos para su salud ni para su integridad física.
 
 \section{FASE 2: DISEÑO DEL SISTEMA}
 \label{sec:diseno_sistema}
 
-El diseño del sistema abarca la configuración detallada del hardware, la arquitectura de software empleada para la adquisición y procesamiento de datos, y la definición de los escenarios experimentales donde se evaluará el desempeño.
+El diseño del sistema abarca la configuración detallada del hardware, la arquitectura de software empleada para la adquisición y el procesamiento de datos, y la definición de los escenarios experimentales en los que se evaluará el desempeño.
 
 \subsection{Arquitectura de Hardware}
 \label{subsec:arquitectura_hardware}
 
-Los dispositivos UWB operan con el firmware PANS (Positioning and Networking Stack) de Qorvo, implementando la técnica TWR para estimación de distancia en la banda de frecuencia central de 6.5 GHz. Los dispositivos se configuran con los siguientes parámetros operacionales para optimizar el compromiso entre exactitud, alcance y consumo:
-
-\begin{table}[hbt]
+Los dispositivos UWB operan con el firmware PANS (Positioning and Networking Stack) de Qorvo, que implementa la técnica TWR para la estimación de distancia en la banda de frecuencia central de 6.5 GHz. Los dispositivos se configuran con los siguientes parámetros operacionales para optimizar el compromiso entre exactitud, alcance y consumo:
+%
+\begin{table}[t]
     \centering
     \caption{Parámetros de Configuración de los Dispositivos UWB}
     \label{tab:configuracion_uwb}
@@ -62,37 +62,37 @@ Los dispositivos UWB operan con el firmware PANS (Positioning and Networking Sta
 
 \subsubsection{Software de Adquisición de Datos}
 
-Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, el cual consiste en una librería integral que conforma un ecosistema completo de software. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (anchors) y el dispositivo etiqueta (tag).
+Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, que consiste en una librería integral que conforma un ecosistema de software completo. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (anchors) y el dispositivo etiqueta (tag).
 
-El software está desarrollado en lenguaje C y se utiliza el entorno de desarrollo SEGGER Embedded Studio para la validación del algoritmo, la compilación del código y la carga del binario en el dispositivo. Este entorno emplea J-Link como controlador (driver) para la programación del hardware.
+El software está desarrollado en C y se utiliza el entorno de desarrollo SEGGER Embedded Studio para validar el algoritmo, compilar el código y cargar el binario en el dispositivo. Este entorno utiliza J-Link como controlador (\textit{driver}) para programar el hardware.
 
-Las funciones de comunicación y adquisición de datos se encuentran predefinidas dentro de la librería. El trabajo realizado en esta tesis de maestría consiste en la modificación de una parte del algoritmo con el objetivo de establecer la conexión de la etiqueta con cuatro anclas y habilitar la transmisión de los datos obtenidos a través de una interfaz serial. Los algoritmos desarrollados y modificados se encuentran disponibles en el siguiente repositorio de GitHub, tanto para el dispositivo anchor como para el tag \cite{DiazAlgoritmosUWB}.
+Las funciones de comunicación y de adquisición de datos están predefinidas en la librería. El trabajo realizado en esta tesis de maestría consiste en modificar una parte del algoritmo con el objetivo de establecer la conexión de la etiqueta con cuatro anclas y habilitar la transmisión de los datos obtenidos mediante una interfaz serial. Los algoritmos desarrollados y modificados se encuentran disponibles en el siguiente repositorio de GitHub, tanto para el dispositivo anchor como para el tag \cite{DiazAlgoritmosUWB}.
 
 \subsubsection{Software de Procesamiento y Análisis}
 
-El procesamiento de datos y el análisis estadístico se llevan a cabo utilizando Python 3.x, apoyado en un conjunto de bibliotecas científicas. NumPy se emplea para operaciones numéricas y álgebra lineal, Pandas para la manipulación y análisis de datos estructurados, y SciPy para la aplicación de funciones estadísticas avanzadas, ajuste de distribuciones y análisis ANOVA. La visualización de los resultados se realiza mediante Matplotlib y Seaborn, mientras que scikit-learn se utiliza para la implementación de filtros y algoritmos de localización.
+El procesamiento de datos y el análisis estadístico se realizan con Python 3.x, apoyado en un conjunto de bibliotecas científicas. NumPy se emplea para operaciones numéricas y álgebra lineal, Pandas para la manipulación y el análisis de datos estructurados, y SciPy para la aplicación de funciones estadísticas avanzadas, el ajuste de distribuciones y el análisis ANOVA. La visualización de los resultados se realiza con Matplotlib y Seaborn, mientras que scikit-learn se utiliza para implementar filtros y algoritmos de localización.
 
 \subsubsection{Control de Versiones y Reproducibilidad}
 
-Todo el código desarrollado se gestiona mediante Git y se almacena en un repositorio público. Los datos experimentales se organizan en formato personalizado con metadatos descriptivos. Se proporciona un entorno computacional reproducible mediante un archivo requirements.txt que especifica las versiones exactas de todas las dependencias de software que se instalan en un entorno virtual.
+Todo el código desarrollado se gestiona mediante Git y se almacena en un repositorio público. Los datos experimentales se organizan en un formato personalizado con metadatos descriptivos. Se proporciona un entorno computacional reproducible mediante un archivo requirements.txt que especifica las versiones exactas de todas las dependencias de software que se instalan en un entorno virtual.
 
 \subsection{Diseño del Escenario Experimental}
 \label{subsec:diseno_escenario}
 
 El plan de pruebas de validación (Fase 1) se diseñó para evaluar diferentes condiciones de propagación en dos entornos principales:
 
-\subsubsection{Escenario Exterior}
+\subsubsection{Escenario de Exteriores}
 
 Se utilizó un campo abierto con dimensiones similares a las de un campo de fútbol. Este escenario fue diseñado para:
 
 \begin{itemize}
 \item Minimizar las reflexiones provenientes de estructuras verticales como paredes y edificios.
-\item Proporcionar un entorno base para analizar los efectos primarios de propagación.
+\item Proporcionar un entorno base para analizar los efectos primarios de la propagación.
 \item Aislar el impacto de la obstrucción corporal (BS) sobre la señal directa.
-\item Considerar fenómenos fundamentales de propagación como las Pérdidas en Espacio Libre (FSPL) y el multitrayecto generado por reflexión en el suelo.
+\item Considerar fenómenos fundamentales de propagación, como el multitrayecto generado por la reflexión en el suelo.
 \end{itemize}
 
-\textbf{Características del Escenario Exterior:}
+\textbf{Características del Escenario de Exteriores:}
 \begin{itemize}
 \item \textbf{Tipo:} Campo abierto (dimensiones ~100 m × 60 m)
 \item \textbf{Superficie:} Césped natural
@@ -100,11 +100,11 @@ Se utilizó un campo abierto con dimensiones similares a las de un campo de fút
 \item \textbf{Condiciones climáticas:} Mediciones realizadas en días despejados para minimizar variables ambientales
 \end{itemize}
 
-\subsubsection{Escenario Interior}
+\subsubsection{Escenario de Interiores}
 
 Se empleó un corredor de edificio universitario para representar condiciones típicas de aplicaciones indoor:
 
-\textbf{Características del Escenario Interior:}
+\textbf{Características del Escenario de Interiores:}
 \begin{itemize}
 \item \textbf{Dimensiones:} 20 m de largo × 3 m de ancho
 \item \textbf{Materiales constructivos:} Paredes de concreto, piso de baldosa cerámica, techo de placa de concreto
@@ -113,7 +113,7 @@ Se empleó un corredor de edificio universitario para representar condiciones t�
 \item \textbf{Fuentes de interferencia:} Redes WiFi institucionales activas en bandas de 2.4 GHz y 5 GHz, equipos electrónicos en oficinas adyacentes
 \end{itemize}
 
-Este escenario permite evaluar cómo las reflexiones especulares en superficies confinadas afectan la estimación de distancia, representando condiciones realistas para sistemas de localización indoor.
+Este escenario permite evaluar cómo las reflexiones especulares en superficies confinadas afectan la estimación de distancia, lo que representa condiciones realistas para sistemas de localización en interiores.
 
 \section{FASE 3: IMPLEMENTACIÓN}
 \label{sec:implementacion}
@@ -132,27 +132,27 @@ En la Fase 1 del plan de pruebas de validación, la configuración experimental 
 
 Esta configuración punto a punto permite evaluar la exactitud fundamental de la estimación de distancia antes de implementar el sistema completo de posicionamiento 2D. El nodo fijo permanece en una ubicación constante durante cada sesión de medición, mientras el sujeto se desplaza a distancias conocidas siguiendo un protocolo sistemático.
 
-\textbf{Nota:} La Fase 2 implementará un sistema con cuatro nodos ancla en configuración geométrica optimizada para trilateración y posicionamiento 2D.
+\textbf{Nota:} La Fase 2 implementará un sistema con cuatro nodos ancla, en una configuración geométrica optimizada para la trilateración y el posicionamiento 2D.
 
 \subsection{Protocolo de Validación Experimental}
 \label{subsec:protocolo_validacion}
 
 \subsubsection{Sujetos de Prueba}
 
-La Fase 1 de este estudio fue conducida como un caso de estudio fundacional con el Sujeto de Prueba 2. Este enfoque metodológico permitió una caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo sin variabilidad inter-sujeto, estableciendo una línea base de desempeño del sistema y un control riguroso de variables experimentales.
+La Fase 1 de este estudio se llevó a cabo como un caso de estudio fundacional con el Sujeto de Prueba 2. Este enfoque metodológico permitió una caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo, sin variabilidad intersujeto, estableciendo una línea base de desempeño del sistema y un control riguroso de las variables experimentales.
 
-Para la Fase 2, se contó con la participación de los tres sujetos de prueba (Sujeto 1, Sujeto 2 y Sujeto 3, siendo este último el mismo participante de la Fase 1). Este plan de pruebas exhaustivo, que involucró a múltiples sujetos con diversas características antropométricas, ha permitido una evaluación más robusta y generalizable del sistema de posicionamiento. Los sujetos de prueba participaron bajo consentimiento informado, con conocimiento completo del propósito del estudio, los procedimientos a realizar y el uso de los datos recolectados.
+Para la Fase 2, se contó con la participación de los tres sujetos de prueba (Sujeto 1, Sujeto 2 y Sujeto 3, siendo este último el mismo participante que en la Fase 1). Este plan de pruebas exhaustivo, que involucró a múltiples sujetos con diversas características antropométricas, ha permitido una evaluación más robusta y generalizable del sistema de posicionamiento. Los sujetos de prueba participaron con consentimiento informado, con pleno conocimiento del propósito del estudio, de los procedimientos a realizar y del uso de los datos recolectados.
 
 A continuación, se presentan las características antropométricas detalladas de los tres sujetos participantes en la Fase 2, así como sus respectivas fotografías:
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.3\textwidth]{imagenes/sujeto1.jpg}
     \caption{Sujeto de prueba 1}
     \label{fig:sujeto1}
 \end{figure}
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
     \centering
     \caption{Características Antropométricas - Sujeto 1}
     \label{tab:antropometricas_sujeto1}
@@ -169,15 +169,15 @@ A continuación, se presentan las características antropométricas detalladas d
         \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.3\textwidth]{imagenes/sujeto2.jpg}
     \caption{Sujeto de prueba 2}
     \label{fig:sujeto2}
 \end{figure}
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
     \centering
     \caption{Características Antropométricas - Sujeto 2}
     \label{tab:antropometricas_sujeto2}
@@ -194,15 +194,15 @@ A continuación, se presentan las características antropométricas detalladas d
         \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.3\textwidth]{imagenes/sujeto3.jpg}
     \caption{Sujeto de prueba 3}
     \label{fig:sujeto3}
 \end{figure}
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
     \centering
     \caption{Características Antropométricas - Sujeto 3}
     \label{tab:antropometricas_sujeto3}
@@ -225,29 +225,29 @@ A continuación, se presentan las características antropométricas detalladas d
 Se evaluaron siete ubicaciones corporales del dispositivo móvil UWB, seleccionadas estratégicamente por su relevancia en aplicaciones prácticas de seguimiento de personas y dispositivos wearables:
 
 \begin{enumerate}
-\item \textbf{Cabeza:} Dispositivo ubicado en la parte superior craneal. Esta posición es relevante para aplicaciones de realidad aumentada y cascos inteligentes.
+\item \textbf{Cabeza:} Dispositivo ubicado en la parte superior del cráneo. Esta posición es relevante para aplicaciones de realidad aumentada.
 
-\item \textbf{Pecho:} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante. Representa la ubicación típica de badges de identificación y monitores cardíacos.
+\item \textbf{Pecho:} Dispositivo colocado en el centro del pecho, aproximadamente a la altura del esternón, orientado hacia adelante. Representa la ubicación típica de los badges de identificación y de los monitores cardíacos.
 
-\item \textbf{Cadera:} Dispositivo posicionado lateralmente a nivel de la cintura/cadera. Común en dispositivos clip-on y sistemas de rastreo industrial.
+\item \textbf{Cadera:} Dispositivo posicionado lateralmente a nivel de la cintura/cadera. Común en dispositivos \textit{clip-on} y en sistemas de rastreo industrial.
 
-\item \textbf{Mano:} Dispositivo sostenido directamente en la mano dominante. Simula el escenario de un usuario portando activamente un dispositivo móvil o herramienta.
-\item \textbf{Muñeca:} Dispositivo colocado en la muñeca como si fuera un reloj inteligente (smartwatch), representando uno de los wearables más populares.
+\item \textbf{Mano:} Dispositivo sostenido directamente en la mano dominante. Simula el escenario de un usuario que porta activamente un dispositivo móvil o una herramienta.
+\item \textbf{Muñeca:} Dispositivo colocado en la muñeca, como un reloj inteligente (\textit{smartwatch}), uno de los \textit{wearables} más populares.
 
-\item \textbf{Rodilla:} Dispositivo ubicado en la superficie frontal o lateral de la rodilla. Relevante para aplicaciones de análisis biomecánico y monitoreo deportivo.
+\item \textbf{Rodilla:} Dispositivo ubicado en la superficie frontal o lateral de la rodilla. Relevante para aplicaciones de análisis biomecánico y de monitoreo deportivo.
 
-\item \textbf{Tobillo:} Dispositivo posicionado en la superficie externa del tobillo. Utilizado en sistemas de monitoreo de marcha y rastreo en aplicaciones de seguridad.
+\item \textbf{Tobillo:} Dispositivo posicionado en la superficie externa del tobillo. Utilizado en sistemas de monitoreo de marcha y de rastreo en aplicaciones de seguridad.
 \end{enumerate}
 
-Para cada ubicación corporal, el dispositivo fue fijado de manera segura para minimizar el movimiento relativo durante las mediciones. Se documentó fotográficamente cada configuración para asegurar reproducibilidad en futuras réplicas del experimento.
+Para cada ubicación corporal, el dispositivo se fijó de forma segura para minimizar el movimiento relativo durante las mediciones. Se documentó fotográficamente cada configuración para asegurar la reproducibilidad en futuras réplicas del experimento.
 
 \subsubsection{Condiciones de Propagación: LOS y NLOS}
 
 Para cada combinación de ubicación corporal del dispositivo y escenario (exterior/interior), se evaluaron dos condiciones de propagación fundamentales definidas por la orientación del cuerpo del sujeto respecto al nodo fijo de referencia:
 
-\textbf{Condición LOS (Line of Sight):} Se aseguró la existencia de una trayectoria visual directa entre el nodo fijo y el dispositivo móvil. El sujeto se orientó de manera que la parte del cuerpo que portaba el dispositivo mantuviera visibilidad directa con el nodo de referencia. Esta condición representa el escenario óptimo donde la señal UWB puede propagarse sin obstrucción corporal significativa.
+\textbf{Condición LOS (\textit{Line of Sight}):} Se aseguró la existencia de una trayectoria visual directa entre el nodo fijo y el dispositivo móvil. El sujeto se orientó de modo que la parte del cuerpo que portaba el dispositivo mantuviera visibilidad directa con el nodo de referencia. Esta condición representa el escenario óptimo en el que la señal UWB puede propagarse sin obstrucciones corporales significativas.
 
-\textbf{Condición NLOS (Non-Line of Sight):} Se obstruyó deliberadamente la línea de visión directa entre el nodo fijo y el dispositivo móvil mediante el cuerpo humano. Esta condición se logró orientando al sujeto de espaldas al nodo fijo (rotación de 180°), asegurando que el torso y la parte del cuerpo con el dispositivo bloquearan la propagación directa de la señal.
+\textbf{Condición NLOS (\textit{Non-Line of Sight}):} Se obstruyó deliberadamente la línea de visión directa entre el nodo fijo y el dispositivo móvil mediante el cuerpo humano. Esta condición se logró orientando al sujeto de espaldas al nodo fijo (rotación de 180°), asegurando que el torso y la parte del cuerpo con el dispositivo bloquearan la propagación directa de la señal.
 
 \textbf{Control de Postura:} Para garantizar la consistencia y reproducibilidad en todas las mediciones NLOS, se instruyó al sujeto a mantener una postura corporal estandarizada:
 \begin{itemize}
@@ -257,37 +257,37 @@ Para cada combinación de ubicación corporal del dispositivo y escenario (exter
 \item Evitar movimientos durante la adquisición de cada conjunto de mediciones
 \end{itemize}
 
-Esta dicotomía LOS/NLOS permite caracterizar el efecto máximo de la obstrucción corporal (BS) sobre la exactitud de la estimación de distancia, aislando este factor de otras fuentes de error.
+Esta dicotomía LOS/NLOS permite caracterizar el efecto máximo de la obstrucción corporal (BS) sobre la exactitud de la estimación de la distancia, aislando este factor de otras fuentes de error.
 
 \subsubsection{Protocolo y Procedimiento de Medición}
 
-Las mediciones se realizaron siguiendo un protocolo sistemático de posiciones estáticas donde el sujeto permanece inmóvil durante la adquisición de datos.
+Las mediciones se realizaron siguiendo un protocolo sistemático de posiciones estáticas, en el que el sujeto permanece inmóvil durante la adquisición de datos.
 
 \textbf{Configuración del Grid de Medición:}
 \begin{itemize}
-\item \textbf{Distancias evaluadas:} 1 m, 2 m, 3 m, ..., 13 m (incrementos de 1 metro)
+\item \textbf{Distancias evaluadas:} 1 m, 2 m, 3 m, ..., 13 m (incrementos de 1 m)
 \item \textbf{Rango total:} 1 m a 13 m (13 puntos de medición por configuración)
 \item \textbf{Método de marcación:} Distancias reales marcadas con cinta métrica de alta precisión
 \item \textbf{Alineación:} El sujeto se posiciona en línea recta desde el nodo fijo de referencia
 \end{itemize}
 
 \textbf{Muestras por Punto de Medición:}
-Para cada combinación de ubicación corporal, condición de canal, escenario y distancia, se registraron \textbf{250 mediciones de distancia estimada} por el sistema UWB.
+Para cada combinación de ubicación corporal, condición del canal, escenario y distancia, el sistema UWB registró \textbf{250 mediciones de distancia estimada}.
 
 \textbf{Total de mediciones - Fase 1:}
-$$7 \text{ ubicaciones} \times 2 \text{ condiciones} \times 2 \text{ escenarios} \times 13 \text{ distancias} \times 250 \text{ muestras} = 91,000 \text{ mediciones}$$
+$$7 \text{ ubicaciones} \times 2 \text{ condiciones} \times 2 \text{ escenarios} \times 13 \text{ distancias} \times 250 \text{ muestras} = 91000 \text{ mediciones}$$
 
 \textbf{Procedimiento Detallado:}
-El protocolo experimental implementado en cada sesión se estructuró de manera sistemática. Inicialmente, se procedió con la preparación del sistema y la marcación del grid. Antes de iniciar las pruebas, se ejecutó una calibración inicial en línea de vista (LOS) situando el nodo móvil en un trípode sin la presencia del sujeto.
+El protocolo experimental implementado en cada sesión se estructuró de manera sistemática. Inicialmente, se procedió a preparar el sistema y a marcar el grid. Antes de iniciar las pruebas, se realizó una calibración inicial en línea de vista (LOS) situando el nodo móvil sobre un trípode, sin la presencia del sujeto.
 
-Una vez validado el sistema, se procedió a la instrumentación del sujeto. La adquisición de datos comenzó en condición LOS para cada punto de distancia (1 a 13 m). Posteriormente, se realizó la adquisición de datos en condición NLOS, donde el sujeto rotaba 180 grados. Al completar las mediciones en una posición corporal específica, se efectuó el cambio de ubicación del nodo móvil, repitiendo el ciclo. Una vez cubiertas todas las ubicaciones, se replicó el procedimiento en el segundo escenario.
+Una vez validado el sistema, se procedió a instrumentar al sujeto. La adquisición de datos comenzó en condición LOS para cada punto de distancia (de 1 a 13 m). Posteriormente, se realizó la adquisición de datos en condición NLOS, en la que el sujeto rotaba 180 grados. Al completar las mediciones en una posición corporal específica, se cambió la ubicación del nodo móvil y se repitió el ciclo. Una vez cubiertas todas las ubicaciones, se replicó el procedimiento en el segundo escenario.
 
 \textbf{Condiciones de Control:}
 \begin{itemize}
 \item Horarios de mínima actividad para reducir interferencias.
-\item Verificación de ausencia de cambios significativos en el entorno.
-\item Registro de condiciones ambientales (temperatura, humedad).
-\item Calibración inicial LOS en cada sesión.
+\item Verificación de la ausencia de cambios significativos en el entorno.
+\item Registro de las condiciones ambientales (temperatura, humedad).
+\item Calibración inicial de LOS en cada sesión.
 \end{itemize}
 
 \subsection{Procesamiento y Análisis de Datos}
@@ -295,12 +295,12 @@ Una vez validado el sistema, se procedió a la instrumentación del sujeto. La a
 
 \subsubsection{Preprocesamiento de Datos Crudos}
 
-Los datos crudos registrados por el sistema UWB incluyen timestamps de alta resolución, mediciones de ToF entre el nodo móvil y el nodo fijo, estimaciones de potencia de señal recibida y otros parámetros de diagnóstico. El preprocesamiento de la Fase 1 comprende:
+Los datos crudos registrados por el sistema UWB incluyen marcas de tiempo de alta resolución, mediciones de ToF entre el nodo móvil y el nodo fijo, estimaciones de la potencia de la señal recibida y otros parámetros de diagnóstico. El preprocesamiento de la Fase 1 comprende:
 
 \begin{itemize}
-\item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas (ej. ToF negativo, distancias fuera del rango físico posible de 1-13 m) mediante criterios estadísticos robustos.
+\item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas, e.g.,  ToF negativo y distancias fuera del alcance físico posible, i.e., de 1-13 m, mediante criterios estadísticos robustos.
 
-\item \textbf{Conversión de ToF a Distancia:} Aplicación de la ecuación $d = \text{ToF} \times c$, donde $c = 299{,}792{,}458$ m/s es la velocidad de la luz en el vacío.
+\item \textbf{Conversión de ToF a distancia:} Aplicación de la ecuación $d = \text{ToF} \times c$, donde $c = 2,99792458\times 10^{8}$ m/s es la velocidad de la luz en el vacío.
 
 \item \textbf{Corrección de sesgos sistemáticos:} Si se identifican sesgos consistentes en las mediciones de calibración LOS (sin sujeto), se aplican correcciones de offset al nodo de referencia.
 \end{itemize}
@@ -308,23 +308,34 @@ Los datos crudos registrados por el sistema UWB incluyen timestamps de alta reso
 \subsubsection{Cálculo de Métricas de Error}
 
 Para cada medición de distancia entre el nodo móvil y el nodo fijo de referencia, se calcula el error de distancia:
-
+%
 \begin{equation}
-e_i = d_{\text{medida},i} - d_{\text{real},i}
+e_i = d_{\text{medida},i} - d_{\text{real},i},
+\end{equation}
+%
+donde, $d_{\text{medida},i}$ es la distancia estimada por el sistema UWB y $d_{\text{real},i}$ es la distancia física real marcada con cinta métrica. Se definen las siguientes métricas estadísticas:
+%
+\begin{itemize}
+\item \textbf{Error Absoluto Medio (MAE):} 
+%
+\begin{equation}
+    \textrm{MAE} = \frac{1}{N} \sum_{i=1}^{N} |e_i|.
 \end{equation}
 
-donde $d_{\text{medida},i}$ es la distancia estimada por el sistema UWB y $d_{\text{real},i}$ es la distancia física real marcada con cinta métrica. Se definen las siguientes métricas estadísticas:
-
-\begin{itemize}
-\item \textbf{Error Absoluto Medio (MAE):} $\text{MAE} = \frac{1}{N} \sum_{j=1}^{N} |e_j|$
-\item \textbf{Raíz del Error Cuadrático Medio (RMSE):} $\text{RMSE} = \sqrt{\frac{1}{N} \sum_{j=1}^{N} e_j^2}$
+\item \textbf{Raíz del Error Cuadrático Medio (RMSE):}
+%
+\begin{equation}
+    \textrm{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} e_i^2}.
+\end{equation}
+%
 \item \textbf{Percentiles:} Se calculan los percentiles 50 (mediana), 90 y 95 del error absoluto.
 \end{itemize}
 
 \subsubsection{Análisis Estadístico - Fase 1}
 
 \textbf{Caracterización de Distribuciones:}
-Para cada condición experimental se caracteriza la distribución estadística de los errores observados, evaluando distribuciones teóricas (Normal, Log-normal, Gamma) mediante pruebas de bondad de ajuste (Kolmogorov-Smirnov, AIC, BIC).
+
+Para cada condición experimental, se caracteriza la distribución estadística de los errores observados, evaluando distribuciones teóricas (normal, lognormal, gamma) mediante pruebas de bondad de ajuste (Kolmogorov-Smirnov, AIC, BIC).
 
 \textbf{Factores Experimentales Analizados:}
 \begin{itemize}
