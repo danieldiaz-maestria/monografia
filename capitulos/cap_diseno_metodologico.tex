@@ -62,11 +62,11 @@ Los dispositivos UWB operan con el firmware PANS (Positioning and Networking Sta
 
 \subsubsection{Software de Adquisición de Datos}
 
-Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, que consiste en una librería integral que conforma un ecosistema de software completo. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas (ancla) y el dispositivo móvil (tag).
+Para el desarrollo del presente proyecto se empleó un software provisto por la empresa Quorvo, que consiste en una librería integral que conforma un ecosistema de software completo. Dicho ecosistema incluye el PANS (Positioning and Navigation Software), encargado de los procesos de posicionamiento y navegación. Esta librería contiene todas las funciones y estructuras necesarias para controlar la comunicación entre los dispositivos denominados anclas y el dispositivo móvil.
 
 El software está desarrollado en C y se utiliza el entorno de desarrollo SEGGER Embedded Studio para validar el algoritmo, compilar el código y cargar el binario en el dispositivo. Este entorno utiliza J-Link como controlador (\textit{driver}) para programar el hardware.
 
-Las funciones de comunicación y de adquisición de datos están predefinidas en la librería. El trabajo realizado en esta tesis de maestría consiste en modificar una parte del algoritmo con el objetivo de establecer la conexión de la etiqueta con cuatro anclas y habilitar la transmisión de los datos obtenidos mediante una interfaz serial. Los algoritmos desarrollados y modificados se encuentran disponibles en el siguiente repositorio de GitHub, tanto para el dispositivo anchor como para el tag \cite{DiazAlgoritmosUWB}.
+Las funciones de comunicación y de adquisición de datos están predefinidas en la librería. El trabajo realizado en esta tesis de maestría consiste en modificar una parte del algoritmo con el objetivo de establecer la conexión del dispositivo móvil con cuatro anclas y habilitar la transmisión de los datos obtenidos mediante una interfaz serial. Los algoritmos desarrollados y modificados se encuentran disponibles en el siguiente repositorio de GitHub, tanto para el ancla como para el dispositivo móvil \cite{DiazAlgoritmosUWB}.
 
 \subsubsection{Software de Procesamiento y Análisis}
 

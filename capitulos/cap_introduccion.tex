@@ -45,11 +45,11 @@ Las señales de UWB debido al uso de pulsos de muy corta duración, i.e., 2ns, t
 
 La tecnología UWB para el presente trabajo de grado de maestría opera a 6.5 GHz, convirtiéndose en una alternativa relevante para la implementación de un IPS, ofreciendo un conjunto de métricas de señal que pueden utilizarse y, gracias a las características de las señales UWB, permiten mitigar los efectos adversos causados por la NLOS y el multitrayecto \cite{ref8, ref9, ref10, ref11, ref12}. 
 
-En UWB se mide el tiempo que tarda una señal radio en viajar desde un nodo o dispositivo móvil (TAG) hasta un nodo o dispositivo fijo (ANCHOR). Este tiempo se conoce como ToF. La medida se realiza en un mismo nodo (fijo o móvil), i.e., evaluando el tiempo de ida y regreso de la señal, tomando como referencia su base de tiempo, por lo que no requiere sincronismo, lo que representa una gran ventaja.
+En UWB se mide el tiempo que tarda una señal radio en viajar desde un dispositivo móvil hasta un ancla. Este tiempo se conoce como ToF. La medida se realiza en un mismo nodo (fijo o móvil), i.e., evaluando el tiempo de ida y regreso de la señal, tomando como referencia su base de tiempo, por lo que no requiere sincronismo, lo que representa una gran ventaja.
 %
 La Figura \ref{fig:twr} ilustra la forma en que se estima el ToF y cómo este permite calcular la distancia entre un nodo móvil o etiqueta y un nodo fijo o ancla mediante la técnica de Medición de Distancia en Dos Vías (\gls{twr}).
 %
-El nodo móvil o etiqueta (TAG) inicia el TWR enviando un mensaje de consulta a la dirección conocida de un nodo fijo o ancla (ANCHOR). El nodo fijo o ancla (ANCHOR) registra y procesa el mensaje de consulta y envía una respuesta. Cuando el nodo móvil o etiqueta (TAG) recibe la respuesta, calcula el tiempo entre la ida y el regreso del mensaje, i.e., T$_{\text{round}}$, y estima el tiempo que tardó el nodo fijo o ancla (ANCHOR) en procesar y responder el mensaje de consulta, i.e., T$_{\text{reply}}$. Haciendo uso de estos tiempos, se calcula el ToF, calculando la diferencia entre el T$_{\text{round}}$ y T$_{\text{reply}}$ y dividiendo entre 2; luego, la distancia se calcula multiplicando el ToF por la velocidad de la luz, tal como se presenta a continuación: 
+El dispositivo móvil inicia el TWR enviando un mensaje de consulta a la dirección conocida de un ancla. El ancla registra y procesa el mensaje de consulta y envía una respuesta. Cuando el dispositivo móvil recibe la respuesta, calcula el tiempo entre la ida y el regreso del mensaje, i.e., T$_{\text{round}}$, y estima el tiempo que tardó el ancla en procesar y responder el mensaje de consulta, i.e., T$_{\text{reply}}$. Haciendo uso de estos tiempos, se calcula el ToF, calculando la diferencia entre el T$_{\text{round}}$ y T$_{\text{reply}}$ y dividiendo entre 2; luego, la distancia se calcula multiplicando el ToF por la velocidad de la luz, tal como se presenta a continuación:
 %
 \begin{gather}
     d = \frac{1}{2} \left( t_{\mathrm{round}} - t_{\mathrm{reply}} \right) \times c
@@ -67,11 +67,11 @@ donde, $t_{\mathrm{round}}$ es el tiempo total desde que el transmisor envía el
     \label{fig:twr}
 \end{figure}
 %
-El dispositivo móvil puede transmitir la distancia calculada al nodo fijo o ancla (ANCHOR) en un mensaje final, si es necesario \cite{ref13}.
+El dispositivo móvil puede transmitir la distancia calculada al ancla en un mensaje final, si es necesario \cite{ref13}.
 
 Uno de los mayores desafíos para lograr un IPS exacto, preciso y confiable es modelar y analizar el efecto de la BS sobre las señales. El cuerpo humano es en sí mismo un medio de transmisión de ondas electromagnéticas, en el cual se pueden presentar fenómenos de reflexión, difracción y absorción que pueden propiciar cambios en la señal, lo que incrementa la incertidumbre en el IPS, afectando su desempeño en términos de exactitud y precisión. Al estudiar el efecto estadístico del error de posicionamiento o localización generado por la BS y, más específicamente, considerando la ubicación de un dispositivo \textit{wearable} en el cuerpo humano, es posible estimar cómo se ve afectado el desempeño del sistema.
 
-El trabajo de maestría considera un IPS compuesto por cuatro anclas y el dispositivo móvil, ubicado en distintas partes del cuerpo humano, con el fin de analizar el desempeño de un IPS basado en UWB con BS. Con este propósito se plantea la siguiente pregunta de investigación.
+El trabajo de maestría considera un IPS compuesto por cuatro anclas y un dispositivo móvil, ubicado en distintas partes del cuerpo humano, con el fin de analizar el desempeño de un IPS basado en UWB con BS. Con este propósito se plantea la siguiente pregunta de investigación.
 
 ¿Cómo analizar el efecto de la obstrucción corporal sobre un sistema de posicionamiento en interiores, considerando diferentes posiciones de dispositivos UWB en el cuerpo humano, cuando dicho sistema opera en la banda de 6.5 GHz y el dispositivo móvil se ubica en distintas partes del cuerpo?
 
