@@ -47,6 +47,173 @@ La separación entre marcas en cada fila es de 1.5 m y las 18 posiciones de medi
     \label{fig:croquis_experimental_2d}
 \end{figure}
 
+
+\section{ANÁLISIS DEL TIEMPO DE VUELO}
+\label{sec:analisis_tiempo_vuelo_2d}
+
+El análisis del ToF permite caracterizar directamente la calidad de las mediciones de distancia en el sistema de posicionamiento 2D. En esta sección se presentan los resultados del análisis comparativo entre las condiciones LOS y NLOS para cada configuración evaluada.
+%
+\begin{figure}[t]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla1_tof_sin_outliers.png}
+        \\ (a) Ancla 1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla2_tof_sin_outliers.png}
+        \\ (b) Ancla 2
+    \end{minipage}
+    
+    \vspace{0.3cm}
+    
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla3_tof_sin_outliers.png}
+        \\ (c) Ancla 3
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla4_tof_sin_outliers.png}
+        \\ (d) Ancla 4
+    \end{minipage}
+    
+    \caption{Distribución de ToF para cada ancla - Pecho Sujeto 1}
+    \label{fig:tof_pecho_s1}
+\end{figure}
+
+\subsection{Estadísticas Globales de ToF}
+
+El análisis consolidado de todas las mediciones (252 mediciones LOS y 252 NLOS) revela patrones importantes en el comportamiento del sistema:
+%
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas globales de ToF: Comparación LOS vs NLOS}
+\label{tab:tof_global}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Estadística} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{$\Delta$ (ns)} \\
+\hline
+ToF Promedio & 24.58 & 21.85 & -2.73 \\
+ToF Mediana & 24.72 & 22.45 & -2.27 \\
+ToF Desv. Std & 7.33 & 8.18 & 0.86 \\
+ToF Rango & 28.52 & 42.86 & 14.35 \\
+Desv. Std Promedio & 0.18 & 0.63 & 0.45 \\
+Coef. Variación (\%) & 29.63 & 36.44 & 6.81 \\
+\hline
+\end{tabular}
+\end{table}
+
+El hallazgo más crítico es el incremento del 251.64\% en la desviación estándar promedio al pasar de condiciones LOS a NLOS, lo que indica una mayor incertidumbre en las mediciones. El  ToF en NLOS (42.86 ns) es 1.50× mayor que en LOS, lo que indica una mayor dispersión de las mediciones. Este aumento de la variabilidad es directamente responsable de la degradación de la exactitud de posicionamiento observada en la sección anterior.
+
+\subsection{Resultados por Configuración}
+
+\subsubsection{Dispositivo móvil (Referencia)}
+
+Para el dispositivo móvil sin BS, se obtuvieron los siguientes resultados:
+
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para el dispositivo móvil}
+\label{tab:tof_tag}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
+\hline
+ToF Desv. Estándar & 7.50 & 8.07 & 0.57 \\
+ToF Rango & 27.97 & 28.44 & 0.47 \\
+Desv. Std Promedio & 0.10 & 0.09 & -0.02 \\
+Coef. Variación (\%) & 29.39 & 37.70 & 8.31 \\
+\hline
+\end{tabular}
+\end{table}
+
+El dispositivo móvil presenta una variabilidad mínima y consistente lo que confirma que, sin BS, el sistema mantiene una excelente estabilidad.
+
+\subsubsection{Cadera}
+
+Los resultados para cadera muestran incremento moderado en variabilidad:
+%
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para cadera (promedio de 3 sujetos)}
+\label{tab:tof_cadera}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
+\hline
+ToF Desv. Std - S1 & 7.34 & 7.62 & 0.28 \\
+ToF Desv. Std - S2 & 7.22 & 7.47 & 0.25 \\
+ToF Desv. Std - S3 & 7.31 & 8.22 & 0.91 \\
+Desv. Std Prom - S1 & 0.21 & 0.61 & 0.40 \\
+Desv. Std Prom - S2 & 0.18 & 0.59 & 0.40 \\
+Desv. Std Prom - S3 & 0.19 & 0.97 & 0.78 \\
+\hline
+\end{tabular}
+\end{table}
+
+La cadera presenta un incremento en la variabilidad promedio de 0.40-0.78 ns entre sujetos, con el sujeto 3 mostrando la mayor degradación, i.e., 0.97 ns en NLOS.
+
+\subsubsection{Pecho}
+
+El pecho exhibe la mayor variabilidad en condiciones NLOS:
+%
+\begin{table}[hbt]
+\centering
+\caption{Estadísticas de ToF para pecho (3 sujetos)}
+\label{tab:tof_pecho}
+\begin{tabular}{lccc}
+\hline
+\rowcolor{headerblue}
+\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
+\hline
+ToF Desv. Std - S1 & 7.40 & 8.36 & 0.95 \\
+ToF Desv. Std - S2 & 7.22 & 9.08 & 1.86 \\
+ToF Desv. Std - S3 & 7.28 & 8.20 & 0.92 \\
+ToF Rango - S2 & 27.37 & 42.86 & 15.49 \\
+Desv. Std Prom - S1 & 0.20 & 0.90 & 0.70 \\
+Desv. Std Prom - S2 & 0.18 & 0.56 & 0.38 \\
+Desv. Std Prom - S3 & 0.18 & 0.69 & 0.52 \\
+\hline
+\end{tabular}
+\end{table}
+
+El pecho del sujeto 2 presenta el rango ToF máximo registrado (42.86 ns) y la desviación estándar de 9.08 ns en NLOS, lo que se correlaciona directamente con los errores de posicionamiento más altos observados en este sujeto.
+
+\subsection{Visualización de ToF por Ancla}
+
+La Figura \ref{fig:tof_pecho_s1} muestra la distribución de ToF para cada una de las cuatro anclas cuando el dispositivo móvil se ubica en el pecho del sujeto 1, lo que permite identificar patrones de dispersión específicos de cada ancla.
+
+Las gráficas revelan que el Ancla 2 presenta la mayor dispersión en condiciones NLOS (desviación estándar de 8.52 ns), mientras que las Anclas 3 y 4 mantienen menor incertidumbre. Esta menor dispersión diferencial por ancla sugiere que factores geométricos y de BS específicos afectan cada enlace de manera distinta.
+
+\subsection{Implicaciones para Detección NLOS}
+
+El análisis de ToF permite establecer que la variabilidad (desviación estándar) constituye el indicador más confiable para distinguir condiciones LOS/NLOS:
+
+\begin{itemize}
+\item \textbf{Umbral sugerido:} Mediciones con desviación estándar > 0.49 ns son probablemente NLOS
+\item \textbf{Incremento de variabilidad:} 251.64\% en promedio al pasar de LOS a NLOS
+\item \textbf{Factor de peso:} Se recomienda aplicar un factor de peso a las mediciones NLOS en los algoritmos de posicionamiento para mitigar su impacto negativo. Este factor se obtiene mediante la relación entre las desviaciones estándar promedio de ambas condiciones:
+%
+\begin{equation}
+    \text{Factor de peso} = \frac{\text{Desviación Estándar Promedio (LOS)}}{\text{Desviación Estándar Promedio (NLOS)}} = \frac{0.18}{0.63} \approx 0.28,
+\end{equation}
+%
+donde,
+\begin{itemize}
+    \item \textbf{Desviación Estándar Promedio (LOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo condiciones de Línea de Vista (LOS).
+    \item \textbf{Desviación Estándar Promedio (NLOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo la condición NLOS.
+\end{itemize}
+\end{itemize}
+Estos hallazgos respaldan la implementación de algoritmos de detección NLOS basados en el análisis de la dispersión del ToF, que podrían mejorar significativamente la robustez del sistema de posicionamiento al permitir descartar o ponderar adecuadamente las mediciones degradadas por BS.
+
+
 \section{RESULTADOS GRÁFICOS}
 \label{sec:resultados_graficos_2d}
 
@@ -131,7 +298,7 @@ Error mediana & 0.8657 & 0.5341 \\
 \end{tabular}
 \end{table}
 %
-En este caso, la multilateración presenta un mejor desempeño, con un error promedio de 0.4802 m, 0.3183 m menor que el de KF. Esto sugiere que, para el dispositivo móvil sin obstrucción del cuerpo humano, el algoritmo de multilateración directa proporciona estimaciones más precisas.
+En este caso, la multilateración presenta un mejor desempeño, con un error promedio de 0.4802 m, 0.3183 m menor que el de KF. Esto sugiere que, para el dispositivo móvil sin obstrucción del cuerpo humano, el algoritmo de multilateración directa proporciona estimaciones más exactas.
 
 \subsection{Estadísticas para cadera} 
 
@@ -239,7 +406,7 @@ Error mediana & 0.9639 & 0.6766 \\
 \end{tabular}
 \end{table}
 %
-Cuando el dispositivo móvil se ubicó en el pecho del sujeto 2, la multilateración presentó un error promedio ligeramente menor (0.7761 m vs 0.9108 m), pero el KF es especialmente efectivo al reducir el error máximo de 3.22 m a 1.70 m y la desviación estándar de 0.71 m a 0.42 m, lo que indica una mayor estabilidad en las estimaciones.
+Cuando el dispositivo móvil se ubicó en el pecho del sujeto 2, la multilateración presentó un error promedio ligeramente menor (0.7761 m vs 0.9108 m), pero el KF es especialmente efectivo al reducir el error máximo de 3.22 m a 1.70 m y la desviación estándar de 0.71 m a 0.42 m, lo que indica una menor incertidumbre en las estimaciones.
 %
 \begin{table}[t]
 \centering
@@ -259,169 +426,5 @@ Error mediana & 0.6438 & 0.5506 \\
 \end{tabular}
 \end{table}
 %
-Cuando el dispositivo móvil se ubicó en el pecho del sujeto 3, el KF presentó un error promedio ligeramente menor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y de la desviación estándar (de 0.60 m a 0.32 m), lo que valida su capacidad para estabilizar las estimaciones en condiciones NLOS.
+Cuando el dispositivo móvil se ubicó en el pecho del sujeto 3, el KF presentó un error promedio ligeramente menor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y de la desviación estándar (de 0.60 m a 0.32 m), lo que valida su capacidad reducir la incertidumbre las estimaciones en condiciones NLOS.
 
-\section{ANÁLISIS DEL TIEMPO DE VUELO}
-\label{sec:analisis_tiempo_vuelo_2d}
-
-El análisis del ToF permite caracterizar directamente la calidad de las mediciones de distancia en el sistema de posicionamiento 2D. En esta sección se presentan los resultados del análisis comparativo entre las condiciones LOS y NLOS para cada configuración evaluada.
-%
-\begin{figure}[t]
-    \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla1_tof_sin_outliers.png}
-        \\ (a) Ancla 1
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla2_tof_sin_outliers.png}
-        \\ (b) Ancla 2
-    \end{minipage}
-    
-    \vspace{0.3cm}
-    
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla3_tof_sin_outliers.png}
-        \\ (c) Ancla 3
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla4_tof_sin_outliers.png}
-        \\ (d) Ancla 4
-    \end{minipage}
-    
-    \caption{Distribución de ToF para cada ancla - Pecho Sujeto 1. Se observa una clara diferenciación entre las condiciones LOS y NLOS, con una mayor dispersión en NLOS.}
-    \label{fig:tof_pecho_s1}
-\end{figure}
-
-\subsection{Estadísticas Globales de ToF}
-
-El análisis consolidado de todas las mediciones (252 mediciones LOS y 252 NLOS) revela patrones importantes en el comportamiento del sistema:
-%
-\begin{table}[hbt]
-\centering
-\caption{Estadísticas globales de ToF: Comparación LOS vs NLOS}
-\label{tab:tof_global}
-\begin{tabular}{lccc}
-\hline
-\rowcolor{headerblue}
-\textbf{Estadística} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{$\Delta$ (ns)} \\
-\hline
-ToF Promedio & 24.58 & 21.85 & -2.73 \\
-ToF Mediana & 24.72 & 22.45 & -2.27 \\
-ToF Desv. Std & 7.33 & 8.18 & 0.86 \\
-ToF Rango & 28.52 & 42.86 & 14.35 \\
-Desv. Std Promedio & 0.18 & 0.63 & 0.45 \\
-Coef. Variación (\%) & 29.63 & 36.44 & 6.81 \\
-\hline
-\end{tabular}
-\end{table}
-
-El hallazgo más crítico es el incremento del 251.64\% en la desviación estándar promedio al pasar de condiciones LOS a NLOS, lo que indica una mayor incertidumbre en las mediciones. El rango de valores de ToF en NLOS (42.86 ns) es 1.50× mayor que en LOS, lo que indica una mayor dispersión de las mediciones. Este aumento de la variabilidad es directamente responsable de la degradación de la exactitud de posicionamiento observada en la sección anterior.
-
-\subsection{Resultados por Configuración}
-
-\subsubsection{Dispositivo móvil (Referencia)}
-
-Para el dispositivo móvil sin BS, se obtuvieron los siguientes resultados:
-
-\begin{table}[hbt]
-\centering
-\caption{Estadísticas de ToF para el dispositivo móvil}
-\label{tab:tof_tag}
-\begin{tabular}{lccc}
-\hline
-\rowcolor{headerblue}
-\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
-\hline
-ToF Desv. Estándar & 7.50 & 8.07 & 0.57 \\
-ToF Rango & 27.97 & 28.44 & 0.47 \\
-Desv. Std Promedio & 0.10 & 0.09 & -0.02 \\
-Coef. Variación (\%) & 29.39 & 37.70 & 8.31 \\
-\hline
-\end{tabular}
-\end{table}
-
-El dispositivo móvil presenta una variabilidad mínima y consistente tanto en LOS como en NLOS, lo que confirma que, sin BS, el sistema mantiene una excelente estabilidad.
-
-\subsubsection{Cadera}
-
-Los resultados para cadera muestran incremento moderado en variabilidad:
-%
-\begin{table}[hbt]
-\centering
-\caption{Estadísticas de ToF para cadera (promedio de 3 sujetos)}
-\label{tab:tof_cadera}
-\begin{tabular}{lccc}
-\hline
-\rowcolor{headerblue}
-\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
-\hline
-ToF Desv. Std - S1 & 7.34 & 7.62 & 0.28 \\
-ToF Desv. Std - S2 & 7.22 & 7.47 & 0.25 \\
-ToF Desv. Std - S3 & 7.31 & 8.22 & 0.91 \\
-Desv. Std Prom - S1 & 0.21 & 0.61 & 0.40 \\
-Desv. Std Prom - S2 & 0.18 & 0.59 & 0.40 \\
-Desv. Std Prom - S3 & 0.19 & 0.97 & 0.78 \\
-\hline
-\end{tabular}
-\end{table}
-
-La cadera presenta un incremento en la desviación estándar promedio de 0.40-0.78 ns entre sujetos, con el sujeto 3 mostrando la mayor degradación, i.e., 0.97 ns en NLOS.
-
-\subsubsection{Pecho}
-
-El pecho exhibe la mayor variabilidad en condiciones NLOS:
-%
-\begin{table}[hbt]
-\centering
-\caption{Estadísticas de ToF para pecho (3 sujetos)}
-\label{tab:tof_pecho}
-\begin{tabular}{lccc}
-\hline
-\rowcolor{headerblue}
-\textbf{Métrica} & \textbf{LOS (ns)} & \textbf{NLOS (ns)} & \textbf{Diferencia (ns)} \\
-\hline
-ToF Desv. Std - S1 & 7.40 & 8.36 & 0.95 \\
-ToF Desv. Std - S2 & 7.22 & 9.08 & 1.86 \\
-ToF Desv. Std - S3 & 7.28 & 8.20 & 0.92 \\
-ToF Rango - S2 & 27.37 & 42.86 & 15.49 \\
-Desv. Std Prom - S1 & 0.20 & 0.90 & 0.70 \\
-Desv. Std Prom - S2 & 0.18 & 0.56 & 0.38 \\
-Desv. Std Prom - S3 & 0.18 & 0.69 & 0.52 \\
-\hline
-\end{tabular}
-\end{table}
-
-El pecho del sujeto 2 presenta el rango ToF máximo registrado (42.86 ns) y la desviación estándar de 9.08 ns en NLOS, lo que se correlaciona directamente con los errores de posicionamiento más altos observados en este sujeto.
-
-\subsection{Visualización de ToF por Ancla}
-
-La Figura \ref{fig:tof_pecho_s1} muestra la distribución de ToF para cada una de las cuatro anclas cuando el dispositivo móvil se ubica en el pecho del sujeto 1, lo que permite identificar patrones de variabilidad específicos de cada ancla.
-
-Las gráficas revelan que la Ancla 2 presenta la mayor dispersión en condiciones NLOS (desviación estándar de 8.52 ns y rango de 33.70 ns), mientras que las Anclas 3 y 4 mantienen una mayor estabilidad. Esta variabilidad diferencial por ancla sugiere que factores geométricos y de BS específicos afectan cada enlace de manera distinta.
-
-\subsection{Implicaciones para Detección NLOS}
-
-El análisis de ToF permite establecer que la variabilidad (desviación estándar) constituye el indicador más confiable para distinguir condiciones LOS/NLOS:
-
-\begin{itemize}
-\item \textbf{Umbral sugerido:} Mediciones con desviación estándar > 0.49 ns son probablemente NLOS
-\item \textbf{Incremento de variabilidad:} 251.64\% en promedio al pasar de LOS a NLOS
-\item \textbf{Factor de peso:} Se recomienda aplicar un factor de peso a las mediciones NLOS en los algoritmos de posicionamiento para mitigar su impacto negativo. Este factor se obtiene mediante la relación entre las desviaciones estándar promedio de ambas condiciones:
-%
-\begin{equation}
-    \text{Factor de peso} = \frac{\text{Desviación Estándar Promedio (LOS)}}{\text{Desviación Estándar Promedio (NLOS)}} = \frac{0.18}{0.63} \approx 0.28,
-\end{equation}
-%
-donde,
-\begin{itemize}
-    \item \textbf{Desviación Estándar Promedio (LOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo condiciones de Línea de Vista (LOS).
-    \item \textbf{Desviación Estándar Promedio (NLOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo la condición NLOS.
-\end{itemize}
-\end{itemize}
-Estos hallazgos respaldan la implementación de algoritmos de detección NLOS basados en el análisis de la dispersión del ToF, que podrían mejorar significativamente la robustez del sistema de posicionamiento al permitir descartar o ponderar adecuadamente las mediciones degradadas por BS.
