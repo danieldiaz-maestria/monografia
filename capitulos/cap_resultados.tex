@@ -32,7 +32,7 @@ El método de calibración implementado se basa en comparar distancias conocidas
 \textbf{3. Medición no calibrada:} Se realizaron 250 mediciones continuas de distancia, registrando el valor promedio $D_{\text{medida}}$ y calculando el error sistemático:
 %
 \begin{equation}
-E = D_{\text{real}} - D_{\text{medida}}.
+E = D_{\text{medida}} - D_{\text{real}}.
 \end{equation}
 %
 \textbf{4. Ajuste de retardos:} El error sistemático se traduce en un incremento/decremento en las constantes de retardo mediante el factor de conversión empírico para el DW1000, i.e., $\approx$0.015 m por unidad de delay:
@@ -48,7 +48,7 @@ El ajuste se distribuyó simétricamente entre ambos retardos para mantener el b
 \texttt{RX\_ANT\_DLY}_{\text{nuevo}} &= \texttt{RX\_ANT\_DLY}_{\text{anterior}} - \frac{\Delta}{2}.
 \end{align}
 %
-\textbf{5. Iteración:} El proceso se repitió hasta lograr convergencia, definida como un error sistemático de v$|E| < 5$ mm. La calibración convergió en tres iteraciones.
+\textbf{5. Iteración:} El proceso se repitió hasta lograr convergencia, definida como un error sistemático de $|E| < 10$ mm. La calibración convergió en tres iteraciones.
 
 \subsubsection{Resultados de Calibración}
 
@@ -187,7 +187,7 @@ El tobillo exhibe el comportamiento más atípico, con errores elevados incluso 
 \end{tabular}
 \end{table}
 %
-El tobillo presenta MAE superiores a 29 cm en todas las configuraciones. En el escenario de interiores, bajo la condición de NLOS (38.67 cm), el desempeño supera al de exteriores (41.86 cm). Este fenómeno sugiere que las reflexiones del piso y de las paredes del corredor compensan parcialmente la atenuación por la BS.
+El tobillo presenta MAE superiores a 29 cm en todas las configuraciones. En el escenario de interiores, bajo la condición de NLOS, i.e, 38.67 cm, el desempeño supera al de exteriores, i.e, 41.86 cm. Este fenómeno sugiere que las reflexiones del piso y de las paredes del corredor compensan parcialmente la atenuación por la BS.
 
 \subsection{Dispositivo en Mano y Muñeca}
 
@@ -278,7 +278,7 @@ Considerando las 28 configuraciones evaluadas (7 ubicaciones × 2 condiciones ×
 \item \textbf{Percentil 95:} 1.1424 m.
 \end{itemize}
 
-El percentil 95 indica que el 95\% de todas las mediciones presentan errores inferiores a 1.14 m, lo que proporciona una medida de la variabilidad extrema del sistema. Se observó una tendencia sistemática a sobreestimar las distancias, atribuible a efectos de multitrayecto y a los tiempos de procesamiento de señal en los dispositivos UWB.
+El p95 indica que el 95\% de todas las mediciones presentan errores inferiores a 1.14 m, lo que proporciona una medida de la variabilidad extrema del sistema. Se observó una tendencia sistemática a sobreestimar las distancias, atribuible a efectos de multitrayecto y a los tiempos de procesamiento de señal en los dispositivos UWB.
 
 \subsection{Distribución Probabilística de Errores}
 
@@ -288,7 +288,7 @@ Uno de los gráficos que permiten observar este fenómeno es el diagrama de caja
 %
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/boxplot_los_nlos.png}
+    \includegraphics[width=0.9\textwidth]{imagenes/boxplot_los_nlos.png}
     \caption{Distribución probabilística de los errores bajo condiciones LOS y NLOS}
     \label{fig:box_plot_los_nlos}
 \end{figure}
@@ -297,7 +297,7 @@ Con base en la Figura~\ref{fig:box_plot_los_nlos}, se observa que cuando se pres
 %
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.9\textwidth]{imagenes/exactitud_vs_precision_NLOS.png}
+    \includegraphics[width=1\textwidth]{imagenes/exactitud_vs_precision_NLOS.png}
     \caption{Exactitud versus precisión del MAE bajo condiciones de NLOS}
     \label{fig:exactitud_vs_precision_nlos}
 \end{figure}
@@ -308,7 +308,7 @@ Si bien estos resultados proporcionan una primera caracterización del fenómeno
 %
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.9\textwidth]{imagenes/exactitud_vs_precision_nlos_pasillo.png}
+    \includegraphics[width=1\textwidth]{imagenes/exactitud_vs_precision_nlos_pasillo.png}
     \caption{Exactitud versus precisión del MAE en escenario de interiores bajo la condición de NLOS}
     \label{fig:exactitud_vs_precision_nlos_interiores}
 \end{figure}
@@ -382,7 +382,7 @@ TOBILLO & 0.389 & 0.300 & $\ll 0.001$ & -0.488 & medio   \\
 
 Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que, para varias ubicaciones corporales, la mediana del MAE es \emph{menor en el escenario de interiores que en el de exteriores}, a pesar de que el de interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación clara de la interacción entre BS y la propagación por multitrayecto.
 
-En ubicaciones del torso como \textbf{CADERA} y \textbf{PECHO}, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{BS severa} domina por completo el proceso de propagación, atenuando la señal de modo que el entorno circundante ejerce un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logran mitigar significativamente el error.
+En ubicaciones del torso como la cadera y el pecho, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{BS severa} domina por completo el proceso de propagación, atenuando la señal de modo que el entorno circundante ejerce un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logran mitigar significativamente el error.
 
 En contraste, para ubicaciones en extremidades como \textbf{CABEZA}, \textbf{MANO}, \textbf{RODILLA} y \textbf{TOBILLO}, se observa un comportamiento sistemático donde el error es mayor en el escenario de exteriores que en el escenario de interiores, con tamaños de efecto que van de moderados a grandes. Este resultado se explica por el fenómeno de \textbf{multitrayecto constructivo}. En un escenario de interiores, las reflexiones en paredes, suelo y techo generan múltiples trayectorias indirectas que pueden compensar parcialmente la obstrucción de la señal directa, reduciendo el error medio. En espacios abiertos, estas superficies reflectantes están ausentes o demasiado alejadas, por lo que, ante una BS, el sistema carece de trayectorias alternativas robustas, lo que incrementa el error.
 
@@ -422,7 +422,7 @@ Weibull     & 2,289,166.27& 2,289,194.85& 0.0561 & 0.00 \\
 %
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Todos_los_Datos.png}
+    \includegraphics[width=1\textwidth]{imagenes/ajuste_hist_Todos_los_Datos.png}
     \caption{Histograma y ajuste de distribuciones para el conjunto total de datos.}
     \label{fig:ajuste_todos}
 \end{figure}
@@ -435,7 +435,7 @@ Al segmentar los datos según la condición de propagación, se revelan diferenc
 %
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Datos_LOS.png}
+    \includegraphics[width=1\textwidth]{imagenes/ajuste_hist_Datos_LOS.png}
     \caption{Ajuste de distribuciones de las mediciones en la condición de LOS.}
     \label{fig:ajuste_los}
 \end{figure}
@@ -459,11 +459,11 @@ Normal      & -61,789.28  & -61,771.40  & 0.2069 & 0.00 \\
 \end{tabular}
 \end{table}
 
-\textbf{Condición de NLOS:} En la condición de NLOS ($N=44,981$), la distribución del error experimenta una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC muestra que la lognormal supera ligeramente a la gamma como el mejor ajuste. Esto indica efectos multiplicativos por obstrucción y multitrayecto, típicos de procesos lognormales
+\textbf{Condición de NLOS:} En la condición de NLOS la distribución del error experimenta una transformación drástica. La Figura~\ref{fig:ajuste_nlos} muestra una dispersión mucho mayor y una cola pesada significativa hacia la derecha. El análisis de AIC muestra que la lognormal supera ligeramente a la gamma como el mejor ajuste. Esto indica efectos multiplicativos por obstrucción y multitrayecto, típicos de procesos lognormales
 %
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.9\textwidth]{imagenes/ajuste_hist_Datos_NLOS.png}
+    \includegraphics[width=1\textwidth]{imagenes/ajuste_hist_Datos_NLOS.png}
     \caption{Ajuste de distribuciones para mediciones en la condición NLOS.}
     \label{fig:ajuste_nlos}
 \end{figure}
@@ -489,7 +489,7 @@ Normal      & 44,631.39   & 44,648.82   & 0.1829 & 0.00 \\
 
 Para visualizar mejor la desviación respecto a la normalidad en las colas de la distribución (donde ocurren los errores grandes, críticos para la confiabilidad del sistema), se presenta el gráfico Q-Q (Quantile-Quantile) para los datos bajo la condición de NLOS en la Figura~\ref{fig:qq_nlos}. La divergencia de los puntos experimentales (azul) respecto a la línea roja de referencia (distribución normal teórica) en los extremos confirma que los errores grandes son mucho más frecuentes de lo que predeciría un modelo gaussiano.
 %
-\begin{figure}[hbt]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.9\textwidth]{imagenes/ajuste_qq_Datos_NLOS.png}
     \caption{Gráfico Q-Q que compara los datos bajo la condición de NLOS con una distribución normal teórica.}
@@ -515,7 +515,7 @@ donde:
     \item $x$: Variable aleatoria (error de posicionamiento en metros).
     \item $\alpha$ (o $k$): Parámetro de forma. Define la curtosis o qué tan "picuda" es la curva.
     \item $\theta$ (o \textit{scale}): Parámetro de escala. Define la dispersión hacia la derecha.
-    \item $\Gamma (\cdot)$: Función Gamma.
+    \item $\Gamma (\cdot)$: Función gamma.
     \item $\Gamma$ (o \textit{loc}): Desplazamiento del origen.
 \end{itemize}
 
@@ -538,6 +538,7 @@ donde,
 \begin{equation}
 f(x) = \frac{1}{(x-\Gamma) \sigma \sqrt{2\pi}} \exp\left(-\frac{(\ln(x-\Gamma) - \mu)^2}{2\sigma^2}\right),
 \end{equation}
+%
 donde:
 %
 \begin{itemize}
@@ -553,14 +554,14 @@ El paso de los datos experimentales a los parámetros del modelo se realizó med
 No obstante, existe una relación conceptual entre la estadística descriptiva y los parámetros obtenidos:
 %
 \begin{itemize}
-    \item \textbf{Caso gamma:} $\alpha \approx E[x]^2 / Var[x]$ y $\theta \approx Var[x] / E[x]$. Si la varianza es alta respecto a la media, $\alpha$ tiende a ser baja.
+    \item \textbf{Caso gamma:} $\alpha \approx E[X]^2 / Var[X]$ y $\theta \approx Var[X] / E[X]$. Si la varianza es alta respecto a la media, $\alpha$ tiende a ser baja.
     \item \textbf{Caso lognormal:} Los parámetros se obtienen tras transformar los datos mediante $y = \ln(x-\Gamma)$, donde $\mu = \bar{y}$ y $\sigma = S_y$.
     \item \textbf{Caso Weibull:} $\lambda$ representa un valor característico cercano a la media, mientras que $k$ controla la pendiente de la distribución.
 \end{itemize}
 
 La Tabla~\ref{tab:modelos_parametricos} resume los parámetros estimados para las condiciones más relevantes, junto con una validación cruzada que compara el MAE teórico del modelo con el MAE experimental.
 %
-\begin{table}[ht]
+\begin{table}[t]
 \centering
 \scriptsize
 \caption{Parámetros de los modelos de error ajustados para escenarios globales y específicos.}
@@ -592,7 +593,7 @@ A continuación se detallan las ecuaciones de densidad de probabilidad parametri
 El error en condiciones LOS se modela óptimamente mediante una distribución gamma con parámetros de forma $\alpha \approx 0.94$ y escala $\theta \approx 0.13$. La función de densidad de probabilidad (PDF) está dada por:
 %
 \begin{equation}
-f_{LOS}(x) = \frac{x^{-0.0593} e^{-x/0.1292}}{0.1292^{0.9407} \Gamma(0.9407)}
+f_{LOS}(x) = \frac{x^{-0.0593} e^{-x/0.1292}}{0.1292^{0.9407} \Gamma(0.9407)}.
 \end{equation}
 
 El modelo predice un valor esperado del error de 0.1215 m, que difiere del valor experimental (0.1239 m) en apenas 1.95\%, lo que valida la alta fidelidad del modelo para representar el comportamiento nominal del sistema.
@@ -602,9 +603,9 @@ El modelo predice un valor esperado del error de 0.1215 m, que difiere del valor
 En condiciones NLOS, el error sigue una distribución lognormal, caracterizada por los parámetros $\sigma \approx 0.83$ y $\mu \approx -1.15$. La PDF se expresa como:
 %
 \begin{equation}
-f_{NLOS}(x) = \frac{1}{(x + 0.0342) \cdot 0.8283 \sqrt{2\pi}} \exp\left(-\frac{(\ln(x + 0.0342) + 1.1511)^2}{1.3722}\right)
+f_{\textrm{NLOS}}(x) = \frac{1}{(x + 0.0342) \cdot 0.8283 \sqrt{2\pi}} \exp\left(-\frac{(\ln(x + 0.0342) + 1.1511)^2}{1.3722}\right).
 \end{equation}
-
+%
 Es importante notar que este modelo incluye un parámetro de desplazamiento (\textit{loc}) de -0.0342 m para optimizar el ajuste. El modelo predice un MAE teórico de 0.4115 m frente a un MAE experimental de 0.4069 m, i.e., diferencia del 1.14\%, lo que demuestra su capacidad para capturar la naturaleza de cola pesada de los errores por obstrucción.
 
 \subsubsection{Modelos Específicos por Ubicación}
@@ -618,13 +619,13 @@ En condiciones LOS, la distribución Weibull ofrece el mejor ajuste, con un par�
     \item \textbf{Cadera LOS (Weibull):}
     %
     \begin{equation}
-    f(x) = \frac{1.5768}{0.0901} \left(\frac{x + 0.0040}{0.0901}\right)^{0.5768} \exp\left(-\left(\frac{x + 0.0040}{0.0901}\right)^{1.5768}\right)
+    f(x) = \frac{1.5768}{0.0901} \left(\frac{x + 0.0040}{0.0901}\right)^{0.5768} \exp\left(-\left(\frac{x + 0.0040}{0.0901}\right)^{1.5768}\right).
     \end{equation}
     %
     \item \textbf{Cadera NLOS (Gamma):}
     %
     \begin{equation}
-    f(x) = \frac{(x - 0.1268)^{2.4311} e^{-(x - 0.1268)/0.2464}}{0.2464^{3.4311} \Gamma(3.4311)}
+    f(x) = \frac{(x - 0.1268)^{2.4311} e^{-(x - 0.1268)/0.2464}}{0.2464^{3.4311} \Gamma(3.4311)}.
     \end{equation}
 \end{itemize}
 
@@ -634,13 +635,13 @@ Similar a la cadera, el pecho en LOS se modela mejor con una Weibull, pero con $
 \begin{itemize}
     \item \textbf{Pecho LOS (Weibull):}
     \begin{equation}
-    f(x) = \frac{0.8679}{0.1265} \left(\frac{x}{0.1265}\right)^{-0.1321} \exp\left(-\left(\frac{x}{0.1265}\right)^{0.8679}\right)
+    f(x) = \frac{0.8679}{0.1265} \left(\frac{x}{0.1265}\right)^{-0.1321} \exp\left(-\left(\frac{x}{0.1265}\right)^{0.8679}\right).
     \end{equation}
     
     \item \textbf{Pecho NLOS (Gamma):}
     %
     \begin{equation}
-    f(x) = \frac{(x + 0.0416)^{1.5971} e^{-(x + 0.0416)/0.3542}}{0.3542^{2.5971} \Gamma(2.5971)}
+    f(x) = \frac{(x + 0.0416)^{1.5971} e^{-(x + 0.0416)/0.3542}}{0.3542^{2.5971} \Gamma(2.5971)}.
     \end{equation}
 \end{itemize}
 
