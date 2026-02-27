@@ -38,15 +38,14 @@ Las filas de marcas se colocan a las siguientes distancias desde el largo del sa
     \item Tercera fila: 5.40 m
 \end{itemize}
 
-La separación entre marcas en cada fila es de 1.5 m y las 18 posiciones de medición se distribuyen en una cuadrícula de 3 filas × 6 columnas. Las coordenadas $(x, y)$ de cada marca se muestran en la figura \ref{fig:croquis_experimental_2d}.
-
-\begin{figure}[hbt]
+La separación entre marcas en cada fila es de 1.5 m y las 18 posiciones de medición se distribuyen en una cuadrícula de 3 filas × 6 columnas. Las coordenadas $(x, y)$ de cada marca se muestran en la Figura \ref{fig:croquis_experimental_2d}.
+%
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{imagenes/RepresentacionPosiciones.jpeg}
     \caption{Croquis del escenario experimental 2D con las posiciones de las anclas y las marcas de la etiqueta y la orientación del sistema de referencia.}
     \label{fig:croquis_experimental_2d}
 \end{figure}
-
 
 \section{RESULTADOS GRÁFICOS}
 \label{sec:resultados_graficos_2d}
@@ -54,52 +53,52 @@ La separación entre marcas en cada fila es de 1.5 m y las 18 posiciones de medi
 \subsection{Resultados del Filtro de Kalman}
 
 Las Figuras \ref{fig:kalman_tag} a \ref{fig:kalman_pecho_s3} muestran las trayectorias estimadas obtenidas mediante el KF para diferentes configuraciones de medición. En estas gráficas se comparan las posiciones reales (referencia) con las estimaciones obtenidas mediante multilateración (sin filtrado) y con las obtenidas mediante el KF.
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_tag.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_tag.pdf}
     \caption{Trayectoria estimada del tag: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_tag}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_cadera_sujeto1.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_cadera_sujeto1.pdf}
     \caption{Trayectoria estimada del nodo móvil en la cadera del sujeto 1: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_cadera_s1}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_cadera_sujeto2.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_cadera_sujeto2.pdf}
     \caption{Trayectoria estimada del nodo móvil en la cadera del sujeto 2: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_cadera_s2}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_cadera_sujeto3.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_cadera_sujeto3.pdf}
     \caption{Trayectoria estimada del nodo móvil en la cadera del sujeto 3: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_cadera_s3}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_pecho_sujeto1.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_pecho_sujeto1.pdf}
     \caption{Trayectoria estimada del nodo móvil en el pecho del sujeto 1: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_pecho_s1}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_pecho_sujeto2.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_pecho_sujeto2.pdf}
     \caption{Trayectoria estimada del nodo móvil en el pecho del sujeto 2: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_pecho_s2}
 \end{figure}
-
-\begin{figure}[hbt]
+%
+\begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{imagenes/kalman_pecho_sujeto3.pdf}
+    \includegraphics[width=1\textwidth]{imagenes/kalman_pecho_sujeto3.pdf}
     \caption{Trayectoria estimada del nodo móvil en el pecho del sujeto 3: comparación entre las posiciones reales, la estimación por multilateración y la estimación mediante el filtro de Kalman.}
     \label{fig:kalman_pecho_s3}
 \end{figure}
@@ -112,9 +111,9 @@ A continuación, se presentan los resultados estadísticos del error de estimaci
 
 \subsection{Estadísticas del dispositivo móvil}
 
-Para el caso del dispositivo móvil, que representa la medición de referencia sin cuerpo humano, se obtuvieron los siguientes resultados:
-
-\begin{table}[hbt]
+Para el caso del tag, que representa la medición de referencia sin cuerpo humano, se obtuvieron los siguientes resultados: 
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para el tag}
 \label{tab:estadisticas_tag}
@@ -131,14 +130,14 @@ Error mediana & 0.8657 & 0.5341 \\
 \hline
 \end{tabular}
 \end{table}
-
-En este caso, la multilateración presenta un mejor desempeño, con un error promedio de 0.4802 m, 0.3183 m menor que el de KF. Esto sugiere que, para el dispositivo móvil sin obstrucción del cuerpo humano, el algoritmo de multilateración directa proporciona estimaciones más precisas.
+%
+En este caso, la multilateración presenta un mejor desempeño, con un error promedio de 0.4802 m, 0.3183 m menor que el de KF. Esto sugiere que, para el tag sin obstrucción del cuerpo humano, el algoritmo de multilateración directa proporciona estimaciones más precisas.
 
 \subsection{Estadísticas para cadera} 
 
 Los resultados de las mediciones con el dispositivo móvil ubicado en la cadera de los tres sujetos se presentan en las Tablas \ref{tab:estadisticas_cadera_s1}, \ref{tab:estadisticas_cadera_s2} y \ref{tab:estadisticas_cadera_s3}.
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para cadera del sujeto 1}
 \label{tab:estadisticas_cadera_s1}
@@ -155,10 +154,10 @@ Error mediana & 0.7006 & 0.6124 \\
 \hline
 \end{tabular}
 \end{table}
-
+%
 Para el sujeto 1, la multilateración muestra un mejor desempeño con una diferencia de 0.0373 m en el error promedio. Ambos métodos presentan errores máximos similares (alrededor de 1.1 m). 
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para cadera del sujeto 2}
 \label{tab:estadisticas_cadera_s2}
@@ -175,10 +174,10 @@ Error mediana & 0.8871 & 0.4754 \\
 \hline
 \end{tabular}
 \end{table}
-
+%
 Para el sujeto 2, la multilateración muestra un desempeño notablemente superior, con un error promedio de 0.5521 m, 0.4004 m menor que el de KF. Sin embargo, el KF reduce el error máximo de 2.32 m a 1.46 m.
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para cadera del sujeto 3}
 \label{tab:estadisticas_cadera_s3}
@@ -195,14 +194,14 @@ Error mediana & 0.8135 & 0.7099 \\
 \hline
 \end{tabular}
 \end{table}
-
+%
 En el caso del sujeto 3, el KF presenta un mejor desempeño, con un error promedio de 0.7664 m, 0.0417 m menor que el de la multilateración. Además, el filtro reduce significativamente el error máximo de 2.99 m a 1.67 m y la desviación estándar.
 
 \subsection{Estadísticas para pecho}
 
 Los resultados de las mediciones realizadas con el dispositivo móvil ubicado en el pecho de los tres sujetos se presentan en las Tablas \ref{tab:estadisticas_pecho_s1}, \ref{tab:estadisticas_pecho_s2} y \ref{tab:estadisticas_pecho_s3}.
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para pecho del sujeto 1}
 \label{tab:estadisticas_pecho_s1}
@@ -219,10 +218,10 @@ Error mediana & 0.7545 & 0.7389 \\
 \hline
 \end{tabular}
 \end{table}
-
-Cuando el dispositivo móvil se ubicó en el pecho del sujeto 1, el KF mostró un mejor desempeño, con un error promedio de 0.7454 m, 0.1017 m menor que el de la multilateración. Además, el KF reduce significativamente el error máximo (1.3731 m vs 2.6677 m). 
-
-\begin{table}[hbt]
+%
+Cuando el dispositivo móvil se ubicó en el pecho del sujeto 1, el KF mostró un mejor desempeño, con un error promedio de 0.7454 m, 0.1017 m menor que el de la multilateración. Además, el KF reduce significativamente el error máximo (1.3731 m frente a 2.6677 m). 
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para pecho del sujeto 2}
 \label{tab:estadisticas_pecho_s2}
@@ -239,10 +238,10 @@ Error mediana & 0.9639 & 0.6766 \\
 \hline
 \end{tabular}
 \end{table}
-
+%
 Cuando el dispositivo móvil se ubicó en el pecho del sujeto 2, la multilateración presentó un error promedio ligeramente menor (0.7761 m vs 0.9108 m), pero el KF es especialmente efectivo al reducir el error máximo de 3.22 m a 1.70 m y la desviación estándar de 0.71 m a 0.42 m, lo que indica una mayor estabilidad en las estimaciones.
-
-\begin{table}[hbt]
+%
+\begin{table}[t]
 \centering
 \caption{Estadísticas de error para pecho del sujeto 3}
 \label{tab:estadisticas_pecho_s3}
@@ -259,19 +258,50 @@ Error mediana & 0.6438 & 0.5506 \\
 \hline
 \end{tabular}
 \end{table}
-
+%
 Cuando el dispositivo móvil se ubicó en el pecho del sujeto 3, el KF presentó un error promedio ligeramente menor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y de la desviación estándar (de 0.60 m a 0.32 m), lo que valida su capacidad para estabilizar las estimaciones en condiciones NLOS.
-
 
 \section{ANÁLISIS DEL TIEMPO DE VUELO}
 \label{sec:analisis_tiempo_vuelo_2d}
 
 El análisis del ToF permite caracterizar directamente la calidad de las mediciones de distancia en el sistema de posicionamiento 2D. En esta sección se presentan los resultados del análisis comparativo entre las condiciones LOS y NLOS para cada configuración evaluada.
+%
+\begin{figure}[t]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla1_tof_sin_outliers.png}
+        \\ (a) Ancla 1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla2_tof_sin_outliers.png}
+        \\ (b) Ancla 2
+    \end{minipage}
+    
+    \vspace{0.3cm}
+    
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla3_tof_sin_outliers.png}
+        \\ (c) Ancla 3
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla4_tof_sin_outliers.png}
+        \\ (d) Ancla 4
+    \end{minipage}
+    
+    \caption{Distribución de ToF para cada ancla - Pecho Sujeto 1. Se observa una clara diferenciación entre las condiciones LOS y NLOS, con una mayor dispersión en NLOS.}
+    \label{fig:tof_pecho_s1}
+\end{figure}
 
 \subsection{Estadísticas Globales de ToF}
 
 El análisis consolidado de todas las mediciones (252 mediciones LOS y 252 NLOS) revela patrones importantes en el comportamiento del sistema:
-
+%
 \begin{table}[hbt]
 \centering
 \caption{Estadísticas globales de ToF: Comparación LOS vs NLOS}
@@ -321,7 +351,7 @@ El dispositivo móvil presenta una variabilidad mínima y consistente tanto en L
 \subsubsection{Cadera}
 
 Los resultados para cadera muestran incremento moderado en variabilidad:
-
+%
 \begin{table}[hbt]
 \centering
 \caption{Estadísticas de ToF para cadera (promedio de 3 sujetos)}
@@ -346,7 +376,7 @@ La cadera presenta un incremento en la desviación estándar promedio de 0.40-0.
 \subsubsection{Pecho}
 
 El pecho exhibe la mayor variabilidad en condiciones NLOS:
-
+%
 \begin{table}[hbt]
 \centering
 \caption{Estadísticas de ToF para pecho (3 sujetos)}
@@ -373,38 +403,6 @@ El pecho del sujeto 2 presenta el rango ToF máximo registrado (42.86 ns) y la d
 
 La Figura \ref{fig:tof_pecho_s1} muestra la distribución de ToF para cada una de las cuatro anclas cuando el dispositivo móvil se ubica en el pecho del sujeto 1, lo que permite identificar patrones de variabilidad específicos de cada ancla.
 
-\begin{figure}[hbt]
-    \centering
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla1_tof_sin_outliers.png}
-        \\ (a) Ancla 1
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla2_tof_sin_outliers.png}
-        \\ (b) Ancla 2
-    \end{minipage}
-    
-    \vspace{0.3cm}
-    
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla3_tof_sin_outliers.png}
-        \\ (c) Ancla 3
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{imagenes/pecho_sujeto1_ancla4_tof_sin_outliers.png}
-        \\ (d) Ancla 4
-    \end{minipage}
-    
-    \caption{Distribución de ToF para cada ancla - Pecho Sujeto 1. Se observa una clara diferenciación entre las condiciones LOS y NLOS, con una mayor dispersión en NLOS.}
-    \label{fig:tof_pecho_s1}
-\end{figure}
-
 Las gráficas revelan que la Ancla 2 presenta la mayor dispersión en condiciones NLOS (desviación estándar de 8.52 ns y rango de 33.70 ns), mientras que las Anclas 3 y 4 mantienen una mayor estabilidad. Esta variabilidad diferencial por ancla sugiere que factores geométricos y de BS específicos afectan cada enlace de manera distinta.
 
 \subsection{Implicaciones para Detección NLOS}
@@ -415,12 +413,12 @@ El análisis de ToF permite establecer que la variabilidad (desviación estánda
 \item \textbf{Umbral sugerido:} Mediciones con desviación estándar > 0.49 ns son probablemente NLOS
 \item \textbf{Incremento de variabilidad:} 251.64\% en promedio al pasar de LOS a NLOS
 \item \textbf{Factor de peso:} Se recomienda aplicar un factor de peso a las mediciones NLOS en los algoritmos de posicionamiento para mitigar su impacto negativo. Este factor se obtiene mediante la relación entre las desviaciones estándar promedio de ambas condiciones:
-
+%
 \begin{equation}
-    \text{Factor de peso} = \frac{\text{Desviación Estándar Promedio (LOS)}}{\text{Desviación Estándar Promedio (NLOS)}} = \frac{0.18}{0.63} \approx 0.28
+    \text{Factor de peso} = \frac{\text{Desviación Estándar Promedio (LOS)}}{\text{Desviación Estándar Promedio (NLOS)}} = \frac{0.18}{0.63} \approx 0.28,
 \end{equation}
-
-Donde,
+%
+donde,
 \begin{itemize}
     \item \textbf{Desviación Estándar Promedio (LOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo condiciones de Línea de Vista (LOS).
     \item \textbf{Desviación Estándar Promedio (NLOS):} es el promedio de las desviaciones estándar de todas las mediciones realizadas bajo la condición NLOS.
