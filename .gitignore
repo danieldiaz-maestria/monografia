@@ -3,3 +3,6 @@ PruebasFinales/
 PruebasLINEA/
 analisis/
 *.md
+__pycache__/
+*.py[cod]
+scripts/

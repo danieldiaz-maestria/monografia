@@ -68,4 +68,15 @@ El análisis de la Figura \ref{fig:comparativa_kalman} evidencia de manera indud
 
 En un contraste notable, el EKF de estado aumentado con modelo de sesgo dual corrige eficientemente el vector de trayectoria reduciendo drásticamente el error estadístico medio. Esta variante no lineal resulta particularmente exitosa, logrando suprimir masivamente la brecha de discrepancia incluso en los vértices del recinto.
 
+Para contrastar el modelo propuesto con una técnica no recursiva diseñada específicamente para condiciones de propagación adversas, la Figura \ref{fig:comparativa_iekf_multi_nlos} presenta las trayectorias obtenidas mediante el IEKF de estado aumentado y la multilateración ponderada NLOS sobre el mismo conjunto de datos correspondiente a la cadera del sujeto 2. Esta comparación permite evaluar si la estimación conjunta de los sesgos conserva un desempeño competitivo frente a un método que asigna pesos reducidos a las mediciones identificadas como NLOS.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/comparacion_iekf_multi_nlos.png}
+    \caption{Comparación de trayectorias entre el IEKF con estado aumentado y la multilateración ponderada NLOS. Escenario de prueba: sensor en la cadera del sujeto 2.}
+    \label{fig:comparativa_iekf_multi_nlos}
+\end{figure}
+
+La Figura \ref{fig:comparativa_iekf_multi_nlos} muestra un desempeño global prácticamente equivalente. El IEKF obtiene un MAE ligeramente menor, i.e., 0.4253 m frente a 0.4264 m, y un error máximo de 0.8224 m frente a 0.8334 m. Por su parte, la multilateración ponderada NLOS presenta una mediana menor, i.e., 0.4210 m frente a 0.4730 m, y una desviación estándar inferior, i.e., 0.1763 m frente a 0.2001 m. Por tanto, no existe un dominio absoluto de un método sobre el otro: el IEKF ofrece una ventaja marginal en exactitud promedio y error extremo, mientras que Multi-NLOS produce una distribución de errores ligeramente más estable.
+
 Al extrapolar este marco matemático de validación hacia la totalidad de los conjuntos de datos que conforman el cuerpo de la experimentación (diferentes sujetos físicos y variaciones anatómicas del sensor), el error general experimentó una contundente mitigación. Estos resultados acreditan unánimemente que la intervención sobre la raíz del modelo estocástico—integrando el comportamiento exponencial del sesgo en función de la distancia—resulta ineludible y fundamental, ya que atiende adecuadamente los impedimentos de hardware y reflexiones de campo cercano en los sistemas físicos de posicionamiento Ultra-Wideband analizados.
