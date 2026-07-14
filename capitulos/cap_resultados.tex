@@ -133,7 +133,7 @@ La cadera presenta el comportamiento más variable del estudio, con un excelente
 \multirow{2}{*}{Exteriores}   & LOS & 8.31 & 5.34 & 25 \\
                             & NLOS & 94.78 & 52.46 & 189 \\
 \midrule
-\multirow{2}{*}{Exteriores}   & LOS & 7.19 & 7.86 & 37 \\
+\multirow{2}{*}{Interiores}   & LOS & 7.19 & 7.86 & 37 \\
                             & NLOS & 97.76 & 71.00 & 290 \\
 \bottomrule
 \end{tabular}
@@ -217,7 +217,7 @@ Mano y muñeca mantienen un desempeño moderado y estable en la mayoría de las 
 \end{tabular}
 \end{table}
 %
-Mano y muñeca presentan MAE entre 6.42 cm y 9.47 cm en LOS, con degradación moderada bajo la condición de NLOS, i.e., factores de degradación entre 2.9× y 4.6×. La muñeca muestra una mejor consistencia que la mano, con menor variabilidad y errores máximos más bajos. Ambas ubicaciones se benefician de la movilidad natural de las extremidades superiores, lo que reduce la obstrucción persistente.
+Mano y muñeca presentan MAE entre 6.42 cm y 9.47 cm en LOS, con degradación moderada bajo la condición de NLOS, i.e., factores de degradación entre 2.7× y 4.6×. La muñeca muestra una mejor consistencia que la mano, con menor variabilidad y errores máximos más bajos. Ambas ubicaciones se benefician de la movilidad natural de las extremidades superiores, lo que reduce la obstrucción persistente.
 
 \subsection{Comparativo General}
 
@@ -239,13 +239,13 @@ La Tabla \ref{tab:resumen_todas_ubicaciones} consolida los resultados de todas l
 & \cellcolor{headerblue}\textbf{LOS (cm)}
 & \cellcolor{headerblue}\textbf{NLOS (cm)} \\
 \midrule
-Cabeza   & 4.87 & 32.43 & 8.91 & 18.16 \\
-Cadera   & 8.31 & 89.99 & 7.22 & 95.11 \\
-Mano     & 9.28 & 42.17 & 9.09 & 26.01 \\
-Muñeca   & 7.78 & 24.21 & 6.42 & 22.00 \\
+Cabeza   & 4.87 & 32.05 & 10.43 & 18.66 \\
+Cadera   & 8.31 & 94.78 & 7.19 & 97.76 \\
+Mano     & 8.98 & 41.60 & 9.47 & 26.01 \\
+Muñeca   & 7.78 & 24.07 & 6.42 & 22.00 \\
 Pecho    & 4.62 & 63.69 & 13.74 & 83.98 \\
-Rodilla  & 14.99 & 51.36 & 12.04 & 49.52 \\
-Tobillo  & 29.81 & 38.45 & 41.48 & 29.96 \\
+Rodilla  & 14.99 & 55.54 & 12.04 & 49.55 \\
+Tobillo  & 29.87 & 41.86 & 29.41 & 38.67 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -253,15 +253,15 @@ Tobillo  & 29.81 & 38.45 & 41.48 & 29.96 \\
 \textbf{Hallazgos principales:}
 
 \begin{itemize}
-\item \textbf{Cabeza:} Muestra el comportamiento más consistente entre todas las ubicaciones evaluadas. En el escenario de exteriores, se observa una degradación moderada en las condiciones de LOS (4.87 cm) y de NLOS (32.43 cm), con un factor de degradación de 6.7×. En el escenario de interiores, mantiene valores relativamente bajos: 8.91 cm bajo la condición de LOS y 18.16 cm bajo la condición de NLOS con un factor de degradación de 2.0×. La forma curva de la cabeza favorece la difracción de señales UWB alrededor del cráneo.
+\item \textbf{Cabeza:} Muestra el comportamiento más consistente entre todas las ubicaciones evaluadas. En el escenario de exteriores, se observa una degradación moderada entre las condiciones de LOS (4.87 cm) y NLOS (32.05 cm), con un factor de degradación de 6.6×. En el escenario de interiores, mantiene valores relativamente bajos: 10.43 cm bajo la condición de LOS y 18.66 cm bajo la condición de NLOS, con un factor de degradación de 1.8×. La forma curva de la cabeza favorece la difracción de señales UWB alrededor del cráneo.
 
-\item \textbf{Cadera:} Presenta el desempeño más variable del estudio. Alcanza valores excelentes en condición LOS, i.e., 8.31 cm en el escenario de exteriores y 7.22 cm en el escenario de interiores, pero experimenta la degradación más severa bajo la condición de NLOS, con MAE de 89.99 cm en el escenario de exteriores y 95.11 cm en el escenario de interiores, lo que representa factores de degradación de 10.8× y 13.2×, respectivamente.
+\item \textbf{Cadera:} Presenta el desempeño más variable del estudio. Alcanza valores bajos en condición LOS, i.e., 8.31 cm en el escenario de exteriores y 7.19 cm en el escenario de interiores, pero experimenta la degradación más severa bajo la condición de NLOS, con MAE de 94.78 cm en el escenario de exteriores y 97.76 cm en el escenario de interiores, lo que representa factores de degradación de 11.4× y 13.6×, respectivamente.
 
-\item \textbf{Rodilla:} Presenta errores consistentemente elevados en todas las configuraciones. Los valores en condición LOS son moderados, 14.99 cm en el escenario de exteriores y 12.04 cm en el escenario de interiores, pero bajo la condición de NLOS alcanzan 51.36 cm en el escenario de exteriores y 49.52 cm en el escenario de interiores, con factores de degradación de 3.4× y 4.1×, respectivamente.
+\item \textbf{Rodilla:} Presenta errores consistentemente elevados en todas las configuraciones. Los valores en condición LOS son moderados, 14.99 cm en el escenario de exteriores y 12.04 cm en el escenario de interiores, pero bajo la condición de NLOS alcanzan 55.54 cm en el escenario de exteriores y 49.55 cm en el escenario de interiores, con factores de degradación de 3.7× y 4.1×, respectivamente.
 
-\item \textbf{Tobillo:} Muestra un comportamiento interesante en el estudio. Presenta MAE elevados en escenarios exteriores bajo condiciones NLOS, en comparación con los de interiores, por lo que este último presenta un mejor desempeño.
+\item \textbf{Tobillo:} Presenta MAE elevados incluso en LOS, con 29.87 cm en exteriores y 29.41 cm en interiores. En NLOS, el error aumenta a 41.86 cm en exteriores y a 38.67 cm en interiores. Aunque el escenario interior obtiene un MAE menor que el exterior bajo NLOS, la diferencia debe interpretarse dentro del montaje y del participante evaluado.
 
-\item \textbf{Mano y Muñeca:} Mantienen un desempeño moderado y consistente. La mano registra 9.28 cm en el escenario de exteriores bajo la condición de LOS y 9.09 cm en el escenario de interiores bajo la condición de LOS, degradándose a 42.17 cm y 26.01 cm bajo la condición de NLOS, respectivamente. La muñeca presenta valores similares: 7.78 cm para el escenario de exteriores bajo la condición de LOS y 6.42 cm para el escenario de interiores en condición de LOS, que se degradan a 24.21 cm y 22.00 cm bajo la condición de NLOS, respectivamente. Ambas ubicaciones muestran factores de degradación entre 2.9× y 4.5×.
+\item \textbf{Mano y Muñeca:} Mantienen un desempeño moderado y consistente. La mano registra 8.98 cm en el escenario de exteriores bajo la condición de LOS y 9.47 cm en el escenario de interiores bajo la condición de LOS, degradándose a 41.60 cm y 26.01 cm bajo la condición de NLOS, respectivamente. La muñeca presenta valores menores: 7.78 cm para el escenario de exteriores bajo la condición de LOS y 6.42 cm para el escenario de interiores en condición de LOS, que se degradan a 24.07 cm y 22.00 cm bajo la condición de NLOS, respectivamente. Ambas ubicaciones muestran factores de degradación entre 2.7× y 4.6×.
 \end{itemize}
 
 
@@ -367,20 +367,20 @@ Con el fin de analizar cómo el entorno influye en el desempeño del sistema baj
 \rowcolor{headerblue}
 \textbf{Ubicación} & \textbf{Exteriores[m]} & \textbf{Interiores[m]} & \textbf{$p$-valor} & \textbf{Efecto ($r$)} & \textbf{Magnitud} \\
 \midrule
-CABEZA  & 0.320 & 0.187 & $\ll 0.001$ & -0.660 & grande  \\
+CABEZA  & 0.321 & 0.187 & $\ll 0.001$ & -0.660 & grande  \\
 CADERA  & 0.948 & 0.978 & 0.028       &  0.049 & trivial \\
 MANO    & 0.416 & 0.260 & $\ll 0.001$ & -0.693 & grande  \\
 MUÑECA  & 0.241 & 0.220 & $\ll 0.001$ & -0.273 & pequeño \\
-PECHO   & 0.790 & 0.895 & 0.590       & -0.012 & trivial \\
+PECHO   & 0.637 & 0.840 & 0.590       & -0.012 & trivial \\
 RODILLA & 0.555 & 0.496 & $\ll 0.001$ & -0.392 & medio   \\
-TOBILLO & 0.389 & 0.300 & $\ll 0.001$ & -0.488 & medio   \\
+TOBILLO & 0.419 & 0.387 & $\ll 0.001$ & -0.488 & medio   \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsubsection{Discusión e Interpretación Física}
 
-Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que, para varias ubicaciones corporales, la mediana del MAE es \emph{menor en el escenario de interiores que en el de exteriores}, a pesar de que el de interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación clara de la interacción entre BS y la propagación por multitrayecto.
+Un resultado relevante y, a primera vista, contraintuitivo de la Tabla~\ref{tab:nlos_escenario} es que, para varias ubicaciones corporales, el MAE es \emph{menor en el escenario de interiores que en el de exteriores}, a pesar de que el de interiores constituye un entorno más confinado. Este comportamiento no representa una inconsistencia estadística, sino una manifestación de la interacción entre BS y la propagación por multitrayecto.
 
 En ubicaciones del torso como la cadera y el pecho, el error es elevado en ambos escenarios y las diferencias observadas son estadísticamente triviales. Esto indica que, en estas posiciones, la \textbf{BS severa} domina por completo el proceso de propagación, atenuando la señal de modo que el entorno circundante ejerce un impacto marginal. En otras palabras, una vez que la línea de vista está fuertemente bloqueada por el cuerpo, ni un entorno abierto ni uno confinado logran mitigar significativamente el error.
 
