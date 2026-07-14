@@ -1,7 +1,7 @@
-\chapter{SISTEMA DE POSICIONAMIENTO 2D }
+\chapter{SISTEMA DE POSICIONAMIENTO 2D Y OPTIMIZACIÓN DEL EKF}
 \label{sec:desempeno_posicionamiento}
 \label{ch:optimizacion_kalman}
-En esta fase se evalúa el desempeño del sistema de posicionamiento en un entorno 2D completo, utilizando las técnicas y algoritmos desarrollados en las fases anteriores. Se realizan experimentos en un salón cerrado de dimensiones conocidas, donde se colocan anclas en posiciones fijas y se mide la exactitud del sistema al estimar la posición de una etiqueta móvil en 18 posiciones distribuidas en el área del salón.
+Este capítulo presenta el Experimento 2, en el que se evalúa el desempeño del sistema de posicionamiento 2D en un salón cerrado de dimensiones conocidas. Cuatro anclas se ubican en posiciones fijas y la exactitud se evalúa en 18 posiciones de referencia con tres configuraciones: dispositivo sin obstrucción corporal, cadera y pecho. Al final del capítulo se presenta, como análisis complementario, la optimización del EKF mediante un estado aumentado y una actualización iterada.
 
 
 \section{ESCENARIO EXPERIMENTAL}
@@ -339,7 +339,7 @@ Error mediana & 0.8871 & 0.4754 \\
 \end{tabular}
 \end{table}
 %
-Para el sujeto 2, la multilateración muestra un desempeño notablemente superior, con un error promedio de 0.5521 m, 0.4004 m menor que el de KF. Sin embargo, el KF reduce el error máximo de 2.32 m a 1.46 m.
+Para el sujeto 2, la multilateración muestra un desempeño superior: reduce el error promedio de 0.9525 m a 0.5521 m y el error máximo de 2.3179 m a 1.4634 m respecto al KF. En esta configuración, por tanto, el KF no aporta una mejora en las métricas reportadas.
 %
 \begin{table}[t]
 \centering

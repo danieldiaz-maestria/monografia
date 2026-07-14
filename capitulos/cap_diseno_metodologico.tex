@@ -76,7 +76,7 @@ Todo el código desarrollado se gestiona mediante Git y se almacena en un reposi
 \subsection{Diseño del Escenario Experimental}
 \label{subsec:diseno_escenario}
 
-El plan de pruebas de validación (Fase 1) se diseñó para evaluar diferentes condiciones de propagación en dos entornos principales:
+El plan de pruebas del Experimento 1 se diseñó para evaluar diferentes condiciones de propagación en dos entornos principales:
 
 \subsubsection{Escenario de Exteriores}
 
@@ -120,7 +120,7 @@ La implementación abarca la puesta en marcha de la configuración experimental,
 \subsection{Configuración y Despliegue de Nodos}
 \label{subsec:configuracion_nodos}
 
-En la Fase 1 del plan de pruebas de validación, la configuración experimental implementada consistió en:
+En el Experimento 1, la configuración implementada consistió en:
 
 \begin{itemize}
 \item \textbf{Nodo Fijo de Referencia:} Un módulo DWM1001 montado en un trípode a una altura estándar de 1.5 m sobre el nivel del piso, actuando como ancla de referencia para las mediciones de distancia.
@@ -129,18 +129,18 @@ En la Fase 1 del plan de pruebas de validación, la configuración experimental 
 
 Esta configuración punto a punto permite evaluar la exactitud fundamental de la estimación de distancia antes de implementar el sistema completo de posicionamiento 2D. El nodo fijo permanece en una ubicación constante durante cada sesión de medición, mientras el sujeto se desplaza a distancias conocidas siguiendo un protocolo sistemático.
 
-\textbf{Nota:} La Fase 2 implementará un sistema con cuatro nodos ancla, en una configuración geométrica optimizada para la trilateración y el posicionamiento 2D.
+\textbf{Nota:} El Experimento 2 implementó un sistema con cuatro nodos ancla para la multilateración y el posicionamiento 2D.
 
 \subsection{Protocolo de Validación Experimental}
 \label{subsec:protocolo_validacion}
 
 \subsubsection{Sujetos de Prueba}
 
-La Fase 1 de este estudio se llevó a cabo como un caso de estudio fundacional con el Sujeto de Prueba 2. Este enfoque metodológico permitió una caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo, sin variabilidad intersujeto, estableciendo una línea base de desempeño del sistema y un control riguroso de las variables experimentales.
+El Experimento 1 se llevó a cabo como un caso de estudio fundacional con el Sujeto de Prueba 2. Este enfoque metodológico permitió una caracterización detallada de los efectos de la ubicación del dispositivo en el cuerpo, sin variabilidad intersujeto, y estableció una línea base de desempeño del sistema.
 
-Para la Fase 2, se contó con la participación de los tres sujetos de prueba (Sujeto 1, Sujeto 2 y Sujeto 3, siendo este último el mismo participante que en la Fase 1). Este plan de pruebas exhaustivo, que involucró a múltiples sujetos con diversas características antropométricas, ha permitido una evaluación más robusta y generalizable del sistema de posicionamiento. Los sujetos de prueba participaron con consentimiento informado, con pleno conocimiento del propósito del estudio, de los procedimientos a realizar y del uso de los datos recolectados.
+Para el Experimento 2 se contó con tres participantes: Sujeto 1, Sujeto 2 y Sujeto 3. El Sujeto 2 fue el mismo participante del Experimento 1. Esta muestra permitió explorar la variabilidad intersujeto del sistema de posicionamiento, pero no sustenta generalizaciones poblacionales. Los participantes otorgaron su consentimiento informado y conocieron el propósito del estudio, los procedimientos y el uso de los datos recolectados.
 
-A continuación, se presentan las características antropométricas detalladas de los tres sujetos participantes en la Fase 2, así como sus respectivas fotografías:
+A continuación, se presentan las características antropométricas de los tres participantes del Experimento 2, así como sus respectivas fotografías:
 %
 \begin{figure}[t]
     \centering
@@ -271,7 +271,7 @@ Las mediciones se realizaron siguiendo un protocolo sistemático de posiciones e
 \textbf{Muestras por Punto de Medición:}
 Para cada combinación de ubicación corporal, condición del canal, escenario y distancia, el sistema UWB registró \textbf{250 mediciones de distancia estimada}.
 
-\textbf{Total de mediciones - Fase 1:}
+\textbf{Total de mediciones del Experimento 1:}
 $$7 \text{ ubicaciones} \times 2 \text{ condiciones} \times 2 \text{ escenarios} \times 13 \text{ distancias} \times 250 \text{ muestras} = 91000 \text{ mediciones}$$
 
 \textbf{Procedimiento Detallado:}
@@ -292,7 +292,7 @@ Una vez validado el sistema, se procedió a instrumentar al sujeto. La adquisici
 
 \subsubsection{Preprocesamiento de Datos Crudos}
 
-Los datos crudos registrados por el sistema UWB incluyen marcas de tiempo de alta resolución, mediciones de ToF entre el nodo móvil y el nodo fijo, estimaciones de la potencia de la señal recibida y otros parámetros de diagnóstico. El preprocesamiento de la Fase 1 comprende:
+Los datos crudos registrados por el sistema UWB incluyen marcas de tiempo de alta resolución, mediciones de ToF entre el nodo móvil y el nodo fijo, estimaciones de la potencia de la señal recibida y otros parámetros de diagnóstico. El preprocesamiento del Experimento 1 comprende:
 
 \begin{itemize}
 \item \textbf{Filtrado de valores atípicos:} Detección y remoción de mediciones claramente erróneas, e.g.,  ToF negativo y distancias fuera del alcance físico posible, i.e., de 1-13 m, mediante criterios estadísticos robustos.
@@ -328,7 +328,7 @@ donde, $d_{\text{medida},i}$ es la distancia estimada por el sistema UWB y $d_{\
 \item \textbf{Percentiles:} Se calculan el p50, p90 y p95 del error absoluto.
 \end{itemize}
 
-\subsubsection{Análisis Estadístico - Fase 1}
+\subsubsection{Análisis Estadístico del Experimento 1}
 
 \textbf{Caracterización de Distribuciones:}
 

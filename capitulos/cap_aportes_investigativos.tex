@@ -20,7 +20,7 @@ El flujo de trabajo se estructurará siguiendo las fases del Modelo en V, como s
 
 En esta trayectoria descendente, se definen y diseñan los componentes del proyecto.
 \begin{enumerate}
-\item \textbf{Análisis de Requerimientos:} Se establecen los objetivos fundamentales de la investigación: analizar cómo el efecto de la BS afecta las mediciones de ToF en un sistema UWB, cuantificar el error en la estimación de distancia y utilizar el KF para mitigar dicho efecto y mejorar la exactitud del sistema de posicionamiento. El resultado de esta fase es la especificación detallada de los objetivos, los requerimientos y los criterios de aceptación de los resultados.
+\item \textbf{Análisis de Requerimientos:} Se traducen los objetivos de la investigación en requerimientos verificables: caracterizar el efecto de la BS sobre las mediciones de ToF y la estimación de distancia, analizar estadísticamente el error y evaluar el desempeño del sistema de posicionamiento 2D. Como análisis complementario, se compara la multilateración con el EKF y se estudia una variante iterada con estado aumentado para mitigar sesgos de medición. El resultado de esta fase es la especificación detallada de los requerimientos y de los criterios de aceptación.
 
 \item \textbf{Diseño del Sistema:} Se define la arquitectura general del experimento. Esto incluye la definición del escenario de prueba y del modelo general del sistema, la selección y justificación del hardware y software, y la especificación de los parámetros de operación del sistema UWB (frecuencia, ancho de banda).
 
@@ -46,7 +46,7 @@ Este enfoque metodológico garantiza que cada etapa de diseño sea validada por 
 
 \subsubsection{Población y Muestra}
 
-Para garantizar la generalización de los resultados, el estudio contará con un mínimo de 3 participantes con diversidad de complexión física (estatura y peso). Cada participante realizará el recorrido predefinido con el nodo móvil en la peor posición en NLOS en interiores, según el plan de pruebas de validación.
+El diseño experimental se dividió en dos estudios con alcances diferentes. El Experimento 1 utilizó al Sujeto 2 para caracterizar siete ubicaciones corporales sin introducir variabilidad intersujeto. El Experimento 2 incorporó tres participantes con distintas características antropométricas y evaluó el nodo móvil en pecho y cadera. Debido al tamaño de la muestra, las diferencias entre participantes se interpretan de forma exploratoria y no como evidencia generalizable a la población.
 
 \subsubsection{Entorno de Prueba Detallado}
 Las pruebas se realizarán en un salón de clases de la Universidad del Cauca. Se incluirá un mapa del entorno, señalando la posición de los nodos ancla (hardware y altura), el mobiliario principal y las fuentes potenciales de interferencia. Se realizará una calibración inicial del sistema, sin obstrucciones, para establecer una línea base.
@@ -70,7 +70,7 @@ Descendiendo por el brazo izquierdo, esta fase se centra en el diseño arquitect
 \begin{itemize}
     \item \textbf{Actividad 2.1}: Selección de escenarios de prueba.
     \item \textbf{Actividad 2.2}: Diseño del prototipo de sistema de posicionamiento UWB.
-    \item \textbf{Actividad 2.3}: Diseño de la metodología experimental, definiendo las posiciones del dispositivo móvil en dos partes del cuerpo, i.e., pecho y cadera, y la ruta a seguir por los sujetos en prueba, considerando una muestra diversa en características antropométricas,  i.e., altura y complexión, para garantizar la generalización de los resultados.
+    \item \textbf{Actividad 2.3}: Diseño de dos protocolos experimentales: estimación de distancia punto a punto en siete ubicaciones corporales con el Sujeto 2, y posicionamiento 2D en pecho y cadera con tres participantes de características antropométricas diferentes.
 \end{itemize}
 
 \subsection{Fase 3: Implementación}
