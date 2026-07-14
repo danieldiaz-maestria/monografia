@@ -1,5 +1,6 @@
-\chapter{FASE 5: SISTEMA DE POSICIONAMIENTO 2D (ANÁLISIS DE RESULTADOS)}
+\chapter{FASE 5: SISTEMA DE POSICIONAMIENTO 2D Y OPTIMIZACIÓN DEL FILTRO DE KALMAN EXTENDIDO}
 \label{sec:desempeno_posicionamiento}
+\label{ch:optimizacion_kalman}
 En esta fase se evalúa el desempeño del sistema de posicionamiento en un entorno 2D completo, utilizando las técnicas y algoritmos desarrollados en las fases anteriores. Se realizan experimentos en un salón cerrado de dimensiones conocidas, donde se colocan anclas en posiciones fijas y se mide la exactitud del sistema al estimar la posición de una etiqueta móvil en 18 posiciones distribuidas en el área del salón.
 
 
@@ -423,4 +424,6 @@ Error mediana & 0.6438 & 0.5506 \\
 \end{table}
 %
 Cuando el dispositivo móvil se ubicó en el pecho del sujeto 3, el KF presentó un error promedio ligeramente menor (0.7027 m vs 0.7175 m). El beneficio más significativo del filtro se observa en la reducción del error máximo (de 2.65 m a 1.40 m) y de la desviación estándar (de 0.60 m a 0.32 m), lo que valida su capacidad reducir la incertidumbre las estimaciones en condiciones NLOS.
+
+\input{capitulos/cap_optimizacion_kalman}
 

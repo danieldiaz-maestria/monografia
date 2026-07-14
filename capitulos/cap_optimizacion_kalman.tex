@@ -1,9 +1,8 @@
-\chapter{OPTIMIZACIÓN DEL FILTRO DE KALMAN EXTENDIDO MEDIANTE ESTADO AUMENTADO}
-\label{ch:optimizacion_kalman}
+\section{OPTIMIZACIÓN DEL EKF MEDIANTE ESTADO AUMENTADO}
 
-En este capítulo se detalla la reformulación matemática del Filtro de Kalman Extendido (EKF) empleado para el seguimiento de la etiqueta UWB. Durante las pruebas iniciales, el EKF convencional mostró un desempeño limitado frente a los errores sistemáticos propios de la tecnología UWB, tales como el sesgo por ancla, las trayectorias NLOS y las reflexiones multipath. Por ello, se rediseñó el estimador matemático pasando de un modelo de seguimiento de posición pura a un modelo de \textit{estado aumentado} con estimación concurrente de sesgos, complementado con una fase de actualización iterada (IEKF).
+En esta sección se detalla la reformulación matemática del Filtro de Kalman Extendido (EKF) empleado para el seguimiento de la etiqueta UWB. Durante las pruebas iniciales, el EKF convencional mostró un desempeño limitado frente a los errores sistemáticos propios de la tecnología UWB, tales como el sesgo por ancla, las trayectorias NLOS y las reflexiones multipath. Por ello, se rediseñó el estimador matemático pasando de un modelo de seguimiento de posición pura a un modelo de \textit{estado aumentado} con estimación concurrente de sesgos, complementado con una fase de actualización iterada (IEKF).
 
-\section{Planteamiento del Problema en el Modelo Original}
+\subsection{Planteamiento del Problema en el Modelo Original}
 El modelo original del EKF basaba su vector de estado únicamente en las coordenadas espaciales bidimensionales de la etiqueta:
 \begin{equation}
     x_k = \begin{bmatrix} p_{x,k} \\ p_{y,k} \end{bmatrix}
@@ -17,7 +16,7 @@ donde $a_i = [a_{i,x}, a_{i,y}]^T$ representa las coordenadas conocidas del ancl
 
 El inconveniente fundamental de esta formulación radica en la naturaleza empírica de las mediciones UWB en entornos interiores. Las distancias medidas suelen presentar un sesgo aditivo sistemático $\beta_i$ proveniente de retardos en el hardware, calibración imperfecta de la antena o condiciones de propagación. Al no incluir este término en el modelo matemático, el residual o innovación del filtro $\nu_k = z_k - h(x_k^-)$ se ve forzado a ser absorbido enteramente por el vector de estado espacial. En consecuencia, el filtro proyecta erróneamente los sesgos de medición como desviaciones de posicionamiento físico, deformando severamente la trayectoria estimada.
 
-\section{Reformulación Matemática: EKF con Sesgo Dual Dependiente del Rango}
+\subsection{Reformulación Matemática: EKF con Sesgo Dual Dependiente del Rango}
 Para mitigar el error de especificación del modelo original y abordar los fenómenos de propagación complejos de las señales UWB, se procedió a aumentar el vector de estado. A diferencia de un modelo de sesgo simple, las mediciones UWB exhiben perturbaciones que dependen de la distancia entre la etiqueta y la ancla (efectos de campo cercano, retardos asimétricos de antena). Por ende, se introdujo un modelo de \textit{sesgo dual} que incluye un sesgo constante a larga distancia ($b_{far}$) y un sesgo variable que decae exponencialmente en distancias cortas ($b_{near}$).
 
 El nuevo estado $x_k \in \mathbb{R}^{10}$ se define como:
@@ -47,12 +46,12 @@ donde $r_i = \lVert p_k - a_i \rVert$.
 
 Esta formulación es estructuralmente superior debido a que la ganancia de Kalman puede ahora separar, de manera probabilística, la innovación de la medición en múltiples flujos de compensación independientes: corrigiendo la geometría espacial (movimiento físico), absorbiendo el error sistemático global del hardware (sesgo $far$), y mitigando las distorsiones complejas que ocurren cuando la etiqueta se acerca a las anclas (sesgo $near$).
 
-\section{Filtro de Kalman Extendido Iterado (IEKF)}
+\subsection{Filtro de Kalman Extendido Iterado (IEKF)}
 Debido a que la función de rango $h(x)$ ahora contiene no linealidades complejas, no solo originadas por la distancia geométrica pura $\lVert p - a_i \rVert$ sino por el término exponencial $e^{-\lambda \lVert p - a_i \rVert}$ del sesgo cercano, linealizarla una única vez alrededor del estado predicho $\hat{x}_k^-$ puede generar errores de truncamiento por series de Taylor muy significativos. Esto es crítico si la predicción inicial se encuentra alejada de la posición de referencia real. Para compensar esta deficiencia geométrica, la fase de corrección estándar se reemplazó por la arquitectura del EKF Iterado (IEKF). 
 
 En el paradigma IEKF, las ecuaciones de actualización de estado, covarianza y el recálculo de la matriz Jacobiana $H_k$ se ejecutan cíclicamente dentro del mismo instante $k$ hasta cumplir un criterio de convergencia local estricto (por ejemplo, cambios residuales en la magnitud del vector de estado menores a una tolerancia de $10^{-9}$). Este mecanismo cíclico garantiza que la linealización final converja iterativamente hacia el gradiente más óptimo, constituyendo una aproximación sumamente robusta a la solución ideal del problema general de estimación por mínimos cuadrados no lineales.
 
-\section{Validación Empírica del Filtro Optimizado}
+\subsection{Validación Empírica del Filtro Optimizado}
 La implementación en el software de la arquitectura de estado aumentado aunada al IEKF condujo a una reducción categórica de los márgenes de error de posicionamiento a través de todos los escenarios experimentales evaluados dentro del recinto cerrado. 
 
 Como evidencia gráfica y cuantitativa, la Figura \ref{fig:comparativa_kalman} contrasta la precisión topológica obtenida mediante el EKF Original (Baseline) frente al modelo propuesto de EKF con Sesgo Dual No Lineal, procesando el banco de datos recolectado con el dispositivo localizado en la cadera del sujeto de prueba número 2.
