@@ -1,132 +1,64 @@
 \chapter{ANÁLISIS Y DISCUSIÓN}
 \label{ch:analisis}
 
-En este capítulo se interpretan y se discuten los resultados experimentales presentados en el capítulo anterior. Se contrastan los hallazgos con el estado del arte revisado y se analizan las implicaciones prácticas de los resultados para el diseño e implementación de sistemas de posicionamiento UWB en escenarios reales.
+Este capítulo integra los resultados de los Experimentos 1 y 2 presentados en los Capítulos~\ref{ch:resultados} y~\ref{ch:optimizacion_kalman}. El propósito no es repetir las métricas, sino examinar qué muestran sobre la obstrucción corporal, qué decisiones de modelado se desprenden de ellas y cuáles conclusiones permanecen limitadas al montaje estudiado.
 
-\section{INTERPRETACIÓN DE LOS PATRONES DE ERROR OBSERVADOS}
+\section{ANÁLISIS DE LOS RESULTADOS EXPERIMENTALES}
 \label{sec:interpretacion_patrones}
 
-\subsection{Efecto de la Ubicación Corporal del Dispositivo}
+El resultado más claro del Experimento 1 no fue la existencia de una ubicación corporal universalmente favorable, sino el cambio de desempeño de una misma ubicación al modificar la condición de propagación. El pecho ilustra este comportamiento: en exteriores pasó de un MAE de 4.62 cm bajo LOS a 63.69 cm bajo NLOS, mientras que en interiores pasó de 13.74 cm a 83.98 cm. La cadera presentó un contraste aún mayor, pues el MAE aumentó de 8.31 cm a 94.78 cm en exteriores y de 7.19 cm a 97.76 cm en interiores. Estos cambios muestran que un resultado bajo LOS no permite anticipar, por sí solo, el funcionamiento del sistema cuando el cuerpo bloquea el trayecto directo.
 
-Los resultados experimentales revelan que la ubicación del dispositivo UWB sobre el cuerpo tiene un impacto crítico en la exactitud de la estimación de la distancia. El Experimento 1 proporcionó una caracterización detallada de siete ubicaciones corporales del Sujeto 2 bajo diferentes condiciones de propagación.
+La cabeza fue la ubicación más estable entre las condiciones evaluadas, aunque no obtuvo el menor MAE en todas ellas. El pecho fue ligeramente mejor en LOS exterior y la muñeca lo fue en LOS interior. En la cabeza, el MAE pasó de 4.87 cm a 32.05 cm en exteriores y de 10.43 cm a 18.66 cm en interiores. La muñeca también mantuvo errores relativamente bajos: 7.78 cm y 6.42 cm bajo LOS, frente a 24.07 cm y 22.00 cm bajo NLOS, en exteriores e interiores, respectivamente. Por tanto, el hallazgo relevante es su menor sensibilidad a la obstrucción dentro de este protocolo, no una superioridad absoluta para cualquier aplicación.
 
-La ubicación en el pecho presentó la mayor exactitud en condiciones LOS, con MAE de 4.62 cm en exteriores y de 13.74 cm en interiores, y fue una de las configuraciones más exactas del estudio. Sin embargo, experimenta la mayor degradación en NLOS, alcanzando MAE de 63.69 cm en exteriores  y 83.98 cm en interiores, con factores de degradación de 13.8× y 6.1× respectivamente. Esta degradación severa se debe a que el torso, cuando está alejado del nodo ancla, actúa como un obstáculo completo.
+Una interpretación físicamente plausible es que la geometría curva de la cabeza y la menor sección corporal alrededor de la muñeca facilitan la difracción o la propagación alrededor del cuerpo. En cambio, el torso y la pelvis forman una región de obstrucción más amplia cuando quedan entre el nodo móvil y el nodo fijo. El experimento no midió directamente los mecanismos de propagación ni la potencia recibida, de modo que esta explicación debe entenderse como una interpretación compatible con los datos y con la literatura, no como una relación causal demostrada.
 
-La ubicación en la cabeza mostró el comportamiento más consistente. En condición LOS, logró un MAE de 4.87 cm en exteriores y de 10.43 cm en interiores. En NLOS, el MAE aumentó a 32.05 cm en exteriores y 18.66 cm en interiores, con factores de degradación de 6.6× y 1.8×, respectivamente. La geometría curva del cráneo puede favorecer la difracción de las señales, lo que ayuda a explicar su menor sensibilidad a la obstrucción frente a ubicaciones como la cadera y el pecho.
+El entorno tampoco produjo un efecto uniforme. Bajo NLOS, la cabeza, la mano, la rodilla y el tobillo presentaron menor MAE en interiores que en exteriores, mientras que la cadera y el pecho conservaron errores altos en ambos escenarios. Las reflexiones en paredes, piso y techo pueden generar trayectos útiles cuando el camino directo está bloqueado, pero también pueden aumentar la dispersión. Los resultados permiten reconocer esa interacción entre el cuerpo y el entorno; no permiten afirmar que el multitrayecto interior sea siempre beneficioso.
 
-La muñeca presentó un comportamiento consistente, con MAE de 7.78 cm en exteriores y de 6.42 cm en interiores bajo LOS, que aumentaron a 24.07 cm y 22.00 cm bajo NLOS, respectivamente. La menor sección corporal que rodea al dispositivo puede facilitar la propagación alrededor de la obstrucción, aunque este mecanismo no se midió directamente en el experimento.
+Estas observaciones corresponden a comparaciones realizadas dentro del Sujeto 2. El número de mediciones por configuración permite describir con detalle su comportamiento, pero no convierte las diferencias entre ubicaciones en conclusiones poblacionales. Esta distinción resulta especialmente importante al formular recomendaciones sobre dónde portar el dispositivo.
 
-La cadera exhibió el peor desempeño: excelente exactitud en LOS, i.e.,  8.31 cm en  exteriores y 7.19 cm en interiores, pero degradación extrema en NLOS, i.e.,  94.78 cm en exteriores y 97.76 cm en interiores, con factores de degradación de 11.4× y 13.6×, respectivamente, siendo los mayores registrados. Esta ubicación presenta una obstrucción severa debido a la pelvis y al torso.
-
-
-\section{ANÁLISIS DE LA VARIABILIDAD ESTADÍSTICA}
+\section{COMPORTAMIENTO ESTADÍSTICO DEL ERROR}
 \label{sec:analisis_variabilidad}
 
-\subsection{Naturaleza de las Distribuciones de Error}
+El análisis de las 101,552 muestras confirmó que el error absoluto no se describe adecuadamente mediante una distribución normal. Según los criterios AIC y BIC reportados, la distribución gamma fue la mejor entre las candidatas para el conjunto global y para LOS, mientras que la lognormal obtuvo el mejor ajuste para NLOS. Esta diferencia es coherente con el incremento de la asimetría y de la cola derecha cuando la señal directa queda obstruida.
 
-El análisis de distribuciones de error reveló que, en condiciones de LOS, la exactitud presenta distribuciones aproximadamente gaussianas, con desviaciones estándar en el rango de 4-10 cm según la ubicación del dispositivo móvil en el cuerpo. Esto es consistente con ruido de medición gaussiano, dominado por efectos de cuantización temporal en el DW1000 y por ruido térmico de los receptores. La exactitud relativa, i.e., el error relativo respecto a la distancia medida, en condición  LOS es de aproximadamente 0.5-1.0\% para distancias de 1-5 m.
+La selección de gamma o lognormal debe interpretarse de forma relativa. Los p-valores de la prueba de Kolmogorov--Smirnov fueron cercanos a cero para todas las distribuciones consideradas, por lo que ninguna representa de manera exacta la totalidad de los datos. Los modelos elegidos son los que describen mejor las observaciones dentro del grupo evaluado, no leyes universales del error UWB. Además, al tratarse de error absoluto, la variable es no negativa y naturalmente asimétrica, lo que también explica por qué una distribución normal resulta poco apropiada.
 
-En condiciones NLOS, las distribuciones presentan una asimetría positiva pronunciada y colas pesadas, con desviaciones estándar de 36 a 71 cm en ubicaciones críticas del dispositivo móvil en el cuerpo, como la cadera y el pecho. Esta no gaussianidad refleja la naturaleza determinista del fenómeno de la BS: cuando el cuerpo bloquea el trayecto directo, el error no es una fluctuación aleatoria simétrica, sino un sesgo sistemático positivo y altamente variable. El p95 del error en NLOS alcanza 1.14 m globalmente, lo que indica que los eventos de error extremo son más frecuentes que lo esperado en una distribución normal, lo cual tiene implicaciones significativas para algoritmos de localización que asumen gaussianidad.
+El percentil 95 global de 1.1424 m corresponde al error de estimación de distancia del Experimento 1 al reunir las 28 configuraciones. Este valor no debe confundirse con un percentil del error de posición 2D ni utilizarse como expectativa directa para una aplicación específica. Su utilidad está en mostrar que una fracción pequeña, pero relevante, de las mediciones presenta errores mucho mayores que el comportamiento central de la distribución.
 
-\subsection{Implicaciones para Algoritmos de Localización}
+Esta estructura estadística ayuda a entender las limitaciones de los estimadores convencionales. La interpretación óptima de los mínimos cuadrados y del EKF suele apoyarse en errores aproximadamente simétricos y con una varianza bien representada. Bajo NLOS, el sesgo positivo y la presencia de colas pesadas hacen que una medición degradada pueda desplazar la posición estimada. La ponderación de mediciones, la estimación explícita de sesgos y los modelos robustos aparecen entonces como respuestas directas a una característica observada en los datos, no como complejidad añadida de manera arbitraria.
 
-La no gaussianidad del error en NLOS tiene implicaciones importantes para el diseño de algoritmos de localización y filtrado:
-
-Los algoritmos tradicionales de trilateración por mínimos cuadrados asumen que las mediciones de distancia presentan ruido gaussiano. Los resultados experimentales muestran que cuando este supuesto se viola severamente, como ocurre en presencia de la BS, el estimador de mínimos cuadrados produce estimaciones de posición significativamente sesgadas, con errores máximos hasta 3 veces superiores al promedio.
-
-En el Experimento 2, la aplicación del KF mitigó parcialmente este problema. Para el dispositivo móvil sin obstrucción, la multilateración directa mostró mayor exactitud, i.e., MAE 0.4802 m, que el KF, i.e., MAE 0.7985 m. Sin embargo, en presencia del cuerpo humano, los resultados variaron entre configuraciones:
-
-\begin{itemize}
-\item \textbf{Cadera (peor caso):} Exactitud con multilateración de 0.55-0.81 m frente a KF de 0.77-0.95 m. La multilateración mantiene una ligera ventaja incluso en este caso crítico de obstrucción alta.
-\item \textbf{Pecho:} Resultados mixtos según el sujeto. Sujeto 1: KF mejor, i.e., 0.7454 m frente a 0.8471 m. Sujeto 2: Multilateración mejor, i.e., 0.7761 m frente a 0.9108 m. Sujeto 3: KF marginalmente mejor, i.e., 0.7027 m frente a 0.7175 m.
-\end{itemize}
-
-El valor agregado del KF se manifiesta principalmente en la reducción de los errores máximos y de la variabilidad: en el pecho del sujeto 1, el KF reduce el error máximo de 2.67 m a 1.37 m, i.e., 49\% de reducción, y la desviación estándar de 0.58 m a 0.34 m, i.e., 41\% de reducción. Esto implica que aunque el MAE puede no mejorar significativamente, la variabilidad se ve sustancialmente mejorada, lo cual es crítico para aplicaciones que requieren exactitud consistente.
-
-Enfoques adicionales que podrían mejorar la exactitud incluyen: (1) mínimos cuadrados ponderados iterativos para descartar mediciones con errores atípicos, (2) detección de NLOS mediante el análisis de características de señal para aplicar modelos de error específicos, (3) PF para manejar distribuciones no gaussianas, (4) fusión con sensores inerciales para mantener la exactitud durante períodos de degradación de las mediciones de distancia.
-
-\section{DESEMPEÑO DEL SISTEMA DE POSICIONAMIENTO COMPLETO}
+\section{POSICIONAMIENTO 2D Y ESTRATEGIAS DE MITIGACIÓN}
 \label{sec:discusion_posicionamiento}
 
-\subsection{Exactitud de Localización Alcanzada}
+Los resultados del Experimento 2 muestran que el EKF base no produjo una mejora uniforme. En la configuración de referencia sin cuerpo, la multilateración alcanzó un MAE de 0.4802 m, frente a 0.7985 m del filtro. Entre las seis combinaciones de participante y ubicación corporal, el EKF obtuvo menor MAE en tres: cadera del Sujeto 3 y pecho de los Sujetos 1 y 3. En las demás, la multilateración fue más exacta en promedio. El filtro base, por tanto, no puede presentarse como una solución general al error por obstrucción.
 
-El análisis del error de posición 2D del Experimento 2, que integra las mediciones de distancia hacia los cuatro nodos ancla, muestra que el sistema alcanza exactitudes variadas dependiendo de la ubicación corporal:
+Su aporte se observó con mayor claridad en la estabilidad de las estimaciones del pecho. Para el Sujeto 1, por ejemplo, el error máximo disminuyó de 2.6677 m a 1.3731 m y la desviación estándar de 0.5835 m a 0.3386 m. En los Sujetos 2 y 3 ocurrió un patrón similar: el MAE no siempre mejoró, pero se redujeron los errores extremos y la dispersión. Esto sugiere que el EKF base actuó principalmente como suavizador, sin disponer de un mecanismo suficiente para separar el desplazamiento real del nodo y el sesgo sistemático de las distancias.
 
-\begin{itemize}
-\item \textbf{Dispositivo móvil (referencia sin cuerpo):} La multilateración logra una exactitud de 0.48 m, lo que confirma que la geometría de los nodos ancla y el algoritmo base proporcionan una exactitud razonable en ausencia de obstrucciones.
-\item \textbf{Cadera:} Exactitud de 0.55-0.95 m, siendo la ubicación con peor desempeño en el sistema 2D. La obstrucción severa del torso y de la pelvis degrada la exactitud de todas las distancias simultáneamente.
-\item \textbf{Pecho:} Exactitud de 0.70-0.91 m, comparable a la de la cadera en algunos sujetos, pero con una variabilidad intersujeto importante, lo que sugiere una dependencia de características antropométricas individuales.
-\end{itemize}
+La reformulación mediante un IEKF con estado aumentado atiende precisamente esa limitación. El modelo incorpora para cada ancla un sesgo de largo alcance y otro de corto alcance con decaimiento exponencial. De esta forma, una innovación persistente no tiene que ser absorbida por completo como un cambio de posición. En la cadera del Sujeto 2, el MAE del EKF base, cercano a 0.95 m, se redujo a 0.4253 m con el IEKF de sesgo dual. El cambio respalda el hallazgo central de esta investigación: los desfases propios de cada ancla deben formar parte del modelo de medición cuando se trabaja con datos UWB reales.
 
-Considerando que el escenario experimental tiene dimensiones de 10.4 m × 7.4 m, i.e., un área de 77 $m^2$, una exactitud de posicionamiento de 0.70-0.95 m equivale a un error relativo de 6.7-9.1\% respecto a la diagonal máxima del escenario, i.e., 12.8 m. Esta exactitud es comparable a la de sistemas comerciales de localización UWB reportados en escenarios con BS presente, i.e., típicamente 0.5-1.5 m, pero significativamente inferior a la exactitud en condiciones de LOS, i.e., 10-30 cm, reportada en la literatura para sistemas UWB sin BS.
+La comparación con Multi-NLOS aporta un segundo resultado importante. Este método no estima los sesgos como parte de un estado recursivo, sino que reduce la influencia de las mediciones cuya desviación estándar es compatible con NLOS. A pesar de utilizar una regla de ponderación sencilla, obtuvo un MAE de 0.4264 m sobre el mismo conjunto de la cadera del Sujeto 2, prácticamente igual al del IEKF. La cercanía entre ambos resultados indica que una medida local de dispersión puede contener información suficiente para mitigar una parte considerable del error.
 
-\subsection{Dependencia de la Geometría del Despliegue}
+Ninguno de los dos métodos dominó todas las métricas. El IEKF presentó un MAE ligeramente menor, 0.4253 m frente a 0.4264 m, y un error máximo de 0.8224 m frente a 0.8334 m. Multi-NLOS obtuvo una mediana menor, 0.4210 m frente a 0.4730 m, y una desviación estándar de 0.1763 m frente a 0.2001 m. La lectura más prudente es que ambos enfoques llegaron a un desempeño equivalente por caminos distintos: uno modeló los sesgos por ancla y el otro ponderó la confiabilidad de cada medición. Esta comparación detallada se realizó con la cadera del Sujeto 2; su comportamiento debe verificarse con datos independientes antes de extender la conclusión a otros participantes y escenarios.
 
-En el escenario experimental con cuatro nodos ancla distribuidos en las esquinas de un rectángulo de 10.4 m × 7.4 m, el GDOP varía significativamente según la posición dentro del escenario. Las zonas del escenario donde el nodo móvil está aproximadamente equidistante de los cuatro nodos ancla presentan una mayor exactitud, ya que la geometría favorece la trilateración. 
-
-En contraste, las posiciones próximas a uno de los nodos ancla, i.e., a una distancia $<$ 1.5 m, presentan una degradación de exactitud debido a un GDOP desfavorable, fenómeno que se observó en varios puntos de medición donde el error de posición fue mayor de lo esperado.
-
-\section{COMPARACIÓN CON EL ESTADO DEL ARTE}
+\section{CONTRASTE CON LA LITERATURA Y ALCANCE DEL ESTUDIO}
 \label{sec:comparacion_estado_arte}
 
-\subsection{Concordancia con Estudios Experimentales}
+El patrón observado entre ubicaciones corporales coincide en términos generales con Otim et al.~\cite{ref14}, quienes compararon siete posiciones y encontraron el mejor comportamiento en la frente y el peor en el pecho. La coincidencia fortalece la interpretación de que la geometría corporal y la posición del dispositivo condicionan el error. No obstante, las diferencias de hardware, frecuencia, entorno y protocolo impiden comparar directamente los valores de MAE.
 
-Varios estudios experimentales previos han caracterizado el efecto de la BS en sistemas UWB, aunque no todos permiten una comparación directa de métricas y ubicaciones corporales.
+El trabajo de De Cock et al.~\cite{Tanghe2023} abordó la obstrucción corporal en movimiento mediante una IMU y un modelo GMM dependiente de la orientación cuerpo--etiqueta--ancla. Su propuesta se evaluó con trayectorias dinámicas y captura de movimiento, mientras que el presente estudio se concentró principalmente en posiciones estáticas y en la comparación de ubicaciones corporales. Los dos trabajos son complementarios: aquí se caracteriza el efecto de la ubicación y allí se explota la orientación para mitigarlo durante el seguimiento.
 
-El trabajo de \cite{Tanghe2023} no constituye una comparación directa por ubicación corporal, sino una referencia metodológica de mitigación: integra UWB, IMU y un modelo GMM dependiente de la orientación para corregir errores de HBS en un escenario dinámico con la etiqueta ubicada en el abdomen. Sus experimentos usan anclas UWB, IMU y captura de movimiento, con dos trayectorias repetidas cinco veces y miles de mediciones. En contraste, este trabajo caracteriza siete ubicaciones corporales y reporta MAE específicos por ubicación y por condición de propagación, por lo que complementa esa línea de investigación desde la perspectiva experimental de portación corporal.
+Schmitt et al.~\cite{Schimtt2019} mostraron, con mediciones ToF a 2.4 GHz, que la orientación corporal, la visibilidad de los nodos y la geometría del despliegue afectan la localización. Pradabphon et al.~\cite{Pradabphon2019}, por su parte, estudiaron con un analizador vectorial de redes la pérdida de propagación y la distorsión de pulsos entre 3 y 11 GHz. Estos antecedentes ayudan a interpretar los resultados, pero no constituyen comparaciones directas con un IPS UWB basado en DWM1001 a 6.5 GHz.
 
-El estudio de Schmitt et al. (2014) \cite{Schimtt2019} analizó el impacto de la BS en localización RF basada en ToF y mostró que el error depende de la orientación corporal, la posición del nodo móvil y la visibilidad de los nodos ancla. En sus pruebas, los errores de distancia alcanzaron varios metros y, en un escenario de rescate con 14 nodos, la selección del algoritmo fue determinante: Geo-n obtuvo un MAE de 1.22 m con todos los nodos y de 2.44 m en una configuración degradada. Aunque no es una comparación directa con las mediciones UWB a 6.5 GHz de este trabajo, respalda que la geometría corporal y del despliegue condiciona la exactitud final.
+Dentro de los trabajos identificados en la revisión sistemática, son pocos los que estudian experimentalmente la obstrucción corporal alrededor de 6.5 GHz y comparan varias ubicaciones bajo un mismo protocolo. El aporte de esta investigación consiste en proporcionar evidencia para esa configuración concreta y en mostrar que el tratamiento de los sesgos por ancla puede modificar de manera sustancial el resultado del filtrado. Los datos no permiten afirmar que 6.5 GHz sea una frecuencia óptima, porque no se realizaron mediciones equivalentes en otras bandas.
 
-Pradabphon et al. (2005) evaluaron experimentalmente la propagación UWB con un cuerpo humano en interiores, usando un VNA para obtener respuestas en frecuencia entre 3 GHz y 11 GHz. Sus resultados son útiles como antecedente de pérdida de propagación y distorsión del pulso por BS, pero no ofrecen una comparación directa entre ubicaciones corporales de portación. La menor variabilidad observada en la cabeza frente a ubicaciones como cadera o pecho corresponde a los resultados experimentales de este trabajo y se relaciona con estudios de posiciones corporales como \cite{ref14}.
-
-\subsection{Aporte Diferencial de este Estudio}
-
-Este trabajo aporta evidencia experimental específica para la banda de 6.5 GHz, que ha sido menos estudiada que las bandas inferiores, i.e., 3-4 GHz, o superiores, i.e., 7-10 GHz. Los resultados sugieren que esta banda representa un punto óptimo de compromiso: (1) Exactitud en LOS comparable a bandas superiores, i.e., 4.6-8.3 cm, (2) Degradación moderada en NLOS para ubicaciones anatómicas favorables como cabeza, i.e., factor 2.0-6.7×, significativamente mejor que lo reportado para bandas inferiores donde el mayor tamaño de la zona de Fresnel reduce la resolución de trayectos múltiples, (3) Penetración de materiales constructivos suficiente para mantener conectividad en escenarios de interiores complejos.
-
-Adicionalmente, la caracterización de \textbf{siete ubicaciones corporales}, i.e., cabeza, cadera, mano, muñeca, pecho, rodilla y tobillo, bajo un protocolo uniforme, i.e., igual hardware, igual participante en el Experimento 1 e iguales condiciones ambientales, permite comparaciones directas dentro de un mismo montaje. Algunos trabajos previos se concentran en mitigación con una ubicación concreta, como abdomen \cite{Tanghe2023}, en caracterización de canal sin comparar ubicaciones de portación \cite{Pradabphon2019}, o en configuraciones experimentales distintas \cite{Schimtt2019}. El enfoque sistemático de este trabajo establece claramente que: (1) la cabeza minimiza el error y la variabilidad en todas las condiciones, (2) la muñeca constituye una alternativa viable con exactitud ligeramente degradada, (3) la cadera y el pecho deben evitarse en aplicaciones críticas debido a la degradación extrema en NLOS.
-
-Como análisis complementario, se evaluó cuantitativamente el desempeño del EKF en el sistema UWB con BS real. Los resultados del Experimento 2 muestran que: (1) el EKF no necesariamente mejora el MAE en presencia de BS severa; (2) en las configuraciones de pecho redujo los errores máximos entre 41\% y 49\% y la variabilidad entre 41\% y 48\%; y (3) su efectividad depende de la ubicación corporal y del participante, lo que motiva el uso de filtrado adaptativo con detección en línea de la condición de propagación.
-
-
-\section{IMPLICACIONES PARA APLICACIONES PRÁCTICAS}
+\subsection{Implicaciones para el diseño}
 \label{sec:implicaciones_practicas}
 
-\subsection{Recomendaciones de Diseño}
+Para el montaje evaluado, la cabeza y la muñeca fueron menos sensibles al cambio entre LOS y NLOS, mientras que la cadera y el pecho exigieron una estrategia de mitigación. Esto puede orientar la selección inicial de una ubicación corporal, pero la comodidad, la orientación durante el movimiento y las restricciones de cada aplicación también deben considerarse. Cuando no sea posible evitar ubicaciones críticas, los resultados favorecen dos decisiones concretas: modelar los sesgos individuales de las anclas o ponderar las distancias según su dispersión. No se establece un número óptimo de anclas ni un umbral universal de desempeño, pues esas variables no fueron evaluadas experimentalmente.
 
-Basándose en los resultados obtenidos, se pueden derivar recomendaciones prácticas para el diseño de sistemas IPS basados en UWB cuando se anticipa BS:
-
-\begin{enumerate}
-\item \textbf{Ubicación del dispositivo:} Los resultados del Experimento 1 indican que la cabeza ofreció el desempeño más estable entre LOS y NLOS. Alcanzó un MAE de 4.87 cm en exteriores bajo LOS y de 18.66 cm en interiores bajo NLOS; en este último escenario, el factor de degradación fue de 1.8×, el más bajo registrado. La muñeca también presentó resultados favorables, con MAE de 6.42-7.78 cm en LOS y de 22.00-24.07 cm en NLOS. En el montaje evaluado, la cadera y el pecho fueron más sensibles a los cambios de orientación por sus factores de degradación, pero esta observación corresponde al Sujeto 2 y no permite establecer una recomendación poblacional definitiva.
-
-\item \textbf{Número y distribución de nodos ancla:} En escenarios con BS inevitable, se recomiendan configuraciones con más de cuatro nodos ancla distribuidos para maximizar la cobertura de la línea de vista desde múltiples ángulos. Con cuatro nodos en las esquinas de un rectángulo, i.e., la configuración usada en el Experimento 2, la probabilidad de que los cuatro enlaces estén simultáneamente en NLOS severa es alta en posiciones donde el cuerpo actúa como barrera central. Aumentar a 6-8 nodos distribuidos en puntos altos, i.e., paredes y techo, podría reducir esta probabilidad y debe validarse experimentalmente.
-
-\item \textbf{Estrategias de mitigación:} La aplicación del KF redujo el error máximo de posición en 41-49\% y la desviación estándar en 41-48\% en los casos críticos, i.e., pecho, lo que mejoró la variabilidad. Se recomienda implementar el EKF como técnica estándar. Complementariamente, se recomienda implementar algoritmos de detección de NLOS mediante el análisis de características de señal, i.e., amplitud y ancho de pulso, para descartar o ponderar diferencialmente las mediciones con error predicho > 50 cm, mejorando la robustez.
-
-\item \textbf{Expectativas realistas de desempeño:} En aplicaciones con movilidad libre del usuario, donde la orientación relativa varía continuamente, debe anticiparse una exactitud de localización del orden de 70-95 cm (promedio), significativamente mayor que la exactitud nominal en LOS, i.e., 48 cm sin BS. El p95 del error de posición 2D se sitúa entre 1.2 y 1.5 m, lo que refleja la variabilidad inherente a la obstrucción y a las limitaciones de seguimiento del personal en interiores. Esta exactitud es funcional; para un análisis biomecánico detallado, se requerirían sensores inerciales complementarios.
-\end{enumerate}
-
-\subsection{Aplicabilidad a Casos de Uso Específicos}
-
-\textbf{Seguimiento de personal en entornos industriales:} La exactitud alcanzada de 70-95 cm es suficiente para aplicaciones de seguimiento grueso de personal, e.g.,  verificar en qué zona amplia se encuentra un trabajador y \textit{geofencing} de áreas restringidas. Sin embargo, para aplicaciones que requieren una exactitud inferior a 50 cm, como la prevención de colisiones con maquinaria o la localización precisa de herramientas, se requeriría complementar UWB con sensores inerciales o detectores de proximidad de corto alcance.
-
-\textbf{Localización en hospitales:} La exactitud de 70-95 cm es comparable a los requerimientos típicos de seguimiento de pacientes y del personal médico en plantas hospitalarias. Permite identificar en qué habitación o corredor se encuentra una persona, lo cual resulta útil en aplicaciones de alertas ante eventos adversos, i.e., paciente fuera de la cama o personal en una zona no autorizada. La ubicación óptima en la cabeza es prácticamente implementable mediante dispositivos \textit{wearables} como audífonos o diademas.
-
-\textbf{Deportes y análisis biomecánico:} La exactitud de 70-95 cm en el posicionamiento 2D horizontal resulta insuficiente para el análisis detallado de la cinemática del movimiento, que típicamente requiere una exactitud de 5-10 cm. UWB sería complementario a sistemas de captura de movimiento ópticos o inerciales, proporcionando contexto espacial cuando se requiere seguimiento o rastreo en espacios amplios.
-
-
-\section{LIMITACIONES DEL ESTUDIO}
+\subsection{Limitaciones}
 \label{sec:limitaciones}
 
-Es importante reconocer las limitaciones inherentes a este estudio experimental:
+El Experimento 1 se realizó con el Sujeto 2 y el Experimento 2 incluyó tres participantes. Esta muestra permite identificar patrones y diferencias entre configuraciones, pero no relacionarlas estadísticamente con características antropométricas ni generalizarlas a una población. La mayoría de las mediciones se tomó en posiciones estáticas; por ello, los resultados no representan todavía el seguimiento de una persona que camina, cambia de orientación o modifica su postura de forma continua.
 
-\begin{enumerate}
-\item \textbf{Tamaño muestral limitado:} Con tres participantes en el Experimento 2, las diferencias observadas no permiten establecer asociaciones estadísticas entre las características antropométricas y el error. El Experimento 1 incluyó más de 250 mediciones por configuración de un único participante, lo que permite comparar ubicaciones dentro del Sujeto 2, pero no generalizar los resultados a la población. Estudios futuros con un mayor número de participantes permitirían analizar la variabilidad intersujeto.
-
-\item \textbf{Escenario experimental único:} Los experimentos se realizaron en un salón cerrado de 10.4 m × 7.4 m, con paredes de hormigón. Las características específicas de este entorno, i.e., las propiedades dieléctricas de los materiales, las dimensiones y la ausencia de mobiliario complejo, influyen en los resultados. La replicación en múltiples escenarios con geometrías, tamaños y características de propagación diversas, i.e., hospitales, fábricas y oficinas,  fortalecería la validez externa de las conclusiones.
-
-
-\item \textbf{Mediciones predominantemente estáticas:} Aunque se incluyeron transiciones entre posiciones, la mayoría de los datos corresponden a condiciones estáticas, i.e., la persona manteniendo la postura en cada punto. En aplicaciones reales con el usuario caminando de forma continua, efectos adicionales, como aceleración corporal, variaciones posturales dinámicas y un mayor número de trayectos, podrían influir en el desempeño.
-
-\item \textbf{Configuración de hardware específica:} Resultados obtenidos con módulos DWM1001, i.e., transceptores DW1000 a 6.5 GHz. Diferentes implementaciones UWB, i.e.,  en otras bandas de frecuencia como 3.5 GHz o 7.25 GHz, distintos tipos de antena o procesadores de señal, presentarían variaciones en la exactitud.
-
-\end{enumerate}
+También debe considerarse que el posicionamiento 2D se evaluó en un solo salón, con cuatro anclas y hardware DWM1001 configurado a 6.5 GHz. No se calculó el GDOP por posición, no se compararon otras frecuencias y no se validaron de manera independiente el detector NLOS ni los parámetros del IEKF. Estas restricciones no invalidan los hallazgos, pero delimitan su alcance: describen el sistema construido y las condiciones ensayadas. La validación en más participantes, escenarios y trayectorias dinámicas será necesaria para determinar qué parte del desempeño se conserva fuera de este conjunto experimental.
